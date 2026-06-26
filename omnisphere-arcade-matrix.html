@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>The Famo-Legacy OmniSphere Retro Arcade Terminal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <style>
+        body { margin: 0; background: #050505; color: #ff5500; font-family: sans-serif; overflow: hidden; text-align: center; }
+        canvas { display: block; background: #111; margin: 10px auto; border: 2px solid #ff5500; max-width: 95vw; max-height: 70vh; }
+        h1 { font-size: 1.2rem; margin: 10px 0 2px 0; letter-spacing: 2px; }
+        p { font-size: 0.8rem; color: #fff; margin: 2px 0 10px 0; }
+    </style>
+</head>
+<body>
+    <h1>THE FAMO-LEGACY OMNISPHERE™ ARCADE</h1>
+    <p>Tap screen to fire. Move mouse/finger to steer ship.</p>
+    <canvas id="gameCanvas" width="400" height="500"></canvas>
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+        let player = { x: 180, y: 440, w: 40, h: 20, score: 0 };
+        let lasers = [];
+        let targets = [];
+        window.addEventListener('mousemove', (e) => {
+            let rect = canvas.getBoundingClientRect();
+            player.x = (e.clientX - rect.left) * (canvas.width / rect.width) - player.w/2;
+        });
+        window.addEventListener('touchmove', (e) => {
+            let rect = canvas.getBoundingClientRect();
+            player.x = (e.touches[0].clientX - rect.left) * (canvas.width / rect.width) - player.w/2;
+        });
+        window.addEventListener('click', () => { lasers.push({ x: player.x + player.w/2 - 2, y: player.y, w: 4, h: 10 }); });
+        window.addEventListener('touchstart', () => { lasers.push({ x: player.x + player.w/2 - 2, y: player.y, w: 4, h: 10 }); });
+        function spawnTarget() { targets.push({ x: Math.random() * (canvas.width - 60), y: 0, w: 60, h: 20, text: "GATEKEEPER" }); }
+        setInterval(spawnTarget, 1500);
+        function update() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "#ff5500";
+            ctx.fillRect(player.x, player.y, player.w, player.h);
+            ctx.fillStyle = "#ffffff";
+            lasers.forEach((l, li) => {
+                l.y -= 7;
+                ctx.fillRect(l.x, l.y, l.w, l.h);
+                if(l.y < 0) lasers.splice(li, 1);
+            });
+            ctx.fillStyle = "#abcabc";
+            targets.forEach((t, ti) => {
+                t.y += 2;
+                ctx.fillRect(t.x, t.y, t.w, t.h);
+                ctx.fillStyle = "#000";
+                ctx.font = "8px Arial";
+                ctx.fillText(t.text, t.x + 4, t.y + 12);
+                ctx.fillStyle = "#abcabc";
+                lasers.forEach((l, li) => {
+                    if(l.x > t.x && l.x < t.x + t.w && l.y > t.y && l.y < t.y + t.h) {
+                        targets.splice(ti, 1);
+                        lasers.splice(li, 1);
+                        player.score += 10;
+                    }
+                });
+                if(t.y > canvas.height) targets.splice(ti, 1);
+            });
+            ctx.fillStyle = "#fff";
+            ctx.font = "14px Arial";
+            ctx.fillText("OmniSphere Score: " + player.score, 10, 25);
+        }
+        setInterval(update, 1000/30);
+    </script>
+</body>
+</html>
