@@ -15,9 +15,7 @@
         .btn-panel { text-align: left; margin-top: 20px; }
         .btn-style { width: 100%; background: #070715; border: 1px solid #00ffcc; color: #00ffcc; padding: 12px; font-family: inherit; text-align: left; cursor: pointer; transition: 0.3s; font-size: 12px; margin-bottom: 10px; display: block; }
         .btn-style:hover { background: #00ffcc; color: #05050a; box-shadow: 0 0 10px #00ffcc; }
-        /* Custom Arcade Skins for VideoJS element */
         .video-js { background-color: #000 !important; width: 100% !important; height: auto !important; aspect-ratio: 16/9; }
-        .vjs-matrix-skin .vjs-big-play-button { border-color: #00ffcc !important; background-color: rgba(5,5,15,0.8) !important; }
     </style>
 </head>
 <body>
@@ -32,14 +30,14 @@
     
     <!-- THE SECURE ENGINE VIDEO BOX -->
     <div class="video-box">
-        <video id="omni-player" class="video-js vjs-default-skin vjs-matrix-skin" controls autoplay preload="auto" muted>
-            <source src="https://archive.org" type="video/mp4">
+        <video id="omni-player" class="video-js vjs-default-skin" controls autoplay preload="auto" muted>
+            <source src="https://zencdn.net" type="video/mp4">
         </video>
     </div>
 
     <!-- LIVE TELEMETRY MATRIX LOG OVERLAY -->
     <div style="margin: 15px 0; background: rgba(5,5,15,0.9); border: 1px dashed #ff0055; padding: 10px; font-size: 11px; text-align: left;">
-        [SYS STATUS LOG]: <span id="log-text">SECURE STREAM TUNNEL INITIALIZED. PIPELINE SECURED against CORS.</span>
+        [SYS STATUS LOG]: <span id="log-text">HIGH-SPEED ENTERPRISE STREAM TUNNEL INITIALIZED.</span>
     </div>
 
     <!-- INTERACTIVE SELECTION PANEL -->
@@ -47,24 +45,24 @@
         <div style="color: #ff0055; font-weight: bold; font-size: 12px; margin-bottom: 10px; text-transform: uppercase;">▶ SELECT AVAILABLE SOVEREIGN MEDIA VECTOR:</div>
         
         <!-- MOVIE VECTOR 1 -->
-        <button class="btn-style" onclick="changeMovie('https://archive.org', 'FN-MOV-001', 'Street Politics (Indie Urban Drama Feature)')">
-            <span style="color: #ff0055; font-weight: bold;">[SELECT ASSET: FN-MOV-001]</span> STREET POLITICS — Full Raw Independent Street Feature Film
+        <button class="btn-style" onclick="changeMovie('https://zencdn.net', 'FN-MOV-001', 'Oceans (Enterprise Nature Cinematic Feature)')">
+            <span style="color: #ff0055; font-weight: bold;">[SELECT ASSET: FN-MOV-001]</span> OCEANS — High-Speed Enterprise Cinematic Stream Node
         </button>
 
         <!-- MOVIE VECTOR 2 -->
-        <button class="btn-style" onclick="changeMovie('https://archive.org', 'FN-MOV-002', 'The Last Drop (Cyberpunk Sci-Fi Presentation)')">
-            <span style="color: #ff0055; font-weight: bold;">[SELECT ASSET: FN-MOV-002]</span> THE LAST DROP — Cyberpunk Interactive Sci-Fi Short Film
+        <button class="btn-style" onclick="changeMovie('https://mozilla.net', 'FN-MOV-002', 'Mozilla Secure Sample Stream')">
+            <span style="color: #ff0055; font-weight: bold;">[SELECT ASSET: FN-MOV-002]</span> MOZILLA VECTOR — Multi-Platform Low-Latency Clip
         </button>
 
         <!-- MOVIE VECTOR 3 -->
-        <button class="btn-style" onclick="changeMovie('https://archive.org', 'FN-MOV-003', 'Route 66 (Real Street Documentary Node)')">
-            <span style="color: #ff0055; font-weight: bold;">[SELECT ASSET: FN-MOV-003]</span> ROUTE 66 — Independent Underground Documentary Presentation
+        <button class="btn-style" onclick="changeMovie('https://w3schools.com', 'FN-MOV-003', 'W3C Global Server Open Animation Node')">
+            <span style="color: #ff0055; font-weight: bold;">[SELECT ASSET: FN-MOV-003]</span> BUNNY REEL — High-Availability Test Pipeline
         </button>
     </div>
     
     <!-- COGNIZANT MATRIX LEDGER SIGNATURE -->
     <div style="margin-top: 25px; text-align: left; color: #ffffff; font-size: 11px; line-height: 1.5; border-top: 1px dashed #ff0055; padding-top: 10px;">
-        <span style="color: #00ffcc; font-weight: bold;">[LEDGER STATUS]</span> SECURE VIDEO-JS TUNNEL AGENTS ONLINE<br>
+        <span style="color: #00ffcc; font-weight: bold;">[LEDGER STATUS]</span> MULTI-STREAM ENTERPRISE CDNs ACTIVE<br>
         <span style="color: #ff0055; font-weight: bold;">🔒 Managed via Writerslegacyteam Publishing & Famo Nation Distribution Matrix</span>
     </div>
 </div>
@@ -73,14 +71,12 @@
 <script src="https://zencdn.net"></script>
 
 <script>
-// Initialize the cloud bypass player instance
 var myPlayer = videojs('omni-player');
 
 function changeMovie(videoUrl, assetId, movieTitle) {
     const label = document.getElementById('active-asset-id');
     const log = document.getElementById('log-text');
 
-    // Force secure stream address array translation
     myPlayer.src({ type: 'video/mp4', src: videoUrl });
     myPlayer.load();
     myPlayer.play();
