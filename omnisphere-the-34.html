@@ -48,9 +48,9 @@ async function fetchHighSchoolFeeds() {
         let html = '';
         if (games.length === 0) {
             html = `
-                <div class="card"><div class="state-tag">OKLAHOMA NODE</div><div class="teams">Muskogee Roughers<br>@ THE 34 Arena</div><div class="score-line">0 : 0</div><div class="status">GRID SEASON OFF</div></div>
-                <div class="card"><div class="state-tag">SOUTH DAKOTA NODE</div><div class="teams">Rapid City Central<br>@ THE 34 Arena</div><div class="score-line">0 : 0</div><div class="status">GRID SEASON OFF</div></div>
-                <div class="card"><div class="state-tag">MISSOURI NODE</div><div class="teams">Kansas City Lincoln<br>@ THE 34 Arena</div><div class="score-line">0 : 0</div><div class="status">GRID SEASON OFF</div></div>
+               <div class="card"><div class="state-tag">OKLAHOMA NODE</div><div class="teams">Hilldale @ Muskogee</div><div class="score-line">34 : 14</div><div class="status">FINAL - PARKER MVP TEST</div></div>
+    <div class="card"><div class="state-tag">SOUTH DAKOTA NODE</div><div class="teams">Rapid City Central</div><div class="score-line">24 : 7</div><div class="status">4TH QUARTER - TEST</div></div>
+    <div class="card"><div class="state-tag">MISSOURI NODE</div><div class="teams">Kansas City Lincoln</div><div class="score-line">0 : 10</div><div class="status">HALFTIME - TEST</div></div>
             `;
         } else {
             for(let i = 0; i < Math.min(games.length, 4); i++) {
