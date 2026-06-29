@@ -1,79 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OMNI-BOUT: Customized Arcade Matrix</title>
-    <style>
-        body { margin: 0; background: #05050a; color: #00ffcc; font-family: monospace; text-align: center; padding: 20px; }
-        .omnisphere-cinema-matrix { border: 3px double #00ffcc; background: #05050a; padding: 20px; max-width: 900px; margin: 30px auto; box-shadow: 0 0 25px rgba(0,255,204,0.3); color: #ffffff; }
-        #active-asset-id { font-weight: bold; }
-        .video-box { position: relative; border: 1px solid #00ffcc; background: #000; box-shadow: inset 0 0 20px rgba(0,255,204,0.5); margin-top: 10px; }
-        #log-text { color: #00ffcc; font-weight: normal; }
-        .btn-panel { text-align: left; margin-top: 20px; }
-        .btn-style { width: 100%; background: #070715; border: 1px solid #00ffcc; color: #00ffcc; padding: 12px; font-family: inherit; text-align: left; cursor: pointer; transition: 0.3s; font-size: 12px; margin-bottom: 10px; display: block; }
-        .btn-style:hover { background: #00ffcc; color: #05050a; box-shadow: 0 0 10px #00ffcc; }
-    </style>
-</head>
-<body>
-
-<div class="omnisphere-cinema-matrix">
+<!-- ================================================================================= -->
+<!-- 🔱 OMNISPHERE™ SOVEREIGN CINEMA STREAM [SEC-02] - REAL-TIME EMBED DEPLOYMENT 🔱 -->
+<!-- ================================================================================= -->
+<div style="width: 100%; max-width: 800px; margin: 0 auto; background: #000; padding: 20px; border: 2px solid #00f0ff; color: #fff; font-family: monospace;">
     
-    <!-- SYSTEM OVERRIDE IDENTITY BLOCKS -->
-    <div style="display: flex; justify-content: space-between; color: #ff0055; font-weight: bold; font-size: 13px; margin-bottom: 12px; border-bottom: 1px dashed #ff0055; padding-bottom: 6px;">
-        <div>🔱 OMNISPHERE™ SOVEREIGN CINEMA STREAM [SEC-02]</div>
-        <div id="active-asset-id">NOW STREAMING: ASSET: FN-MOV-001</div>
+    <!-- Active Responsive Cinema Viewport -->
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-bottom: 20px; border: 1px solid #ff007f;">
+        <iframe id="omni-cinema-viewport" 
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+                src="https://archive.org" 
+                frameborder="0" 
+                scrolling="no" 
+                allowfullscreen="true" 
+                webkitallowfullscreen="true" 
+                mozallowfullscreen="true">
+        </iframe>
     </div>
+
+    <!-- Active Media Selection Vectors -->
+    <div style="color: #ff007f; font-weight: bold; margin-bottom: 10px;">▶ SELECT AVAILABLE SOVEREIGN MEDIA VECTOR:</div>
     
-    <!-- THE NATIVE ENHANCED VIDEO BOX -->
-    <div class="video-box">
-        <video id="omni-player" width="100%" height="auto" src="https://mozilla.net" controls autoplay muted style="display: block;">
-            OMNISphere BROADCAST SIGNAL FAILED TO INGEST DATA.
-        </video>
-    </div>
+    <button onclick="document.getElementById('omni-cinema-viewport').src='https://archive.org'" 
+            style="width: 100%; text-align: left; background: #002244; color: #00f0ff; border: 1px solid #00f0ff; padding: 10px; margin-bottom: 8px; cursor: pointer; font-family: monospace;">
+        [SELECT ASSET: OMNI-CLASSIC-001] NIGHT OF THE LIVING DEAD (1968) - Public Domain Master
+    </button>
 
-    <!-- LIVE TELEMETRY MATRIX LOG OVERLAY -->
-    <div style="margin: 15px 0; background: rgba(5,5,15,0.9); border: 1px dashed #ff0055; padding: 10px; font-size: 11px; text-align: left;">
-        [SYS STATUS LOG]: <span id="log-text">NATIVE VECTOR FEED INITIALIZED. STREAM SECURED.</span>
-    </div>
+    <button onclick="document.getElementById('omni-cinema-viewport').src='https://archive.org'" 
+            style="width: 100%; text-align: left; background: #002244; color: #00f0ff; border: 1px solid #00f0ff; padding: 10px; margin-bottom: 8px; cursor: pointer; font-family: monospace;">
+        [SELECT ASSET: OMNI-CLASSIC-002] THE PHANTOM OF THE OPERA (1925) - Public Domain Silent Master
+    </button>
 
-    <!-- INTERACTIVE SELECTION PANEL -->
-    <div class="btn-panel">
-        <div style="color: #ff0055; font-weight: bold; font-size: 12px; margin-bottom: 10px; text-transform: uppercase;">▶ SELECT AVAILABLE SOVEREIGN MEDIA VECTOR:</div>
-        
-        <!-- MOVIE VECTOR 1 -->
-        <button class="btn-style" onclick="changeMovie('https://mozilla.net', 'FN-MOV-001', 'Mozilla Secure Sample Vector Stream')">
-            <span style="color: #ff0055; font-weight: bold;">[SELECT ASSET: FN-MOV-001]</span> MOZILLA VECTOR — Multi-Platform Secure Presentation
-        </button>
+    <button onclick="document.getElementById('omni-cinema-viewport').src='https://archive.org'" 
+            style="width: 100%; text-align: left; background: #002244; color: #00f0ff; border: 1px solid #00f0ff; padding: 10px; cursor: pointer; font-family: monospace;">
+        [SELECT ASSET: OMNI-CLASSIC-003] A TRIP TO THE MOON (1902) - Historical Sci-Fi Vector
+    </button>
 
-        <!-- MOVIE VECTOR 2 -->
-        <button class="btn-style" onclick="changeMovie('https://w3schools.com', 'FN-MOV-002', 'W3C Global Server Open Animation Node')">
-            <span style="color: #ff0055; font-weight: bold;">[SELECT ASSET: FN-MOV-002]</span> BUNNY REEL — High-Availability Open Test Pipeline
-        </button>
-    </div>
-    
-    <!-- COGNIZANT MATRIX LEDGER SIGNATURE -->
-    <div style="margin-top: 25px; text-align: left; color: #ffffff; font-size: 11px; line-height: 1.5; border-top: 1px dashed #ff0055; padding-top: 10px;">
-        <span style="color: #00ffcc; font-weight: bold;">[LEDGER STATUS]</span> NATIVE BROWSER PLAYER DIRECT PIPELINE ACTIVE<br>
-        <span style="color: #ff0055; font-weight: bold;">🔒 Managed via Writerslegacyteam Publishing & Famo Nation Distribution Matrix</span>
-    </div>
 </div>
-
-<script>
-function changeMovie(videoUrl, assetId, movieTitle) {
-    const player = document.getElementById('omni-player');
-    const label = document.getElementById('active-asset-id');
-    const log = document.getElementById('log-text');
-
-    // Direct injection string rewrite to native canvas attributes
-    player.src = videoUrl;
-    player.load();
-    player.play();
-
-    label.innerText = "NOW STREAMING: ASSET: " + assetId;
-    log.innerHTML = "Switched cinema stream channel to: " + movieTitle + " | SYSTEM INGESTION LOCKED.";
-}
-</script>
-
-</body>
-</html>
