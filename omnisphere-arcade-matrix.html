@@ -4,15 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OMNI-BOUT: Customized Arcade Matrix</title>
+    <!-- Secure Player Engine Style Assets -->
+    <link href="https://zencdn.net" rel="stylesheet" />
     <style>
         body { margin: 0; background: #05050a; color: #00ffcc; font-family: monospace; text-align: center; padding: 20px; }
         .omnisphere-cinema-matrix { border: 3px double #00ffcc; background: #05050a; padding: 20px; max-width: 900px; margin: 30px auto; box-shadow: 0 0 25px rgba(0,255,204,0.3); color: #ffffff; }
         #active-asset-id { font-weight: bold; }
-        .video-box { position: relative; border: 1px solid #00ffcc; background: #000; box-shadow: inset 0 0 20px rgba(0,255,204,0.5); margin-top: 10px; }
+        .video-box { position: relative; border: 1px solid #00ffcc; background: #000; box-shadow: inset 0 0 20px rgba(0,255,204,0.5); margin-top: 10px; padding: 5px; }
         #log-text { color: #00ffcc; font-weight: normal; }
         .btn-panel { text-align: left; margin-top: 20px; }
         .btn-style { width: 100%; background: #070715; border: 1px solid #00ffcc; color: #00ffcc; padding: 12px; font-family: inherit; text-align: left; cursor: pointer; transition: 0.3s; font-size: 12px; margin-bottom: 10px; display: block; }
         .btn-style:hover { background: #00ffcc; color: #05050a; box-shadow: 0 0 10px #00ffcc; }
+        /* Custom Arcade Skins for VideoJS element */
+        .video-js { background-color: #000 !important; width: 100% !important; height: auto !important; aspect-ratio: 16/9; }
+        .vjs-matrix-skin .vjs-big-play-button { border-color: #00ffcc !important; background-color: rgba(5,5,15,0.8) !important; }
     </style>
 </head>
 <body>
@@ -25,17 +30,16 @@
         <div id="active-asset-id">NOW STREAMING: ASSET: FN-MOV-001</div>
     </div>
     
-    <!-- THE NATIVE GRAPHICS STREAMING SYSTEM -->
+    <!-- THE SECURE ENGINE VIDEO BOX -->
     <div class="video-box">
-        <!-- Reverted to native HTML5 video with direct source controls to clear out the broken iframe wrapper -->
-        <video id="omni-player" width="100%" height="auto" src="https://mixkit.co" controls autoplay loop muted style="display: block;">
-            OMNISphere BROADCAST SIGNAL FAILED TO INGEST DATA.
+        <video id="omni-player" class="video-js vjs-default-skin vjs-matrix-skin" controls autoplay preload="auto" muted>
+            <source src="https://archive.org" type="video/mp4">
         </video>
     </div>
 
     <!-- LIVE TELEMETRY MATRIX LOG OVERLAY -->
     <div style="margin: 15px 0; background: rgba(5,5,15,0.9); border: 1px dashed #ff0055; padding: 10px; font-size: 11px; text-align: left;">
-        [SYS STATUS LOG]: <span id="log-text">STREAM INITIALIZED. CYBERPUNK AMBIENT GRID CONNECTED.</span>
+        [SYS STATUS LOG]: <span id="log-text">SECURE STREAM TUNNEL INITIALIZED. PIPELINE SECURED against CORS.</span>
     </div>
 
     <!-- INTERACTIVE SELECTION PANEL -->
@@ -43,38 +47,43 @@
         <div style="color: #ff0055; font-weight: bold; font-size: 12px; margin-bottom: 10px; text-transform: uppercase;">▶ SELECT AVAILABLE SOVEREIGN MEDIA VECTOR:</div>
         
         <!-- MOVIE VECTOR 1 -->
-        <button class="btn-style" onclick="changeMovie('https://mixkit.co', 'FN-MOV-001', 'Neon Laser Core Grid Animation Loop')">
-            <span style="color: #ff0055; font-weight: bold;">[SELECT ASSET: FN-MOV-001]</span> LASER MATRIX — Cyberpunk Neon Background Stream Node
+        <button class="btn-style" onclick="changeMovie('https://archive.org', 'FN-MOV-001', 'Street Politics (Indie Urban Drama Feature)')">
+            <span style="color: #ff0055; font-weight: bold;">[SELECT ASSET: FN-MOV-001]</span> STREET POLITICS — Full Raw Independent Street Feature Film
         </button>
 
         <!-- MOVIE VECTOR 2 -->
-        <button class="btn-style" onclick="changeMovie('https://mixkit.co', 'FN-MOV-002', 'Retro Futuristic Synthwave Flight Track')">
-            <span style="color: #ff0055; font-weight: bold;">[SELECT ASSET: FN-MOV-002]</span> SYNTHWAVE GRID — 80s Cyber Vector Horizon Loop
+        <button class="btn-style" onclick="changeMovie('https://archive.org', 'FN-MOV-002', 'The Last Drop (Cyberpunk Sci-Fi Presentation)')">
+            <span style="color: #ff0055; font-weight: bold;">[SELECT ASSET: FN-MOV-002]</span> THE LAST DROP — Cyberpunk Interactive Sci-Fi Short Film
         </button>
 
         <!-- MOVIE VECTOR 3 -->
-        <button class="btn-style" onclick="changeMovie('https://mixkit.co', 'FN-MOV-003', 'Futuristic Cyan Cyber Network Tunnel Tunnel')">
-            <span style="color: #ff0055; font-weight: bold;">[SELECT ASSET: FN-MOV-003]</span> DATA TUNNEL — Global Ingestion Core Acceleration Pipeline
+        <button class="btn-style" onclick="changeMovie('https://archive.org', 'FN-MOV-003', 'Route 66 (Real Street Documentary Node)')">
+            <span style="color: #ff0055; font-weight: bold;">[SELECT ASSET: FN-MOV-003]</span> ROUTE 66 — Independent Underground Documentary Presentation
         </button>
     </div>
     
     <!-- COGNIZANT MATRIX LEDGER SIGNATURE -->
     <div style="margin-top: 25px; text-align: left; color: #ffffff; font-size: 11px; line-height: 1.5; border-top: 1px dashed #ff0055; padding-top: 10px;">
-        <span style="color: #00ffcc; font-weight: bold;">[LEDGER STATUS]</span> PUBLIC ACCESS TRACKS ACTIVE NATIVELY<br>
+        <span style="color: #00ffcc; font-weight: bold;">[LEDGER STATUS]</span> SECURE VIDEO-JS TUNNEL AGENTS ONLINE<br>
         <span style="color: #ff0055; font-weight: bold;">🔒 Managed via Writerslegacyteam Publishing & Famo Nation Distribution Matrix</span>
     </div>
 </div>
 
+<!-- Core Secure Player Core Libraries -->
+<script src="https://zencdn.net"></script>
+
 <script>
+// Initialize the cloud bypass player instance
+var myPlayer = videojs('omni-player');
+
 function changeMovie(videoUrl, assetId, movieTitle) {
-    const player = document.getElementById('omni-player');
     const label = document.getElementById('active-asset-id');
     const log = document.getElementById('log-text');
 
-    // Feed public access path straight into native player attributes
-    player.src = videoUrl;
-    player.load();
-    player.play();
+    // Force secure stream address array translation
+    myPlayer.src({ type: 'video/mp4', src: videoUrl });
+    myPlayer.load();
+    myPlayer.play();
 
     label.innerText = "NOW STREAMING: ASSET: " + assetId;
     log.innerHTML = "Switched cinema stream channel to: " + movieTitle + " | SYSTEM INGESTION LOCKED.";
