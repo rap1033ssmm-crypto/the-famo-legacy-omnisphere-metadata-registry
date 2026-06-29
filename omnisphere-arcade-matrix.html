@@ -27,9 +27,8 @@
     
     <!-- THE WIDESCREEN VIDEO PLAYER NODE -->
     <div class="video-box">
-        <!-- Added explicit preload parameters to speed up network data fetching -->
-        <video id="omni-player" width="100%" height="auto" controls autoplay preload="auto" style="display: block;">
-            <source id="video-source" src="https://googleapis.com" type="video/mp4">
+        <!-- Direct src injection path used here for fail-proof streaming -->
+        <video id="omni-player" width="100%" height="auto" src="https://googleapis.com" controls autoplay preload="auto" style="display: block;">
             OMNISphere BROADCAST SIGNAL FAILED TO INGEST DATA.
         </video>
     </div>
@@ -69,21 +68,19 @@
 <script>
 function changeMovie(videoUrl, assetId, movieTitle) {
     const player = document.getElementById('omni-player');
-    const source = document.getElementById('video-source');
     const label = document.getElementById('active-asset-id');
     const log = document.getElementById('log-text');
 
-    // Source modification stream pipeline rewrite
-    source.src = videoUrl;
+    // FIX: Injecting target address straight into the player object properties
+    player.src = videoUrl;
     player.load(); 
     
-    // Safety check to handle modern browser autoplay protection triggers
     var playPromise = player.play();
     if (playPromise !== undefined) {
         playPromise.then(_ => {
-            // Automatic playback execution success state
+            // Stream initialization success
         }).catch(error => {
-            // Browser required human touch interaction override fallback flag
+            // Muted override backup path for browser autoplay protection blocks
             player.muted = true;
             player.play();
         });
