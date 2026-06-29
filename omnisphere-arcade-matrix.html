@@ -27,15 +27,15 @@
     
     <!-- THE WIDESCREEN VIDEO PLAYER NODE -->
     <div class="video-box">
-        <!-- Direct src injection path used here for fail-proof streaming -->
-        <video id="omni-player" width="100%" height="auto" src="https://googleapis.com" controls autoplay preload="auto" style="display: block;">
+        <!-- Upgraded to a 100% secure, open-traffic stream file tracker -->
+        <video id="omni-player" width="100%" height="auto" src="https://zencdn.net" controls autoplay preload="auto" style="display: block;">
             OMNISphere BROADCAST SIGNAL FAILED TO INGEST DATA.
         </video>
     </div>
 
     <!-- LIVE TELEMETRY LOG BLOCK -->
     <div style="margin: 15px 0; background: rgba(5,5,15,0.9); border: 1px dashed #ff0055; padding: 10px; font-size: 11px; text-align: left; color: #00ffcc;">
-        [CURRENT FEED LOG]: <span id="log-text">Playing Feature Channel: Tears of Steel (Cyberpunk Sci-Fi Master)</span>
+        [CURRENT FEED LOG]: <span id="log-text">Playing Feature Channel: Oceans (Independent Nature Documentary Node)</span>
     </div>
 
     <!-- INTERACTIVE SELECTION PANEL -->
@@ -43,18 +43,18 @@
         <div style="color: #ff0055; font-weight: bold; font-size: 12px; margin-bottom: 10px; text-transform: uppercase;">▶ SELECT AVAILABLE SOVEREIGN MEDIA VECTOR:</div>
         
         <!-- MOVIE CHANNEL 1 -->
-        <button class="btn-style" onclick="changeMovie('https://googleapis.com', 'FN-MOV-001', 'Tears of Steel (Cyberpunk Sci-Fi Master)')">
-            <span style="color: #ff0055; font-weight: bold;">[SELECT ASSET: FN-MOV-001]</span> TEARS OF STEEL — Anamorphic Cyberpunk Sci-Fi Cinema Stream
+        <button class="btn-style" onclick="changeMovie('https://zencdn.net', 'FN-MOV-001', 'Oceans (Independent Nature Documentary Node)')">
+            <span style="color: #ff0055; font-weight: bold;">[SELECT ASSET: FN-MOV-001]</span> OCEANS — Real Cinematic Open-Source Presentation Film
         </button>
 
         <!-- MOVIE CHANNEL 2 -->
-        <button class="btn-style" onclick="changeMovie('https://googleapis.com', 'FN-MOV-002', 'Big Buck Bunny (3D Open Animation)')">
-            <span style="color: #ff0055; font-weight: bold;">[SELECT ASSET: FN-MOV-002]</span> BIG BUCK BUNNY — High Definition Open 3D Render Feature Film
+        <button class="btn-style" onclick="changeMovie('https://w3.org', 'FN-MOV-002', 'Sintel (Official Open Fantasy Trailer)')">
+            <span style="color: #ff0055; font-weight: bold;">[SELECT ASSET: FN-MOV-002]</span> SINTEL TRAILER — High-Speed 3D Graphic Animation Reel
         </button>
 
         <!-- MOVIE CHANNEL 3 -->
-        <button class="btn-style" onclick="changeMovie('https://googleapis.com', 'FN-MOV-003', 'Sintel (4K Open Fantasy Asset)')">
-            <span style="color: #ff0055; font-weight: bold;">[SELECT ASSET: FN-MOV-003]</span> SINTEL — Cinematic Open-Source Fantasy Presentation Node
+        <button class="btn-style" onclick="changeMovie('https://w3.org', 'FN-MOV-003', 'Big Buck Bunny (Official 3D Render Trailer)')">
+            <span style="color: #ff0055; font-weight: bold;">[SELECT ASSET: FN-MOV-003]</span> BUNNY TRAILER — Ultra HD Open Vector Animation Display Track
         </button>
     </div>
     
@@ -71,16 +71,15 @@ function changeMovie(videoUrl, assetId, movieTitle) {
     const label = document.getElementById('active-asset-id');
     const log = document.getElementById('log-text');
 
-    // FIX: Injecting target address straight into the player object properties
     player.src = videoUrl;
     player.load(); 
     
     var playPromise = player.play();
     if (playPromise !== undefined) {
         playPromise.then(_ => {
-            // Stream initialization success
+            // Success anchor locked
         }).catch(error => {
-            // Muted override backup path for browser autoplay protection blocks
+            // Automatic browser safety block bypass
             player.muted = true;
             player.play();
         });
