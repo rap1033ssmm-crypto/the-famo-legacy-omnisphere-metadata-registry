@@ -26,8 +26,10 @@ h1 { color: #00ffcc; text-shadow: 0 0 10px rgba(0,255,204,0.4); margin: 0; font-
 <div style="font-family:monospace; color:#8a99ad; font-size:10px;">[SYSTEM OPERATIONAL SIGNAL: FN-OMNI-SAT-003] // [THE 34 HONORS ARCHIVE: HILLDALE CLASS OF 2002 #34]</div>
 </div>
 
+<!-- LIVE HS FOOTBALL SCOREBOARD GRID (UPDATED WITH HILLDALE HORNETS) -->
 <div class="grid" id="hsScoreboard">
-    <div class="card"><div class="state-tag">OKLAHOMA NODE</div><div class="teams">Muskogee Roughers<br>vs Opponent</div><div class="score-line">00 : 00</div><div class="status">Connecting Firehose...</div></div>
+    <div class="card"><div class="state-tag">HILLDALE OK CORE Node</div><div class="teams">Hilldale Hornets<br>vs Opponent</div><div class="score-line">00 : 00</div><div class="status">Connecting Firehose...</div></div>
+    <div class="card"><div class="state-tag">MUSKOGEE OK CORE NODE</div><div class="teams">Muskogee Roughers<br>vs Opponent</div><div class="score-line">00 : 00</div><div class="status">Connecting Firehose...</div></div>
     <div class="card"><div class="state-tag">SOUTH DAKOTA NODE</div><div class="teams">Rapid City Central<br>vs Opponent</div><div class="score-line">00 : 00</div><div class="status">Connecting Firehose...</div></div>
     <div class="card"><div class="state-tag">MISSOURI NODE</div><div class="teams">Kansas City Lincoln<br>vs Opponent</div><div class="score-line">00 : 00</div><div class="status">Connecting Firehose...</div></div>
 </div>
@@ -46,11 +48,14 @@ async function fetchHighSchoolFeeds() {
         const data = await response.json();
         const games = data.result || [];
         let html = '';
+        
+        // Always enforce your targeted regional structure during the summer off-season loop
         if (games.length === 0) {
             html = `
-               <div class="card"><div class="state-tag">OKLAHOMA NODE</div><div class="teams">Hilldale @ Muskogee</div><div class="score-line">34 : 14</div><div class="status">FINAL - PARKER MVP TEST</div></div>
-    <div class="card"><div class="state-tag">SOUTH DAKOTA NODE</div><div class="teams">Rapid City Central</div><div class="score-line">24 : 7</div><div class="status">4TH QUARTER - TEST</div></div>
-    <div class="card"><div class="state-tag">MISSOURI NODE</div><div class="teams">Kansas City Lincoln</div><div class="score-line">0 : 10</div><div class="status">HALFTIME - TEST</div></div>
+                <div class="card"><div class="state-tag">HILLDALE OK CORE</div><div class="teams">Hilldale Hornets<br>@ THE 34 Arena</div><div class="score-line">0 : 0</div><div class="status">GRID SEASON OFF</div></div>
+                <div class="card"><div class="state-tag">MUSKOGEE OK CORE</div><div class="teams">Muskogee Roughers<br>@ THE 34 Arena</div><div class="score-line">0 : 0</div><div class="status">GRID SEASON OFF</div></div>
+                <div class="card"><div class="state-tag">SOUTH DAKOTA NODE</div><div class="teams">Rapid City Central<br>@ THE 34 Arena</div><div class="score-line">0 : 0</div><div class="status">GRID SEASON OFF</div></div>
+                <div class="card"><div class="state-tag">MISSOURI NODE</div><div class="teams">Kansas City Lincoln<br>@ THE 34 Arena</div><div class="score-line">0 : 0</div><div class="status">GRID SEASON OFF</div></div>
             `;
         } else {
             for(let i = 0; i < Math.min(games.length, 4); i++) {
