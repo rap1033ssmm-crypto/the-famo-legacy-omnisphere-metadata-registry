@@ -25,8 +25,16 @@
         
         /* 🛡️ CRYPTOGRAPHIC BADGE GRID LAYOUT 🛡️ */
         .badge-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin: 20px 0; text-align: center; }
-        .secure-badge { background: #001122; border: 1px dashed #00f0ff; padding: 10px; font-size: 11px; font-weight: bold; text-transform: uppercase; color: #fff; }
+        .secure-badge { background: #001122; border: 1px solid #00f0ff; padding: 10px; font-size: 11px; font-weight: bold; text-transform: uppercase; color: #fff; position: relative; overflow: hidden; }
         .secure-badge span { color: #ff007f; display: block; font-size: 13px; margin-top: 3px; }
+
+        /* 📡 MATRIX PULSE ANIMATION */
+        .pulse-indicator { display: inline-block; width: 6px; height: 6px; background: #ff007f; border-radius: 50%; margin-right: 5px; animation: heartbeat 1.5s infinite ease-in-out; }
+        @keyframes heartbeat {
+            0% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 0 rgba(255, 0, 127, 0.7); }
+            70% { transform: scale(1.2); opacity: 0.5; box-shadow: 0 0 0 6px rgba(255, 0, 127, 0); }
+            100% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 0 rgba(255, 0, 127, 0); }
+        }
 
         .grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
         .grid-card { background: #0a0a1a; border: 1px solid #00f0ff; padding: 15px; }
@@ -47,11 +55,11 @@
             <div class="crypto-hash">GLOBAL STREAM CRYPTOGRAPHIC HASH: bafkreibeh7chyu4dthghgyutxhrlsne33oe5fmugoeizdywkzkaji7c5y</div>
         </div>
 
-        <!-- 🛡️ LIVE SECURITY VERIFICATION MATRIX 🛡️ -->
+        <!-- 🛡️ LIVE SECURITY VERIFICATION MATRIX WITH HEARTBEAT PULSE 🛡️ -->
         <div class="badge-grid">
             <div class="secure-badge">Ecosystem Rating Lock<span>10⁺⁹⁹ ➕4 SECURE</span></div>
             <div class="secure-badge">Station Master Token<span>FN-OMNI-SAT-003</span></div>
-            <div class="secure-badge">Sovereign Asset ID<span>FN-ARC-FL-2026-0001</span></div>
+            <div class="secure-badge"><div class="pulse-indicator"></div>System Status<span id="matrix-clock">00:00:00 AM</span></div>
             <div class="secure-badge">BMI Publisher Escrow<span>ACTIVE VERIFIED</span></div>
         </div>
 
@@ -101,6 +109,25 @@
             <div style="margin-top: 10px; font-size: 10px; color: #555; text-align: center;">Fully Managed via Writerslegacyteam Publishing, Famo Nation Distribution & BMI Publisher • Contact: writerslegacyteam@substack.com</div>
         </div>
     </div>
+
+    <!-- ⚡ SYSTEM HEARTBEAT & TIME INGESTION CORE ⚡ -->
+    <script>
+        function updateMatrixClock() {
+            const now = new Date();
+            let hours = now.getHours();
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            
+            hours = hours % 12;
+            hours = hours ? hours : 12; // Convert '0' to '12'
+            const displayHours = String(hours).padStart(2, '0');
+
+            document.getElementById('matrix-clock').textContent = `${displayHours}:${minutes}:${seconds} ${ampm}`;
+        }
+        setInterval(updateMatrixClock, 1000);
+        updateMatrixClock(); // Run instantly on ingestion
+    </script>
 
 </body>
 </html>
