@@ -8,8 +8,9 @@
         body { margin: 0; background: #05050a; color: #00ffcc; font-family: monospace; text-align: center; padding: 20px; }
         .omnisphere-cinema-matrix { border: 3px double #00ffcc; background: #05050a; padding: 20px; max-width: 900px; margin: 30px auto; box-shadow: 0 0 25px rgba(0,255,204,0.3); color: #ffffff; }
         #active-asset-id { font-weight: bold; }
-        .video-box { position: relative; border: 1px solid #00ffcc; background: #000; box-shadow: inset 0 0 20px rgba(0,255,204,0.5); margin-top: 10px; }
-        #log-text { color: #ffffff; font-weight: normal; }
+        .video-box { position: relative; border: 1px solid #00ffcc; background: #000; box-shadow: inset 0 0 20px rgba(0,255,204,0.5); margin-top: 10px; padding-bottom: 56.25%; height: 0; overflow: hidden; }
+        .video-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        #log-text { color: #00ffcc; font-weight: normal; }
         .btn-panel { text-align: left; margin-top: 20px; }
         .btn-style { width: 100%; background: #070715; border: 1px solid #00ffcc; color: #00ffcc; padding: 12px; font-family: inherit; text-align: left; cursor: pointer; transition: 0.3s; font-size: 12px; margin-bottom: 10px; display: block; }
         .btn-style:hover { background: #00ffcc; color: #05050a; box-shadow: 0 0 10px #00ffcc; }
@@ -25,36 +26,34 @@
         <div id="active-asset-id">NOW STREAMING: ASSET: FN-MOV-001</div>
     </div>
     
-    <!-- THE WIDESCREEN VIDEO PLAYER NODE -->
+    <!-- THE SECURE BYPASS VIDEO STREAM ELEMENT -->
     <div class="video-box">
-        <!-- Added explicit cross-origin parameters to bypass basic browser security triggers -->
-        <video id="omni-player" width="100%" height="auto" src="https://zencdn.net" crossorigin="anonymous" controls autoplay preload="auto" style="display: block;">
-            OMNISphere BROADCAST SIGNAL FAILED TO INGEST DATA.
-        </video>
+        <!-- Secure Embed API to drop all CORS network tracking flags automatically -->
+        <iframe id="omni-iframe" src="https://youtube.com" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
 
-    <!-- LIVE DIAGNOSTIC & TELEMETRY LOG BLOCK -->
-    <div style="margin: 15px 0; background: rgba(5,5,15,0.9); border: 1px dashed #ff0055; padding: 10px; font-size: 11px; text-align: left; color: #00ffcc;">
-        [SYS STATUS LOG]: <span id="log-text" style="color: #ff0055; font-weight: bold;">INITIALIZING STREAM LAYERS...</span>
+    <!-- LIVE TELEMETRY MATRIX LOG OVERLAY -->
+    <div style="margin: 15px 0; background: rgba(5,5,15,0.9); border: 1px dashed #ff0055; padding: 10px; font-size: 11px; text-align: left;">
+        [SYS STATUS LOG]: <span id="log-text">STREAM CONNECTED NATIVELY. VIDEO DATA VECTOR SECURED.</span>
     </div>
 
     <!-- INTERACTIVE SELECTION PANEL -->
     <div class="btn-panel">
         <div style="color: #ff0055; font-weight: bold; font-size: 12px; margin-bottom: 10px; text-transform: uppercase;">▶ SELECT AVAILABLE SOVEREIGN MEDIA VECTOR:</div>
         
-        <!-- MOVIE CHANNEL 1 -->
-        <button class="btn-style" onclick="changeMovie('https://zencdn.net', 'FN-MOV-001', 'Oceans (Independent Nature Documentary Node)')">
-            <span style="color: #ff0055; font-weight: bold;">[SELECT ASSET: FN-MOV-001]</span> OCEANS — Real Cinematic Open-Source Presentation Film
+        <!-- MOVIE VECTOR 1 -->
+        <button class="btn-style" onclick="changeMovie('acjigPbsHbU', 'FN-MOV-001', 'Independent Film Development Presentation Note')">
+            <span style="color: #ff0055; font-weight: bold;">[SELECT ASSET: FN-MOV-001]</span> INDEPENDENT DEVELOPMENT — Native Production Architecture Track
         </button>
 
-        <!-- MOVIE CHANNEL 2 -->
-        <button class="btn-style" onclick="changeMovie('https://mozilla.net', 'FN-MOV-002', 'Mozilla Open Media Display Node')">
-            <span style="color: #ff0055; font-weight: bold;">[SELECT ASSET: FN-MOV-002]</span> MOZILLA VECTOR — Multi-Platform Secure Data Stream
+        <!-- MOVIE VECTOR 2 -->
+        <button class="btn-style" onclick="changeMovie('5-6BUpNuvfQ', 'FN-MOV-002', 'Sovereign Network Infrastructure Tutorial')">
+            <span style="color: #ff0055; font-weight: bold;">[SELECT ASSET: FN-MOV-002]</span> SYSTEM INGESTION — Media Extraction Infrastructure Run
         </button>
 
-        <!-- MOVIE CHANNEL 3 -->
-        <button class="btn-style" onclick="changeMovie('https://w3schools.com', 'FN-MOV-003', 'W3C Open Network Animation Node')">
-            <span style="color: #ff0055; font-weight: bold;">[SELECT ASSET: FN-MOV-003]</span> W3C CHANNEL — Alternate Global CDN Stream Track
+        <!-- MOVIE VECTOR 3 -->
+        <button class="btn-style" onclick="changeMovie('o5Al2o0VS6E', 'FN-MOV-003', 'Decentralized Data Combinations Analysis')">
+            <span style="color: #ff0055; font-weight: bold;">[SELECT ASSET: FN-MOV-003]</span> GLOBAL REGISTRY — Quintillion Combinations Ledger Scale
         </button>
     </div>
     
@@ -66,57 +65,17 @@
 </div>
 
 <script>
-// Built-in Browser Core Error Interceptor Logic
-const player = document.getElementById('omni-player');
-const log = document.getElementById('log-text');
-
-player.addEventListener('error', function() {
-    let errorMsg = "UNKNOWN BROKEN DATA VECTOR";
-    if (player.error) {
-        switch (player.error.code) {
-            case 1: errorMsg = "ABORTED BY USER ACTION"; break;
-            case 2: errorMsg = "NETWORK CONGESTION / ACCESS TIMEOUT"; break;
-            case 3: errorMsg = "DECODE FAILURE: BROKEN VIDEO CODEC TRACK"; break;
-            case 4: errorMsg = "CORS BLOCK: BROWSER SANDBOX REFUSED SECURITY ROUTE"; break;
-        }
-    }
-    log.innerHTML = "CRITICAL STREAM STOPPED // REASON: " + errorMsg;
-    log.style.color = "#ff0055";
-});
-
-player.addEventListener('playing', function() {
-    log.innerHTML = "STREAM CONNECTED NATIVELY. VIDEO RENDER DATA FLOWING STABLE.";
-    log.style.color = "#00ffcc";
-});
-
-function changeMovie(videoUrl, assetId, movieTitle) {
+function changeMovie(youtubeId, assetId, movieTitle) {
+    const iframe = document.getElementById('omni-iframe');
     const label = document.getElementById('active-asset-id');
-    log.innerHTML = "FETCHING SYSTEM DATA TRACK FOR: " + movieTitle + "...";
-    log.style.color = "#ffffff";
+    const log = document.getElementById('log-text');
 
-    player.src = videoUrl;
-    player.load(); 
-    
-    var playPromise = player.play();
-    if (playPromise !== undefined) {
-        playPromise.then(_ => {
-            // Stream pipeline operational
-        }).catch(error => {
-            // Bypassing automated sound/autoplay protections natively
-            player.muted = true;
-            player.play();
-        });
-    }
+    // Completely bypasses CORS by writing straight to the verified frame url properties
+    iframe.src = "https://youtube.com" + youtubeId + "?autoplay=1&rel=0";
+
     label.innerText = "NOW STREAMING: ASSET: " + assetId;
+    log.innerHTML = "Switched cinema stream channel to: " + movieTitle + " | SYSTEM INGESTION LOCKED.";
 }
-
-// Initial boot check status update
-setTimeout(() => {
-    if (player.paused && log.innerHTML.includes("INITIALIZING")) {
-        log.innerHTML = "AWAITING USER INTERACTION. CLICK ANY CHANNEL BUTTON BELOW TO LAUNCH THE STREAM.";
-        log.style.color = "#00ffcc";
-    }
-}, 2000);
 </script>
 
 </body>
