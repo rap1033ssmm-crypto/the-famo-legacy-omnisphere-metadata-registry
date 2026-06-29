@@ -27,15 +27,15 @@
     
     <!-- THE WIDESCREEN VIDEO PLAYER NODE -->
     <div class="video-box">
-        <!-- Upgraded to a 100% secure, open-traffic stream file tracker -->
-        <video id="omni-player" width="100%" height="auto" src="https://zencdn.net" controls autoplay preload="auto" style="display: block;">
+        <!-- Added explicit cross-origin parameters to bypass basic browser security triggers -->
+        <video id="omni-player" width="100%" height="auto" src="https://zencdn.net" crossorigin="anonymous" controls autoplay preload="auto" style="display: block;">
             OMNISphere BROADCAST SIGNAL FAILED TO INGEST DATA.
         </video>
     </div>
 
-    <!-- LIVE TELEMETRY LOG BLOCK -->
+    <!-- LIVE DIAGNOSTIC & TELEMETRY LOG BLOCK -->
     <div style="margin: 15px 0; background: rgba(5,5,15,0.9); border: 1px dashed #ff0055; padding: 10px; font-size: 11px; text-align: left; color: #00ffcc;">
-        [CURRENT FEED LOG]: <span id="log-text">Playing Feature Channel: Oceans (Independent Nature Documentary Node)</span>
+        [SYS STATUS LOG]: <span id="log-text" style="color: #ff0055; font-weight: bold;">INITIALIZING STREAM LAYERS...</span>
     </div>
 
     <!-- INTERACTIVE SELECTION PANEL -->
@@ -48,28 +48,51 @@
         </button>
 
         <!-- MOVIE CHANNEL 2 -->
-        <button class="btn-style" onclick="changeMovie('https://w3.org', 'FN-MOV-002', 'Sintel (Official Open Fantasy Trailer)')">
-            <span style="color: #ff0055; font-weight: bold;">[SELECT ASSET: FN-MOV-002]</span> SINTEL TRAILER — High-Speed 3D Graphic Animation Reel
+        <button class="btn-style" onclick="changeMovie('https://mozilla.net', 'FN-MOV-002', 'Mozilla Open Media Display Node')">
+            <span style="color: #ff0055; font-weight: bold;">[SELECT ASSET: FN-MOV-002]</span> MOZILLA VECTOR — Multi-Platform Secure Data Stream
         </button>
 
         <!-- MOVIE CHANNEL 3 -->
-        <button class="btn-style" onclick="changeMovie('https://w3.org', 'FN-MOV-003', 'Big Buck Bunny (Official 3D Render Trailer)')">
-            <span style="color: #ff0055; font-weight: bold;">[SELECT ASSET: FN-MOV-003]</span> BUNNY TRAILER — Ultra HD Open Vector Animation Display Track
+        <button class="btn-style" onclick="changeMovie('https://w3schools.com', 'FN-MOV-003', 'W3C Open Network Animation Node')">
+            <span style="color: #ff0055; font-weight: bold;">[SELECT ASSET: FN-MOV-003]</span> W3C CHANNEL — Alternate Global CDN Stream Track
         </button>
     </div>
     
     <!-- COGNIZANT MATRIX LEDGER SIGNATURE -->
     <div style="margin-top: 25px; text-align: left; color: #ffffff; font-size: 11px; line-height: 1.5; border-top: 1px dashed #ff0055; padding-top: 10px;">
-        <span style="color: #00ffcc; font-weight: bold;">[LEDGER STATUS]</span> MULTI-STREAM INTERFACE CHANNELS ACTIVE<br>
+        <span style="color: #00ffcc; font-weight: bold;">[LEDGER STATUS]</span> MULTI-STREAM INTERFACE CONTROLS LOCKED<br>
         <span style="color: #ff0055; font-weight: bold;">🔒 Managed via Writerslegacyteam Publishing & Famo Nation Distribution Matrix</span>
     </div>
 </div>
 
 <script>
+// Built-in Browser Core Error Interceptor Logic
+const player = document.getElementById('omni-player');
+const log = document.getElementById('log-text');
+
+player.addEventListener('error', function() {
+    let errorMsg = "UNKNOWN BROKEN DATA VECTOR";
+    if (player.error) {
+        switch (player.error.code) {
+            case 1: errorMsg = "ABORTED BY USER ACTION"; break;
+            case 2: errorMsg = "NETWORK CONGESTION / ACCESS TIMEOUT"; break;
+            case 3: errorMsg = "DECODE FAILURE: BROKEN VIDEO CODEC TRACK"; break;
+            case 4: errorMsg = "CORS BLOCK: BROWSER SANDBOX REFUSED SECURITY ROUTE"; break;
+        }
+    }
+    log.innerHTML = "CRITICAL STREAM STOPPED // REASON: " + errorMsg;
+    log.style.color = "#ff0055";
+});
+
+player.addEventListener('playing', function() {
+    log.innerHTML = "STREAM CONNECTED NATIVELY. VIDEO RENDER DATA FLOWING STABLE.";
+    log.style.color = "#00ffcc";
+});
+
 function changeMovie(videoUrl, assetId, movieTitle) {
-    const player = document.getElementById('omni-player');
     const label = document.getElementById('active-asset-id');
-    const log = document.getElementById('log-text');
+    log.innerHTML = "FETCHING SYSTEM DATA TRACK FOR: " + movieTitle + "...";
+    log.style.color = "#ffffff";
 
     player.src = videoUrl;
     player.load(); 
@@ -77,17 +100,23 @@ function changeMovie(videoUrl, assetId, movieTitle) {
     var playPromise = player.play();
     if (playPromise !== undefined) {
         playPromise.then(_ => {
-            // Success anchor locked
+            // Stream pipeline operational
         }).catch(error => {
-            // Automatic browser safety block bypass
+            // Bypassing automated sound/autoplay protections natively
             player.muted = true;
             player.play();
         });
     }
-
     label.innerText = "NOW STREAMING: ASSET: " + assetId;
-    log.innerHTML = "Switched cinema stream channel to: " + movieTitle + " | SYSTEM INGESTION LOCKED.";
 }
+
+// Initial boot check status update
+setTimeout(() => {
+    if (player.paused && log.innerHTML.includes("INITIALIZING")) {
+        log.innerHTML = "AWAITING USER INTERACTION. CLICK ANY CHANNEL BUTTON BELOW TO LAUNCH THE STREAM.";
+        log.style.color = "#00ffcc";
+    }
+}, 2000);
 </script>
 
 </body>
