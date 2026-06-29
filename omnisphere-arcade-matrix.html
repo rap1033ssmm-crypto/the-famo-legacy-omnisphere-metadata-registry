@@ -27,15 +27,16 @@
     
     <!-- THE WIDESCREEN VIDEO PLAYER NODE -->
     <div class="video-box">
-        <video id="omni-player" width="100%" height="auto" controls style="display: block;">
-            <source id="video-source" src="https://archive.org" type="video/mp4">
+        <!-- Added explicit preload parameters to speed up network data fetching -->
+        <video id="omni-player" width="100%" height="auto" controls autoplay preload="auto" style="display: block;">
+            <source id="video-source" src="https://googleapis.com" type="video/mp4">
             OMNISphere BROADCAST SIGNAL FAILED TO INGEST DATA.
         </video>
     </div>
 
     <!-- LIVE TELEMETRY LOG BLOCK -->
     <div style="margin: 15px 0; background: rgba(5,5,15,0.9); border: 1px dashed #ff0055; padding: 10px; font-size: 11px; text-align: left; color: #00ffcc;">
-        [CURRENT FEED LOG]: <span id="log-text">Playing Feature Channel: Street Politics (Indie Urban Drama)</span>
+        [CURRENT FEED LOG]: <span id="log-text">Playing Feature Channel: Tears of Steel (Cyberpunk Sci-Fi Master)</span>
     </div>
 
     <!-- INTERACTIVE SELECTION PANEL -->
@@ -43,18 +44,18 @@
         <div style="color: #ff0055; font-weight: bold; font-size: 12px; margin-bottom: 10px; text-transform: uppercase;">▶ SELECT AVAILABLE SOVEREIGN MEDIA VECTOR:</div>
         
         <!-- MOVIE CHANNEL 1 -->
-        <button class="btn-style" onclick="changeMovie('https://archive.org', 'FN-MOV-001', 'Street Politics (Indie Urban Drama)')">
-            <span style="color: #ff0055; font-weight: bold;">[SELECT ASSET: FN-MOV-001]</span> STREET POLITICS — Raw Independent Urban Feature Drama
+        <button class="btn-style" onclick="changeMovie('https://googleapis.com', 'FN-MOV-001', 'Tears of Steel (Cyberpunk Sci-Fi Master)')">
+            <span style="color: #ff0055; font-weight: bold;">[SELECT ASSET: FN-MOV-001]</span> TEARS OF STEEL — Anamorphic Cyberpunk Sci-Fi Cinema Stream
         </button>
 
         <!-- MOVIE CHANNEL 2 -->
-        <button class="btn-style" onclick="changeMovie('https://archive.org', 'FN-MOV-002', 'The Last Drop (Cyberpunk Sci-Fi)')">
-            <span style="color: #ff0055; font-weight: bold;">[SELECT ASSET: FN-MOV-002]</span> THE LAST DROP — Hyper-Futuristic Cyberpunk Sci-Fi Short
+        <button class="btn-style" onclick="changeMovie('https://googleapis.com', 'FN-MOV-002', 'Big Buck Bunny (3D Open Animation)')">
+            <span style="color: #ff0055; font-weight: bold;">[SELECT ASSET: FN-MOV-002]</span> BIG BUCK BUNNY — High Definition Open 3D Render Feature Film
         </button>
 
         <!-- MOVIE CHANNEL 3 -->
-        <button class="btn-style" onclick="changeMovie('https://archive.org', 'FN-MOV-003', 'Route 66 (Indie Documentary)')">
-            <span style="color: #ff0055; font-weight: bold;">[SELECT ASSET: FN-MOV-003]</span> ROUTE 66 — Real Street & Highway Independent Documentary Film
+        <button class="btn-style" onclick="changeMovie('https://googleapis.com', 'FN-MOV-003', 'Sintel (4K Open Fantasy Asset)')">
+            <span style="color: #ff0055; font-weight: bold;">[SELECT ASSET: FN-MOV-003]</span> SINTEL — Cinematic Open-Source Fantasy Presentation Node
         </button>
     </div>
     
@@ -72,9 +73,21 @@ function changeMovie(videoUrl, assetId, movieTitle) {
     const label = document.getElementById('active-asset-id');
     const log = document.getElementById('log-text');
 
+    // Source modification stream pipeline rewrite
     source.src = videoUrl;
     player.load(); 
-    player.play(); 
+    
+    // Safety check to handle modern browser autoplay protection triggers
+    var playPromise = player.play();
+    if (playPromise !== undefined) {
+        playPromise.then(_ => {
+            // Automatic playback execution success state
+        }).catch(error => {
+            // Browser required human touch interaction override fallback flag
+            player.muted = true;
+            player.play();
+        });
+    }
 
     label.innerText = "NOW STREAMING: ASSET: " + assetId;
     log.innerHTML = "Switched cinema stream channel to: " + movieTitle + " | SYSTEM INGESTION LOCKED.";
