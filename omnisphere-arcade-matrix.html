@@ -1,70 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>The Famo-Legacy OmniSphere Retro Arcade Terminal</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMNI-BOUT: Customized Arcade Matrix</title>
     <style>
-        body { margin: 0; background: #050505; color: #ff5500; font-family: sans-serif; overflow: hidden; text-align: center; }
-        canvas { display: block; background: #111; margin: 10px auto; border: 2px solid #ff5500; max-width: 95vw; max-height: 70vh; }
-        h1 { font-size: 1.2rem; margin: 10px 0 2px 0; letter-spacing: 2px; }
-        p { font-size: 0.8rem; color: #fff; margin: 2px 0 10px 0; }
+        body { margin: 0; background: #05050a; color: #00ffcc; font-family: monospace; text-align: center; padding: 20px; }
+        .omnisphere-cinema-matrix { border: 3px double #00ffcc; background: #05050a; padding: 20px; max-width: 900px; margin: 30px auto; box-shadow: 0 0 25px rgba(0,255,204,0.3); color: #ffffff; }
+        #active-asset-id { font-weight: bold; }
+        .video-box { position: relative; border: 1px solid #00ffcc; background: #000; box-shadow: inset 0 0 20px rgba(0,255,204,0.5); margin-top: 10px; }
+        #log-text { color: #ffffff; font-weight: normal; }
+        .btn-panel { text-align: left; margin-top: 20px; }
+        .btn-style { width: 100%; background: #070715; border: 1px solid #00ffcc; color: #00ffcc; padding: 12px; font-family: inherit; text-align: left; cursor: pointer; transition: 0.3s; font-size: 12px; margin-bottom: 10px; display: block; }
+        .btn-style:hover { background: #00ffcc; color: #05050a; box-shadow: 0 0 10px #00ffcc; }
     </style>
 </head>
 <body>
-    <h1>THE FAMO-LEGACY OMNISPHERE™ ARCADE</h1>
-    <p>Tap screen to fire. Move mouse/finger to steer ship.</p>
-    <canvas id="gameCanvas" width="400" height="500"></canvas>
-    <script>
-        const canvas = document.getElementById("gameCanvas");
-        const ctx = canvas.getContext("2d");
-        let player = { x: 180, y: 440, w: 40, h: 20, score: 0 };
-        let lasers = [];
-        let targets = [];
-        window.addEventListener('mousemove', (e) => {
-            let rect = canvas.getBoundingClientRect();
-            player.x = (e.clientX - rect.left) * (canvas.width / rect.width) - player.w/2;
-        });
-        window.addEventListener('touchmove', (e) => {
-            let rect = canvas.getBoundingClientRect();
-            player.x = (e.touches[0].clientX - rect.left) * (canvas.width / rect.width) - player.w/2;
-        });
-        window.addEventListener('click', () => { lasers.push({ x: player.x + player.w/2 - 2, y: player.y, w: 4, h: 10 }); });
-        window.addEventListener('touchstart', () => { lasers.push({ x: player.x + player.w/2 - 2, y: player.y, w: 4, h: 10 }); });
-        function spawnTarget() { targets.push({ x: Math.random() * (canvas.width - 60), y: 0, w: 60, h: 20, text: "GATEKEEPER" }); }
-        setInterval(spawnTarget, 1500);
-        function update() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = "#ff5500";
-            ctx.fillRect(player.x, player.y, player.w, player.h);
-            ctx.fillStyle = "#ffffff";
-            lasers.forEach((l, li) => {
-                l.y -= 7;
-                ctx.fillRect(l.x, l.y, l.w, l.h);
-                if(l.y < 0) lasers.splice(li, 1);
-            });
-            ctx.fillStyle = "#abcabc";
-            targets.forEach((t, ti) => {
-                t.y += 2;
-                ctx.fillRect(t.x, t.y, t.w, t.h);
-                ctx.fillStyle = "#000";
-                ctx.font = "8px Arial";
-                ctx.fillText(t.text, t.x + 4, t.y + 12);
-                ctx.fillStyle = "#abcabc";
-                lasers.forEach((l, li) => {
-                    if(l.x > t.x && l.x < t.x + t.w && l.y > t.y && l.y < t.y + t.h) {
-                        targets.splice(ti, 1);
-                        lasers.splice(li, 1);
-                        player.score += 10;
-                    }
-                });
-                if(t.y > canvas.height) targets.splice(ti, 1);
-            });
-            ctx.fillStyle = "#fff";
-            ctx.font = "14px Arial";
-            ctx.fillText("OmniSphere Score: " + player.score, 10, 25);
-        }
-        setInterval(update, 1000/30);
-    </script>
+
+<div class="omnisphere-cinema-matrix">
+    
+    <!-- SYSTEM OVERRIDE IDENTITY BLOCKS -->
+    <div style="display: flex; justify-content: space-between; color: #ff0055; font-weight: bold; font-size: 13px; margin-bottom: 12px; border-bottom: 1px dashed #ff0055; padding-bottom: 6px;">
+        <div>🔱 OMNISPHERE™ SOVEREIGN CINEMA STREAM [SEC-02]</div>
+        <div id="active-asset-id">NOW STREAMING: ASSET: FN-MOV-001</div>
+    </div>
+    
+    <!-- THE WIDESCREEN VIDEO PLAYER NODE -->
+    <div class="video-box">
+        <video id="omni-player" width="100%" height="auto" controls style="display: block;">
+            <source id="video-source" src="https://archive.org" type="video/mp4">
+            OMNISphere BROADCAST SIGNAL FAILED TO INGEST DATA.
+        </video>
+    </div>
+
+    <!-- LIVE TELEMETRY LOG BLOCK -->
+    <div style="margin: 15px 0; background: rgba(5,5,15,0.9); border: 1px dashed #ff0055; padding: 10px; font-size: 11px; text-align: left; color: #00ffcc;">
+        [CURRENT FEED LOG]: <span id="log-text">Playing Feature Channel: Street Politics (Indie Urban Drama)</span>
+    </div>
+
+    <!-- INTERACTIVE SELECTION PANEL -->
+    <div class="btn-panel">
+        <div style="color: #ff0055; font-weight: bold; font-size: 12px; margin-bottom: 10px; text-transform: uppercase;">▶ SELECT AVAILABLE SOVEREIGN MEDIA VECTOR:</div>
+        
+        <!-- MOVIE CHANNEL 1 -->
+        <button class="btn-style" onclick="changeMovie('https://archive.org', 'FN-MOV-001', 'Street Politics (Indie Urban Drama)')">
+            <span style="color: #ff0055; font-weight: bold;">[SELECT ASSET: FN-MOV-001]</span> STREET POLITICS — Raw Independent Urban Feature Drama
+        </button>
+
+        <!-- MOVIE CHANNEL 2 -->
+        <button class="btn-style" onclick="changeMovie('https://archive.org', 'FN-MOV-002', 'The Last Drop (Cyberpunk Sci-Fi)')">
+            <span style="color: #ff0055; font-weight: bold;">[SELECT ASSET: FN-MOV-002]</span> THE LAST DROP — Hyper-Futuristic Cyberpunk Sci-Fi Short
+        </button>
+
+        <!-- MOVIE CHANNEL 3 -->
+        <button class="btn-style" onclick="changeMovie('https://archive.org', 'FN-MOV-003', 'Route 66 (Indie Documentary)')">
+            <span style="color: #ff0055; font-weight: bold;">[SELECT ASSET: FN-MOV-003]</span> ROUTE 66 — Real Street & Highway Independent Documentary Film
+        </button>
+    </div>
+    
+    <!-- COGNIZANT MATRIX LEDGER SIGNATURE -->
+    <div style="margin-top: 25px; text-align: left; color: #ffffff; font-size: 11px; line-height: 1.5; border-top: 1px dashed #ff0055; padding-top: 10px;">
+        <span style="color: #00ffcc; font-weight: bold;">[LEDGER STATUS]</span> MULTI-STREAM INTERFACE CHANNELS ACTIVE<br>
+        <span style="color: #ff0055; font-weight: bold;">🔒 Managed via Writerslegacyteam Publishing & Famo Nation Distribution Matrix</span>
+    </div>
+</div>
+
+<script>
+function changeMovie(videoUrl, assetId, movieTitle) {
+    const player = document.getElementById('omni-player');
+    const source = document.getElementById('video-source');
+    const label = document.getElementById('active-asset-id');
+    const log = document.getElementById('log-text');
+
+    source.src = videoUrl;
+    player.load(); 
+    player.play(); 
+
+    label.innerText = "NOW STREAMING: ASSET: " + assetId;
+    log.innerHTML = "Switched cinema stream channel to: " + movieTitle + " | SYSTEM INGESTION LOCKED.";
+}
+</script>
+
 </body>
 </html>
