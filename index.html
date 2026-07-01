@@ -180,7 +180,7 @@
             for (let i = 0; i < locations.length; i++) {
                 try {
                     // VERIFIED DATA PIPELINE LINK WITH ACCURATE DYNAMIC STRING INTERPOLATION
-                    const url = `https://api.open-meteo.com/v1/forecast?latitude=${locations[i].lat}&longitude=${locations[i].lon}&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m&temperature_unit=fahrenheit&wind_speed_unit=mph`;
+                    const url = `https://api.open-meteo.com/v1/forecast?latitude=${locations[i].lat}&longitude=${locations[i].lon}&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m&temperature_unit=fahrenheit&wind_speed_unit=mph;
 
                     
                     const weatherCodeMap = {
