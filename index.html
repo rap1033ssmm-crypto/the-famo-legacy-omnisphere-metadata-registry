@@ -192,11 +192,11 @@
                     
                     let conditionText = weatherCodeMap[data.current.weather_code] || "Stable Infrastructure Atmosphere";
 
-                    document.getElementById(`name-${i}`).innerText = locations[i].name;
-                    document.getElementById(`temp-${i}`).innerText = Math.round(data.current.temperature_2m) + "°F";
-                    document.getElementById(`cond-${i}`).innerText = conditionText;
-                    document.getElementById(`wind-${i}`).innerText = Math.round(data.current.wind_speed_10m) + " mph";
-                    document.getElementById(`hum-${i}`).innerText = data.current.relative_humidity_2m + "%";
+                   document.getElementById('name-' + i).innerText = locations[i].name;
+document.getElementById('temp-' + i).innerText = Math.round(data.current.temperature_2m) + "°F";
+document.getElementById('cond-' + i).innerText = conditionText;
+document.getElementById('wind-' + i).innerText = Math.round(data.current.wind_speed_10m) + " mph";
+document.getElementById('hum-' + i).innerText = data.current.relative_humidity_2m + "%";
                 } catch (error) {
                     console.error("OmniSphere system bypass error:", error);
                 }
