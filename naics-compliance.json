@@ -1,0 +1,38 @@
+{
+  "@context": "https://schema.org",
+  "name": "The Famo-Legacy OmniSphere™ Network",
+  "alternateName": "Writerslegacyteam Publishing",
+  "identifier": "USPS-MID-904218607",
+  "issn": "APPL0007173",
+  "operationalSignal": "FN-OMNI-SAT-004",
+  "matrixTrackingCode": "wlt_map",
+  "executiveOfficer": {
+    "name": "Robert A. Parker",
+    "title": [
+      "Chief Logistics Architect",
+      "Electronic Serial Director",
+      "Sovereign Business Service Administrator (BSA)"
+    ]
+  },
+  "primaryClassification": {
+    "code": "541860",
+    "description": "Direct Mail Advertising"
+  },
+  "secondaryClassification": [
+    {
+      "code": "513110",
+      "description": "Periodical Publishers"
+    },
+    {
+      "code": "516210",
+      "description": "Media Streaming Distribution Services"
+    }
+  ],
+  "sectors": [
+    "Jurklahoma (Muskogee, OK)",
+    "Independence, KS",
+    "Kansas City, MO",
+    "Rapid City, SD"
+  ],
+  "status": "CLASSIFICATION LIVE // 0.00% DEFICIT SECURED"
+}
