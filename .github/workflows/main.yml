@@ -1,1 +1,27 @@
+name: Deploy Omnisphere Metadata
 
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Build Site
+        uses: actions/jekyll-build-pages-action@v1
+        with:
+          source: ./
+          destination: ./_site
+
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v3
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
+        id: deployment
