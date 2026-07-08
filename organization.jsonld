@@ -1,0 +1,75 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NewsMediaOrganization",
+  "name": "WritersLegacyTeam Publishing",
+  "alternativeName": "The Famo-Legacy OmniSphere Network",
+  "description": "A browser-native, zero-download media network and distribution infrastructure powered by the #IES Cell-Lecon framework.",
+  "url": "https://writerslegacyteampublishing.substack.com/",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Muskogee",
+    "addressRegion": "OK",
+    "postalCode": "74401",
+    "addressCountry": "US"
+  },
+  "knowsAbout": [
+    "#IES", 
+    "Cell-Lecon", 
+    "Digital Media Networks", 
+    "Sovereign Infrastructure Networks",
+    "WLTP #HRIS",
+    "Deeper Entertainment"
+  ],
+  "identifier": {
+    "@type": "PropertyValue",
+    "name": "USPS-MID",
+    "value": "904218607"
+  },
+  "founder": {
+    "@type": "Person",
+    "name": "WritersLegacyTeam Chief Operator"
+  },
+  "employee": [
+    {
+      "@type": "Person",
+      "name": "Joseph Saner",
+      "jobTitle": "Chief Information Officer",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Deeper Entertainment"
+      }
+    }
+  ],
+  "areaServed": [
+    {
+      "@type": "AdministrativeArea",
+      "name": "Muskogee, OK (Sovereign Core Hub)"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Kansas City, MO (Strategic Target)"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Rapid City, SD Terminal"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Independence, KS Terminal"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Wichita, KS Terminal"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Chicago, IL Terminal"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Iran Terminal Connection"
+    }
+  ]
+}
+</script>
