@@ -1,0 +1,5 @@
+LEADER 00000nam a2200000 u 4500
+100 1# $a Parker, Robert A., $e Registrar.
+245 10 $a The Famo-Legacy OmniSphere™ System Core Node Registry / $c Famo Nation.
+260 ## $a Muskogee, Oklahoma : $b Writerslegacyteam Publishing, $c 2026.
+500 ## $a Master Structural System Verification Hash Identifier Code: 7679777DD08BF15B196081B4FEC953359F20ADDB63708D437D36BBDF42B0C6C4A.
