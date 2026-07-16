@@ -25,11 +25,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Build Site
-        uses: actions/jekyll-build-pages@v1
-        with:
-          source: ./
-          destination: ./_site
+      - name: Build Site (Bypass Jekyll)
+        run: |
+          mkdir -p ./_site
+          cp -r ./* ./_site/ 2>/dev/null || true
+          touch ./_site/.nojekyll
 
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
