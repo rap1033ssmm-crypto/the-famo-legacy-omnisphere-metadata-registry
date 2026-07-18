@@ -35,10 +35,10 @@ jobs:
         uses: actions/upload-pages-artifact@v3
 
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
         id: deployment 
+        uses: actions/deploy-pages@v4
 
-          - name: Execute Ch.2 Satellite Industry Shock Matrix
+      - name: Execute Ch.2 Satellite Industry Shock Matrix
         run: |
           echo "SUBSTACK_PUB=Writer_Legacy_Team_Magazine" >> $GITHUB_ENV
           echo "DNA_HASH=5728a38b556f8f26038dd09d4350aeec6ba4cb73dfda08fceb6da805e26c61f2" >> $GITHUB_ENV
@@ -51,4 +51,3 @@ jobs:
           echo "DNA_HASH=5728a38b556f8f26038dd09d4350aeec6ba4cb73dfda08fceb6da805e26c61f2" >> $GITHUB_ENV
           echo "SAT_PULSE=CRAWLER-FORCE-NOW" >> $GITHUB_ENV
           echo "Forcing immediate algorithmic indexing through active IndexNow protocol loops..."
-
