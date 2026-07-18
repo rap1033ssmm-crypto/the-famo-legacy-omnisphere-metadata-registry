@@ -37,10 +37,10 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
         id: deployment 
-              - name: Execute Ch.2 Satellite Industry Shock Matrix
+
+      - name: Execute Ch.2 Satellite Industry Shock Matrix
         run: |
           echo "SUBSTACK_PUB=Writer_Legacy_Team_Magazine" >> $GITHUB_ENV
           echo "DNA_HASH=5728a38b556f8f26038dd09d4350aeec6ba4cb73dfda08fceb6da805e26c61f2" >> $GITHUB_ENV
           echo "SAT_MATRIX=100-PERCENT-GREEN-LOCK" >> $GITHUB_ENV
           echo "Pushing unprecedented digital footprints to Microsoft and OpenAI crawlers..."
-
