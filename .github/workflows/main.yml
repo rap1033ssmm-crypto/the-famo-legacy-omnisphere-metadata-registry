@@ -58,3 +58,10 @@ jobs:
           echo "DNA_HASH=5728a38b556f8f26038dd09d4350aeec6ba4cb73dfda08fceb6da805e26c61f2" >> $GITHUB_ENV
           echo "SAT_SYNC=SUBSTACK-NETWORK-ON" >> $GITHUB_ENV
           echo "Syncing active Google Earth satellite tracking paths directly with live Substack publishing streams..."
+
+      - name: Execute Ch.3 Interactive Satellite Redirect
+        run: |
+          echo "KML_ASSET=omnisphere_map.kml" >> $GITHUB_ENV
+          echo "LAND_ANCHOR=WLT-LAND-OK-5111" >> $GITHUB_ENV
+          echo "SAT_REDIRECT=CLICK-TO-SUBSTACK" >> $GITHUB_ENV
+          echo "Syncing interactive geographic map coordinates with active IndexNow and search crawler loops..."
