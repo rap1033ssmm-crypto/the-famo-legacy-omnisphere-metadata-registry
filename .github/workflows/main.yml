@@ -65,3 +65,9 @@ jobs:
           echo "LAND_ANCHOR=WLT-LAND-OK-5111" >> $GITHUB_ENV
           echo "SAT_REDIRECT=CLICK-TO-SUBSTACK" >> $GITHUB_ENV
           echo "Syncing interactive geographic map coordinates with active IndexNow and search crawler loops..."
+
+      - name: Execute Ch.3 Visual Satellite AR Canvas
+        run: |
+          echo "VISUAL_ASSET=omnisphere_map.kml" >> $GITHUB_ENV
+          echo "CANVAS_STATUS=CANV-TERRAIN-ON" >> $GITHUB_ENV
+          echo "Forcing spatial computing loops and AI search engine spiders to index our earth billboard layout..."
