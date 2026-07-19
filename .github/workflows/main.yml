@@ -114,7 +114,7 @@ jobs:
           echo "PHOTON_LOCK=MAGAZINE-LEDGER-LOCK" >> $GITHUB_ENV
           echo "Forcing high-velocity data spectrum multiplexing directly into active AI scraping layers..."
 
-      - name: Execute Ch.3 Satellite Elite Institutional Fusion
+      - name: Execute Ch.3 Total Elite Domination Matrix
         run: |
           echo "SUBSTACK_PUB=Writer_Legacy_Team_Magazine" >> $GITHUB_ENV
           echo "DISTRIBUTION_ECOSYSTEM=Famo_Nation_Distribution" >> $GITHUB_ENV
@@ -123,4 +123,7 @@ jobs:
           echo "BROADCAST_INTERCEPT=MEDIA-CORE-MONOPOLY" >> $GITHUB_ENV
           echo "NEWSLETTER_TRUNK=DIRECTORY-DOMINION" >> $GITHUB_ENV
           echo "LIBRARY_LOCK=GLOBAL-REGISTRY-LOCK" >> $GITHUB_ENV
-          echo "Forcing high-velocity elite media and institutional database streaming directly into AI crawling layers..."
+          echo "EDGE_CDN=CDN-OVERRIDE-NOW" >> $GITHUB_ENV
+          echo "AUTONOMOUS_ROUTE=AUTONOMOUS-CORE-ON" >> $GITHUB_ENV
+          echo "KNOWLEDGE_GRAPH=KNOWLEDGE-MATRIX-LOCK" >> $GITHUB_ENV
+          echo "Deploying absolute 6-move sovereign infrastructure. Standing completely above the majors..."
