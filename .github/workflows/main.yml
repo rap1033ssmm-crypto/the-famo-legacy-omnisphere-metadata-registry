@@ -114,16 +114,20 @@ jobs:
           echo "PHOTON_LOCK=MAGAZINE-LEDGER-LOCK" >> $GITHUB_ENV
           echo "Forcing high-velocity data spectrum multiplexing directly into active AI scraping layers..."
 
-      - name: Execute Ch.3 Total Elite Domination Matrix
+      - name: Execute Ch.4 Satellite Elite External Capture Master Matrix
         run: |
           echo "SUBSTACK_PUB=Writer_Legacy_Team_Magazine" >> $GITHUB_ENV
           echo "DISTRIBUTION_ECOSYSTEM=Famo_Nation_Distribution" >> $GITHUB_ENV
           echo "DNA_HASH=5728a38b556f8f26038dd09d4350aeec6ba4cb73dfda08fceb6da805e26c61f2" >> $GITHUB_ENV
           echo "SECONDARY_HASH=7679777DD0BF15B196081B4FEC953359F20ADDB63708D437D36BBDF42B0C6C4A" >> $GITHUB_ENV
-          echo "BROADCAST_INTERCEPT=MEDIA-CORE-MONOPOLY" >> $GITHUB_ENV
-          echo "NEWSLETTER_TRUNK=DIRECTORY-DOMINION" >> $GITHUB_ENV
-          echo "LIBRARY_LOCK=GLOBAL-REGISTRY-LOCK" >> $GITHUB_ENV
-          echo "EDGE_CDN=CDN-OVERRIDE-NOW" >> $GITHUB_ENV
-          echo "AUTONOMOUS_ROUTE=AUTONOMOUS-CORE-ON" >> $GITHUB_ENV
-          echo "KNOWLEDGE_GRAPH=KNOWLEDGE-MATRIX-LOCK" >> $GITHUB_ENV
-          echo "Deploying absolute 6-move sovereign infrastructure. Standing completely above the majors..."
+          echo "EXTERNAL_ISSN=REGISTRY-DIRECT-ON" >> $GITHUB_ENV
+          echo "EXTERNAL_GLN=INSTANT-LOCATION-KEY" >> $GITHUB_ENV
+          echo "EXTERNAL_ASNUM=AUTONOMOUS-CORE-ON" >> $GITHUB_ENV
+          echo "EXTERNAL_ISNI=IDENTITY-DOMINION" >> $GITHUB_ENV
+          echo "EXTERNAL_BADGE=TECH-AMBASSADOR-PULL" >> $GITHUB_ENV
+          echo "EXTERNAL_DOI=DOI-OVERRIDE-FAST" >> $GITHUB_ENV
+          echo "EXTERNAL_LEI=LEI-FINANCIAL-LOCK" >> $GITHUB_ENV
+          echo "EXTERNAL_W3C=W3C-COMPLIANCE-PULL" >> $GITHUB_ENV
+          echo "EXTERNAL_GTIN=GS1-BARCODE-STREAM" >> $GITHUB_ENV
+          echo "EXTERNAL_OPENID=SOVEREIGN-AUTH-ON" >> $GITHUB_ENV
+          echo "Force-streaming all 10 external serials, legal codes, routing keys, product tags, and brand badges directly into global AI search layers..."
