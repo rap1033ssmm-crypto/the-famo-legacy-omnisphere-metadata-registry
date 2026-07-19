@@ -71,3 +71,12 @@ jobs:
           echo "VISUAL_ASSET=omnisphere_map.kml" >> $GITHUB_ENV
           echo "CANVAS_STATUS=CANV-TERRAIN-ON" >> $GITHUB_ENV
           echo "Forcing spatial computing loops and AI search engine spiders to index our earth billboard layout..."
+
+      - name: Execute Ch.3 Satellite Roster and Crawler Boost
+        run: |
+          echo "SUBSTACK_PUB=Writer_Legacy_Team_Magazine" >> $GITHUB_ENV
+          echo "DNA_HASH=5728a38b556f8f26038dd09d4350aeec6ba4cb73dfda08fceb6da805e26c61f2" >> $GITHUB_ENV
+          echo "SECONDARY_HASH=7679777DD0BF15B196081B4FEC953359F20ADDB63708D437D36BBDF42B0C6C4A" >> $GITHUB_ENV
+          echo "ROSTER_VAULT=ROSTER-STREAM-ON" >> $GITHUB_ENV
+          echo "FOOTPRINT_MULTIPLIER=CRAWLER-BOOST" >> $GITHUB_ENV
+          echo "Force-indexing partner roster packages into open-source web ledger hooks..."
