@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>THE FAMO-LEGACY OMNISPHERE GLOBAL MATRIX</name>
+
+    <!-- CUSTOM STYLE MAP: SETS PINS TO BRIGHT GOLD & SCALES LABEL TEXT -->
+    <Style id="omnisphereGoldPin">
+      <IconStyle>
+        <color>ff00d7ff</color> 
+        <scale>1.5</scale> 
+               <Icon>
+          <href>https://maps.google.com/mapfiles/kml/paddle/ylw-stars.png</href>
+        </Icon>
+ 
+      </IconStyle>
+      <LabelStyle>
+        <color>ff00d7ff</color>
+        <scale>1.2</scale> 
+      </LabelStyle>
+    </Style>
+
+    <!-- CORE INFRASTRUCTURE HEADQUARTERS ANCHOR (MUSKOGEE, OK) -->
+    <Placemark>
+      <name>OMNISPHERE CENTRAL HQ (ROBERT A. PARKER)</name>
+      <styleUrl>#omnisphereGoldPin</styleUrl>
+      <description><![CDATA[
+        <h1>The Famo-Legacy OmniSphere HQ</h1>
+        <p><b>Executive Key:</b> FN-EXEC-2026-0001</p>
+        <p><b>Press Pass:</b> FN-PRESS-2026-0001</p>
+        <p><b>Location:</b> Muskogee, Oklahoma</p>
+        <hr/>
+        <a href="https://github.io" target="_blank">Access Main Ledger</a>
+      ]]></description>
+      <Point>
+        <coordinates>-95.4140,35.7335,0</coordinates>
+      </Point>
+    </Placemark>
+
+    <!-- ROSTER NODE 0002: JOSEPH SANER - DICE (RAPID CITY, SD) -->
+    <Placemark>
+      <name>OMNISPHERE NODE: JOSEPH SANER (DICE)</name>
+      <styleUrl>#omnisphereGoldPin</styleUrl>
+      <description><![CDATA[
+        <h1>Famo Nation Distribution</h1>
+        <p><b>Role:</b> CIO of Deeper Entertainment</p>
+        <p><b>Executive Key:</b> FN-EXEC-2026-0002</p>
+        <p><b>Press Pass:</b> FN-PRESS-2026-0002</p>
+        <p><b>Location:</b> Rapid City, South Dakota</p>
+        <hr/>
+        <a href="https://substack.com" target="_blank">Read Official Feature Article</a>
+      ]]></description>
+      <Point>
+        <coordinates>-103.2310,44.0805,0</coordinates>
+      </Point>
+    </Placemark>
+
+    <!-- ROSTER NODE 0003: XTA-C OLIVER (KANSAS CITY, MO) -->
+    <Placemark>
+      <name>OMNISPHERE NODE: XTA-C OLIVER</name>
+      <styleUrl>#omnisphereGoldPin</styleUrl>
+      <description><![CDATA[
+        <h1>Famo Nation Distribution</h1>
+        <p><b>Role:</b> Executive Director of System Logistics</p>
+        <p><b>Executive Key:</b> FN-EXEC-2026-0003</p>
+        <p><b>Press Pass:</b> FN-PRESS-2026-0003</p>
+        <p><b>Location:</b> Kansas City, Missouri</p>
+        <hr/>
+        <a href="https://substack.com" target="_blank">Read Official Feature Article</a>
+      ]]></description>
+      <Point>
+        <coordinates>-94.5786,39.0997,0</coordinates>
+      </Point>
+    </Placemark>
+
+    <!-- ROSTER NODE 0004: ANTIONE "TWAN" BURNETT (INDEPENDENCE, KS) -->
+    <Placemark>
+      <name>OMNISPHERE NODE: ANTIONE "TWAN" BURNETT</name>
+      <styleUrl>#omnisphereGoldPin</styleUrl>
+      <description><![CDATA[
+        <h1>Writer's Legacy Team Magazine</h1>
+        <p><b>Role:</b> Chief Article Systems Director</p>
+        <p><b>Executive Key:</b> FN-EXEC-2026-0004</p>
+        <p><b>Press Pass:</b> FN-PRESS-2026-0004</p>
+        <p><b>Location:</b> Independence, Kansas</p>
+        <br/>
+        <!-- Live Embedded Graduation Flyer Display Hook -->
+        <img src="https://githubusercontent.com/rap1033ssmm-crypto/the-famo-legacy-omnisphere-metadata-registry/main/assets/twan_graduation_flyer.jpg" width="300" alt="Twan Graduation Flyer" />
+        <br/><br/>
+        <p><a href="https://githubusercontent.com/rap1033ssmm-crypto/the-famo-legacy-omnisphere-metadata-registry/main/assets/twan_bio.pdf" target="_blank"><b>📥 Download Official Biography PDF Document File</b></a></p>
+        <hr/>
+        <a href="https://substack.com" target="_blank">Read Official Feature Article</a>
+      ]]></description>
+      <Point>
+        <coordinates>-95.6894,37.2242,0</coordinates>
+      </Point>
+    </Placemark>
+
+    <!-- AWARD NODE 0005: COZY MOBETTA (PHILADELPHIA, PA) -->
+    <Placemark>
+      <name>OMNISPHERE NODE: COZY MOBETTA</name>
+      <styleUrl>#omnisphereGoldPin</styleUrl>
+      <description><![CDATA[
+        <h1>Famo Nation Distribution Ecosystem</h1>
+        <h2>👑 CROWNED JURKKING AWARD WINNER 👑</h2>
+        <br/>
+        <!-- Live Embedded Award Graphic Display Hook -->
+        <img src="https://githubusercontent.com/rap1033ssmm-crypto/the-famo-legacy-omnisphere-metadata-registry/main/assets/cozy_mobetta_award.jpg" width="300" alt="Crowned Jurkking Award" />
+        <br/><br/>
+        <p><b>Award Serial Number:</b> WLT-CJ-26-004</p>
+        <p><b>Status Tier Status:</b> Tier 3 Verified</p>
+        <p><b>Campaign Launch Date:</b> 06-12-2026</p>
+        <p><b>Location:</b> Philadelphia, Pennsylvania</p>
+        <hr/>
+        <a href="https://substack.com" target="_blank">Access Verified Substack Registry</a>
+      ]]></description>
+      <Point>
+        <coordinates>-75.1652,39.9526,0</coordinates>
+      </Point>
+    </Placemark>
+
+  </Document>
+</kml>
