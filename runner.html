@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JURK+NATION RUNNER: UPSTREAM LOGISTICS</title>
+  <style>
+    body { background: #050505; color: #fff; font-family: sans-serif; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+    h1 { color: #6f42c1; text-shadow: 0 0 10px rgba(111,66,193,0.5); font-size: 24px; margin-bottom: 5px; }
+    .subtitle { color: #666; font-family: monospace; font-size: 11px; margin-bottom: 20px; text-transform: uppercase; }
+    .sim-container { background: #111; border-radius: 12px; border: 1px solid #222; max-width: 500px; width: 100%; padding: 20px; box-sizing: border-box; }
+    .stat-bar { display: flex; justify-content: space-between; font-family: monospace; font-size: 13px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #333; color: #ffc107; }
+    .route-option { background: #1a1a1a; border: 1px solid #333; padding: 12px; margin-bottom: 12px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; }
+    .route-info { font-size: 12px; }
+    .route-title { font-weight: bold; color: #fff; font-size: 13px; text-transform: uppercase; margin-bottom: 4px; }
+    .btn-run { background: #6f42c1; border: none; color: #fff; padding: 8px 16px; border-radius: 4px; font-weight: bold; cursor: pointer; text-transform: uppercase; font-size: 11px; }
+    .btn-run:hover { background: #5a32a3; }
+    .log-display { background: #000; border-radius: 6px; border: 1px solid #222; padding: 12px; font-family: monospace; font-size: 11px; color: #28a745; min-height: 50px; margin-top: 15px; }
+  </style>
+</head>
+<body>
+
+  <h1>JURK+NATION RUNNER</h1>
+  <div class="subtitle">High-Velocity Upstream Logistics // Zero Gatekeeper Loop</div>
+
+  <div class="sim-container">
+    <div class="stat-bar">
+      <span id="sim-vault">Tapes Extracted: 0</span>
+      <span id="sim-revenue">F.N.D Revenue: $500</span>
+    </div>
+
+    <div class="route-option">
+      <div class="route-info">
+        <div class="route-title">1033 South C Hub</div>
+        <span style="color:#aaa;">Target: Money Boys Music Management</span>
+      </div>
+      <button class="btn-run" onclick="triggerRun('south_c', 150, 1)">Run Route</button>
+    </div>
+
+    <div class="route-option">
+      <div class="route-info">
+        <div class="route-title">Jurk-Portal Core</div>
+        <span style="color:#aaa;">Target: Deeper Entertainment WLTP #HRIS</span>
+      </div>
+      <button class="btn-run" onclick="triggerRun('portal', 300, 2)">Run Route</button>
+    </div>
+
+    <div class="route-option">
+      <div class="route-info">
+        <div class="route-title">WLT+MAG Feed</div>
+        <span style="color:#aaa;">Target: WLTP+APP Digital Sync</span>
+      </div>
+      <button class="btn-run" onclick="triggerRun('mag_feed', 500, 4)">Run Route</button>
+    </div>
+
+    <div class="log-display" id="sim-log">
+      SYSTEM INITIALIZED: Select a distribution route above to outrun corporate gatekeepers and secure master music records.
+    </div>
+  </div>
+
+  <script>
+    let tapesCollected = 0;
+    let fndRevenue = 500;
+
+    function triggerRun(routeName, revenueGain, tapeGain) {
+      const riskChance = Math.random();
+      let logBox = document.getElementById("sim-log");
+      
+      if (riskChance > 0.25) {
+        tapesCollected += tapeGain;
+        fndRevenue += revenueGain;
+        logBox.innerText = `[SUCCESS]: Bypassed gatekeeper protocols on the route! Safely delivered assets to your network hubs. Earned +${tapeGain} tape logs and +$${revenueGain} F.N.D Revenue stream expansion assets.`;
+        logBox.style.color = "#28a745";
+      } else {
+        const penalty = 100;
+        fndRevenue = Math.max(0, fndRevenue - penalty);
+        logBox.innerText = `[ALERT]: Stagnant Corporate Board radar detected transmission footprint! Deployed instant network encryption. Lost $${penalty} processing overhead fees.`;
+        logBox.style.color = "#dc3545";
+      }
+      
+      document.getElementById("sim-vault").innerText = `Tapes Extracted: ${tapesCollected}`;
+      document.getElementById("sim-revenue").innerText = `F.N.D Revenue: $${fndRevenue}`;
+    }
+  </script>
+</body>
+</html>

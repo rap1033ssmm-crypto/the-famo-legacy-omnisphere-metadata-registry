@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JURKZILLON MATRIX: THE BOARD GAME</title>
+  <style>
+    body { background: #050505; color: #fff; font-family: sans-serif; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+    h1 { color: #0056b3; text-shadow: 0 0 10px rgba(0,86,179,0.5); font-size: 24px; margin-bottom: 5px; }
+    .subtitle { color: #666; font-family: monospace; font-size: 11px; margin-bottom: 20px; text-transform: uppercase; }
+    #board-wrapper { display: flex; flex-direction: column; align-items: center; gap: 20px; max-width: 600px; width: 100%; }
+    .board-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(4, 1fr); gap: 10px; width: 100%; aspect-ratio: 1; background: #111; padding: 15px; border-radius: 12px; border: 2px solid #222; }
+    .cell { background: #1a1a1a; border: 1px solid #333; border-radius: 6px; padding: 8px; display: flex; flex-direction: column; justify-content: space-between; font-size: 11px; position: relative; transition: all 0.3s; }
+    .cell-title { font-weight: bold; color: #aaa; text-transform: uppercase; font-size: 9px; word-break: break-word; }
+    .cell-owner { font-size: 9px; color: #555; font-family: monospace; margin-top: 5px; }
+    .corner { background: #222; border-color: #444; }
+    .player-token { position: absolute; bottom: 8px; right: 8px; width: 14px; height: 14px; background: #ffc107; border-radius: 50%; box-shadow: 0 0 8px #ffc107; display: none; }
+    .active-token { display: block; animation: pulse 1s infinite alternate; }
+    .control-panel { background: #111; width: 100%; padding: 15px; border-radius: 12px; border: 1px solid #222; display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; }
+    .btn { background: #0056b3; border: none; color: #fff; padding: 10px 20px; border-radius: 6px; font-weight: bold; cursor: pointer; text-transform: uppercase; font-size: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+    .btn:hover { background: #004494; }
+    .status-box { font-family: monospace; font-size: 12px; color: #28a745; }
+    @keyframes pulse { from { transform: scale(1); } to { transform: scale(1.2); } }
+  </style>
+</head>
+<body>
+
+  <h1>JURKZILLON MATRIX</h1>
+  <div class="subtitle">Sovereign Asset Acquisition Loop // F.N.D Network Control</div>
+
+  <div id="board-wrapper">
+    <div class="control-panel">
+      <div>
+        <div class="status-box" id="hud-capital">Capital: $1,500 WM</div>
+        <div style="font-size: 11px; color: #aaa; margin-top: 3px;" id="game-log">Roll dice to start securing your network.</div>
+      </div>
+      <button class="btn" onclick="rollDice()">Roll Dice</button>
+    </div>
+
+    <div class="board-grid">
+      <div class="cell corner" id="space-0"><span class="cell-title">JURK-PORTAL</span><div class="player-token active-token" id="token-0"></div></div>
+      <div class="cell" id="space-1"><span class="cell-title">WLTP+APP</span><div class="cell-owner" id="owner-1">Cost: $200</div><div class="player-token" id="token-1"></div></div>
+      <div class="cell" id="space-2"><span class="cell-title">WLT+MAG</span><div class="cell-owner" id="owner-2">Cost: $240</div><div class="player-token" id="token-2"></div></div>
+      <div class="cell corner" id="space-3"><span class="cell-title">GATEKEEPER DETENTION</span><div class="player-token" id="token-3"></div></div>
+      
+      <div class="cell" id="space-11"><span class="cell-title">JURKKING CORES</span><div class="cell-owner" id="owner-11">Cost: $400</div><div class="player-token" id="token-11"></div></div>
+      <div style="visibility: hidden;"></div><div style="visibility: hidden;"></div>
+      <div class="cell" id="space-4"><span class="cell-title">MONEY BOYS MUSIC</span><div class="cell-owner" id="owner-4">Cost: $300</div><div class="player-token" id="token-4"></div></div>
+      
+      <div class="cell" id="space-10"><span class="cell-title">JURK+NATION LOGS</span><div class="cell-owner" id="owner-10">Cost: $350</div><div class="player-token" id="token-10"></div></div>
+      <div style="visibility: hidden;"></div><div style="visibility: hidden;"></div>
+      <div class="cell" id="space-5"><span class="cell-title">F.N.D INFRASTRUCTURE</span><div class="cell-owner" id="owner-5">Cost: $320</div><div class="player-token" id="token-5"></div></div>
+      
+      <div class="cell corner" id="space-9"><span class="cell-title">MANUAL REVIEW BOARD</span><div class="player-token" id="token-9"></div></div>
+      <div class="cell" id="space-8"><span class="cell-title">1033 SOUTH C</span><div class="cell-owner" id="owner-8">Cost: $500</div><div class="player-token" id="token-8"></div></div>
+      <div class="cell" id="space-7"><span class="cell-title">DEEPER ENT. #HRIS</span><div class="cell-owner" id="owner-7">Cost: $450</div><div class="player-token" id="token-7"></div></div>
+      <div class="cell corner" id="space-6"><span class="cell-title">WLTP HEADQUARTERS</span><div class="player-token" id="token-6"></div></div>
+    </div>
+  </div>
+
+  <script>
+    let playerPos = 0;
+    let playerCapital = 1500;
+    
+    const spaceData = {
+      0: { name: "JURK-PORTAL", cost: 0, owned: true, type: "go" },
+      1: { name: "WLTP+APP", cost: 200, owned: false, type: "prop" },
+      2: { name: "WLT+MAG", cost: 240, owned: false, type: "prop" },
+      3: { name: "GATEKEEPER DETENTION", cost: 0, owned: true, type: "jail" },
+      4: { name: "MONEY BOYS MUSIC MANAGEMENT", cost: 300, owned: false, type: "prop" },
+      5: { name: "F.N.D INFRASTRUCTURE", cost: 320, owned: false, type: "prop" },
+      6: { name: "WLTP HEADQUARTERS", cost: 0, owned: true, type: "parking" },
+      7: { name: "DEEPER ENTERTAINMENT WLTP #HRIS", cost: 450, owned: false, type: "prop" },
+      8: { name: "1033 SOUTH C", cost: 500, owned: false, type: "prop" },
+      9: { name: "MANUAL REVIEW BOARD", cost: 0, owned: true, type: "tax" },
+     10: { name: "JURK+NATION LOGS", cost: 350, owned: false, type: "prop" },
+     11: { name: "JURKKING CORES", cost: 400, owned: false, type: "prop" }
+    };
+
+    function rollDice() {
+      document.getElementById(`token-${playerPos}`).classList.remove('active-token');
+      const roll = Math.floor(Math.random() * 3) + 1;
+      playerPos = (playerPos + roll) % 12;
+      document.getElementById(`token-${playerPos}`).classList.add('active-token');
+      
+      let currentSpace = spaceData[playerPos];
+      let logMsg = `You rolled a ${roll} and landed on ${currentSpace.name}. `;
+      
+      if (playerPos === 0) {
+        playerCapital += 200;
+        logMsg += "Passed the JURK-PORTAL! Collected $200 Network Capital.";
+      } else if (playerPos === 9) {
+        playerCapital -= 150;
+        logMsg += "Caught by Manual Review Board. Paid $150 compliance penalty.";
+      } else if (currentSpace.type === "prop" && !currentSpace.owned) {
+        if (playerCapital >= currentSpace.cost) {
+          playerCapital -= currentSpace.cost;
+          currentSpace.owned = true;
+          document.getElementById(`owner-${playerPos}`).innerText = "OWNED BY YOU";
+          document.getElementById(`owner-${playerPos}`).style.color = "#28a745";
+          logMsg += `Secured and owned for $${currentSpace.cost}!`;
+        } else {
+          logMsg += "Insufficient capital to buy this infrastructure asset.";
+        }
+      } else if (currentSpace.type === "prop" && currentSpace.owned) {
+        logMsg += "This node asset is fully encrypted and operational.";
+      }
+      
+      document.getElementById("hud-capital").innerText = `Capital: $${playerCapital} WM`;
+      document.getElementById("game-log").innerText = logMsg;
+    }
+  </script>
+</body>
+</html>
