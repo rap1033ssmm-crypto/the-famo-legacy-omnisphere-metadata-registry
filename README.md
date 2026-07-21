@@ -60,6 +60,7 @@ Fully Managed via Writerslegacyteam Publishing, Famo Nation Distribution & BMI P
 * **Writer's Legacy Team Magazine WLTMAG (LinkedIn Terminal):** https://www.linkedin.com/in/writer-s-legacy-team-magazine-wltmag-402a89186/
 * **Joseph Saner Deeper Entertainment WLTP #HIRS (LinkedIn Terminal):** https://www.linkedin.com/in/deeperentertainment/
 * **Writer's Legacy Team Magazine (TikTok Broadcast Core):** https://www.tiktok.com/@famo.nation.forev
+* **Writer's Legacy Team Magazine (YouTube Terminal):** http://www.youtube.com/@WLTMAG
 
 ================================================================================
 🟢 SOCIAL INGESTION PARAMETERS: ALL NETWORK LINKS ACTIVE & CRYPTOGRAPHICALLY PINNED
