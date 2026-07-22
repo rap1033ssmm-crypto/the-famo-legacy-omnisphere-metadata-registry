@@ -4,6 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Famo Nation Distribution Matrix Node</title>
+    <!-- PWA SYSTEM INFRASTRUCTURE CORE: MOVE 24 LIFTOFF -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#ff6600">
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js')
+        .then(reg => console.log('Famo Core PWA Network Status: Active'))
+        .catch(err => console.log('PWA Pipeline Blocked:', err));
+    });
+  }
+</script>
+
     <style>
         body { background-color: #050b14; color: #ffffff; font-family: sans-serif; padding: 30px; text-align: center; }
         .matrix-header { border: 2px solid #244a73; padding: 25px; border-radius: 12px; background: #0e1a24; max-width: 600px; margin: 0 auto; }
