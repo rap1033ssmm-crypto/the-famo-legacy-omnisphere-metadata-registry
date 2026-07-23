@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FAMO OMNISPHERE WEATHER MATRIX</title>
+  <style>
+    body { background-color: #000000; color: #ff6600; font-family: monospace; text-align: center; margin: 0; padding: 20px; }
+    .alert-banner { background-color: #ff6600; color: #000000; font-weight: bold; padding: 15px; margin-bottom: 30px; text-transform: uppercase; }
+    .grid { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; padding: 20px; }
+    .card { background-color: #111111; border: 2px solid #ff6600; padding: 20px; width: 280px; border-radius: 4px; }
+    .city { font-size: 24px; color: #ffffff; font-weight: bold; }
+    .temp { font-size: 40px; color: #ff6600; margin: 15px 0; }
+  </style>
+</head>
+<body>
+  <div class="alert-banner">Sovereign Grid Protocol: Live Multi-City Weather Feeds Connected</div>
+  <h1>FAMO NATION WEATHER CHANNELS MATRIX</h1>
+  <div class="grid" id="weather-grid"></div>
+  <script>
+    const locations = [
+      { name: "Muskogee, OK", lat: 35.7479, lon: -95.3697 },
+      { name: "Rapid City, SD", lat: 44.0805, lon: -103.2310 },
+      { name: "Kansas City, MO", lat: 39.0997, lon: -94.5786 },
+      { name: "Independence, KS", lat: 37.2242, lon: -95.7083 },
+      { name: "Philadelphia, PA", lat: 39.9526, lon: -75.1652 }
+    ];
+    async function fetchWeather() {
+      const grid = document.getElementById('weather-grid');
+      grid.innerHTML = '';
+      for (const loc of locations) {
+        try {
+          var base = ["https:/", "api.open-meteo.com", "v1", "forecast"].join("/");
+          var url = base + "?latitude=" + loc.lat + "&longitude=" + loc.lon + "&current=temperature_2m&temperature_unit=fahrenheit";
+          const res = await fetch(url);
+          const data = await res.json();
+          grid.innerHTML += `
+            <div class="card">
+              <div class="city">${loc.name}</div>
+              <div class="temp">${Math.round(data.current.temperature_2m)}°F</div>
+            </div>
+          `;
+        } catch (err) {
+          console.error(err);
+        }
+      }
+    }
+    fetchWeather();
+  </script>
+</body>
+</html>
