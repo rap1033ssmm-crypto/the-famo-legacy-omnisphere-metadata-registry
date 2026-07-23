@@ -6,9 +6,10 @@
     body { background-color: #000000; color: #ff6600; font-family: monospace; text-align: center; margin: 0; padding: 20px; }
     .alert-banner { background-color: #ff6600; color: #000000; font-weight: bold; padding: 15px; margin-bottom: 30px; text-transform: uppercase; }
     .grid { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; padding: 20px; }
-    .card { background-color: #111111; border: 2px solid #ff6600; padding: 20px; width: 280px; border-radius: 4px; }
+    .card { background-color: #111111; border: 2px solid #ff6600; padding: 20px; width: 280px; border-radius: 4px; box-sizing: border-box; }
     .city { font-size: 24px; color: #ffffff; font-weight: bold; }
-    .temp { font-size: 40px; color: #ff6600; margin: 15px 0; }
+    .temp { font-size: 40px; color: #ff6600; margin: 10px 0; }
+    .condition { font-size: 16px; color: #ffaa00; margin-top: 5px; text-transform: uppercase; letter-spacing: 1px; }
   </style>
 </head>
 <body>
@@ -23,19 +24,36 @@
       { name: "Independence, KS", lat: 37.2242, lon: -95.7083 },
       { name: "Philadelphia, PA", lat: 39.9526, lon: -75.1652 }
     ];
+
+    const weatherCodeMap = {
+      0: "Clear Sky", 1: "Mainly Clear", 2: "Partly Cloudy", 3: "Overcast",
+      45: "Fog / Mist", 48: "Depositing Rime Fog",
+      51: "Light Drizzle", 53: "Moderate Drizzle", 55: "Dense Drizzle",
+      61: "Slight Rain", 63: "Moderate Rain", 65: "Heavy Rain",
+      71: "Slight Snowfall", 73: "Moderate Snowfall", 75: "Heavy Snowfall",
+      77: "Snow Grains", 80: "Slight Rain Showers", 81: "Moderate Rain Showers",
+      82: "Violent Rain Showers", 85: "Slight Snow Showers", 86: "Heavy Snow Showers",
+      95: "Thunderstorm", 96: "Thunderstorm / Hail", 99: "Heavy Hail Storm"
+    };
+
     async function fetchWeather() {
       const grid = document.getElementById('weather-grid');
       grid.innerHTML = '';
       for (const loc of locations) {
         try {
           var base = ["https:/", "api.open-meteo.com", "v1", "forecast"].join("/");
-          var url = base + "?latitude=" + loc.lat + "&longitude=" + loc.lon + "&current=temperature_2m&temperature_unit=fahrenheit";
+          var url = base + "?latitude=" + loc.lat + "&longitude=" + loc.lon + "&current=temperature_2m,weather_code&temperature_unit=fahrenheit";
           const res = await fetch(url);
           const data = await res.json();
+          
+          let code = data.current.weather_code;
+          let conditionText = weatherCodeMap[code] || "Atmosphere Stable";
+
           grid.innerHTML += `
             <div class="card">
               <div class="city">${loc.name}</div>
               <div class="temp">${Math.round(data.current.temperature_2m)}°F</div>
+              <div class="condition">${conditionText}</div>
             </div>
           `;
         } catch (err) {
