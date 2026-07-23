@@ -6,7 +6,7 @@
     body { background-color: #000000; color: #ff6600; font-family: monospace; text-align: center; margin: 0; padding: 20px; }
     .alert-banner { background-color: #ff6600; color: #000000; font-weight: bold; padding: 15px; margin-bottom: 30px; text-transform: uppercase; }
     .grid { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; padding: 20px; }
-    .card { background-color: #111111; border: 2px solid #ff6600; padding: 25px; width: 300px; border-radius: 4px; box-sizing: border-box; text-align: left; }
+    .card { background-color: #111111; border: 2px solid #ff6600; padding: 25px; width: 300px; border-radius: 4px; box-sizing: border-box; text-align: left; cursor: pointer; }
     .city { font-size: 24px; color: #ffffff; font-weight: bold; text-align: center; margin-bottom: 5px; }
     .temp-box { text-align: center; margin: 15px 0; }
     .temp { font-size: 46px; color: #ff6600; font-weight: bold; }
@@ -42,17 +42,17 @@
       82: "Violent Rain Showers", 85: "Slight Snow Showers", 86: "Heavy Snow Showers",
       95: "Thunderstorm", 96: "Thunderstorm / Hail", 99: "Heavy Hail Storm"
     };
+
     async function fetchWeather() {
       const grid = document.getElementById('weather-grid');
       grid.innerHTML = '';
       
-      // Update global system terminal clock
       const now = new Date();
       document.getElementById('matrix-timestamp').innerText = "System Matrix Sync: " + now.toLocaleString() + " // Status: Active";
 
       for (const loc of locations) {
         try {
-          var base = ["https:/", "api.open-meteo.com", "v1", "forecast"].join("/");
+          var base = ["https:/", "://open-meteo.com", "v1", "forecast"].join("/");
           var url = base + "?latitude=" + loc.lat + "&longitude=" + loc.lon + "&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,wind_direction_10m,uv_index&temperature_unit=fahrenheit&wind_speed_unit=mph";
           
           const res = await fetch(url);
@@ -79,10 +79,24 @@
           console.error(err);
         }
       }
+      // Re-trigger haptic layout bindings once new cards land on screen
+      bindWeatherHaptics();
     }
     
+    function bindWeatherHaptics() {
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        card.addEventListener('pointerdown', () => {
+          if ('vibrate' in navigator) {
+            navigator.vibrate(12);
+            console.log('[Haptic-Tap] Card selection micro-buzz executed.');
+          }
+        });
+      });
+    }
+
     fetchWeather();
-    setInterval(fetchWeather, 900000); // Auto-refresh data arrays every 15 minutes
+    setInterval(fetchWeather, 900000);
   </script>
 </body>
 </html>
