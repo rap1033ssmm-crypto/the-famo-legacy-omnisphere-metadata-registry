@@ -16,12 +16,32 @@
     .label { color: #888888; text-transform: uppercase; }
     .value { color: #ffffff; font-weight: bold; }
     .timestamp { font-size: 11px; color: #555555; text-align: center; margin-top: 30px; text-transform: uppercase; }
+     /* THE MILLISECOND CYBER SPINNER LOADER */
+    .cyber-spinner {
+      border: 4px solid rgba(255, 102, 0, 0.1);
+      border-left-color: #ff6600;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      margin: 40px auto;
+      animation: cyberRotate 0.8s linear infinite;
+      box-shadow: 0 0 15px rgba(255, 102, 0, 0.3);
+    }
+
+    @keyframes cyberRotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+
   </style>
 </head>
 <body>
   <div class="alert-banner">Sovereign Grid Protocol: Advanced Environmental Streams Active</div>
   <h1>FAMO NATION WEATHER CHANNELS MATRIX</h1>
-  <div class="grid" id="weather-grid"></div>
+  <div class="grid" id="weather-grid">    <!-- LIGHTWEIGHT VECTOR SPINNER ELEMENT -->
+    <div class="cyber-spinner" id="matrix-loader"></div>
+</div>
   <div class="timestamp" id="matrix-timestamp">Syncing Server Clock...</div>
   <script>
     const locations = [
