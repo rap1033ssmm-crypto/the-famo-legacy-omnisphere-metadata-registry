@@ -79,5 +79,24 @@
     </div>
 
     <!-- Powered by #IES Cell-Lecon Framework // W3C Validated Matrix -->
+    <!-- AUTONOMOUS-PULSE HAPTIC ENGINE INITIALIZATION -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. Locate all clickable stream links inside your switchboard panel
+    const streamLinks = document.querySelectorAll('a, button');
+
+    // 2. Loop through every channel node and bind the pulse action
+    streamLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if ('vibrate' in navigator) {
+          // Execute the Heavy Bass Double-Thump rhythm pattern: [Vibrate, Pause, Vibrate]
+          navigator.vibrate([150, 100, 150]);
+          console.log('[Autonomous-Pulse] Channel launch haptic sequence fired.');
+        }
+      });
+    });
+  });
+</script>
+
 </body>
 </html>
