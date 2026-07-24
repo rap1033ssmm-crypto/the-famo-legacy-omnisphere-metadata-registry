@@ -1,0 +1,19 @@
+/* ========================================================================
+   FAMO NATION SOVEREIGN ARCHITECTURE: NATIVE BRAND TYPOGRAPHY MATRIX
+   CRYTOGRAPHIC METADATA NODE: DOI-10.5281-ZENODO.21515846
+   ======================================================================== */
+
+@font-face {
+  font-family: 'Famo-Legacy-Omni-Unique';
+  src: url('assets/famo-legacy-omni-0009-0009-3719-0307.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* GLOBAL SYSTEM TYPOGRAPHY OVERRIDE ACCROSS ALL MASTER PLANES */
+body, h1, h2, h3, .dashboard-title, .nav-btn {
+  font-family: 'Famo-Legacy-Omni-Unique', sans-serif !important;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
