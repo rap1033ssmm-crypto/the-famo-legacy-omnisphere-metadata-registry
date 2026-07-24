@@ -153,3 +153,37 @@
 
 </div>
 
+<!-- FRONTEND LOGIC ENGINE: NATIVE WEB SPEECH AUDIO LOOP -->
+<script>
+  (function() {
+    const playBtn = document.getElementById('btn-play-audio');
+    const stopBtn = document.getElementById('btn-stop-audio');
+    const articleContent = document.getElementById('famo-article-content');
+
+    if (playBtn && stopBtn && articleContent) {
+      playBtn.addEventListener('pointerdown', function() {
+        // Cancel any active speech cycles to prevent overlapping audio
+        window.speechSynthesis.cancel();
+
+        // Capture text payload inside the ingestion hook block
+        const textPayload = articleContent.innerText;
+        const speechUtterance = new SpeechSynthesisUtterance(textPayload);
+
+        // Configure elite voice profile settings
+        speechUtterance.rate = 1.0;  // Natural human tempo cadence
+        speechUtterance.pitch = 1.0; // Clean industrial balanced tone
+        speechUtterance.volume = 1.0; // Maximum system output gain
+
+        // Execute instant hardware audio rendering
+        window.speechSynthesis.speak(speechUtterance);
+      });
+
+      stopBtn.addEventListener('pointerdown', function() {
+        // Instantly kill the browser vocal track cycle
+        window.speechSynthesis.cancel();
+      });
+    }
+  })();
+</script>
+
+
