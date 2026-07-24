@@ -85,3 +85,98 @@
 
 </div>
 
+<!-- FRONTEND LOGIC ENGINE: NATIVE CANVAS REALTIME GLITCH MATRIX -->
+<script>
+  (function() {
+    const canvas = document.getElementById('glitch-canvas');
+    const ctx = canvas.getContext('2d');
+    const initBtn = document.getElementById('btn-initialize-audio');
+    
+    let audioContext, analyser, dataArray;
+    let isInitialized = false;
+
+    // Set up standard typography parameters inside the canvas
+    function drawStaticText() {
+      ctx.fillStyle = '#050505';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      ctx.font = '900 36px sans-serif';
+      ctx.fillStyle = '#ffffff';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.letterSpacing = '4px';
+      ctx.fillText('FAMO NATION', canvas.width / 2, canvas.height / 2);
+    }
+    
+    // Draw initial state before interaction
+    drawStaticText();
+
+    if (initBtn) {
+      initBtn.addEventListener('pointerdown', function() {
+        if (isInitialized) return;
+        
+        // Bypasses browser restrictions to activate Audio System Nodes
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        analyser = audioContext.createAnalyser();
+        analyser.fftSize = 64; // Fast Fourier Transform configuration for heavy bass focus
+        
+        const bufferLength = analyser.frequencyBinCount;
+        dataArray = new Uint8Array(bufferLength);
+
+        // Access internal device audio/mic node to track ambient bass waves
+        navigator.mediaDevices.getUserMedia({ audio: true, video: false })
+          .then(stream => {
+            const source = audioContext.createMediaStreamSource(stream);
+            source.connect(analyser);
+            isInitialized = true;
+            initBtn.innerText = "FREQUENCY MATRIX ENGAGED";
+            initBtn.style.background = "#222222";
+            initBtn.style.color = "#ff6600";
+            renderLoop();
+          })
+          .catch(err => {
+            console.error("Audio Node Stream Denied: ", err);
+            initBtn.innerText = "STREAM ERROR: ALLOW MIC ACCESS";
+          });
+      });
+    }
+
+    function renderLoop() {
+      requestAnimationFrame(renderLoop);
+      if (!isInitialized) return;
+
+      // Extract raw audio data frequencies into the tracking matrix array
+      analyser.getByteFrequencyData(dataArray);
+      
+      // Focus strictly on low-frequency index bins to lock onto heavy bass lines
+      let bassIntensity = dataArray[0] || 0; 
+      
+      // Clear canvas loop frame
+      drawStaticText();
+
+      // Trigger heavy pixel coordinate slicing slices based on audio peaks
+      if (bassIntensity > 120) {
+        let sliceCount = Math.floor(bassIntensity / 30);
+        
+        for (let i = 0; i < sliceCount; i++) {
+          // Calculate random dynamic horizontal cuts
+          let ySource = Math.random() * canvas.height;
+          let hSlice = Math.random() * 20 + 5;
+          // Offset translation distance matches the current bass power spike
+          let xOffset = (Math.random() - 0.5) * (bassIntensity / 5);
+
+          // Copy a raw slice of pixel blocks and translate its coordinate grid position
+          ctx.drawImage(canvas, 0, ySource, canvas.width, hSlice, xOffset, ySource, canvas.width, hSlice);
+          
+          // Layer flash color block shifts over the sheared typography lines
+          if (Math.random() > 0.6) {
+            ctx.fillStyle = 'rgba(255, 102, 0, 0.4)'; // Famo Trademark Neon Orange Tint Overlay
+            ctx.fillRect(xOffset + (canvas.width/4), ySource, canvas.width/2, hSlice);
+          }
+        }
+      }
+    }
+  })();
+</script>
+
+
