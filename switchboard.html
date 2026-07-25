@@ -150,6 +150,53 @@
   </div>
 
 </div>
+   <script>
+  (function() {
+    const playBtn = document.getElementById('btn-stream-play');
+    const pauseBtn = document.getElementById('btn-stream-pause');
+    const streamAudio = document.getElementById('famo-live-stream');
+    const statusDiv = document.getElementById('stream-status');
+
+    if (streamAudio) {
+      // Reassemble the complete Zeno stream URL using safe array character mapping
+      const radioStreamCodes =;
+      streamAudio.src = radioStreamCodes.map(c => String.fromCharCode(c)).join('');
+    }
+
+    if (playBtn && pauseBtn && streamAudio && statusDiv) {
+      playBtn.addEventListener('pointerdown', function() {
+        if (window.speechSynthesis) {
+          window.speechSynthesis.cancel();
+        }
+        
+        statusDiv.innerText = "FEED STATUS: CONNECTING SATELLITE LOOP...";
+        statusDiv.style.color = "#ff6600";
+
+        streamAudio.play()
+          .then(() => {
+            statusDiv.innerText = "FEED STATUS: LIVE // ENCRYPTED NODE SYNCED";
+            statusDiv.style.color = "#00ff00";
+          })
+          .catch(err => {
+            console.error("Audio engine block:", err);
+            statusDiv.innerText = "FEED STATUS: STREAM OFFLINE / STANDBY";
+            statusDiv.style.color = "#ff0000";
+          });
+      });
+
+      pauseBtn.addEventListener('pointerdown', function() {
+        streamAudio.pause();
+        const currentSrc = streamAudio.src;
+        streamAudio.src = '';
+        streamAudio.load();
+        streamAudio.src = currentSrc;
+        
+        statusDiv.innerText = "FEED STATUS: STANDBY / LINK DISCONNECTED";
+        statusDiv.style.color = "#555555";
+      });
+    }
+  })();
+</script> 
 </body>
 </html>
 
