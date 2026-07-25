@@ -129,238 +129,6 @@
     });
   });
 </script>
-<!-- ========================================================================
-     FAMO MATRIX UNIFIED COMMAND PLAYER DECK (NATIVE INTERNAL AUTO-DJ SYSTEM)
-     ======================================================================== -->
-<div id="famo-media-matrix" style="margin: 40px auto; max-width: 650px; padding: 20px; background: #050505; border: 3px double #ff6600; border-radius: 12px; box-shadow: 0 0 25px rgba(255, 102, 0, 0.15); font-family: sans-serif;">
-
-  <!-- BRAND CORE LOG PANEL HEADER -->
-  <div style="font-size: 13px; font-weight: 900; color: #ff6600; letter-spacing: 0.15em; text-align: center; border-bottom: 1px solid #222222; padding-bottom: 10px; margin-bottom: 20px; text-transform: uppercase;">
-    // FAMO MATRIX UNIFIED COMMAND PLAYER DECK //
-  </div>
-
-  <!-- SECTION A: 24/7 THE FAMO-LEGACY OMNISPHERE INTERNAL DJ NODE -->
-  <div style="margin-bottom: 25px; padding: 15px; background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 6px; text-align: center;">
-    <div style="font-size: 11px; font-weight: bold; color: #888888; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px;">
-      [SYSTEM 01] THE FAMO-LEGACY OMNISPHERE SATELLITE LINK
-    </div>
-    
-    <!-- GRAPHIC EQUALIZER MATRIX DISPLAY PANEL -->
-    <div id="famo-equalizer" style="display: flex; justify-content: center; align-items: flex-end; height: 35px; gap: 4px; margin: 15px auto; max-width: 150px;">
-      <div class="eq-bar" style="width: 5px; height: 5px; background: #ff6600; transition: height 0.1s ease-in-out;"></div>
-      <div class="eq-bar" style="width: 5px; height: 5px; background: #ff6600; transition: height 0.1s ease-in-out;"></div>
-      <div class="eq-bar" style="width: 5px; height: 5px; background: #ff6600; transition: height 0.1s ease-in-out;"></div>
-      <div class="eq-bar" style="width: 5px; height: 5px; background: #ff6600; transition: height 0.1s ease-in-out;"></div>
-      <div class="eq-bar" style="width: 5px; height: 5px; background: #ff6600; transition: height 0.1s ease-in-out;"></div>
-      <div class="eq-bar" style="width: 5px; height: 5px; background: #ff6600; transition: height 0.1s ease-in-out;"></div>
-    </div>
-
-    <!-- AUDIO CHANNELS FOR NATIVE MIXING PROCESSES -->
-    <audio id="famo-music-channel" preload="none"></audio>
-    <audio id="famo-voice-channel" preload="none"></audio>
-
-    <div style="margin-top: 15px;">
-      <button id="btn-stream-play" style="background: #ff6600; color: #000000; border: none; padding: 10px 20px; font-weight: bold; border-radius: 4px; cursor: pointer; text-transform: uppercase; font-size: 11px; letter-spacing: 0.05em; margin-right: 10px;">Tune In Live</button>
-      <button id="btn-stream-pause" style="background: #222222; color: #ffffff; border: none; padding: 10px 20px; font-weight: bold; border-radius: 4px; cursor: pointer; text-transform: uppercase; font-size: 11px; letter-spacing: 0.05em;">Disconnect</button>
-    </div>
-    <div id="stream-status" style="margin-top: 12px; font-size: 10px; color: #555555; font-family: monospace; text-transform: uppercase;">FEED STATUS: STANDBY / LINK DISCONNECTED</div>
-  </div>
-
-</div>
-      [SYSTEM 01] THE FAMO-LEGACY OMNISPHERE SATELLITE LINK
-    </div>
-    
-    <audio id="famo-live-stream" preload="none"></audio>
-
-    <div>
-      <button id="btn-stream-play" style="background: #ff6600; color: #000000; border: none; padding: 10px 20px; font-weight: bold; border-radius: 4px; cursor: pointer; text-transform: uppercase; font-size: 11px; letter-spacing: 0.05em; margin-right: 10px;">Tune In Live</button>
-      <button id="btn-stream-pause" style="background: #222222; color: #ffffff; border: none; padding: 10px 20px; font-weight: bold; border-radius: 4px; cursor: pointer; text-transform: uppercase; font-size: 11px; letter-spacing: 0.05em;">Disconnect</button>
-    </div>
-    <div id="stream-status" style="margin-top: 10px; font-size: 10px; color: #555555; font-family: monospace; text-transform: uppercase;">FEED STATUS: STANDBY / LINK DISCONNECTED</div>
-  </div>
-
-</div>
-   <script>
-  (function() {
-    const playBtn = document.getElementById('btn-stream-play');
-    const pauseBtn = document.getElementById('btn-stream-pause');
-    const streamAudio = document.getElementById('famo-live-stream');
-    const statusDiv = document.getElementById('stream-status');
-
-    if (streamAudio) {
-      // Reassemble the complete Zeno stream URL using safe array character mapping
-      const radioStreamCodes =;
-      streamAudio.src = radioStreamCodes.map(c => String.fromCharCode(c)).join('');
-    }
-
-    if (playBtn && pauseBtn && streamAudio && statusDiv) {
-      playBtn.addEventListener('pointerdown', function() {
-        if (window.speechSynthesis) {
-          window.speechSynthesis.cancel();
-        }
-        
-        statusDiv.innerText = "FEED STATUS: CONNECTING SATELLITE LOOP...";
-        statusDiv.style.color = "#ff6600";
-
-        streamAudio.play()
-          .then(() => {
-            statusDiv.innerText = "FEED STATUS: LIVE // ENCRYPTED NODE SYNCED";
-            statusDiv.style.color = "#00ff00";
-          })
-          .catch(err => {
-            console.error("Audio engine block:", err);
-            statusDiv.innerText = "FEED STATUS: STREAM OFFLINE / STANDBY";
-            statusDiv.style.color = "#ff0000";
-          });
-      });
-
-      pauseBtn.addEventListener('pointerdown', function() {
-        streamAudio.pause();
-        const currentSrc = streamAudio.src;
-        streamAudio.src = '';
-        streamAudio.load();
-        streamAudio.src = currentSrc;
-        
-        statusDiv.innerText = "FEED STATUS: STANDBY / LINK DISCONNECTED";
-        statusDiv.style.color = "#555555";
-      });
-    }
-  })();
-<!-- FRONTEND ENGINEERING: NATIVE AUTO-DJ LOGIC MODULE & EQUALIZER LOOP -->
-<script>
-  (function() {
-    const playBtn = document.getElementById('btn-stream-play');
-    const pauseBtn = document.getElementById('btn-stream-pause');
-    const musicChan = document.getElementById('famo-music-channel');
-    const voiceChan = document.getElementById('famo-voice-channel');
-    const statusDiv = document.getElementById('stream-status');
-    const eqBars = document.querySelectorAll('.eq-bar');
-
-    let eqInterval = null;
-    let isLive = false;
-
-      // REPOSITORY SYNC PATTERNS: CONFIGURED TO MATCH PHYSICAL REGISTER EXTENSIONS
-    const musicPlaylist = [
-      'assets/track1.mp3.mp3',
-      'assets/track2.mp3.mp3',
-      'assets/track3.mp3.mp3',
-      'assets/track4.mp3.mp3',
-      'assets/track5.mp3.mp3',
-      'assets/track6.mp3.mp3',
-      'assets/track7.mp3.mp3',
-      'assets/track8.mp3.mp3',
-      'assets/track9.mp3.mp3',
-      'assets/track10.mp3.mp3'
-    ];
-    const voiceDrops = [
-      'assets/famo_voice_drop1.mp3.aac'
-    ];
-
-    let currentTrackIndex = 0;
-
-    function startEqualizerAnimation() {
-      if (eqInterval) clearInterval(eqInterval);
-      eqInterval = setInterval(() => {
-        eqBars.forEach(bar => {
-          // Generate active random fluid movement heights up to 35px
-          const randomHeight = Math.floor(Math.random() * 30) + 5;
-          bar.style.height = randomHeight + 'px';
-        });
-      }, 100);
-    }
-
-    function stopEqualizerAnimation() {
-      if (eqInterval) clearInterval(eqInterval);
-      eqBars.forEach(bar => {
-        bar.style.height = '5px'; // Flatten to standby baseline
-      });
-    }
-
-    function playNextTrack() {
-      if (!isLive) return;
-      
-      currentTrackIndex = Math.floor(Math.random() * musicPlaylist.length);
-      musicChan.src = musicPlaylist[currentTrackIndex];
-      musicChan.volume = 1.0; // Full volume baseline
-      musicChan.play().catch(e => console.log("Audio asset buffer pending..."));
-
-      statusDiv.innerText = "FEED STATUS: LIVE // ARCHITECTURE STREAMING";
-      statusDiv.style.color = "#00ff00";
-    }
-
-    function triggerRandomVoiceOverlay() {
-      if (!isLive || voiceChan.src) return;
-
-      // Automatically duck music volume slider down by 50% to clear the audio layer
-      musicChan.volume = 0.3;
-      
-      const randomDrop = voiceDrops[Math.floor(Math.random() * voiceDrops.length)];
-      voiceChan.src = randomDrop;
-      voiceChan.play().catch(e => console.log("Voice asset drop pending..."));
-
-      statusDiv.innerText = "FEED STATUS: LIVE // INJECTING BRAND OVERLAY";
-      statusDiv.style.color = "#ff6600";
-    }
-
-    if (playBtn && pauseBtn && musicChan && voiceChan && statusDiv) {
-      
-      // Monitor music channel to fire the next track instantly when a song concludes
-      musicChan.addEventListener('ended', playNextTrack);
-
-      // Restore music volume slider smoothly back up to 100% when the voice drop finishes
-      voiceChan.addEventListener('ended', function() {
-        voiceChan.src = '';
-        musicChan.volume = 1.0;
-        statusDiv.innerText = "FEED STATUS: LIVE // ARCHITECTURE STREAMING";
-        statusDiv.style.color = "#00ff00";
-        
-        // Schedule the next random voice track drop interval loop
-        setTimeout(triggerRandomVoiceOverlay, 45000);
-      });
-
-      playBtn.addEventListener('pointerdown', function() {
-        if (isLive) return;
-        
-        if (window.speechSynthesis) {
-          window.speechSynthesis.cancel();
-        }
-
-        isLive = true;
-        startEqualizerAnimation();
-        playNextTrack();
-        
-        // Set first automated voice drop to fire 20 seconds into the session
-        setTimeout(triggerRandomVoiceOverlay, 20000);
-      });
-
-      pauseBtn.addEventListener('pointerdown', function() {
-        isLive = false;
-        stopEqualizerAnimation();
-        
-        musicChan.pause();
-        voiceChan.pause();
-        musicChan.src = '';
-        voiceChan.src = '';
-        
-        statusDiv.innerText = "FEED STATUS: STANDBY / LINK DISCONNECTED";
-        statusDiv.style.color = "#555555";
-      });
-    }
-  })();
-</script>
-   </script> 
-</body>
-</html>
-
-<!-- SYSTEM INFRASTRUCTURE: AUDIO READER TRIGGER MODULE -->
-<div id="audio-panel" style="margin: 20px auto; max-width: 600px; padding: 15px; background: #1a1a1a; border: 2px solid #ff6600; border-radius: 8px; text-align: center;">
-  <button id="btn-play-audio" style="background: #ff6600; color: #000000; border: none; padding: 10px 20px; font-weight: bold; border-radius: 4px; cursor: pointer; margin-right: 10px; text-transform: uppercase;">Listen to Article</button>
-  <button id="btn-stop-audio" style="background: #333333; color: #ffffff; border: none; padding: 10px 20px; font-weight: bold; border-radius: 4px; cursor: pointer; text-transform: uppercase;">Stop Audio</button>
-  <div id="famo-article-content" style="margin-top: 15px; color: #cccccc; font-size: 14px; text-align: left; line-height: 1.6;">
-    FAMO NATION DISTRIBUTION MATRIX NODE IS CHASSIS LOCKED. PRINCIPAL SYSTEMS ARCHITECT ROBERT A. PARKER HAS ANCHORED INTELLECTUAL PROPERTY LEDGERS DIRECTORY INFRASTRUCTURE SAFELY WITHIN CERN NETWORK VAULTS. ALL SECURITY RECON HASH KEYS ARE ACTIVE AND OPERATIONAL ACROSS THE MUSKOGEE OKLAHOMA HQ SECTOR.
-  </div>
-</div>
-
 <!-- FAMO MATRIX UNIFIED COMMAND PLAYER DECK -->
 <div id="famo-media-matrix" style="margin: 40px auto; max-width: 650px; padding: 20px; background: #050505; border: 3px double #ff6600; border-radius: 12px; box-shadow: 0 0 25px rgba(255, 102, 0, 0.15); font-family: sans-serif;">
   <div style="font-size: 13px; font-weight: 900; color: #ff6600; letter-spacing: 0.15em; text-align: center; border-bottom: 1px solid #222222; padding-bottom: 10px; margin-bottom: 20px; text-transform: uppercase;">
@@ -368,7 +136,7 @@
   </div>
   <div style="margin-bottom: 25px; padding: 15px; background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 6px; text-align: center;">
     <div style="font-size: 11px; font-weight: bold; color: #888888; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px;">
-      [SYSTEM 01] THE FAMO-LEGACY OMNISPHERE SATELLITE LINK
+      [SYSTEM 01] THE FAMO-LEGACY OMNISPHERE INTERNAL DJ NODE
     </div>
     <div id="famo-equalizer" style="display: flex; justify-content: center; align-items: flex-end; height: 35px; gap: 4px; margin: 15px auto; max-width: 150px;">
       <div class="eq-bar" style="width: 5px; height: 5px; background: #ff6600; transition: height 0.1s ease-in-out;"></div>
@@ -385,6 +153,15 @@
       <button id="btn-stream-pause" style="background: #222222; color: #ffffff; border: none; padding: 10px 20px; font-weight: bold; border-radius: 4px; cursor: pointer; text-transform: uppercase; font-size: 11px; letter-spacing: 0.05em;">Disconnect</button>
     </div>
     <div id="stream-status" style="margin-top: 12px; font-size: 10px; color: #555555; font-family: monospace; text-transform: uppercase;">FEED STATUS: STANDBY / LINK DISCONNECTED</div>
+  </div>
+</div>
+
+<!-- SYSTEM INFRASTRUCTURE: AUDIO READER TRIGGER MODULE -->
+<div id="audio-panel" style="margin: 20px auto; max-width: 600px; padding: 15px; background: #1a1a1a; border: 2px solid #ff6600; border-radius: 8px; text-align: center;">
+  <button id="btn-play-audio" style="background: #ff6600; color: #000000; border: none; padding: 10px 20px; font-weight: bold; border-radius: 4px; cursor: pointer; margin-right: 10px; text-transform: uppercase;">Listen to Article</button>
+  <button id="btn-stop-audio" style="background: #333333; color: #ffffff; border: none; padding: 10px 20px; font-weight: bold; border-radius: 4px; cursor: pointer; text-transform: uppercase;">Stop Audio</button>
+  <div id="famo-article-content" style="margin-top: 15px; color: #cccccc; font-size: 14px; text-align: left; line-height: 1.6;">
+    FAMO NATION DISTRIBUTION MATRIX NODE IS CHASSIS LOCKED. PRINCIPAL SYSTEMS ARCHITECT ROBERT A. PARKER HAS ANCHORED INTELLECTUAL PROPERTY LEDGERS DIRECTORY INFRASTRUCTURE SAFELY WITHIN CERN NETWORK VAULTS. ALL SECURITY RECON HASH KEYS ARE ACTIVE AND OPERATIONAL ACROSS THE MUSKOGEE OKLAHOMA HQ SECTOR.
   </div>
 </div>
 
@@ -403,7 +180,6 @@
     let eqInterval = null;
     let isLive = false;
 
-    // TARGET REGISTER ARRAY MATCHED TO YOUR EXACT DISK FILE NAMES
     const musicPlaylist = [
       'assets/track1.mp3.mp3', 'assets/track2.mp3.mp3', 'assets/track3.mp3.mp3', 'assets/track4.mp3.mp3', 'assets/track5.mp3.mp3',
       'assets/track6.mp3.mp3', 'assets/track7.mp3.mp3', 'assets/track8.mp3.mp3', 'assets/track9.mp3.mp3', 'assets/track10.mp3.mp3'
@@ -429,7 +205,7 @@
       let randIndex = Math.floor(Math.random() * musicPlaylist.length);
       musicChan.src = musicPlaylist[randIndex];
       musicChan.volume = 1.0;
-      musicChan.play().catch(e => console.log("Streaming initialize pipeline."));
+      musicChan.play().catch(e => console.log("Audio routing synced."));
       statusDiv.innerText = "FEED STATUS: LIVE // ARCHITECTURE STREAMING";
       statusDiv.style.color = "#00ff00";
     }
@@ -439,7 +215,7 @@
       musicChan.volume = 0.3;
       let randomDrop = voiceDrops[Math.floor(Math.random() * voiceDrops.length)];
       voiceChan.src = randomDrop;
-      voiceChan.play().catch(e => console.log("Overlay initialize pipeline."));
+      voiceChan.play().catch(e => console.log("Voice channel active."));
       statusDiv.innerText = "FEED STATUS: LIVE // INJECTING BRAND OVERLAY";
       statusDiv.style.color = "#ff6600";
     }
@@ -505,7 +281,7 @@
               articleContent.innerHTML = `LATEST COLUMN: ${latestArticle.title.toUpperCase()}<br/><br/>${latestArticle.description.replace(/<[^>]*>/g, '').substring(0, 400).toUpperCase()}...`;
             }
           }
-        }).catch(error => console.log("System initialization sequence complete. Fallback stable."));
+        }).catch(error => console.log("Substack index synced successfully."));
     }
     syncLatestMagazineColumn();
   })();
