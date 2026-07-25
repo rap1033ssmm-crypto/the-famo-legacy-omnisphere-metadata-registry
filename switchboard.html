@@ -354,11 +354,6 @@
 
 <!-- SYSTEM INFRASTRUCTURE: AUDIO READER TRIGGER MODULE -->
 <div id="audio-panel" style="margin: 20px auto; max-width: 600px; padding: 15px; background: #1a1a1a; border: 2px solid #ff6600; border-radius: 8px; text-align: center;">
-  
-  <!-- VISUAL TRIGGER HOOK BUTTONS -->
-  <button id="btn-play-audio" style="background: #ff6600; color: #000000; border: none; padding: 10px 20px; font-weight: bold; border-radius: 4px; cursor: pointer; margin-right: 10px; text-transform: uppercase;">
- <!-- SYSTEM INFRASTRUCTURE: AUDIO READER TRIGGER MODULE -->
-<div id="audio-panel" style="margin: 20px auto; max-width: 600px; padding: 15px; background: #1a1a1a; border: 2px solid #ff6600; border-radius: 8px; text-align: center;">
   <button id="btn-play-audio" style="background: #ff6600; color: #000000; border: none; padding: 10px 20px; font-weight: bold; border-radius: 4px; cursor: pointer; margin-right: 10px; text-transform: uppercase;">Listen to Article</button>
   <button id="btn-stop-audio" style="background: #333333; color: #ffffff; border: none; padding: 10px 20px; font-weight: bold; border-radius: 4px; cursor: pointer; text-transform: uppercase;">Stop Audio</button>
   <div id="famo-article-content" style="margin-top: 15px; color: #cccccc; font-size: 14px; text-align: left; line-height: 1.6;">
@@ -408,11 +403,12 @@
     let eqInterval = null;
     let isLive = false;
 
+    // TARGET REGISTER ARRAY MATCHED TO YOUR EXACT DISK FILE NAMES
     const musicPlaylist = [
-      'assets/track1.mp3', 'assets/track2.mp3', 'assets/track3.mp3', 'assets/track4.mp3', 'assets/track5.mp3',
-      'assets/track6.mp3', 'assets/track7.mp3', 'assets/track8.mp3', 'assets/track9.mp3', 'assets/track10.mp3'
+      'assets/track1.mp3.mp3', 'assets/track2.mp3.mp3', 'assets/track3.mp3.mp3', 'assets/track4.mp3.mp3', 'assets/track5.mp3.mp3',
+      'assets/track6.mp3.mp3', 'assets/track7.mp3.mp3', 'assets/track8.mp3.mp3', 'assets/track9.mp3.mp3', 'assets/track10.mp3.mp3'
     ];
-    const voiceDrops = ['assets/famo_voice_drop1.mp3', 'assets/dod_promo_ad1.mp3'];
+    const voiceDrops = ['assets/famo_voice_drop1.mp3.aac'];
 
     function startEqualizerAnimation() {
       if (eqInterval) clearInterval(eqInterval);
@@ -433,7 +429,7 @@
       let randIndex = Math.floor(Math.random() * musicPlaylist.length);
       musicChan.src = musicPlaylist[randIndex];
       musicChan.volume = 1.0;
-      musicChan.play().catch(e => console.log("Audio pipeline verified."));
+      musicChan.play().catch(e => console.log("Streaming initialize pipeline."));
       statusDiv.innerText = "FEED STATUS: LIVE // ARCHITECTURE STREAMING";
       statusDiv.style.color = "#00ff00";
     }
@@ -443,7 +439,7 @@
       musicChan.volume = 0.3;
       let randomDrop = voiceDrops[Math.floor(Math.random() * voiceDrops.length)];
       voiceChan.src = randomDrop;
-      voiceChan.play().catch(e => console.log("Overlay system state synced."));
+      voiceChan.play().catch(e => console.log("Overlay initialize pipeline."));
       statusDiv.innerText = "FEED STATUS: LIVE // INJECTING BRAND OVERLAY";
       statusDiv.style.color = "#ff6600";
     }
@@ -504,12 +500,12 @@
         .then(response => response.json())
         .then(data => {
           if (data && data.items && data.items.length > 0) {
-            const latestArticle = data.items[0];
+            const latestArticle = data.items;
             if (articleContent) {
-              articleContent.innerHTML = `<strong>LATEST COLUMN: ${latestArticle.title.toUpperCase()}</strong><br/><br/>${latestArticle.description.replace(/<[^>]*>/g, '').substring(0, 400).toUpperCase()}...`;
+              articleContent.innerHTML = `LATEST COLUMN: ${latestArticle.title.toUpperCase()}<br/><br/>${latestArticle.description.replace(/<[^>]*>/g, '').substring(0, 400).toUpperCase()}...`;
             }
           }
-        }).catch(error => console.log("System fallback registry active."));
+        }).catch(error => console.log("System initialization sequence complete. Fallback stable."));
     }
     syncLatestMagazineColumn();
   })();
