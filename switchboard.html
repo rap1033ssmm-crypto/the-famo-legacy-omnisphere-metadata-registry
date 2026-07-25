@@ -391,38 +391,113 @@
         window.speechSynthesis.speak(speechUtterance);
       });
 
-      stopBtn.addEventListener('pointerdown', function() {
-        // Instantly kill the browser vocal track cycle
+          stopBtn.addEventListener('pointerdown', function() {
         window.speechSynthesis.cancel();
       });
     }
-          // AUTOMATED SYNC ENGINE: HIGH-VELOCITY MAGAZINE FETCH MATRIX
-    function syncLatestMagazineColumn() {
-      // Piece together the exact network path using individual character codes to bypass system filters
-      const feedAddress = [104,116,116,112,115,58,47,47,116,104,101,102,97,109,111,110,97,116,105,111,110,46,115,117,98,115,116,97,99,107,46,99,111,109,47,102,101,101,100].map(c => String.fromCharCode(c)).join('');
-      const apiGateway = [104,116,116,112,115,58,47,47,97,112,105,46,114,115,115,50,106,115,111,110,46,99,111,109,47,118,49,47,97,112,105,46,106,115,111,110,63,114,115,115,95,117,114,108,61].map(c => String.fromCharCode(c)).join('');
-      
-      fetch(apiGateway + encodeURIComponent(feedAddress))
-        .then(res => res.json())
-        .then(data => {
-          if (data && data.items && data.items.length > 0) {
-            const latestArticle = data.items[0];
-            const cleanTitle = latestArticle.title.toUpperCase();
-            const rawBodyText = latestArticle.description.replace(/<[^>]*>/g, '').substring(0, 400).toUpperCase();
-            
-            if (articleContent) {
-              articleContent.innerHTML = `<strong>LATEST COLUMN: ${cleanTitle}</strong><br/><br/>${rawBodyText}...`;
-            }
-          }
-        })
-        .catch(error => {
-          console.log("Feed synchronization paused. Running fallback master ledger.", error);
+
+    // ========================================================================
+    // EXPANDED 10-TRACK INTERNAL AUTO-DJ PLATLIST AND MIXER ENGINE
+    // ========================================================================
+    const musicChan = document.getElementById('famo-music-channel');
+    const voiceChan = document.getElementById('famo-voice-channel');
+    const playBtn = document.getElementById('btn-stream-play');
+    const pauseBtn = document.getElementById('btn-stream-pause');
+    const statusDiv = document.getElementById('stream-status');
+    const eqBars = document.querySelectorAll('.eq-bar');
+
+    let eqInterval = null;
+    let isLive = false;
+
+    // SYSTEM MATRIX HARDCODED ARRAY FOR ALL 10 ACTIVE REPOSITORY FILES
+    const musicPlaylist = [
+      'assets/track1.mp3',
+      'assets/track2.mp3',
+      'assets/track3.mp3',
+      'assets/track4.mp3',
+      'assets/track5.mp3',
+      'assets/track6.mp3',
+      'assets/track7.mp3',
+      'assets/track8.mp3',
+      'assets/track9.mp3',
+      'assets/track10.mp3'
+    ];
+    const voiceDrops = [
+      'assets/famo_voice_drop1.mp3',
+      'assets/dod_promo_ad1.mp3'
+    ];
+
+    let currentTrackIndex = 0;
+
+    function startEqualizerAnimation() {
+      if (eqInterval) clearInterval(eqInterval);
+      eqInterval = setInterval(() => {
+        eqBars.forEach(bar => {
+          const randomHeight = Math.floor(Math.random() * 30) + 5;
+          bar.style.height = randomHeight + 'px';
         });
+      }, 100);
     }
 
-    syncLatestMagazineColumn();
+    function stopEqualizerAnimation() {
+      if (eqInterval) clearInterval(eqInterval);
+      eqBars.forEach(bar => {
+        bar.style.height = '5px';
+      });
+    }
+
+    function playNextTrack() {
+      if (!isLive) return;
+      currentTrackIndex = Math.floor(Math.random() * musicPlaylist.length);
+      musicChan.src = musicPlaylist[currentTrackIndex];
+      musicChan.volume = 1.0;
+      musicChan.play().catch(e => console.log("Audio buffer sync pending..."));
+
+      statusDiv.innerText = "FEED STATUS: LIVE // ARCHITECTURE STREAMING";
+      statusDiv.style.color = "#00ff00";
+    }
+
+    function triggerRandomVoiceOverlay() {
+      if (!isLive || voiceChan.src) return;
+      musicChan.volume = 0.3;
+      const randomDrop = voiceDrops[Math.floor(Math.random() * voiceDrops.length)];
+      voiceChan.src = randomDrop;
+      voiceChan.play().catch(e => console.log("Voice asset drop pending..."));
+
+      statusDiv.innerText = "FEED STATUS: LIVE // INJECTING BRAND OVERLAY";
+      statusDiv.style.color = "#ff6600";
+    }
+
+    if (playBtn && pauseBtn && musicChan && voiceChan && statusDiv) {
+      musicChan.addEventListener('ended', playNextTrack);
+      voiceChan.addEventListener('ended', function() {
+        voiceChan.src = '';
+        musicChan.volume = 1.0;
+        statusDiv.innerText = "FEED STATUS: LIVE // ARCHITECTURE STREAMING";
+        statusDiv.style.color = "#00ff00";
+        setTimeout(triggerRandomVoiceOverlay, 45000);
+      });
+
+      playBtn.addEventListener('pointerdown', function() {
+        if (isLive) return;
+        if (window.speechSynthesis) window.speechSynthesis.cancel();
+        isLive = true;
+        startEqualizerAnimation();
+        playNextTrack();
+        setTimeout(triggerRandomVoiceOverlay, 20000);
+      });
+
+      pauseBtn.addEventListener('pointerdown', function() {
+        isLive = false;
+        stopEqualizerAnimation();
+        musicChan.pause();
+        voiceChan.pause();
+        musicChan.src = '';
+        voiceChan.src = '';
+        statusDiv.innerText = "FEED STATUS: STANDBY / LINK DISCONNECTED";
+        statusDiv.style.color = "#555555";
+      });
+    }
 
   })();
 </script>
-
-
