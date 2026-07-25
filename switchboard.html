@@ -226,7 +226,123 @@
       });
     }
   })();
-</script> 
+<!-- FRONTEND ENGINEERING: NATIVE AUTO-DJ LOGIC MODULE & EQUALIZER LOOP -->
+<script>
+  (function() {
+    const playBtn = document.getElementById('btn-stream-play');
+    const pauseBtn = document.getElementById('btn-stream-pause');
+    const musicChan = document.getElementById('famo-music-channel');
+    const voiceChan = document.getElementById('famo-voice-channel');
+    const statusDiv = document.getElementById('stream-status');
+    const eqBars = document.querySelectorAll('.eq-bar');
+
+    let eqInterval = null;
+    let isLive = false;
+
+    // INTERNAL DATABASE: LOGGED TRACK ASSETS DIRECTLY WITHIN YOUR /ASSETS/ REPOSITORY FOLDER
+    const musicPlaylist = [
+      'assets/track1.mp3',
+      'assets/track2.mp3',
+      'assets/track3.mp3'
+    ];
+    const voiceDrops = [
+      'assets/famo_voice_drop.mp3',
+      'assets/dod_promo_ad.mp3'
+    ];
+
+    let currentTrackIndex = 0;
+
+    function startEqualizerAnimation() {
+      if (eqInterval) clearInterval(eqInterval);
+      eqInterval = setInterval(() => {
+        eqBars.forEach(bar => {
+          // Generate active random fluid movement heights up to 35px
+          const randomHeight = Math.floor(Math.random() * 30) + 5;
+          bar.style.height = randomHeight + 'px';
+        });
+      }, 100);
+    }
+
+    function stopEqualizerAnimation() {
+      if (eqInterval) clearInterval(eqInterval);
+      eqBars.forEach(bar => {
+        bar.style.height = '5px'; // Flatten to standby baseline
+      });
+    }
+
+    function playNextTrack() {
+      if (!isLive) return;
+      
+      currentTrackIndex = Math.floor(Math.random() * musicPlaylist.length);
+      musicChan.src = musicPlaylist[currentTrackIndex];
+      musicChan.volume = 1.0; // Full volume baseline
+      musicChan.play().catch(e => console.log("Audio asset buffer pending..."));
+
+      statusDiv.innerText = "FEED STATUS: LIVE // ARCHITECTURE STREAMING";
+      statusDiv.style.color = "#00ff00";
+    }
+
+    function triggerRandomVoiceOverlay() {
+      if (!isLive || voiceChan.src) return;
+
+      // Automatically duck music volume slider down by 50% to clear the audio layer
+      musicChan.volume = 0.3;
+      
+      const randomDrop = voiceDrops[Math.floor(Math.random() * voiceDrops.length)];
+      voiceChan.src = randomDrop;
+      voiceChan.play().catch(e => console.log("Voice asset drop pending..."));
+
+      statusDiv.innerText = "FEED STATUS: LIVE // INJECTING BRAND OVERLAY";
+      statusDiv.style.color = "#ff6600";
+    }
+
+    if (playBtn && pauseBtn && musicChan && voiceChan && statusDiv) {
+      
+      // Monitor music channel to fire the next track instantly when a song concludes
+      musicChan.addEventListener('ended', playNextTrack);
+
+      // Restore music volume slider smoothly back up to 100% when the voice drop finishes
+      voiceChan.addEventListener('ended', function() {
+        voiceChan.src = '';
+        musicChan.volume = 1.0;
+        statusDiv.innerText = "FEED STATUS: LIVE // ARCHITECTURE STREAMING";
+        statusDiv.style.color = "#00ff00";
+        
+        // Schedule the next random voice track drop interval loop
+        setTimeout(triggerRandomVoiceOverlay, 45000);
+      });
+
+      playBtn.addEventListener('pointerdown', function() {
+        if (isLive) return;
+        
+        if (window.speechSynthesis) {
+          window.speechSynthesis.cancel();
+        }
+
+        isLive = true;
+        startEqualizerAnimation();
+        playNextTrack();
+        
+        // Set first automated voice drop to fire 20 seconds into the session
+        setTimeout(triggerRandomVoiceOverlay, 20000);
+      });
+
+      pauseBtn.addEventListener('pointerdown', function() {
+        isLive = false;
+        stopEqualizerAnimation();
+        
+        musicChan.pause();
+        voiceChan.pause();
+        musicChan.src = '';
+        voiceChan.src = '';
+        
+        statusDiv.innerText = "FEED STATUS: STANDBY / LINK DISCONNECTED";
+        statusDiv.style.color = "#555555";
+      });
+    }
+  })();
+</script>
+   </script> 
 </body>
 </html>
 
