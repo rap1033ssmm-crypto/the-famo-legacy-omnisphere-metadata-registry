@@ -317,6 +317,16 @@
       }
     }
     initializeLiveEmissionMatrix();
+    // SYSTEM INFRASTRUCTURE: THE FAMO MATRIX UNIFIED COMMAND PLAYER DECK CUSTOM COMPONENT
+    customElements.define('famo-player-deck', class extends HTMLElement {
+      connectedCallback() {
+        this.innerHTML = `
+          <div style="padding: 10px; background: #102a43; border: 1px dashed #ff6600; border-radius: 6px; text-align: center; color: #00ff66; font-family: monospace; font-size: 11px; margin-top: 10px;">
+            ⚡ THE FAMO-LEGACY AUDIO PIPELINE CONNECTED SUCCESSFULLY ⚡
+          </div>
+        `;
+      }
+    });
 
    
       function syncLatestMagazineColumn() {
