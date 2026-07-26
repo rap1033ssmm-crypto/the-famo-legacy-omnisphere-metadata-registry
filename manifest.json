@@ -1,23 +1,17 @@
 {
-  "short_name": "FAMO NATION",
-  "name": "FAMO NATION OMNISPHERE REGISTRY PLATFORM",
-  "description": "Sovereign Grid Protocol Platform Panel Console & Media Distribution Network",
-  "start_url": "switchboard.html",
-  "background_color": "#000000",
-  "theme_color": "#ff6600",
-  "display": "standalone",
-  "orientation": "portrait",
-  "categories": ["utilities", "news"],
+  "short_name": "OmniSphere",
+  "name": "The Famo-Legacy OmniSphere Metadata Registry",
   "icons": [
     {
-      "src": "icon-192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "icon-512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "src": "./omnisphere_flyer.webp",
+      "type": "image/webp",
+      "sizes": "512x512",
+      "purpose": "any maskable"
     }
-  ]
+  ],
+  "start_url": "./switchboard.html",
+  "background_color": "#050505",
+  "theme_color": "#ff6600",
+  "display": "minimal-ui",
+  "orientation": "portrait"
 }
