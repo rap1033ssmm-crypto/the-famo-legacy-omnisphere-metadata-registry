@@ -258,24 +258,31 @@
         setTimeout(triggerRandomVoiceOverlay, 45000);
       });
 
-      playBtn.addEventListener('pointerdown', function() {
+          playBtn.addEventListener('click', function() {
         if (isLive) return;
         if (window.speechSynthesis) window.speechSynthesis.cancel();
         isLive = true;
+        
+        // Force direct browser hardware interaction permission unlock
+        musicChan.load();
+        voiceChan.load();
+        
         startEqualizerAnimation();
         playNextTrack();
         setTimeout(triggerRandomVoiceOverlay, 20000);
       });
 
-      pauseBtn.addEventListener('pointerdown', function() {
+      pauseBtn.addEventListener('click', function() {
         isLive = false;
         stopEqualizerAnimation();
-        musicChan.pause(); voiceChan.pause();
-        musicChan.src = ''; voiceChan.src = '';
+        musicChan.pause(); 
+        voiceChan.pause();
+        musicChan.src = ''; 
+        voiceChan.src = '';
         statusDiv.innerText = "FEED STATUS: STANDBY / LINK DISCONNECTED";
         statusDiv.style.color = "#555555";
       });
-    }
+
 
     if (readerPlay && readerStop && articleContent) {
       readerPlay.addEventListener('pointerdown', function() {
