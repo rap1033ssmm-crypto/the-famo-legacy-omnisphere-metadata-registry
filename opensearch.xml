@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <OpenSearchDescription xmlns="http://a9.com">
-  <ShortName>FAMO NATION</ShortName>
-  <Description>Google Powered Sovereign Media Search Portal</Description>
-  <Tags>famo metadata news legacy media streaming</Tags>
-  <Contact>https://orcid.org</Contact>
-  <Url type="text/html" method="get" template="https://google.com{searchTerms}"/>
+  <ShortName>OmniSphere</ShortName>
+  <Description>Direct Sovereign Search Query Node for The Famo-Legacy</Description>
   <InputEncoding>UTF-8</InputEncoding>
-  <OutputEncoding>UTF-8</OutputEncoding>
+  <Url type="text/html" template="https://writerslegacyteampublishing.substack.com/{searchTerms}"/>
 </OpenSearchDescription>
-
