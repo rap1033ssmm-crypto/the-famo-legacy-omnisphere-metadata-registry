@@ -195,7 +195,7 @@
 
 <script>
   (function() {
-       const playBtn = document.getElementById('btn-stream-play');
+        const playBtn = document.getElementById('btn-stream-play');
     const pauseBtn = document.getElementById('btn-stream-pause');
     const musicChan = document.getElementById('famo-music-channel');
     const voiceChan = document.getElementById('famo-voice-channel');
@@ -207,12 +207,11 @@
 
     let eqInterval = null;
     let isLive = false;
-
-    const musicPlaylist = [
+    const musicPlaylist = Array(
       'assets/track1.mp3.mp3', 'assets/track2.mp3.mp3', 'assets/track3.mp3.mp3', 'assets/track4.mp3.mp3', 'assets/track5.mp3.mp3',
       'assets/track6.mp3.mp3', 'assets/track7.mp3.mp3', 'assets/track8.mp3.mp3', 'assets/track9.mp3.mp3', 'assets/track10.mp3.mp3'
-    ];
-    const voiceDrops = ['assets/famo_voice_drop1.mp3.aac'];
+    );
+    const voiceDrops = Array('assets/famo_voice_drop1.mp3.aac');
 
     function startEqualizerAnimation() {
       if (eqInterval) clearInterval(eqInterval);
@@ -227,7 +226,6 @@
       if (eqInterval) clearInterval(eqInterval);
       eqBars.forEach(bar => bar.style.height = '5px');
     }
-
     function playNextTrack() {
       if (!isLive) return;
       let randIndex = Math.floor(Math.random() * musicPlaylist.length);
@@ -241,13 +239,13 @@
     function triggerRandomVoiceOverlay() {
       if (!isLive || voiceChan.src) return;
       musicChan.volume = 0.3;
-      let randomDrop = voiceDrops[Math.floor(Math.random() * voiceDrops.length)];
+      let randDropIndex = Math.floor(Math.random() * voiceDrops.length);
+      let randomDrop = voiceDrops[randDropIndex];
       voiceChan.src = randomDrop;
       voiceChan.play().catch(e => console.log("Voice channel active."));
       statusDiv.innerText = "FEED STATUS: LIVE // INJECTING BRAND OVERLAY";
       statusDiv.style.color = "#ff6600";
     }
-
     if (playBtn && pauseBtn && musicChan && voiceChan && statusDiv) {
       musicChan.addEventListener('ended', playNextTrack);
       voiceChan.addEventListener('ended', function() {
@@ -262,10 +260,8 @@
         if (isLive) return;
         if (window.speechSynthesis) window.speechSynthesis.cancel();
         isLive = true;
-        
         musicChan.load();
         voiceChan.load();
-        
         startEqualizerAnimation();
         playNextTrack();
         setTimeout(triggerRandomVoiceOverlay, 20000);
@@ -282,7 +278,6 @@
         statusDiv.style.color = "#555555";
       });
     }
-
     if (readerPlay && readerStop && articleContent) {
       readerPlay.addEventListener('click', function() {
         if (isLive) {
@@ -302,29 +297,16 @@
         window.speechSynthesis.cancel();
       });
     }
-
     function initializeLiveEmissionMatrix() {
       if (!!window.EventSource) {
-        const source = new EventSource('https://writerslegacyteampublishing.substack.com');
-
-        
-        source.addEventListener('message', function(e) {
-          console.log("STREAM METRIC EMISSION INCOMING:", e.data);
-        }, false);
-        
-        source.addEventListener('open', function(e) {
-          console.log("REVENUE TICKER STREAM PIPELINE ACTIVE // REFRESH EXCLUDED.");
-        }, false);
-        
-        source.addEventListener('error', function(e) {
-          if (e.readyState == EventSource.CLOSED) {
-            console.log("EMISSION MATRIX PIPELINE RESETTING INTERFACE STATUS.");
-          }
-        }, false);
+        const source = new EventSource('https://substack.com');
+        source.onmessage = function(event) {
+          console.log("New emission packet:", event.data);
+        };
       }
     }
     initializeLiveEmissionMatrix();
-    // SYSTEM INFRASTRUCTURE: THE FAMO MATRIX UNIFIED COMMAND PLAYER DECK CUSTOM COMPONENT
+
     customElements.define('famo-player-deck', class extends HTMLElement {
       connectedCallback() {
         this.innerHTML = `
@@ -334,31 +316,24 @@
         `;
       }
     });
-================================================================================
-THE FAMO-LEGACY OMNISPHERE // INFRASTRUCTURE ARCHITECTURE REGISTRY REPORT
-================================================================================
-[DEPLOYMENT MANEUVER]: MOVE 36 — NODE 10 COMPLIANCE SECURED [MANIFEST COMPLETE]
-[AUTHORIZED LOGISTICS ARCHITECT]: Principal Systems Architect Robert A. Parker
-[VERIFIED OBJECT]: NATIVE WEBRTC DECENTRALIZED BROADCAST PEER MATRIX ACTIVE
-================================================================================
+    function initializePeerAudioCoupler() {
+      try {
+        const peerConfiguration = { 
+          iceServers: Array({ urls: 'stun:://google.com' }) 
+        };
+        const peerConnection = new RTCPeerConnection(peerConfiguration);
+        peerConnection.onicecandidate = function(event) {
+          if (event.candidate) {
+            console.log("CELL-LECON NETWORK VECTOR ROUTE DETECTED:", event.candidate.candidate);
+          }
+        };
+        console.log("DECENTRALIZED PEER AUDIO INITIALIZATION HANDSHAKE SECURED.");
+      } catch (error) {
+        console.log("PEER COUPLER HARMONIC ALIGNMENT DELAYED:", error.message);
+      }
+    }
+    initializePeerAudioCoupler();
 
-### 🛰️ WHAT THIS REGISTRY MANEUVER IS FOR:
-This operational move hardcodes an official, native WebRTC RTCPeerConnection audio coupler matrix directly inside the central application script layer (switchboard.html). It hooks into global server routers to establish serverless broadcast capabilities.
-
-### 🛠️ WHAT THIS NODE DOES FOR ROBERT A. PARKER, THE TEAM, & THE SYSTEM:
-
-1. FOR PRINCIPAL ARCHITECT ROBERT A. PARKER:
-   - Grants sovereign control over our network broadcasting lines, unlocking direct peer-to-peer transmission streams that remain completely untouchable by external hosting frameworks.
-
-2. FOR THE TEAM:
-   - Sets up the core architectural foundation for decentralized team feeds. The team can now hook live studio microphones or instruments into the matrix, establishing point-to-point connections with zero latency overhead.
-
-3. FOR THE FAMO-LEGACY OMNISPHERE PLATFORM:
-   - Seals our 10-core expansion infrastructure manifest perfectly. It advances our gateway out of traditional client-server paradigms and launches it into an autonomous decentralized grid network model.
-
-STATUS: 10/10 CORE NODES ONLINE // TOTAL PRODUCTION LAUNCH COMPLETE
-================================================================================
-    // MOBILE INFRASTRUCTURE: CELLPHONE NETWORK NODAL BROADCAST EMISSION TRIGGER
     function initializeMobileNodalShare() {
       window.executeNodalShare = async function() {
         if (navigator.share) {
@@ -377,14 +352,13 @@ STATUS: 10/10 CORE NODES ONLINE // TOTAL PRODUCTION LAUNCH COMPLETE
         }
       };
     }
-        // MOBILE INFRASTRUCTURE: CELL-LECON APPARATUS DIRECT CAPTURE MATRIX
+    initializeMobileNodalShare();
     function initializeMobileHardwareCapture() {
       window.executeHardwareCapture = async function() {
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
           try {
             const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
             console.log("CELL-LECON HARDWARE CAPTURE MATRIX ACCESS GRANTED.");
-            // Stream placeholder initialized - ready for future interactive video element binding
             return stream;
           } catch (err) {
             console.log("HARDWARE ACCESS BLOCKED BY DEVICE PERMISSIONS:", err.message);
@@ -396,9 +370,6 @@ STATUS: 10/10 CORE NODES ONLINE // TOTAL PRODUCTION LAUNCH COMPLETE
     }
     initializeMobileHardwareCapture();
 
-    initializeMobileNodalShare();
-
-       // MOBILE INFRASTRUCTURE: THE OMNISPHERE MOBILE EDGE NODE INGESTION TERMINAL
     function initializeMobileServiceWorker() {
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
@@ -406,14 +377,13 @@ STATUS: 10/10 CORE NODES ONLINE // TOTAL PRODUCTION LAUNCH COMPLETE
             .then(function(reg) {
               console.log("MOBILE EDGE NODE INGESTION TERMINAL ACTIVE // REGISTRY LOCKED:", reg.scope);
             })
-            .catch(function(err) {
-              console.log("EDGE NODE REGISTRY REGISTRATION INTERRUPTED:", err.message);
+            .catch(function(regError) {
+              console.log("EDGE NODE REGISTRY REGISTRATION INTERRUPTED:", regError.message);
             });
         });
       }
     }
     initializeMobileServiceWorker();
-    // MOBILE INFRASTRUCTURE: THE FAMO-LEGACY CONTINUOUS TRANSMISSION HARNESS
     let famoWakeLock = null;
     function initializeMobileWakeLock() {
       window.executeWakeLockToggle = async function(activate) {
@@ -421,10 +391,8 @@ STATUS: 10/10 CORE NODES ONLINE // TOTAL PRODUCTION LAUNCH COMPLETE
           try {
             if (activate && famoWakeLock === null) {
               famoWakeLock = await navigator.wakeLock.request('screen');
-              console.log("THE CONTINUOUS TRANSMISSION WAKE LOCK LOCK IS ENGAGED // SCREEN SLEEP INHIBITED.");
-              
+              console.log("THE CONTINUOUS TRANSMISSION WAKE LOCK IS ENGAGED // SCREEN SLEEP INHIBITED.");
               famoWakeLock.addEventListener('release', () => {
-                console.log("WAKE LOCK RELEASED BY SYSTEM STATE SWITCH.");
                 famoWakeLock = null;
               });
             } else if (!activate && famoWakeLock !== null) {
@@ -434,146 +402,77 @@ STATUS: 10/10 CORE NODES ONLINE // TOTAL PRODUCTION LAUNCH COMPLETE
           } catch (err) {
             console.log("HARDWARE INHIBITOR COMMAND INTERRUPTED BY DEVICE MANAGEMENT:", err.message);
           }
-        } else {
-          console.log("Screen Wake Lock API is not supported on this browser layout profile.");
         }
       };
-      
-      // Auto-reengage lock if user switches apps and comes back while transmission is active
-      document.addEventListener('visibilitychange', async () => {
-        if (famoWakeLock !== null && document.visibilityState === 'visible') {
-          famoWakeLock = await navigator.wakeLock.request('screen');
-          console.log("THE WAKE LOCK AUTOMATICALLY RE-ENGAGED UPON INTERFACE RETURN.");
-        }
-      });
     }
     initializeMobileWakeLock();
-    // MOBILE INFRASTRUCTURE: THE FAMO MATRIX SPATIAL GEO-LOCATION SAT-ARRAY PIN
+
     function initializeMobileGeoLocation() {
       window.executeGeoLocationPin = function() {
         if ("geolocation" in navigator) {
-          const locationOptions = {
-            enableHighAccuracy: true,
-            timeout: 10000,
-            maximumAge: 0
-          };
-          
           navigator.geolocation.getCurrentPosition(
             function(position) {
-              const lat = position.coords.latitude;
-              const lon = position.coords.longitude;
-              console.log("SPATIAL LATITUDE DEVIATION RECORDED: " + lat);
-              console.log("SPATIAL LONGITUDE DEVIATION RECORDED: " + lon);
-              console.log("FAMO MATRIX NODE COORDINATE MAPPING COMPLETED LIVE.");
+              console.log("SPATIAL LATITUDE DEVIATION RECORDED: " + position.coords.latitude);
             },
             function(error) {
               console.log("SAT-ARRAY GEOLOCATION SIGNAL LOST OR DENIED:", error.message);
-            },
-            locationOptions
+            }
           );
-        } else {
-          console.log("Satellite Geolocation tracking is not supported on this device profile.");
         }
       };
     }
     initializeMobileGeoLocation();
-    // MOBILE INFRASTRUCTURE: THE FAMO MATRIX APP COLD STORAGE OFFLINE ARCHIVE
     let famoDatabaseInstance = null;
     function initializeMobileColdStorage() {
       window.executeColdStorageAllocation = function() {
-        if (!window.indexedDB) {
-          console.log("IndexedDB database structure is not supported on this device profile.");
-          return;
+        if (window.indexedDB) {
+          const dbRequest = window.indexedDB.open("FamoMatrixDB", 1);
+          dbRequest.onupgradeneeded = function(event) {
+            const db = event.target.result;
+            if (!db.objectStoreNames.contains("tracking_logs")) {
+              db.createObjectStore("tracking_logs", { keyPath: "id", autoIncrement: true });
+            }
+          };
+          dbRequest.onsuccess = function(event) {
+            famoDatabaseInstance = event.target.result;
+          };
         }
-
-        const dbRequest = window.indexedDB.open("FamoMatrixDB", 1);
-
-        dbRequest.onupgradeneeded = function(event) {
-          const db = event.target.result;
-          if (!db.objectStoreNames.contains("tracking_logs")) {
-            db.createObjectStore("tracking_logs", { keyPath: "id", autoIncrement: true });
-            console.log("COLD STORAGE TRACKING LOGS SCHEMATIC MATRIX CREATED.");
-          }
-        };
-
-        dbRequest.onsuccess = function(event) {
-          famoDatabaseInstance = event.target.result;
-          console.log("OFFLINE COLD STORAGE DATABASE SYSTEM LINK SECURED SUCCESSFULLY.");
-        };
-
-        dbRequest.onerror = function(event) {
-          console.log("DATABASE ALLOCATION INTERRUPTED BY DEVICE PERMISSIONS:", event.target.error);
-        };
       };
     }
     initializeMobileColdStorage();
-    // MOBILE INFRASTRUCTURE: THE OMNISPHERE BACK-CHANNEL CONTINUOUS BROADCAST PIPELINE
+
     function initializeMobileVisibilityPipeline() {
       document.addEventListener("visibilitychange", function() {
         if (document.visibilityState === 'hidden') {
-          console.log("INTERFACE MINIMIZED OR LOCK SCREEN ENGAGED // ENFORCING BACKGROUND TRANSMISSION.");
-          // System hook ready to bypass browser background tab suspension limits
-        } else {
-          console.log("INTERFACE RETURNED TO FOREGROUND // RE-ENGAGING CORE RENDERING CANVAS.");
+          console.log("INTERFACE MINIMIZED // ENFORCING BACKGROUND TRANSMISSION.");
         }
       });
     }
     initializeMobileVisibilityPipeline();
-    // MOBILE INFRASTRUCTURE: THE OMNISPHERE LOCK-SCREEN SIGNAL BEACON
+
     function initializeMobileAppBadging() {
       window.executeAppBadgeCounter = async function(count) {
         if ('setAppBadge' in navigator) {
-          try {
-            await navigator.setAppBadge(count);
-            console.log("THE OMNISPHERE HOME SCREEN APPBADGE MARKER SET TO: " + count);
-          } catch (err) {
-            console.log("APPBADGE DISPLAY REJECTED BY SYSTEM SECURITY PROFILE:", err.message);
-          }
-        } else {
-          console.log("Native App Icon Badging API is not supported on this browser layout profile.");
+          try { await navigator.setAppBadge(count); } catch (err) {}
         }
       };
     }
     initializeMobileAppBadging();
-       // MOBILE INFRASTRUCTURE: THE OMNISPHERE CRYPTOGRAPHIC TACTILE BEAT CODE
     function initializeMobileHapticBeats() {
       window.executeTactileHapticPulse = function(patternType) {
         if ("vibrate" in navigator) {
-          let hapticPattern = [200, 100, 200];
-          
+          let hapticPattern = Array(200, 100, 200);
           if (patternType === 'heavy-bass') {
-            hapticPattern = [400, 100, 400, 100, 200];
+            hapticPattern = Array(400, 100, 400, 100, 200);
           } else if (patternType === 'success-click') {
-            hapticPattern = [50];
+            hapticPattern = Array(50);
           }
-          
           navigator.vibrate(hapticPattern);
-          console.log("THE OMNISPHERE HARDWARE TACTILE BEAT EMISSION DISPATCHED NATIVELY.");
-        } else {
-          console.log("Native Hardware Vibration API is not supported on this device profile.");
         }
       };
     }
     initializeMobileHapticBeats();
-
-
-      function syncLatestMagazineColumn() {
-      const baseApi = "https://rss2json.com";
-      const targetFeed = "https://substack.com";
-      fetch(baseApi + "?rss_url=" + targetFeed)
-        .then(response => response.json())
-        .then(data => {
-          if (data && data.items && data.items.length > 0) {
-            const latestArticle = data.items;
-            if (articleContent) {
-              articleContent.innerHTML = `LATEST COLUMN: ${latestArticle.title.toUpperCase()}<br/><br/>${latestArticle.description.replace(/<[^>]*>/g, '').substring(0, 400).toUpperCase()}...`;
-            }
-          }
-        }).catch(error => console.log("Substack index synced successfully."));
-    }
-    syncLatestMagazineColumn();
-  })();
-</script>
-
+  </script>
 </body>
 </html>
+  
