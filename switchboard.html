@@ -351,6 +351,26 @@ This operational move hardcodes an official, native WebRTC RTCPeerConnection aud
 
 STATUS: 10/10 CORE NODES ONLINE // TOTAL PRODUCTION LAUNCH COMPLETE
 ================================================================================
+    // MOBILE INFRASTRUCTURE: CELLPHONE NETWORK NODAL BROADCAST EMISSION TRIGGER
+    function initializeMobileNodalShare() {
+      window.executeNodalShare = async function() {
+        if (navigator.share) {
+          try {
+            await navigator.share({
+              title: 'The Famo-Legacy OmniSphere',
+              text: 'Connect straight to the Famo Nation Matrix Command Center Portal Node.',
+              url: window.location.href
+            });
+            console.log("MOBILE NODAL BROADCAST EMISSION DISPATCHED SUCCESSFULLY.");
+          } catch (err) {
+            console.log("SHARE ABORTED OR BLOCKED BY SYSTEM PROFILE:", err.message);
+          }
+        } else {
+          alert("Sovereign Node Link: " + window.location.href);
+        }
+      };
+    }
+    initializeMobileNodalShare();
 
    
       function syncLatestMagazineColumn() {
