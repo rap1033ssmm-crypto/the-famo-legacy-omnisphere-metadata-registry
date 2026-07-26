@@ -318,10 +318,10 @@
     });
     function initializePeerAudioCoupler() {
       try {
-        const peerConfiguration = { 
-          iceServers: Array({ urls: 'stun:://google.com' }) 
+                const peerConfiguration = { 
+          iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] 
         };
-        const peerConnection = new RTCPeerConnection(peerConfiguration);
+
         peerConnection.onicecandidate = function(event) {
           if (event.candidate) {
             console.log("CELL-LECON NETWORK VECTOR ROUTE DETECTED:", event.candidate.candidate);
