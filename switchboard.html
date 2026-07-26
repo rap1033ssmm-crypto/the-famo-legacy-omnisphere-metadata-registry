@@ -195,7 +195,7 @@
 
 <script>
   (function() {
-    const playBtn = document.getElementById('btn-stream-play');
+       const playBtn = document.getElementById('btn-stream-play');
     const pauseBtn = document.getElementById('btn-stream-pause');
     const musicChan = document.getElementById('famo-music-channel');
     const voiceChan = document.getElementById('famo-voice-channel');
@@ -258,12 +258,11 @@
         setTimeout(triggerRandomVoiceOverlay, 45000);
       });
 
-          playBtn.addEventListener('click', function() {
+      playBtn.addEventListener('click', function() {
         if (isLive) return;
         if (window.speechSynthesis) window.speechSynthesis.cancel();
         isLive = true;
         
-        // Force direct browser hardware interaction permission unlock
         musicChan.load();
         voiceChan.load();
         
@@ -282,10 +281,10 @@
         statusDiv.innerText = "FEED STATUS: STANDBY / LINK DISCONNECTED";
         statusDiv.style.color = "#555555";
       });
-
+    }
 
     if (readerPlay && readerStop && articleContent) {
-      readerPlay.addEventListener('pointerdown', function() {
+      readerPlay.addEventListener('click', function() {
         if (isLive) {
           isLive = false;
           stopEqualizerAnimation();
@@ -299,14 +298,15 @@
         speechUtterance.rate = 1.0; speechUtterance.pitch = 1.0; speechUtterance.volume = 1.0;
         window.speechSynthesis.speak(speechUtterance);
       });
-      readerStop.addEventListener('pointerdown', function() {
+      readerStop.addEventListener('click', function() {
         window.speechSynthesis.cancel();
       });
     }
-    // SYSTEM INFRASTRUCTURE: THE FAMO MATRIX REVENUE TICKER LIVE EMISSION MATRIX
+
     function initializeLiveEmissionMatrix() {
       if (!!window.EventSource) {
         const source = new EventSource('https://writerslegacyteampublishing.substack.com');
+
         
         source.addEventListener('message', function(e) {
           console.log("STREAM METRIC EMISSION INCOMING:", e.data);
