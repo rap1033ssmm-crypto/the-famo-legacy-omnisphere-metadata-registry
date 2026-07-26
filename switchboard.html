@@ -370,6 +370,25 @@ STATUS: 10/10 CORE NODES ONLINE // TOTAL PRODUCTION LAUNCH COMPLETE
         }
       };
     }
+        // MOBILE INFRASTRUCTURE: CELL-LECON APPARATUS DIRECT CAPTURE MATRIX
+    function initializeMobileHardwareCapture() {
+      window.executeHardwareCapture = async function() {
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+          try {
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+            console.log("CELL-LECON HARDWARE CAPTURE MATRIX ACCESS GRANTED.");
+            // Stream placeholder initialized - ready for future interactive video element binding
+            return stream;
+          } catch (err) {
+            console.log("HARDWARE ACCESS BLOCKED BY DEVICE PERMISSIONS:", err.message);
+          }
+        } else {
+          alert("Media capture API is not supported on this browser layout profile.");
+        }
+      };
+    }
+    initializeMobileHardwareCapture();
+
     initializeMobileNodalShare();
 
    
