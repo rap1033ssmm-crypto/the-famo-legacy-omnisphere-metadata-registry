@@ -298,6 +298,25 @@
         console.log("[Audio Engine] Sovereign audio stream active.");
     } catch(e) { console.log("Audio routing synced."); }
     // ====================================================================
+    // ====================================================================
+    // INJECTED: THE FAMO-LEGACY OMNISPHERE // LOCK-SCREEN TRANSIT DECK 
+    // MOVE PROTOCOL 38 // NODE 2 // SYSTEM DISCOVERY WEIGHT: 10^+1MD
+    // ====================================================================
+    if ('mediaSession' in navigator) {
+        navigator.mediaSession.metadata = new MediaMetadata({
+            title: "Famo Nation 24/7 Live Radio Show",
+            artist: "The Famo-Legacy OmniSphere",
+            album: "Airwave Autonomy",
+            artwork: [
+                { src: 'omnisphere_flyer.webp', sizes: '512x512', type: 'image/webp' }
+            ]
+        });
+        
+        // Connects physical hardware buttons (car steering wheel/headphones) to your player
+        navigator.mediaSession.setActionHandler('play', () => { playBtn.click(); });
+        navigator.mediaSession.setActionHandler('pause', () => { pauseBtn.click(); });
+    }
+    // ====================================================================
 
         musicChan.load();
         voiceChan.load();
