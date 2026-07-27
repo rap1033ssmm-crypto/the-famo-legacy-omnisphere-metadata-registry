@@ -552,6 +552,37 @@ function generateSovereignUUID() {
 }
 console.log("[System Keys] Automated UUID Engine loaded. Ready for instant member tracking.");
 // ====================================================================
+          // ====================================================================
+    // INTERFACE BINDING: LOUD AND PROUD MINT BUTTON INJECTION
+    // ====================================================================
+    const generationCard = document.createElement('div');
+    generationCard.className = 'card';
+    generationCard.style.marginTop = '15px';
+    generationCard.style.border = '2px solid #7c4dff';
+    generationCard.style.padding = '15px';
+    generationCard.style.background = '#1a1a1a';
+    generationCard.style.color = '#fff';
+    generationCard.style.borderRadius = '8px';
+    generationCard.innerHTML = `
+        <h3 style="color: #7c4dff; margin-top:0;">Sovereign ID Generator Panel</h3>
+        <p style="font-size:0.9rem; color:#aaa;">Cryptographic Identity Registrar Console active. Click to mint keys:</p>
+        <div id="uuid-display-box" style="background:#000; padding:10px; border-radius:4px; font-family:monospace; font-size:1.1rem; color:#00ffcc; text-align:center; margin-bottom:10px; border:1px dashed #7c4dff;">
+            [Awaiting Generation Command]
+        </div>
+        <button id="btn-mint-uuid" type="button" style="width:100%; background:#7c4dff; color:#fff; border:none; padding:10px; font-weight:bold; border-radius:4px; cursor:pointer; text-transform:uppercase;">
+            MINT SOVEREIGN ID CODE
+        </button>
+    `;
+    const targetContainer = document.getElementById('panel-container') || document.body;
+    targetContainer.appendChild(generationCard);
+
+    document.getElementById('btn-mint-uuid').addEventListener('click', function() {
+        const newID = generateSovereignUUID();
+        document.getElementById('uuid-display-box').innerText = newID;
+        console.log("[Mint Engine] Successfully generated fresh tracking key: " + newID);
+    });
+    // ====================================================================
+
 
       initializeMobileHapticBeats();
         })();
