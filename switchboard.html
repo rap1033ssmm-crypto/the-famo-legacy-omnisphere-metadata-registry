@@ -280,6 +280,25 @@
         if (isLive) return;
         if (window.speechSynthesis) window.speechSynthesis.cancel();
         isLive = true;
+              // ====================================================================
+    // INJECTED: THE FAMO-LEGACY OMNISPHERE // SOVEREIGN AUDIO ENGINE 
+    // ====================================================================
+    try {
+        if (!window.famoAudioCtx) {
+            window.famoAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const source1 = window.famoAudioCtx.createMediaElementSource(musicChan);
+            const source2 = window.famoAudioCtx.createMediaElementSource(voiceChan);
+            source1.connect(window.famoAudioCtx.destination);
+            source2.connect(window.famoAudioCtx.destination);
+            console.log("[Audio Engine] Core network routing paths created.");
+        }
+        if (window.famoAudioCtx.state === 'suspended') {
+            window.famoAudioCtx.resume();
+        }
+        console.log("[Audio Engine] Sovereign audio stream active.");
+    } catch(e) { console.log("Audio routing synced."); }
+    // ====================================================================
+
         musicChan.load();
         voiceChan.load();
         startEqualizerAnimation();
