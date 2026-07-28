@@ -3,173 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THE FAMO-LEGACY OMNISPHERE // SATELLITE RADAR DECK</title>
-    <!-- Open-Source Map Framework Ingestion -->
-    <link rel="stylesheet" href="https://unpkg.com" />
+    <title>THE FAMO-LEGACY OMNISPHERE // SATELLITE RADAR TERMINAL</title>
     <style>
         body, html {
             margin: 0; padding: 0; width: 100%; height: 100%;
-            background-color: #06020f; font-family: monospace; color: #ffffff;
+            background-color: #06020f; font-family: 'Arial Black', Gadget, sans-serif;
+            color: #ffffff; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
             overflow: hidden;
         }
-        .main-studio-frame {
-            display: flex; width: 100%; height: 100%; position: relative;
+        /* INDUSTRIAL NEON RADAR BACKDROP GRID */
+        .radar-grid-bg {
+            position: absolute; width: 100%; height: 100%;
+            background: linear-gradient(180deg, #0a0518 0%, #020105 100%);
+            z-index: 1; opacity: 0.8;
         }
-        /* LEFT SIDE PANEL: SATELLITE RADAR CORE */
-        #radarMap {
-            width: 40%; height: 100%; background: #000;
-            border-right: 3px solid #7c4dff; box-sizing: border-box; z-index: 2;
+        .console-container {
+            position: relative; z-index: 10; max-width: 800px; padding: 30px;
+            border: 3px solid #7c4dff; border-radius: 16px;
+            background: rgba(15, 11, 24, 0.95);
+            box-shadow: 0 0 40px rgba(124, 77, 255, 0.6);
+            margin: 20px; box-sizing: border-box;
         }
-        /* RIGHT SIDE PANEL: FRONT ROW GROUND-LEVEL VIEWPORT */
-        #streetViewport {
-            width: 60%; height: 100%; background: #0c0817; position: relative; z-index: 2;
+        h1 { color: #00ffcc; font-size: 1.8rem; margin: 0 0 15px 0; letter-spacing: 2px; }
+        h2 { color: #ffffff; font-size: 1.2rem; margin-bottom: 25px; font-weight: normal; }
+        .code-matrix-box {
+            background: #000; border: 1px solid #331a5e; border-radius: 8px;
+            padding: 20px; margin-bottom: 30px; font-family: monospace; text-align: left;
         }
-        iframe {
-            width: 100%; height: 100%; border: none; background: #000;
-        }
-        /* UPPER FLOATING HUD OVERLAY CONTROL PANEL */
-        .hud-overlay-console {
-            position: absolute; top: 15px; left: 15px;
-            background: rgba(10, 5, 24, 0.9); border: 2px solid #7c4dff;
-            border-radius: 8px; padding: 15px; z-index: 10; width: 290px;
-            box-shadow: 0 0 20px rgba(124, 77, 255, 0.6); pointer-events: auto;
-        }
-        .hud-overlay-console h1 {
-            color: #00ffcc; font-size: 1rem; margin: 0 0 8px 0;
-            text-transform: uppercase; letter-spacing: 2px;
-            border-bottom: 1px dashed #7c4dff; padding-bottom: 4px;
-        }
-        .metric-row {
-            margin: 6px 0; font-size: 0.8rem; display: flex; justify-content: space-between;
-        }
-        .metric-label { color: #b39ddb; text-transform: uppercase; }
-        .metric-value { color: #00ffcc; font-weight: bold; }
+        .code-line { color: #b39ddb; margin: 8px 0; font-size: 0.95rem; }
+        .code-val { color: #00ffcc; font-weight: bold; }
         
-        /* THE LEAFLET POPUP DESIGN MODIFICATIONS */
-        .leaflet-popup-content-wrapper {
-            background: #0f0b18 !important; color: #fff !important;
-            border: 1px solid #7c4dff !important; font-family: monospace !important;
-            box-shadow: 0 0 15px rgba(124,77,255,0.5) !important;
+        /* PULSING HYPER-VELOCITY LAUNCH TRIGGER */
+        .launch-btn {
+            background: #7c4dff; color: #fff; border: none; padding: 18px 40px;
+            font-size: 1.3rem; font-weight: bold; font-family: 'Arial Black', sans-serif;
+            cursor: pointer; border-radius: 8px; text-transform: uppercase;
+            letter-spacing: 2px; box-shadow: 0 0 25px rgba(124, 77, 255, 0.7);
+            transition: all 0.3s ease; animation: pulseGlow 2s infinite;
+            text-decoration: none; display: inline-block;
         }
-        .leaflet-popup-tip { background: #0f0b18 !important; }
-        .popup-title { color: #00ffcc; font-weight: bold; margin-bottom: 4px; font-size: 0.9rem; }
-        .popup-coords { color: #888; font-size: 0.75rem; margin-bottom: 8px; }
-        .popup-btn {
-            background: #7c4dff; color: #fff; border: none; padding: 7px 12px;
-            font-family: monospace; font-weight: bold; font-size: 0.75rem;
-            cursor: pointer; border-radius: 4px; text-transform: uppercase; width: 100%;
-            transition: all 0.2s;
+        .launch-btn:hover { background: #00ffcc; color: #000; box-shadow: 0 0 35px #00ffcc; transform: scale(1.05); }
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 20px rgba(124, 77, 255, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(124, 77, 255, 0.9); }
+            100% { box-shadow: 0 0 20px rgba(124, 77, 255, 0.5); }
         }
-        .popup-btn:hover { background: #00ffcc; color: #000; }
     </style>
 </head>
 <body>
 
-    <div class="hud-overlay-console">
-        <h1>Satellite Tracker Core</h1>
-        <div class="metric-row">
-            <span class="metric-label">CAMPAIGN:</span>
-            <span class="metric-value" style="color:#7c4dff;">WORLD TOUR</span>
-        </div>
-        <div class="metric-row">
-            <span class="metric-label">OPERATOR:</span>
-            <span class="metric-value">THEMR // PARKER</span>
-        </div>
-        <div class="metric-row">
-            <span class="metric-label">REGISTRY ID:</span>
-            <span class="metric-value">AS64510</span>
-        </div>
-        <div class="metric-row">
-            <span class="metric-label">SECTOR SCALE:</span>
-            <span class="metric-value">10^+1MD</span>
-        </div>
-    </div>
+    <div class="radar-grid-bg"></div>
 
-    <div class="main-studio-frame">
-        <!-- LEFT RADAR SCREEN SECTOR -->
-        <div id="radarMap"></div>
+    <div class="console-container">
+        <h1>THE FAMO-LEGACY OMNISPHERE</h1>
+        <h2>ALL AROUND THE WORLD WITH THEMR // SATELLITE COMMAND TERMINAL</h2>
         
-        <!-- RIGHT HIGH-DENSITY GROUND VIEWPORT CONTAINER -->
-        <div id="streetViewport">
-            <iframe id="streetViewIframe" src="about:blank"></iframe>
+        <div class="code-matrix-box">
+            <div class="code-line">► OPERATOR SECTOR CONSOLE: <span class="code-val">ROBERT A. PARKER // CEO</span></div>
+            <div class="code-line">► SOVEREIGN ROUTING MESH: <span class="code-val">AS64510</span></div>
+            <div class="code-line">► INDUSTRIAL REGISTRY LANE: <span class="code-val">NAICS 516210</span></div>
+            <div class="code-line">► GLOBAL GEOSPATIAL SCALE: <span class="code-val">10^+1MD</span></div>
+            <div class="code-line">► ENGINE STATUS: <span class="code-val" style="color:#00ffcc;">VERIFIED ONLINE // LIVE LINK READY</span></div>
         </div>
+
+        <!-- THE UNBLOCKABLE OVERRIDE LINK REDIRECT -->
+        <a class="launch-btn" href="https://earth.google.com/earth/d/15BbrX_SlDxfET2y2IbkGqjY2l_ANqJ1D?usp=sharing" target="_blank">
+            LAUNCH SATELLITE ORBIT EXPLORER
+        </a>
     </div>
 
-      <!-- Open-Source Map Engine Library Scripts -->
-    <script src="https://unpkg.com"></script>
     <script>
-        // Initialize the Open-Source Radar Map Core
-        const map = L.map('radarMap', {
-            center: [20.0, 0.0],
-            zoom: 2,
-            minZoom: 1,
-            maxZoom: 18
-        });
-
-        // Load premium dark-theme satellite layout grids (100% Free, No Token Required)
-        L.tileLayer('https://{s}://{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; OpenStreetMap &copy; CARTO'
-        }).addTo(map);
-
-        const iframe = document.getElementById('streetViewIframe');
-
-        // Dynamic Space-to-Street Hyper-Velocity Jumper Logic Generator
-        function transmitToStreetLevel(lat, lng, name) {
-            console.log(`[Satellite Matrix] Commencing orbital dive to: ${name}`);
-            
-            // Hard-piping open-access parameters natively into the interactive viewing pane
-            const embedUrl = `https://google.com{lat},${lng}&cbll=${lat},${lng}&layer=c&cbp=12,0,0,0,0&output=embed`;
-            
-            iframe.src = embedUrl;
-        }
-
-        // HARDCODED BEDROCK INFRASTRUCTURE DATA MARKS (The 5 Shocking Launch Nodes)
-        const tourLocations = [
-            {
-                name: "THE GATES OF HELL CRATER // TURKMENISTAN",
-                lat: 40.2526,
-                lng: 58.4394
-            },
-            {
-                name: "THE ATACAMA GIANT GEOGLYPH // CHILE",
-                lat: -19.9492,
-                lng: -69.6339
-            },
-            {
-                name: "THE BADLANDS GUARDIAN COLOSSUS // CANADA",
-                lat: 50.0101,
-                lng: -110.1134
-            },
-            {
-                name: "THE NATURAL HEART-SHAPED ISLAND // ADRIATIC",
-                lat: 43.9782,
-                lng: 15.4375
-            },
-            {
-                name: "THE DESERT BREATH DOUBLE SPIRAL // SAHARA",
-                lat: 27.3803,
-                lng: 33.6323
-            }
-        ];
-
-        // Process data marks and drop unblockable satellite pins onto the layout
-        tourLocations.forEach(loc => {
-            const marker = L.marker([loc.lat, loc.lng]).addTo(map);
-            
-            // Format custom HTML inside the layout popup grids
-            const popupHtml = `
-                <div class="popup-title">${loc.name}</div>
-                <div class="popup-coords">LAT: ${loc.lat} / LNG: ${loc.lng}</div>
-                <button class="popup-btn" onclick="transmitToStreetLevel(${loc.lat}, ${loc.lng}, '${loc.name}')">
-                    TRANSMIT DOWNWARD IN INSTANT STREET MATRIX VIEW
-                </button>
-            `;
-            
-            marker.bindPopup(popupHtml);
-        });
-
-        // Auto-load the first operational node on deployment initialization
-        transmitToStreetLevel(40.2526, 58.4394, "THE GATES OF HELL CRATER");
+        // AUTOMATED SYSTEM OVERRIDE: Automatically opens the project window after 2 seconds to bypass browser iframe blocks
+        setTimeout(() => {
+            console.log("[Satellite Core] Triggering hyper-velocity window link transfer...");
+            window.open("https://earth.google.com/earth/d/15BbrX_SlDxfET2y2IbkGqjY2l_ANqJ1D?usp=sharing", "_blank");
+        }, 2200);
     </script>
+
 </body>
 </html>
