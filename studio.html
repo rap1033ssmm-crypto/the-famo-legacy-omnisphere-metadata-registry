@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>W.L.T. MAG // SOVEREIGN ENGINE STUDIO</title>
+    <style>
+        body {
+            background-color: #0d0d0d;
+            color: #ffffff;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .header-title {
+            color: #7c4dff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            text-align: center;
+            border-bottom: 2px dashed #333;
+            padding-bottom: 10px;
+            width: 100%;
+            max-width: 1100px;
+        }
+        .workspace-container {
+            display: flex;
+            flex-direction: row;
+            gap: 30px;
+            width: 100%;
+            max-width: 1100px;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        @media (max-width: 900px) {
+            .workspace-container { flex-direction: column; align-items: center; }
+        }
+        .canvas-wrapper {
+            position: relative;
+            background: #000;
+            border: 3px solid #7c4dff;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(124, 77, 255, 0.4);
+            overflow: hidden;
+            width: 480px;
+            height: 600px;
+        }
+        canvas { display: block; }
+        .control-panel {
+            background: #161616;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 25px;
+            width: 100%;
+            max-width: 450px;
+            box-sizing: border-box;
+        }
+        .control-panel h2 {
+            color: #00ffcc;
+            margin-top: 0;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #222;
+            padding-bottom: 8px;
+        }
+        .form-group { margin-bottom: 15px; }
+        label {
+            display: block;
+            font-size: 0.85rem;
+            color: #aaa;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        input[type="text"], select {
+            width: 100%;
+            background: #000;
+            border: 1px solid #444;
+            padding: 10px;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 0.95rem;
+            box-sizing: border-box;
+        }
+        input[type="text"]:focus, select:focus { border-color: #7c4dff; outline: none; }
+        .drop-zone {
+            border: 2px dashed #7c4dff;
+            background: #1f1f1f;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            color: #aaa;
+            transition: background 0.2s;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        .drop-zone:hover { background: #252525; color: #fff; }
+        .uuid-container {
+            background: #000;
+            border: 1px solid #222;
+            padding: 10px;
+            border-radius: 6px;
+            font-family: monospace;
+            color: #00ffcc;
+            font-size: 0.95rem;
+            text-align: center;
+            word-break: break-all;
+        }
+        .btn-action {
+            width: 100%;
+            border: none;
+            padding: 14px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 10px;
+            transition: opacity 0.2s;
+        }
+        .btn-action:hover { opacity: 0.9; }
+        .btn-mint { background: #222; color: #00ffcc; border: 1px solid #00ffcc; margin-bottom: 10px; font-size: 0.9rem; padding: 8px; }
+        .btn-export { background: #7c4dff; color: #fff; box-shadow: 0 4px 15px rgba(124, 77, 255, 0.4); }
+    </style>
+</head>
+<body>
+
+      <div class="header-title">
+        THE FAMO-LEGACY OMNISPHERE // W.L.T. MAG COVER MATRIX STUDIO
+    </div>
+
+    <div class="workspace-container">
+        <!-- 4:5 PORTRAIT RATIO LIVE CANVAS VIEW -->
+        <div class="canvas-wrapper">
+            <canvas id="studioCanvas" width="960" height="1200" style="width: 480px; height: 600px;"></canvas>
+        </div>
+
+        <!-- WORKSPACE INTERFACE CONTROLLERS -->
+        <div class="control-panel">
+            <h2>Feature Swap Controller</h2>
+            
+            <div class="drop-zone" id="dropZone">
+                DRAG & DROP FEATURED PHOTOGRAPH HERE<br>
+                <span style="font-size:0.75rem; color:#666;">(Or Click to Select File)</span>
+                <input type="file" id="fileInput" accept="image/*" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label for="writerName">Featured Name Line</label>
+                <input type="text" id="writerName" value="THEMR PAKKMAN" placeholder="Enter Full Name...">
+            </div>
+
+            <div class="form-group">
+                <label for="writerTitle">Subtitle / Achievement Tag</label>
+                <input type="text" id="writerTitle" value="STREET SOLJA // MASSIVE METADATA EXTRACTION" placeholder="Enter Slogan/Title...">
+            </div>
+
+            <div class="form-group">
+                <label for="themeStyle">Visual Frame Tone</label>
+                <select id="themeStyle">
+                    <option value="#7c4dff">Deep Purple / Amethyst Energy</option>
+                    <option value="#00ffcc">Cyber Gold / Neon Teal Matrix</option>
+                    <option value="#ff0055">Crimson Overlord / Red Alert</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Assigned Tracking Token (Move 18 UUID)</label>
+                <div class="uuid-container" id="uuidDisplay">Press Mint to Generate Key</div>
+                <button type="button" class="btn-action btn-mint" id="mintUuidBtn">MINT NEW MATRIX KEY</button>
+            </div>
+
+            <button type="button" class="btn-action btn-export" id="exportBtn">EXPORT FACEBOOK FLYER COVER</button>
+        </div>
+    </div>
+
+      <script>
+        const canvas = document.getElementById('studioCanvas');
+        const ctx = canvas.getContext('2d');
+
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('fileInput');
+        const writerNameInput = document.getElementById('writerName');
+        const writerTitleInput = document.getElementById('writerTitle');
+        const themeStyleSelect = document.getElementById('themeStyle');
+        const uuidDisplay = document.getElementById('uuidDisplay');
+        const mintUuidBtn = document.getElementById('mintUuidBtn');
+        const exportBtn = document.getElementById('exportBtn');
+
+        let userImage = null;
+        let bgBackdrop = new Image();
+        
+        bgBackdrop.src = 'master-backdrop.webp'; 
+        bgBackdrop.onload = () => { drawCanvas(); };
+        bgBackdrop.onerror = () => { drawCanvas(); };
+
+        function generateSovereignUUID() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+
+        dropZone.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', handleFile);
+        dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.style.background = '#2a2a2a'; });
+        dropZone.addEventListener('dragleave', () => { dropZone.style.background = '#1f1f1f'; });
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.style.background = '#1f1f1f';
+            if (e.dataTransfer.files.length > 0) {
+                fileInput.files = e.dataTransfer.files;
+                handleFile();
+            }
+        });
+
+        function handleFile() {
+            const file = fileInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    userImage = new Image();
+                    userImage.onload = function() { drawCanvas(); };
+                    userImage.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        writerNameInput.addEventListener('input', drawCanvas);
+        writerTitleInput.addEventListener('input', drawCanvas);
+        themeStyleSelect.addEventListener('change', drawCanvas);
+        mintUuidBtn.addEventListener('click', () => {
+            uuidDisplay.innerText = generateSovereignUUID().toUpperCase();
+            drawCanvas();
+        });
+
+        function drawCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const themeColor = themeStyleSelect.value;
+
+            if (bgBackdrop.complete && bgBackdrop.naturalWidth !== 0) {
+                ctx.drawImage(bgBackdrop, 0, 0, canvas.width, canvas.height);
+            } else {
+                let bgGrad = ctx.createLinearGradient(0, 0, 0, canvas.height);
+                bgGrad.addColorStop(0, '#0a0518');
+                bgGrad.addColorStop(1, '#020105');
+                ctx.fillStyle = bgGrad;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                ctx.strokeStyle = themeColor;
+                ctx.lineWidth = 1;
+                ctx.globalAlpha = 0.15;
+                for(let i=0; i<canvas.width; i+=40) {
+                    ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, canvas.height); ctx.stroke();
+                    ctx.beginPath(); ctx.moveTo(0, i); ctx.lineTo(canvas.width, i); ctx.stroke();
+                }
+                ctx.globalAlpha = 1.0;
+            }
+
+            ctx.shadowColor = themeColor;
+            ctx.shadowBlur = 40;
+            ctx.strokeStyle = themeColor;
+            ctx.lineWidth = 12;
+            ctx.beginPath();
+            ctx.arc(canvas.width/2, canvas.height/2 - 40, 280, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.shadowBlur = 0;
+
+            if (userImage) {
+                ctx.save();
+                ctx.beginPath();
+                ctx.arc(canvas.width/2, canvas.height/2 - 40, 270, 0, Math.PI * 2);
+                ctx.clip();
+
+                const scale = Math.max(540 / userImage.width, 540 / userImage.height);
+                const w = userImage.width * scale;
+                const h = userImage.height * scale;
+                const x = (canvas.width - w) / 2;
+                const y = ((canvas.height - 80) - h) / 2;
+                
+                ctx.drawImage(userImage, x, y, w, h);
+                ctx.restore();
+            }
+
+            ctx.textAlign = "center";
+            ctx.textBaseline = "top";
+
+            ctx.fillStyle = "#ffffff";
+            ctx.font = "900 24px 'Arial Black', sans-serif";
+            ctx.fillText("CRYPTOGRAPHIC IDENTITY REGISTRAR & CORE NETWORK SOVEREIGN", canvas.width / 2, 40);
+
+            ctx.fillStyle = themeColor;
+            ctx.font = "900 42px 'Arial Black', sans-serif";
+            ctx.fillText("INDEPENDENT VIRTUAL NETWORK OPERATOR", canvas.width / 2, 85);
+
+            ctx.fillStyle = "#ffffff";
+            ctx.font = "bold 26px Arial, sans-serif";
+            ctx.fillText("// SOVEREIGN WEB BROADCASTER //", canvas.width / 2, 145);
+
+            ctx.textAlign = "left";
+            ctx.fillStyle = "rgba(0, 0, 0, 0.75)";
+            ctx.strokeStyle = themeColor;
+            ctx.lineWidth = 2;
+            
+            ctx.fillRect(570, 220, 350, 280);
+            ctx.strokeRect(570, 220, 350, 280);
+
+            ctx.fillStyle = "#ffffff";
+            ctx.font = "bold 16px monospace";
+            const codes = [
+                "Sovereign Mesh: AS64510",
+                "Industrial Lane: NAICS 516210",
+                "Ecosystem Weight: 10^+1264",
+                "Discovery Marker: 10^+1MD",
+                "Transmission Velocity: 10^+MT"
+            ];
+            codes.forEach((code, idx) => {
+                ctx.fillStyle = themeColor;
+                ctx.fillText("►", 590, 255 + (idx * 45));
+                ctx.fillStyle = "#ffffff";
+                ctx.fillText(code, 615, 255 + (idx * 45));
+            });
+
+            ctx.textAlign = "center";
+            ctx.fillStyle = "rgba(0, 0, 0, 0.85)";
+            ctx.fillRect(80, 840, 800, 110);
+            ctx.strokeRect(80, 840, 800, 110);
+
+            ctx.fillStyle = "#00ffcc";
+            ctx.font = "900 46px 'Arial Black', sans-serif";
+            ctx.fillText(writerNameInput.value.toUpperCase(), canvas.width / 2, 850);
+
+            ctx.fillStyle = "#ffffff";
+            ctx.font = "bold 20px Arial, sans-serif";
+            ctx.fillText(writerTitleInput.value.toUpperCase(), canvas.width / 2, 910);
+
+            ctx.fillStyle = themeColor;
+            ctx.font = "900 32px 'Arial Black', sans-serif";
+            ctx.fillText("THE FAMO-LEGACY OMNISPHERE COMPLETELY UNBLOCKABLE", canvas.width / 2, 995);
+
+            const activeUuid = uuidDisplay.innerText;
+            if(activeUuid !== "Press Mint to Generate Key") {
+                ctx.fillStyle = "rgba(124, 77, 255, 0.2)";
+                ctx.fillRect(180, 1055, 600, 40);
+                ctx.fillStyle = "#00ffcc";
+                ctx.font = "bold 18px monospace";
+                ctx.fillText("WRITERS LEGACY TEAM REGISTRY TOKEN: " + activeUuid, canvas.width / 2, 1065);
+            }
+
+            ctx.fillStyle = "#111111";
+            ctx.fillRect(0, 1130, canvas.width, 70);
+            ctx.strokeStyle = themeColor;
+            ctx.lineWidth = 3;
+            ctx.beginPath(); ctx.moveTo(0, 1130); ctx.lineTo(canvas.width, 1130); ctx.stroke();
+
+            ctx.fillStyle = "#ffffff";
+            ctx.font = "bold 22px Arial, sans-serif";
+            ctx.fillText("FAMO NATION DISTRIBUTION NETWORK FULLY DEPLOYED", canvas.width / 2, 1152);
+        }
+
+        exportBtn.addEventListener('click', function() {
+            const currentName = writerNameInput.value.replace(/\s+/g, '-').toLowerCase() || 'feature';
+            const dataUrl = canvas.toDataURL('image/png');
+            const link = document.createElement('a');
+            link.download = `wlt-magazine-cover-${currentName}.png`;
+            link.href = dataUrl;
+            link.click();
+        });
+    </script>
+</body>
+</html>
