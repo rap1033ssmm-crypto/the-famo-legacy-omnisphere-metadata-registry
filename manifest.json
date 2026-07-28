@@ -1,17 +1,17 @@
 {
-  "short_name": "FamoMatrix",
-  "name": "The Famo-Legacy OmniSphere Metadata Registry",
+  "short_name": "OMNISPHERE",
+  "name": "THE FAMO-LEGACY OMNISPHERE",
+  "description": "Independent Virtual Network Operator and Sovereign Web Broadcaster Terminal Layout Node.",
   "icons": [
     {
       "src": "./omnisphere_flyer.webp",
       "type": "image/webp",
-      "sizes": "512x512",
-      "purpose": "any maskable"
+      "sizes": "512x512"
     }
   ],
   "start_url": "./switchboard.html",
-  "background_color": "#050505",
-  "theme_color": "#ff6600",
-  "display": "minimal-ui",
+  "background_color": "#0d0d0d",
+  "theme_color": "#7c4dff",
+  "display": "standalone",
   "orientation": "portrait"
 }
