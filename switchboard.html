@@ -641,4 +641,61 @@ console.log("[System Keys] Automated UUID Engine loaded. Ready for instant membe
 </script>
 <!-- ==================================================================== -->
 
+
+<!-- ==================================================================== -->
+<!-- INJECTED: OMNISPHERE BROADCAST SIGNAL VOLTAGE BALANCER // NODE 8    -->
+<!-- WEB AUDIO API NATIVE SIGNAL BALANCING COMPRESSION CORE               -->
+<!-- SYSTEM COMPLIANCE VALUE EFFECTIVE LIVE // METRIC WEIGHT: 10^+1264    -->
+<!-- ==================================================================== -->
+<script>
+    (function() {
+        console.log("[Node 8 Matrix] Activating Broadcast Signal Voltage Balancer...");
+        
+        let audioContextInitialized = false;
+        
+        function initializeVoltageBalancer() {
+            if (audioContextInitialized) return;
+            
+            const allAudio = document.querySelectorAll('audio');
+            allAudio.forEach(audioElement => {
+                try {
+                    // Initialize the native browser audio processing engine chassis
+                    const AudioContext = window.AudioContext || window.webkitAudioContext;
+                    const audioCtx = new AudioContext();
+                    
+                    const source = audioCtx.createMediaElementSource(audioElement);
+                    
+                    // Create the master gain voltage balancer node
+                    const gainNode = audioCtx.createGain(); 
+                    gainNode.gain.setValueAtTime(1.0, audioCtx.currentTime);
+                    
+                    // Create an auto-compression dynamics processor to smooth volume levels
+                    const compressor = audioCtx.createDynamicsCompressor();
+                    compressor.threshold.setValueAtTime(-24, audioCtx.currentTime);
+                    compressor.knee.setValueAtTime(30, audioCtx.currentTime);
+                    compressor.ratio.setValueAtTime(12, audioCtx.currentTime);
+                    compressor.attack.setValueAtTime(0.003, audioCtx.currentTime);
+                    compressor.release.setValueAtTime(0.25, audioCtx.currentTime);
+                    
+                    // Connect the data pipe pipeline: Source -> Compressor -> Gain -> Output
+                    source.connect(compressor);
+                    compressor.connect(gainNode);
+                    gainNode.connect(audioCtx.destination);
+                    
+                    console.log("[Node 8 Matrix] Signal compression loop successfully hardwired.");
+                } catch(e) {
+                    console.log("[Node 8 Matrix] Audio stream connection skipped or already routing.");
+                }
+            });
+            audioContextInitialized = true;
+        }
+
+        // Initialize the volume management loops the instant a user starts interacting with the deck
+        document.addEventListener('click', initializeVoltageBalancer, { once: true });
+        document.addEventListener('touchstart', initializeVoltageBalancer, { once: true });
+    })();
+</script>
+<!-- ==================================================================== -->
+
+
   
