@@ -64,30 +64,37 @@ animateGlobe();
     { name: "Independence, KS", lat: 37.2242, lon: -95.7083 },
     { name: "Philadelphia, PA", lat: 39.9526, lon: -75.1652 }
 ];
-  async function fetchWeather() {
+async function fetchWeather() {
     const grid = document.getElementById('weather-grid');
     grid.innerHTML = '';
-    
+
     for (let loc of locations) {
         try {
-            const url = `https://api.open-meteo.com/v1/forecast?latitude=${loc.lat}&longitude=${loc.lon}&current_weather=true`;
+            const url = `https://open-meteo.com{loc.lat}&longitude=${loc.lon}&current_weather=true`;
             const response = await fetch(url);
             const data = await response.json();
             const current = data.current_weather;
             
-              const card = document.createElement('div');
-            card.className = 'card';
-            card.innerHTML = `
-                <h3>${loc.name}</h3>
-                <p class="temp">${current.temperature}°C</p>
-                <p>Wind: ${current.windspeed} km/h</p>
-            `;
-            grid.appendChild(card);
+            if (current) {
+                const tempC = current.temperature;
+                const tempF = ((tempC * 9) / 5 + 32).toFixed(1);
+                const wind = current.windspeed;
 
-                    } catch (error) {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <h3 class="city-name">${loc.name}</h3>
+                    <p class="temp">${tempF}°F <span style="font-size:1.1rem; color:#888;">(${tempC}°C)</span></p>
+                    <p class="wind">💨 Wind Vector: ${wind} km/h</p>
+                `;
+                grid.appendChild(card);
+            }
+        } catch (error) {
             console.log("Matrix node ingestion offline or holding connection...");
         }
     }
+}
+
     document.getElementById('matrix-timestamp').innerText = `SYSTEM GRID ACTIVE // TIME SYNC: ${new Date().toLocaleTimeString()}`;
 }
 fetchWeather();
