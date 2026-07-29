@@ -2,7 +2,8 @@
 <html>
 <head>
 <title>FAMO OMNISPHERE WEATHER MATRIX</title>
-<script src="https://unpkg.com"></script>
+<script src="https://cloudflare.com"></script>
+
 <style>
     body { background-color: #000000; color: #ff6600; font-family: monospace; text-align: center; margin: 0; padding: 20px; }
     /* ... CSS styles for layout ... */
@@ -48,6 +49,7 @@ animateGlobe();
     
     for (let loc of locations) {
         try {
+            const url = `https://api.open-meteo.com/v1/forecast?latitude=${loc.lat}&longitude=${loc.lon}&current_weather=true`;
             const url = `https://open-meteo.com{loc.lat}&longitude=${loc.lon}&current_weather=true`;
             const response = await fetch(url);
             const data = await response.json();
