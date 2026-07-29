@@ -68,7 +68,7 @@ async function fetchWeather() {
     const grid = document.getElementById('weather-grid');
     grid.innerHTML = '';
 
-    for (let loc of locations) {
+    for (let loc of cities) {
         try {
             const url = `https://open-meteo.com{loc.lat}&longitude=${loc.lon}&current_weather=true`;
             const response = await fetch(url);
