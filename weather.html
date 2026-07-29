@@ -7,7 +7,15 @@
 body { background-color: #000000; color: #ff6600; font-family: monospace; text-align: center; margin: 0; padding: 20px; }
     /* ... CSS styles for layout ... */
    .globe-viewport-container { display: none !important; }
-    /* ... rest of the CSS ... */
+        body { background-color: #000000; color: #ff6600; font-family: monospace; text-align: center; margin: 0; padding: 20px; }
+    .globe-viewport-container { display: none !important; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; max-width: 1200px; margin: 20px auto; padding: 10px; }
+    .card { background: #120c1f; border: 2px solid #7c4dff; border-radius: 8px; padding: 20px; box-shadow: 0 0 15px rgba(124,77,255,0.3); text-align: left; transition: transform 0.3s ease; }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 0 25px rgba(124,77,255,0.6); }
+    .city-name { font-size: 1.4rem; margin: 0 0 10px 0; color: #00ffff; border-bottom: 1px solid #7c4dff; padding-bottom: 5px; }
+    .temp { font-size: 2.2rem; font-weight: bold; margin: 10px 0; color: #ff6600; }
+    .wind { font-size: 1rem; color: #a0a0a0; }
+    .timestamp { font-size: 1.1rem; margin-top: 30px; color: #7c4dff; letter-spacing: 2px; }
 </style>
 </head>
 <body>
