@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>THE MUSKOGEE MATRIX 24/7 BROADCAST CORE</title>
+    <style>
+        body { background-color: #000000; color: #ff6600; font-family: monospace; text-align: center; margin: 0; padding: 20px; }
+        .terminal-container { max-width: 800px; margin: 40px auto; border: 2px solid #7c4dff; border-radius: 8px; background: #030108; padding: 30px; box-shadow: 0 0 20px rgba(124,77,255,0.4); }
+        h1 { color: #00ffff; font-size: 1.8rem; letter-spacing: 2px; margin-bottom: 5px; }
+        .subtitle { color: #7c4dff; font-size: 0.9rem; margin-bottom: 25px; }
+        
+        /* The Rolling Matrix Readout Display */
+        .marquee-box { background: #120c1f; border: 2px solid #00ffff; padding: 15px; overflow: hidden; white-space: nowrap; box-shadow: inset 0 0 10px rgba(0,255,255,0.2); margin-bottom: 30px; }
+        .marquee-text { display: inline-block; padding-left: 100%; font-size: 1.6rem; font-weight: bold; color: #39ff14; text-shadow: 0 0 8px rgba(57,255,20,0.6); animation: rollText 15s linear infinite; }
+        
+        @keyframes rollText {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+
+        .controls button { background: #120c1f; border: 2px solid #ff6600; color: #ff6600; padding: 12px 30px; font-size: 1.2rem; font-family: monospace; cursor: pointer; font-weight: bold; transition: all 0.3s ease; }
+        .controls button:hover { background: #ff6600; color: #000000; box-shadow: 0 0 15px #ff6600; }
+        .footer-log { margin-top: 30px; font-size: 0.8rem; color: #555; }
+    </style>
+</head>
+<body>
+
+<div class="terminal-container">
+    <h1>[MOVE 16: BROADCAST SYSTEM TERMINAL]</h1>
+    <div class="subtitle">STATION ID: Famo Nation 24/7 Live Radio Show // NAICS LANE: 516210</div>
+
+    <!-- Dynamic Ticker Field -->
+    <div class="marquee-box">
+        <div class="marquee-text" id="metadata-display">CONNECTING STREAM TRANSMISSION DATA NODE...</div>
+    </div>
+
+    <div class="controls">
+        <button id="broadcast-toggle" onclick="toggleBroadcast()">LAUNCH BROADCAST STREAM</button>
+    </div>
+
+    <div class="footer-log">
+        SECURE SECTOR TERMINAL // GEO-LOCATION: MUSKOGEE, OKLAHOMA HQ SECTOR
+    </div>
+</div>
+
+<script>
+    // Metadata Data Logs Array
+    const trackRegistry = [
+        "NOW PLAYING: Famo Legacy Master Mix Vol. 1 - Artist: Famo Nation Crew [ALBUM: OMNISPHERE AUDIO BOOK LOGS]",
+        "NOW PLAYING: Sovereign Grid Narrative Chapter 3 - Narrated by: Robert A. Parker [ALBUM: INTELLECTUAL PROPERTY LEDGER]",
+        "NOW PLAYING: Urban Jerk Anthem (Remix) - Artist: Writerslegacyteam Poets [ALBUM: NARRATIVE EMISSION VOL. IV]",
+        "NOW PLAYING: Satellite Sector Beats - Artist: Joseph Saner (CIO Deeper Entertainment) [ALBUM: TECHNICAL LOGIC TRACKS]"
+    ];
+
+    let currentTrackIndex = 0;
+
+    function rotateMetadata() {
+        const display = document.getElementById('metadata-display');
+        display.innerText = trackRegistry[currentTrackIndex];
+        currentTrackIndex = (currentTrackIndex + 1) % trackRegistry.length;
+    }
+
+    function toggleBroadcast() {
+        const btn = document.getElementById('broadcast-toggle');
+        if (btn.innerText === "LAUNCH BROADCAST STREAM") {
+            btn.innerText = "TERMINATE TRANSMISSION CHANNEL";
+            btn.style.borderColor = "#00ffff";
+            btn.style.color = "#00ffff";
+            // Start reading track definitions
+            rotateMetadata();
+            window.metadataInterval = setInterval(rotateMetadata, 15000);
+        } else {
+            btn.innerText = "LAUNCH BROADCAST STREAM";
+            btn.style.borderColor = "#ff6600";
+            btn.style.color = "#ff6600";
+            clearInterval(window.metadataInterval);
+            document.getElementById('metadata-display').innerText = "STREAM TERMINATED // STANDBY MODE ACTIVE";
+        }
+    }
+</script>
+
+</body>
+</html>
