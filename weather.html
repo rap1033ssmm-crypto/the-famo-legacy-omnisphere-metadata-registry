@@ -69,8 +69,8 @@ async function fetchWeather() {
 
     for (let loc of locations) {
         try {
-            // Correct API path with full parameters
-            const url = "https://open-meteo.com" + loc.lat + "&longitude=" + loc.lon + "&current_weather=true";
+            // Reconstructed clean standard query parameters format
+            const url = `https://api.open-meteo.com/v1/forecast?latitude=${loc.lat}&longitude=${loc.lon}&current_weather=true`;
             const response = await fetch(url);
             const data = await response.json();
             const current = data.current_weather;
@@ -89,11 +89,10 @@ async function fetchWeather() {
                 `;
                 grid.appendChild(card);
             }
-            } catch (error) {
+        } catch (error) {
             console.log("Matrix node ingestion offline...");
         }
     }
-    // Update the clock text AFTER cards render
     document.getElementById('matrix-timestamp').innerText = `SYSTEM GRID ACTIVE // TIME SYNC: ${new Date().toLocaleTimeString()}`;
 }
 
