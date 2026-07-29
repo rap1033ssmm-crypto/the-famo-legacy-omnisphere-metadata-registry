@@ -295,14 +295,22 @@
     }
 </script>
 
-<!-- SYSTEM INFRASTRUCTURE: AUDIO READER TRIGGER MODULE -->
-<div id="audio-panel" style="margin: 20px auto; max-width: 600px; padding: 15px; background: #1a1a1a; border: 2px solid #ff6600; border-radius: 8px; text-align: center;">
-  <button id="btn-play-audio" style="background: #ff6600; color: #000000; border: none; padding: 10px 20px; font-weight: bold; border-radius: 4px; cursor: pointer; margin-right: 10px; text-transform: uppercase;">Listen to Article</button>
-  <button id="btn-stop-audio" style="background: #333333; color: #ffffff; border: none; padding: 10px 20px; font-weight: bold; border-radius: 4px; cursor: pointer; text-transform: uppercase;">Stop Audio</button>
-  <div id="famo-article-content" style="margin-top: 15px; color: #cccccc; font-size: 14px; text-align: left; line-height: 1.6;">
+<!-- NATIVE AI TEXT-TO-SPEECH TRANSMISSION SYSTEM -->
+<div id="audio-panel" style="margin: 20px auto; max-width: 600px; padding: 15px; background: #120c1f; border: 2px solid #7c4dff; border-radius: 8px; text-align: center; font-family: monospace; box-shadow: 0 0 15px rgba(124,77,255,0.3);">
+  <div style="font-size: 11px; color: #00ffff; letter-spacing: 0.1em; margin-bottom: 12px; font-weight: bold;">[SYSTEM NARRATOR CORE ARMED]</div>
+  
+  <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 15px;">
+    <button id="btn-play-audio" onclick="triggerNativeSpeech()" style="background: #39ff14; color: #000000; border: none; padding: 10px 20px; font-weight: bold; border-radius: 4px; cursor: pointer; text-transform: uppercase; font-size: 11px;">Listen to Article</button>
+    <button id="btn-stop-audio" onclick="stopNativeSpeech()" style="background: #ff2a2a; color: #ffffff; border: none; padding: 10px 20px; font-weight: bold; border-radius: 4px; cursor: pointer; text-transform: uppercase; font-size: 11px;">Stop Audio</button>
+  </div>
+  
+  <div id="tts-log" style="font-size: 9px; color: #555555; text-transform: uppercase; margin-bottom: 15px;">NARRATOR MODULE STATUS: STANDBY</div>
+
+  <div id="famo-article-content" style="color: #cccccc; font-size: 14px; text-align: left; line-height: 1.6; border-top: 1px dashed #222222; padding-top: 15px;">
     FAMO NATION DISTRIBUTION MATRIX NODE IS CHASSIS LOCKED. PRINCIPAL SYSTEMS ARCHITECT ROBERT A. PARKER HAS ANCHORED INTELLECTUAL PROPERTY LEDGERS DIRECTORY INFRASTRUCTURE SAFELY WITHIN CERN NETWORK VAULTS. ALL SECURITY RECON HASH KEYS ARE ACTIVE AND OPERATIONAL ACROSS THE MUSKOGEE OKLAHOMA HQ SECTOR.
   </div>
 </div>
+
 
 <script>
   (function() {
@@ -673,7 +681,54 @@ console.log("[System Keys] Automated UUID Engine loaded. Ready for instant membe
 
       initializeMobileHapticBeats();
         })();
-  </script>
+ // Native Speech Synthesis Logic Engine Configurations
+let activeUtterance = null;
+
+function triggerNativeSpeech() {
+    // Collect the exact text from your custom screen container
+    const articleContainer = document.getElementById('famo-article-content');
+    const cleanTextToRead = articleContainer ? articleContainer.innerText : "FAMO NATION DISTRIBUTION MATRIX NODE IS CHASSIS LOCKED.";
+
+    // Terminate any ongoing speech operations before clearing channels
+    window.speechSynthesis.cancel();
+
+    activeUtterance = new SpeechSynthesisUtterance(cleanTextToRead);
+    
+    // Auto-configure optimal speech parameters
+    activeUtterance.rate = 1.0;   // Clean, steady presentation cadence
+    activeUtterance.pitch = 0.95; // Deep, commanding network system tone mapping
+    activeUtterance.volume = 1.0;
+
+    activeUtterance.onstart = function() {
+        const logDiv = document.getElementById('tts-log');
+        if (logDiv) {
+            logDiv.innerText = "STATUS: BROADCASTING NARRATION EMISSION LIVE";
+            logDiv.style.color = "#39ff14";
+        }
+    };
+
+    activeUtterance.onend = function() {
+        const logDiv = document.getElementById('tts-log');
+        if (logDiv) {
+            logDiv.innerText = "STATUS: NARRATION TRANSMISSION COMPLETE";
+            logDiv.style.color = "#555555";
+        }
+    };
+
+    // Execute secure browser engine playback trigger
+    window.speechSynthesis.speak(activeUtterance);
+}
+
+function stopNativeSpeech() {
+    window.speechSynthesis.cancel();
+    const logDiv = document.getElementById('tts-log');
+    if (logDiv) {
+        logDiv.innerText = "STATUS: NARRATION FORCE TERMINATED";
+        logDiv.style.color = "#ff2a2a";
+    }
+}
+
+</script>
 </body>
 </html>
 
