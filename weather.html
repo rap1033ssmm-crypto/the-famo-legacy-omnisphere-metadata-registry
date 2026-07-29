@@ -68,16 +68,15 @@ async function fetchWeather() {
     grid.innerHTML = '';
 
     for (let loc of locations ) {
-        try {
+                try {
             const url = `https://open-meteo.com{loc.lat}&longitude=${loc.lon}&current_weather=true`;
             const response = await fetch(url);
             const data = await response.json();
-            const current = data.current_weather;
             
-            if (current) {
-                const tempC = current.temperature;
+            if (data && data.current_weather) {
+                const tempC = data.current_weather.temperature;
                 const tempF = ((tempC * 9) / 5 + 32).toFixed(1);
-                const wind = current.windspeed;
+                const wind = data.current_weather.windspeed;
 
                 const card = document.createElement('div');
                 card.className = 'card';
@@ -88,6 +87,7 @@ async function fetchWeather() {
                 `;
                 grid.appendChild(card);
             }
+
         } catch (error) {
             console.log("Matrix node ingestion offline or holding connection...");
         }
