@@ -49,7 +49,6 @@ animateGlobe();
     for (let loc of locations) {
         try {
             const url = `https://api.open-meteo.com/v1/forecast?latitude=${loc.lat}&longitude=${loc.lon}&current_weather=true`;
-            const url = `https://open-meteo.com{loc.lat}&longitude=${loc.lon}&current_weather=true`;
             const response = await fetch(url);
             const data = await response.json();
             const current = data.current_weather;
