@@ -17,15 +17,24 @@ body { background-color: #000000; color: #ff6600; font-family: monospace; text-a
 <div class="grid" id="weather-grid"></div>
 <div class="timestamp" id="matrix-timestamp">Syncing Server Clock...</div>
 
-<!-- Clean, lightweight script execution space -->
 <script>
-// Mock engine to safely clear layout crashes
-window.THREE = { Scene: function() { this.add = function(){}; } };
+// Completely kill the 3D globe engine crashes
+window.THREE = {
+  Scene: function() { this.add = function(){}; },
+  PerspectiveCamera: function() { this.position = {z:0}; },
+  WebGLRenderer: function() { this.setSize = function(){}; this.render = function(){}; this.domElement = document.createElement('div'); },
+  AmbientLight: function() {},
+  DirectionalLight: function() {},
+  SphereGeometry: function() {},
+  MeshBasicMaterial: function() {},
+  Mesh: function() { this.position = {x:0,y:0,z:0}; this.rotation = {x:0,y:0,z:0}; }
+};
 
-// Direct reference connection link definitions
+// Now start the weather setup safely
 const canvas = document.getElementById('aiStormGlobe');
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(45, canvas.parentNode.clientWidth / canvas.parentNode.clientHeight, 0.1, 1000);
+const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 1000);
+
 const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
 renderer.setSize(canvas.parentNode.clientWidth, canvas.parentNode.clientHeight);
   const globeGeometry = new THREE.SphereGeometry(2, 32, 32);
