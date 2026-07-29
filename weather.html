@@ -67,16 +67,18 @@ async function fetchWeather() {
     const grid = document.getElementById('weather-grid');
     grid.innerHTML = '';
 
-    for (let loc of locations ) {
-                try {
-            const url = `https://open-meteo.com{loc.lat}&longitude=${loc.lon}&current_weather=true`;
+    for (let loc of locations) {
+        try {
+            // Correct API path with full parameters
+            const url = "https://open-meteo.com" + loc.lat + "&longitude=" + loc.lon + "&current_weather=true";
             const response = await fetch(url);
             const data = await response.json();
-            
-            if (data && data.current_weather) {
-                const tempC = data.current_weather.temperature;
+            const current = data.current_weather;
+
+            if (current) {
+                const tempC = current.temperature;
                 const tempF = ((tempC * 9) / 5 + 32).toFixed(1);
-                const wind = data.current_weather.windspeed;
+                const wind = current.windspeed;
 
                 const card = document.createElement('div');
                 card.className = 'card';
@@ -87,15 +89,14 @@ async function fetchWeather() {
                 `;
                 grid.appendChild(card);
             }
-
-        } catch (error) {
-            console.log("Matrix node ingestion offline or holding connection...");
+            } catch (error) {
+            console.log("Matrix node ingestion offline...");
         }
     }
-}
-
+    // Update the clock text AFTER cards render
     document.getElementById('matrix-timestamp').innerText = `SYSTEM GRID ACTIVE // TIME SYNC: ${new Date().toLocaleTimeString()}`;
 }
+
 fetchWeather();
 setInterval(fetchWeather, 900000);
 </script>
