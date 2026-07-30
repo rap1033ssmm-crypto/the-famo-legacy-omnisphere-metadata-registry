@@ -2,28 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- ==================================================================== -->
-<!-- INJECTED: FAMO-LEGACY GOOGLE RADIO CHANNEL SEARCH ANCHOR // NODE 7  -->
-<!-- SCHEMA-COMPLIANT LIVE AUDIO CHANNEL MATRIX STRUCTURE                 -->
-<!-- COMPLIANCE VALUE STATUS EFFECTIVE LIVE // METRIC WEIGHT: 10^+1264   -->
-<!-- ==================================================================== -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LiveAudioChannel",
-  "name": "THE FAMO-LEGACY OMNISPHERE // FAMO NATION RADIO",
-  "description": "Independent Autonomous Network Operator and Sovereign Web Broadcaster Terminal Layout Node.",
-  "url": "https://github.io",
-  "broadcastServiceChannel": {
-    "@type": "BroadcastService",
-    "name": "Famo Nation Radio Network",
-    "broadcastFrequency": "Sovereign Virtual Stream AS64510",
-    "parentService": "THE FAMO-LEGACY OMNISPHERE"
-  }
-}
-</script>
-<!-- ==================================================================== -->
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Famo Nation Distribution Matrix Node</title>
  
@@ -208,152 +186,407 @@
 <div id="famo-ticker-display-panel" style="margin: 20px auto; max-width: 650px; padding: 12px; background: #071424; border: 1px solid #102a43; border-radius: 8px; text-align: center; font-family: monospace; font-size: 12px; color: #00ff66; box-shadow: 0 0 15px rgba(0, 255, 102, 0.1);">
   📡 NETWORK PIPELINE STATUS: <span id="ticker-network-state" style="color: #ffaa00; font-weight: bold;">INITIALIZING STREAM...</span>
   <div id="ticker-live-metrics" style="margin-top: 5px; color: #ffffff; font-weight: bold; font-size: 13px; text-transform: uppercase;">STREAM METRIC EMISSION: STANDBY [WAITING FOR PACKETS]</div>
-<!-- ==================================================================== -->
-<!--         // FAMO MATRIX UNIFIED COMMAND PLAYER DECK //                -->
-<!-- ==================================================================== -->
-<div class="terminal-container" style="max-width: 100%; border: 2px solid #7c4dff; border-radius: 8px; background: #030108; padding: 25px; box-shadow: 0 0 20px rgba(124,77,255,0.4); font-family: monospace;">
-    <h2 style="color: #00ffff; font-size: 1.5rem; letter-spacing: 2px; margin: 0 0 5px 0; text-align: center;">[SYSTEM 01] THE FAMO-LEGACY OMNISPHERE INTERNAL DJ NODE</h2>
-    
-    <!-- Dynamic Metadata Ticker Panel -->
-    <div style="background: #120c1f; border: 2px solid #00ffff; padding: 12px; overflow: hidden; white-space: nowrap; box-shadow: inset 0 0 10px rgba(0,255,255,0.2); margin: 15px 0;">
-        <div id="metadata-display" style="display: inline-block; padding-left: 100%; font-size: 1.4rem; font-weight: bold; color: #39ff14; text-shadow: 0 0 8px rgba(57,255,20,0.6); animation: rollText 25s linear infinite;">FEED STATUS: STANDBY / LINK DISCONNECTED // LAUNCH BROADCAST TO EMIT</div>
-    </div>
-
-    <!-- Integrated Audio Media Core Hardware -->
-    <div style="margin: 15px auto; background: #120c1f; padding: 10px; border: 1px dashed #7c4dff; border-radius: 4px; max-width: 450px;">
-        <audio id="audio-core" style="width: 100%; filter: hue-rotate(280deg) invert(1);" controls></audio>
-    </div>
-
-    <!-- Toggle Action Controller Modules -->
-    <div style="text-align: center; margin-top: 15px;">
-        <button id="broadcast-toggle" onclick="toggleLiveStream()" style="background: #120c1f; border: 2px solid #ff6600; color: #ff6600; padding: 10px 30px; font-size: 1.1rem; font-family: monospace; cursor: pointer; font-weight: bold; transition: all 0.3s ease;">TUNE IN LIVE</button>
-    </div>
 </div>
 
-<style>
-    @keyframes rollText {
-        0% { transform: translate3d(0, 0, 0); }
-        100% { transform: translate3d(-100%, 0, 0); }
-    }
-</style>
+<!-- FAMO MATRIX UNIFIED COMMAND PLAYER DECK -->
+<div id="famo-media-matrix" style="margin: 40px auto; max-width: 650px; padding: 20px; background: #050505; border: 3px double #ff6600; border-radius: 12px; box-shadow: 0 0 25px rgba(255, 102, 0, 0.15); font-family: sans-serif;">
+  <div style="font-size: 13px; font-weight: 900; color: #ff6600; letter-spacing: 0.15em; text-align: center; border-bottom: 1px solid #222222; padding-bottom: 10px; margin-bottom: 20px; text-transform: uppercase;">
+    // FAMO MATRIX UNIFIED COMMAND PLAYER DECK //
+  </div>
+  <div style="margin-bottom: 25px; padding: 15px; background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 6px; text-align: center;">
+    <div style="font-size: 11px; font-weight: bold; color: #888888; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px;">
+      [SYSTEM 01] THE FAMO-LEGACY OMNISPHERE INTERNAL DJ NODE
+    </div>
+    <div id="famo-equalizer" style="display: flex; justify-content: center; align-items: flex-end; height: 35px; gap: 4px; margin: 15px auto; max-width: 150px;">
+      <div class="eq-bar" style="width: 5px; height: 5px; background: #ff6600; transition: height 0.1s ease-in-out;"></div>
+      <div class="eq-bar" style="width: 5px; height: 5px; background: #ff6600; transition: height 0.1s ease-in-out;"></div>
+      <div class="eq-bar" style="width: 5px; height: 5px; background: #ff6600; transition: height 0.1s ease-in-out;"></div>
+      <div class="eq-bar" style="width: 5px; height: 5px; background: #ff6600; transition: height 0.1s ease-in-out;"></div>
+      <div class="eq-bar" style="width: 5px; height: 5px; background: #ff6600; transition: height 0.1s ease-in-out;"></div>
+      <div class="eq-bar" style="width: 5px; height: 5px; background: #ff6600; transition: height 0.1s ease-in-out;"></div>
+    </div>
+    <audio id="famo-music-channel" preload="none"></audio>
+    <audio id="famo-voice-channel" preload="none"></audio>
+    <div style="margin-top: 15px;">
+      <button id="btn-stream-play" style="background: #ff6600; color: #000000; border: none; padding: 10px 20px; font-weight: bold; border-radius: 4px; cursor: pointer; text-transform: uppercase; font-size: 11px; letter-spacing: 0.05em; margin-right: 10px;">Tune In Live</button>
+      <button id="btn-stream-pause" style="background: #222222; color: #ffffff; border: none; padding: 10px 20px; font-weight: bold; border-radius: 4px; cursor: pointer; text-transform: uppercase; font-size: 11px; letter-spacing: 0.05em;">Disconnect</button>
+    </div>
+    <div id="stream-status" style="margin-top: 12px; font-size: 10px; color: #555555; font-family: monospace; text-transform: uppercase;">FEED STATUS: STANDBY / LINK DISCONNECTED</div>
+  </div>
+</div>
+
+<!-- SYSTEM INFRASTRUCTURE: AUDIO READER TRIGGER MODULE -->
+<div id="audio-panel" style="margin: 20px auto; max-width: 600px; padding: 15px; background: #1a1a1a; border: 2px solid #ff6600; border-radius: 8px; text-align: center;">
+  <button id="btn-play-audio" style="background: #ff6600; color: #000000; border: none; padding: 10px 20px; font-weight: bold; border-radius: 4px; cursor: pointer; margin-right: 10px; text-transform: uppercase;">Listen to Article</button>
+  <button id="btn-stop-audio" style="background: #333333; color: #ffffff; border: none; padding: 10px 20px; font-weight: bold; border-radius: 4px; cursor: pointer; text-transform: uppercase;">Stop Audio</button>
+  <div id="famo-article-content" style="margin-top: 15px; color: #cccccc; font-size: 14px; text-align: left; line-height: 1.6;">
+    FAMO NATION DISTRIBUTION MATRIX NODE IS CHASSIS LOCKED. PRINCIPAL SYSTEMS ARCHITECT ROBERT A. PARKER HAS ANCHORED INTELLECTUAL PROPERTY LEDGERS DIRECTORY INFRASTRUCTURE SAFELY WITHIN CERN NETWORK VAULTS. ALL SECURITY RECON HASH KEYS ARE ACTIVE AND OPERATIONAL ACROSS THE MUSKOGEE OKLAHOMA HQ SECTOR.
+  </div>
+</div>
 
 <script>
+  (function() {
+        const playBtn = document.getElementById('btn-stream-play');
+    const pauseBtn = document.getElementById('btn-stream-pause');
+    const musicChan = document.getElementById('famo-music-channel');
+    const voiceChan = document.getElementById('famo-voice-channel');
+    const statusDiv = document.getElementById('stream-status');
+    const eqBars = document.querySelectorAll('.eq-bar');
+    const readerPlay = document.getElementById('btn-play-audio');
+    const readerStop = document.getElementById('btn-stop-audio');
+    const articleContent = document.getElementById('famo-article-content');
+
+    let eqInterval = null;
+    let isLive = false;
+    const musicPlaylist = Array(
+      'assets/track1.mp3.mp3', 'assets/track2.mp3.mp3', 'assets/track3.mp3.mp3', 'assets/track4.mp3.mp3', 'assets/track5.mp3.mp3',
+      'assets/track6.mp3.mp3', 'assets/track7.mp3.mp3', 'assets/track8.mp3.mp3', 'assets/track9.mp3.mp3', 'assets/track10.mp3.mp3'
+    );
+    const voiceDrops = Array('assets/famo_voice_drop1.mp3.aac');
+
+    function startEqualizerAnimation() {
+      if (eqInterval) clearInterval(eqInterval);
+      eqInterval = setInterval(() => {
+        eqBars.forEach(bar => {
+          bar.style.height = (Math.floor(Math.random() * 30) + 5) + 'px';
+        });
+      }, 100);
+    }
+
+    function stopEqualizerAnimation() {
+      if (eqInterval) clearInterval(eqInterval);
+      eqBars.forEach(bar => bar.style.height = '5px');
+    }
+    function playNextTrack() {
+      if (!isLive) return;
+      let randIndex = Math.floor(Math.random() * musicPlaylist.length);
+      musicChan.src = musicPlaylist[randIndex];
+      musicChan.volume = 1.0;
+      musicChan.play().catch(e => console.log("Audio routing synced."));
+      statusDiv.innerText = "FEED STATUS: LIVE // ARCHITECTURE STREAMING";
+      statusDiv.style.color = "#00ff00";
+    }
+
+    function triggerRandomVoiceOverlay() {
+      if (!isLive || voiceChan.src) return;
+      musicChan.volume = 0.3;
+      let randDropIndex = Math.floor(Math.random() * voiceDrops.length);
+      let randomDrop = voiceDrops[randDropIndex];
+      voiceChan.src = randomDrop;
+      voiceChan.play().catch(e => console.log("Voice channel active."));
+      statusDiv.innerText = "FEED STATUS: LIVE // INJECTING BRAND OVERLAY";
+      statusDiv.style.color = "#ff6600";
+    }
+    if (playBtn && pauseBtn && musicChan && voiceChan && statusDiv) {
+      musicChan.addEventListener('ended', playNextTrack);
+      voiceChan.addEventListener('ended', function() {
+        voiceChan.src = '';
+        musicChan.volume = 1.0;
+        statusDiv.innerText = "FEED STATUS: LIVE // ARCHITECTURE STREAMING";
+        statusDiv.style.color = "#00ff00";
+        setTimeout(triggerRandomVoiceOverlay, 45000);
+      });
+
+      playBtn.addEventListener('click', function() {
+        if (isLive) return;
+        if (window.speechSynthesis) window.speechSynthesis.cancel();
+        isLive = true;
+              // ====================================================================
+    // INJECTED: THE FAMO-LEGACY OMNISPHERE // SOVEREIGN AUDIO ENGINE 
     // ====================================================================
-// UNIFIED MASTER AUDIO & NARRATION CONTROL MATRIX ENGINE
+    try {
+        if (!window.famoAudioCtx) {
+            window.famoAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const source1 = window.famoAudioCtx.createMediaElementSource(musicChan);
+            const source2 = window.famoAudioCtx.createMediaElementSource(voiceChan);
+            source1.connect(window.famoAudioCtx.destination);
+            source2.connect(window.famoAudioCtx.destination);
+            console.log("[Audio Engine] Core network routing paths created.");
+        }
+        if (window.famoAudioCtx.state === 'suspended') {
+            window.famoAudioCtx.resume();
+        }
+        console.log("[Audio Engine] Sovereign audio stream active.");
+    } catch(e) { console.log("Audio routing synced."); }
+    // ====================================================================
+    // ====================================================================
+    // INJECTED: THE FAMO-LEGACY OMNISPHERE // LOCK-SCREEN TRANSIT DECK 
+    // MOVE PROTOCOL 38 // NODE 2 // SYSTEM DISCOVERY WEIGHT: 10^+1MD
+    // ====================================================================
+    if ('mediaSession' in navigator) {
+        navigator.mediaSession.metadata = new MediaMetadata({
+            title: "Famo Nation 24/7 Live Radio Show",
+            artist: "The Famo-Legacy OmniSphere",
+            album: "Airwave Autonomy",
+            artwork: [
+                { src: 'omnisphere_flyer.webp', sizes: '512x512', type: 'image/webp' }
+            ]
+        });
+        
+        // Connects physical hardware buttons (car steering wheel/headphones) to your player
+        navigator.mediaSession.setActionHandler('play', () => { playBtn.click(); });
+        navigator.mediaSession.setActionHandler('pause', () => { pauseBtn.click(); });
+    }
+    // ====================================================================
+
+        musicChan.load();
+        voiceChan.load();
+        startEqualizerAnimation();
+        playNextTrack();
+        setTimeout(triggerRandomVoiceOverlay, 20000);
+      });
+
+      pauseBtn.addEventListener('click', function() {
+        isLive = false;
+        stopEqualizerAnimation();
+        musicChan.pause(); 
+        voiceChan.pause();
+        musicChan.src = ''; 
+        voiceChan.src = '';
+        statusDiv.innerText = "FEED STATUS: STANDBY / LINK DISCONNECTED";
+        statusDiv.style.color = "#555555";
+      });
+    }
+    if (readerPlay && readerStop && articleContent) {
+      readerPlay.addEventListener('click', function() {
+        if (isLive) {
+          isLive = false;
+          stopEqualizerAnimation();
+          musicChan.pause(); voiceChan.pause();
+          musicChan.src = ''; voiceChan.src = '';
+          statusDiv.innerText = "FEED STATUS: STANDBY / LINK DISCONNECTED";
+          statusDiv.style.color = "#555555";
+        }
+        window.speechSynthesis.cancel();
+        const speechUtterance = new SpeechSynthesisUtterance(articleContent.innerText);
+        speechUtterance.rate = 1.0; speechUtterance.pitch = 1.0; speechUtterance.volume = 1.0;
+        window.speechSynthesis.speak(speechUtterance);
+      });
+      readerStop.addEventListener('click', function() {
+        window.speechSynthesis.cancel();
+      });
+    }
+    function initializeLiveEmissionMatrix() {
+      if (!!window.EventSource) {
+        const source = new EventSource('https://substack.com');
+        source.onmessage = function(event) {
+          console.log("New emission packet:", event.data);
+        };
+      }
+    }
+    initializeLiveEmissionMatrix();
+
+    customElements.define('famo-player-deck', class extends HTMLElement {
+      connectedCallback() {
+        this.innerHTML = `
+          <div style="padding: 10px; background: #102a43; border: 1px dashed #ff6600; border-radius: 6px; text-align: center; color: #00ff66; font-family: monospace; font-size: 11px; margin-top: 10px;">
+            ⚡ THE FAMO-LEGACY AUDIO PIPELINE CONNECTED SUCCESSFULLY ⚡
+          </div>
+        `;
+      }
+    });
+    function initializePeerAudioCoupler() {
+      try {
+                const peerConfiguration = { 
+          iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] 
+        };
+
+        peerConnection.onicecandidate = function(event) {
+          if (event.candidate) {
+            console.log("CELL-LECON NETWORK VECTOR ROUTE DETECTED:", event.candidate.candidate);
+          }
+        };
+        console.log("DECENTRALIZED PEER AUDIO INITIALIZATION HANDSHAKE SECURED.");
+      } catch (error) {
+        console.log("PEER COUPLER HARMONIC ALIGNMENT DELAYED:", error.message);
+      }
+    }
+    initializePeerAudioCoupler();
+
+    function initializeMobileNodalShare() {
+      window.executeNodalShare = async function() {
+        if (navigator.share) {
+          try {
+            await navigator.share({
+              title: 'The Famo-Legacy OmniSphere',
+              text: 'Connect straight to the Famo Nation Matrix Command Center Portal Node.',
+              url: window.location.href
+            });
+            console.log("MOBILE NODAL BROADCAST EMISSION DISPATCHED SUCCESSFULLY.");
+          } catch (err) {
+            console.log("SHARE ABORTED OR BLOCKED BY SYSTEM PROFILE:", err.message);
+          }
+        } else {
+          alert("Sovereign Node Link: " + window.location.href);
+        }
+      };
+    }
+    initializeMobileNodalShare();
+    function initializeMobileHardwareCapture() {
+      window.executeHardwareCapture = async function() {
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+          try {
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+            console.log("CELL-LECON HARDWARE CAPTURE MATRIX ACCESS GRANTED.");
+            return stream;
+          } catch (err) {
+            console.log("HARDWARE ACCESS BLOCKED BY DEVICE PERMISSIONS:", err.message);
+          }
+        } else {
+          alert("Media capture API is not supported on this browser layout profile.");
+        }
+      };
+    }
+    initializeMobileHardwareCapture();
+
+    function initializeMobileServiceWorker() {
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('./sw.js')
+            .then(function(reg) {
+              console.log("MOBILE EDGE NODE INGESTION TERMINAL ACTIVE // REGISTRY LOCKED:", reg.scope);
+            })
+            .catch(function(regError) {
+              console.log("EDGE NODE REGISTRY REGISTRATION INTERRUPTED:", regError.message);
+            });
+        });
+      }
+    }
+    initializeMobileServiceWorker();
+    let famoWakeLock = null;
+    function initializeMobileWakeLock() {
+      window.executeWakeLockToggle = async function(activate) {
+        if ('wakeLock' in navigator) {
+          try {
+            if (activate && famoWakeLock === null) {
+              famoWakeLock = await navigator.wakeLock.request('screen');
+              console.log("THE CONTINUOUS TRANSMISSION WAKE LOCK IS ENGAGED // SCREEN SLEEP INHIBITED.");
+              famoWakeLock.addEventListener('release', () => {
+                famoWakeLock = null;
+              });
+            } else if (!activate && famoWakeLock !== null) {
+              await famoWakeLock.release();
+              famoWakeLock = null;
+            }
+          } catch (err) {
+            console.log("HARDWARE INHIBITOR COMMAND INTERRUPTED BY DEVICE MANAGEMENT:", err.message);
+          }
+        }
+      };
+    }
+    initializeMobileWakeLock();
+
+    function initializeMobileGeoLocation() {
+      window.executeGeoLocationPin = function() {
+        if ("geolocation" in navigator) {
+          navigator.geolocation.getCurrentPosition(
+            function(position) {
+              console.log("SPATIAL LATITUDE DEVIATION RECORDED: " + position.coords.latitude);
+            },
+            function(error) {
+              console.log("SAT-ARRAY GEOLOCATION SIGNAL LOST OR DENIED:", error.message);
+            }
+          );
+        }
+      };
+    }
+    initializeMobileGeoLocation();
+    let famoDatabaseInstance = null;
+    function initializeMobileColdStorage() {
+      window.executeColdStorageAllocation = function() {
+        if (window.indexedDB) {
+          const dbRequest = window.indexedDB.open("FamoMatrixDB", 1);
+          dbRequest.onupgradeneeded = function(event) {
+            const db = event.target.result;
+            if (!db.objectStoreNames.contains("tracking_logs")) {
+              db.createObjectStore("tracking_logs", { keyPath: "id", autoIncrement: true });
+            }
+          };
+          dbRequest.onsuccess = function(event) {
+            famoDatabaseInstance = event.target.result;
+          };
+        }
+      };
+    }
+    initializeMobileColdStorage();
+
+    function initializeMobileVisibilityPipeline() {
+      document.addEventListener("visibilitychange", function() {
+        if (document.visibilityState === 'hidden') {
+          console.log("INTERFACE MINIMIZED // ENFORCING BACKGROUND TRANSMISSION.");
+        }
+      });
+    }
+    initializeMobileVisibilityPipeline();
+
+    function initializeMobileAppBadging() {
+      window.executeAppBadgeCounter = async function(count) {
+        if ('setAppBadge' in navigator) {
+          try { await navigator.setAppBadge(count); } catch (err) {}
+        }
+      };
+    }
+    initializeMobileAppBadging();
+    function initializeMobileHapticBeats() {
+      window.executeTactileHapticPulse = function(patternType) {
+        if ("vibrate" in navigator) {
+          let hapticPattern = Array(200, 100, 200);
+          if (patternType === 'heavy-bass') {
+            hapticPattern = Array(400, 100, 400, 100, 200);
+          } else if (patternType === 'success-click') {
+            hapticPattern = Array(50);
+          }
+          navigator.vibrate(hapticPattern);
+        }
+      };
+    }
+   // ====================================================================
+// INJECTED: THE FAMO-LEGACY OMNISPHERE // UNIVERSAL UUID GENERATOR
+// MOVE PROTOCOL 18 // SYSTEM INSTANT ID GENERATION CORE
 // ====================================================================
-const musicPlaylist = [
-  'assets/track1.mp3.mp3', 'assets/track2.mp3.mp3', 'assets/track3.mp3.mp3', 
-  'assets/track4.mp3.mp3', 'assets/track5.mp3.mp3', 'assets/track6.mp3.mp3', 
-  'assets/track7.mp3.mp3', 'assets/track8.mp3.mp3', 'assets/track9.mp3.mp3', 
-  'assets/track10.mp3.mp3'
-];
-
-const playlist = [
-  {
-    file: "assets/famo_voice_drop1.mp3.aac.mp3",
-    text: "NOW BROADCASTING: Famo Nation Voice Drop 1 - Station Identification Logs [STATION ID]"
-  }
-];
-
-// Auto-ingest your 10 mix tracks into the loop
-for (let i = 1; i <= 10; i++) {
-  playlist.push({
-    file: `assets/track${i}.mp3.mp3`,
-    text: `NOW BROADCASTING: Famo Legacy Master Mix Track ${i} // STATUS: LIVE // [ALBUM: OMNISPHERE LEDGER]`
-  });
+function generateSovereignUUID() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
 }
+console.log("[System Keys] Automated UUID Engine loaded. Ready for instant member tracking.");
+// ====================================================================
+          // ====================================================================
+    // INTERFACE BINDING: LOUD AND PROUD MINT BUTTON INJECTION
+    // ====================================================================
+    const generationCard = document.createElement('div');
+    generationCard.className = 'card';
+    generationCard.style.marginTop = '15px';
+    generationCard.style.border = '2px solid #7c4dff';
+    generationCard.style.padding = '15px';
+    generationCard.style.background = '#1a1a1a';
+    generationCard.style.color = '#fff';
+    generationCard.style.borderRadius = '8px';
+    generationCard.innerHTML = `
+        <h3 style="color: #7c4dff; margin-top:0;">Sovereign ID Generator Panel</h3>
+        <p style="font-size:0.9rem; color:#aaa;">Cryptographic Identity Registrar Console active. Click to mint keys:</p>
+        <div id="uuid-display-box" style="background:#000; padding:10px; border-radius:4px; font-family:monospace; font-size:1.1rem; color:#00ffcc; text-align:center; margin-bottom:10px; border:1px dashed #7c4dff;">
+            [Awaiting Generation Command]
+        </div>
+        <button id="btn-mint-uuid" type="button" style="width:100%; background:#7c4dff; color:#fff; border:none; padding:10px; font-weight:bold; border-radius:4px; cursor:pointer; text-transform:uppercase;">
+            MINT SOVEREIGN ID CODE
+        </button>
+    `;
+    const targetContainer = document.getElementById('panel-container') || document.body;
+    targetContainer.appendChild(generationCard);
 
-let currentTrackIndex = 0;
-let isPlaylistPlaying = false;
-let activeUtterance = null;
+    document.getElementById('btn-mint-uuid').addEventListener('click', function() {
+        const newID = generateSovereignUUID();
+        document.getElementById('uuid-display-box').innerText = newID;
+        console.log("[Mint Engine] Successfully generated fresh tracking key: " + newID);
+    });
+    // ====================================================================
 
-document.addEventListener("DOMContentLoaded", function() {
-  const audioPlayer = document.getElementById('audio-core');
-  const statusDiv = document.getElementById('stream-status');
-  const articleContainer = document.getElementById('famo-article-content');
-  const logDiv = document.getElementById('tts-log');
-  const btnLive = document.getElementById('broadcast-toggle');
 
-  function loadTrack(index) {
-    if (!audioPlayer || !statusDiv) return;
-    const currentTrack = playlist[index];
-    audioPlayer.src = currentTrack.file;
-    statusDiv.innerHTML = `<span style="display: inline-block; padding-left: 100%; animation: rollText 25s linear infinite; white-space: nowrap;">${currentTrack.text}</span>`;
-  }
-
-  window.toggleLiveStream = function() {
-    if (!audioPlayer || !btnLive) return;
-
-    if (!isPlaylistPlaying) {
-      isPlaylistPlaying = true;
-      btnLive.innerText = "DISCONNECT FEED";
-      btnLive.style.borderColor = "#00ffff";
-      btnLive.style.color = "#00ffff";
-      
-      if (window.speechSynthesis) window.speechSynthesis.cancel();
-      
-      loadTrack(currentTrackIndex);
-      audioPlayer.play().catch(e => console.log("Stream engaged."));
-    } else {
-      isPlaylistPlaying = false;
-      btnLive.innerText = "TUNE IN LIVE";
-      btnLive.style.borderColor = "#ff6600";
-      btnLive.style.color = "#ff6600";
-      
-      audioPlayer.pause();
-      statusDiv.innerText = "FEED STATUS: STANDBY / LINK DISCONNECTED // LAUNCH BROADCAST TO EMIT";
-    }
-  };
-
-  if (audioPlayer) {
-    audioPlayer.onended = function() {
-      currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
-      loadTrack(currentTrackIndex);
-      audioPlayer.play().catch(e => console.log("Next stream routing synced."));
-    };
-  }
-
-  window.triggerNativeSpeech = function() {
-    if (!window.speechSynthesis) return;
-    if (isPlaylistPlaying) window.toggleLiveStream();
-    window.speechSynthesis.cancel();
-
-    const cleanTextToRead = articleContainer ? articleContainer.innerText : "FAMO NATION DISTRIBUTION MATRIX NODE IS CHASSIS LOCKED.";
-    activeUtterance = new SpeechSynthesisUtterance(cleanTextToRead);
-    
-    activeUtterance.rate = 1.0;   
-    activeUtterance.pitch = 0.95; 
-    activeUtterance.volume = 1.0;
-
-    activeUtterance.onstart = function() {
-      if (logDiv) {
-        logDiv.innerText = "STATUS: BROADCASTING NARRATION EMISSION LIVE";
-        logDiv.style.color = "#39ff14";
-      }
-    };
-
-    activeUtterance.onend = function() {
-      if (logDiv) {
-        logDiv.innerText = "STATUS: NARRATION TRANSMISSION COMPLETE";
-        logDiv.style.color = "#555555";
-      }
-    };
-
-    window.speechSynthesis.speak(activeUtterance);
-  };
-
-  window.stopNativeSpeech = function() {
-    if (!window.speechSynthesis) return;
-    window.speechSynthesis.cancel();
-    if (logDiv) {
-      logDiv.innerText = "STATUS: NARRATION FORCE TERMINATED";
-      logDiv.style.color = "#ff2a2a";
-    }
-  };
-
-  document.getElementById('btn-play-audio')?.addEventListener('click', window.triggerNativeSpeech);
-  document.getElementById('btn-stop-audio')?.addEventListener('click', window.stopNativeSpeech);
-});
-</script>
+      initializeMobileHapticBeats();
+        })();
+  </script>
 </body>
 </html>
+  
