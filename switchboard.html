@@ -238,510 +238,122 @@
 </style>
 
 <script>
-    // System Audio Playlist Array tied directly to your raw repository assets
-   const playlist = [
-    {
-        file: "assets/famo_voice_drop1.mp3.aac.mp3",
-        text: "NOW BROADCASTING: Famo Nation Voice Drop 1 - Intro Station Identification Logs [STATION ID]"
-    }
+    // ====================================================================
+// UNIFIED MASTER AUDIO & NARRATION CONTROL MATRIX ENGINE
+// ====================================================================
+const musicPlaylist = [
+  'assets/track1.mp3.mp3', 'assets/track2.mp3.mp3', 'assets/track3.mp3.mp3', 
+  'assets/track4.mp3.mp3', 'assets/track5.mp3.mp3', 'assets/track6.mp3.mp3', 
+  'assets/track7.mp3.mp3', 'assets/track8.mp3.mp3', 'assets/track9.mp3.mp3', 
+  'assets/track10.mp3.mp3'
 ];
 
-    // Auto-generate ingestion slots for your 10 media ledger asset tracks
-    const SYSTEM_MAX_TRACKS = 10;
-    for (let i = 1; i <= SYSTEM_MAX_TRACKS; i++) {
-        playlist.push({
-            file: `assets/track${i}.mp3.mp3`,
-            text: `NOW BROADCASTING: Famo Legacy Master Mix Track ${i} // STATUS: ACTIVE STREAM DATA INGESTION // [ALBUM: OMNISPHERE LEDGER REGISTRY]`
-        });
-    }
+const playlist = [
+  {
+    file: "assets/famo_voice_drop1.mp3.aac.mp3",
+    text: "NOW BROADCASTING: Famo Nation Voice Drop 1 - Station Identification Logs [STATION ID]"
+  }
+];
 
-    let currentTrackIndex = 0;
-    const audioPlayer = document.getElementById('audio-core');
-    let isPlaylistPlaying = false;
-
-    function loadTrack(index) {
-        const currentTrack = playlist[index];
-        audioPlayer.src = currentTrack.file;
-        document.getElementById('metadata-display').innerText = currentTrack.text;
-    }
-
-    audioPlayer.onended = function() {
-        currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
-        loadTrack(currentTrackIndex);
-        audioPlayer.play();
-    };
-
-    function toggleBroadcast() {
-        const btn = document.getElementById('broadcast-toggle');
-        
-        if (!isPlaylistPlaying) {
-            isPlaylistPlaying = true;
-            btn.innerText = "DISCONNECT FEED";
-            btn.style.borderColor = "#00ffff";
-            btn.style.color = "#00ffff";
-            
-            loadTrack(currentTrackIndex);
-            audioPlayer.play();
-        } else {
-            isPlaylistPlaying = false;
-            btn.innerText = "TUNE IN LIVE";
-            btn.style.borderColor = "#ff6600";
-            btn.style.color = "#ff6600";
-            
-            audioPlayer.pause();
-            document.getElementById('metadata-display').innerText = "FEED STATUS: STANDBY / LINK DISCONNECTED";
-        }
-    }
-</script>
-
-<!-- NATIVE AI TEXT-TO-SPEECH TRANSMISSION SYSTEM -->
-<div id="audio-panel" style="margin: 20px auto; max-width: 600px; padding: 15px; background: #120c1f; border: 2px solid #7c4dff; border-radius: 8px; text-align: center; font-family: monospace; box-shadow: 0 0 15px rgba(124,77,255,0.3);">
-  <div style="font-size: 11px; color: #00ffff; letter-spacing: 0.1em; margin-bottom: 12px; font-weight: bold;">[SYSTEM NARRATOR CORE ARMED]</div>
-  
-  <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 15px;">
-    <button id="btn-play-audio" onclick="triggerNativeSpeech()" style="background: #39ff14; color: #000000; border: none; padding: 10px 20px; font-weight: bold; border-radius: 4px; cursor: pointer; text-transform: uppercase; font-size: 11px;">Listen to Article</button>
-    <button id="btn-stop-audio" onclick="stopNativeSpeech()" style="background: #ff2a2a; color: #ffffff; border: none; padding: 10px 20px; font-weight: bold; border-radius: 4px; cursor: pointer; text-transform: uppercase; font-size: 11px;">Stop Audio</button>
-  </div>
-  
-  <div id="tts-log" style="font-size: 9px; color: #555555; text-transform: uppercase; margin-bottom: 15px;">NARRATOR MODULE STATUS: STANDBY</div>
-
-  <div id="famo-article-content" style="color: #cccccc; font-size: 14px; text-align: left; line-height: 1.6; border-top: 1px dashed #222222; padding-top: 15px;">
-    FAMO NATION DISTRIBUTION MATRIX NODE IS CHASSIS LOCKED. PRINCIPAL SYSTEMS ARCHITECT ROBERT A. PARKER HAS ANCHORED INTELLECTUAL PROPERTY LEDGERS DIRECTORY INFRASTRUCTURE SAFELY WITHIN CERN NETWORK VAULTS. ALL SECURITY RECON HASH KEYS ARE ACTIVE AND OPERATIONAL ACROSS THE MUSKOGEE OKLAHOMA HQ SECTOR.
-  </div>
-</div>
-
-
-<script>
- // UNIFIED COMMAND MODULE WIRING PROTOCOLS
-const audioPlayerCore = document.getElementById('audio-core');
-const articleContentCore = document.getElementById('famo-article-content');
-
-// Sync layout buttons to functional triggers
-document.getElementById('btn-play-audio')?.addEventListener('click', triggerNativeSpeech);
-document.getElementById('btn-stop-audio')?.addEventListener('click', stopNativeSpeech);
-
-      readerStop.addEventListener('click', function() {
-        window.speechSynthesis.cancel();
-      });
-    }
-    function initializeLiveEmissionMatrix() {
-      if (!!window.EventSource) {
-        const source = new EventSource('https://substack.com');
-        source.onmessage = function(event) {
-          console.log("New emission packet:", event.data);
-        };
-      }
-    }
-    initializeLiveEmissionMatrix();
-
-    customElements.define('famo-player-deck', class extends HTMLElement {
-      connectedCallback() {
-        this.innerHTML = `
-          <div style="padding: 10px; background: #102a43; border: 1px dashed #ff6600; border-radius: 6px; text-align: center; color: #00ff66; font-family: monospace; font-size: 11px; margin-top: 10px;">
-            ⚡ THE FAMO-LEGACY AUDIO PIPELINE CONNECTED SUCCESSFULLY ⚡
-          </div>
-        `;
-      }
-    });
-    function initializePeerAudioCoupler() {
-      try {
-                const peerConfiguration = { 
-          iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] 
-        };
-
-        peerConnection.onicecandidate = function(event) {
-          if (event.candidate) {
-            console.log("CELL-LECON NETWORK VECTOR ROUTE DETECTED:", event.candidate.candidate);
-          }
-        };
-        console.log("DECENTRALIZED PEER AUDIO INITIALIZATION HANDSHAKE SECURED.");
-      } catch (error) {
-        console.log("PEER COUPLER HARMONIC ALIGNMENT DELAYED:", error.message);
-      }
-    }
-    initializePeerAudioCoupler();
-
-    function initializeMobileNodalShare() {
-      window.executeNodalShare = async function() {
-        if (navigator.share) {
-          try {
-            await navigator.share({
-              title: 'The Famo-Legacy OmniSphere',
-              text: 'Connect straight to the Famo Nation Matrix Command Center Portal Node.',
-              url: window.location.href
-            });
-            console.log("MOBILE NODAL BROADCAST EMISSION DISPATCHED SUCCESSFULLY.");
-          } catch (err) {
-            console.log("SHARE ABORTED OR BLOCKED BY SYSTEM PROFILE:", err.message);
-          }
-        } else {
-          alert("Sovereign Node Link: " + window.location.href);
-        }
-      };
-    }
-    initializeMobileNodalShare();
-    function initializeMobileHardwareCapture() {
-      window.executeHardwareCapture = async function() {
-        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-          try {
-            const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-            console.log("CELL-LECON HARDWARE CAPTURE MATRIX ACCESS GRANTED.");
-            return stream;
-          } catch (err) {
-            console.log("HARDWARE ACCESS BLOCKED BY DEVICE PERMISSIONS:", err.message);
-          }
-        } else {
-          alert("Media capture API is not supported on this browser layout profile.");
-        }
-      };
-    }
-    initializeMobileHardwareCapture();
-
-    function initializeMobileServiceWorker() {
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-          navigator.serviceWorker.register('./sw.js')
-            .then(function(reg) {
-              console.log("MOBILE EDGE NODE INGESTION TERMINAL ACTIVE // REGISTRY LOCKED:", reg.scope);
-            })
-            .catch(function(regError) {
-              console.log("EDGE NODE REGISTRY REGISTRATION INTERRUPTED:", regError.message);
-            });
-        });
-      }
-    }
-    initializeMobileServiceWorker();
-    let famoWakeLock = null;
-    function initializeMobileWakeLock() {
-      window.executeWakeLockToggle = async function(activate) {
-        if ('wakeLock' in navigator) {
-          try {
-            if (activate && famoWakeLock === null) {
-              famoWakeLock = await navigator.wakeLock.request('screen');
-              console.log("THE CONTINUOUS TRANSMISSION WAKE LOCK IS ENGAGED // SCREEN SLEEP INHIBITED.");
-              famoWakeLock.addEventListener('release', () => {
-                famoWakeLock = null;
-              });
-            } else if (!activate && famoWakeLock !== null) {
-              await famoWakeLock.release();
-              famoWakeLock = null;
-            }
-          } catch (err) {
-            console.log("HARDWARE INHIBITOR COMMAND INTERRUPTED BY DEVICE MANAGEMENT:", err.message);
-          }
-        }
-      };
-    }
-    initializeMobileWakeLock();
-
-    function initializeMobileGeoLocation() {
-      window.executeGeoLocationPin = function() {
-        if ("geolocation" in navigator) {
-          navigator.geolocation.getCurrentPosition(
-            function(position) {
-              console.log("SPATIAL LATITUDE DEVIATION RECORDED: " + position.coords.latitude);
-            },
-            function(error) {
-              console.log("SAT-ARRAY GEOLOCATION SIGNAL LOST OR DENIED:", error.message);
-            }
-          );
-        }
-      };
-    }
-    initializeMobileGeoLocation();
-    let famoDatabaseInstance = null;
-    function initializeMobileColdStorage() {
-      window.executeColdStorageAllocation = function() {
-        if (window.indexedDB) {
-          const dbRequest = window.indexedDB.open("FamoMatrixDB", 1);
-          dbRequest.onupgradeneeded = function(event) {
-            const db = event.target.result;
-            if (!db.objectStoreNames.contains("tracking_logs")) {
-              db.createObjectStore("tracking_logs", { keyPath: "id", autoIncrement: true });
-            }
-          };
-          dbRequest.onsuccess = function(event) {
-            famoDatabaseInstance = event.target.result;
-          };
-        }
-      };
-    }
-    initializeMobileColdStorage();
-
-    function initializeMobileVisibilityPipeline() {
-      document.addEventListener("visibilitychange", function() {
-        if (document.visibilityState === 'hidden') {
-          console.log("INTERFACE MINIMIZED // ENFORCING BACKGROUND TRANSMISSION.");
-        }
-      });
-    }
-    initializeMobileVisibilityPipeline();
-
-    function initializeMobileAppBadging() {
-      window.executeAppBadgeCounter = async function(count) {
-        if ('setAppBadge' in navigator) {
-          try { await navigator.setAppBadge(count); } catch (err) {}
-        }
-      };
-    }
-    initializeMobileAppBadging();
-    function initializeMobileHapticBeats() {
-      window.executeTactileHapticPulse = function(patternType) {
-        if ("vibrate" in navigator) {
-          let hapticPattern = Array(200, 100, 200);
-          if (patternType === 'heavy-bass') {
-            hapticPattern = Array(400, 100, 400, 100, 200);
-          } else if (patternType === 'success-click') {
-            hapticPattern = Array(50);
-          }
-          navigator.vibrate(hapticPattern);
-        }
-      };
-    }
-   // ====================================================================
-// INJECTED: THE FAMO-LEGACY OMNISPHERE // UNIVERSAL UUID GENERATOR
-// MOVE PROTOCOL 18 // SYSTEM INSTANT ID GENERATION CORE
-// ====================================================================
-function generateSovereignUUID() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-        return v.toString(16);
-    });
+// Auto-ingest your 10 mix tracks into the loop
+for (let i = 1; i <= 10; i++) {
+  playlist.push({
+    file: `assets/track${i}.mp3.mp3`,
+    text: `NOW BROADCASTING: Famo Legacy Master Mix Track ${i} // STATUS: LIVE // [ALBUM: OMNISPHERE LEDGER]`
+  });
 }
-console.log("[System Keys] Automated UUID Engine loaded. Ready for instant member tracking.");
-// ====================================================================
-          // ====================================================================
-    // INTERFACE BINDING: LOUD AND PROUD MINT BUTTON INJECTION
-    // ====================================================================
-    const generationCard = document.createElement('div');
-    generationCard.className = 'card';
-    generationCard.style.marginTop = '15px';
-    generationCard.style.border = '2px solid #7c4dff';
-    generationCard.style.padding = '15px';
-    generationCard.style.background = '#1a1a1a';
-    generationCard.style.color = '#fff';
-    generationCard.style.borderRadius = '8px';
-    generationCard.innerHTML = `
-        <h3 style="color: #7c4dff; margin-top:0;">Sovereign ID Generator Panel</h3>
-        <p style="font-size:0.9rem; color:#aaa;">Cryptographic Identity Registrar Console active. Click to mint keys:</p>
-        <div id="uuid-display-box" style="background:#000; padding:10px; border-radius:4px; font-family:monospace; font-size:1.1rem; color:#00ffcc; text-align:center; margin-bottom:10px; border:1px dashed #7c4dff;">
-            [Awaiting Generation Command]
-        </div>
-        <button id="btn-mint-uuid" type="button" style="width:100%; background:#7c4dff; color:#fff; border:none; padding:10px; font-weight:bold; border-radius:4px; cursor:pointer; text-transform:uppercase;">
-            MINT SOVEREIGN ID CODE
-        </button>
-    `;
-    const targetContainer = document.getElementById('panel-container') || document.body;
-    targetContainer.appendChild(generationCard);
 
-    document.getElementById('btn-mint-uuid').addEventListener('click', function() {
-        const newID = generateSovereignUUID();
-        document.getElementById('uuid-display-box').innerText = newID;
-        console.log("[Mint Engine] Successfully generated fresh tracking key: " + newID);
-    });
-    // ====================================================================
-
-
-      initializeMobileHapticBeats();
-        })();
- // Native Speech Synthesis Logic Engine Configurations
+let currentTrackIndex = 0;
+let isPlaylistPlaying = false;
 let activeUtterance = null;
 
-function triggerNativeSpeech() {
-    // Collect the exact text from your custom screen container
-    const articleContainer = document.getElementById('famo-article-content');
-    const cleanTextToRead = articleContainer ? articleContainer.innerText : "FAMO NATION DISTRIBUTION MATRIX NODE IS CHASSIS LOCKED.";
+document.addEventListener("DOMContentLoaded", function() {
+  const audioPlayer = document.getElementById('audio-core');
+  const statusDiv = document.getElementById('stream-status');
+  const articleContainer = document.getElementById('famo-article-content');
+  const logDiv = document.getElementById('tts-log');
+  const btnLive = document.getElementById('broadcast-toggle');
 
-    // Terminate any ongoing speech operations before clearing channels
+  function loadTrack(index) {
+    if (!audioPlayer || !statusDiv) return;
+    const currentTrack = playlist[index];
+    audioPlayer.src = currentTrack.file;
+    statusDiv.innerHTML = `<span style="display: inline-block; padding-left: 100%; animation: rollText 25s linear infinite; white-space: nowrap;">${currentTrack.text}</span>`;
+  }
+
+  window.toggleLiveStream = function() {
+    if (!audioPlayer || !btnLive) return;
+
+    if (!isPlaylistPlaying) {
+      isPlaylistPlaying = true;
+      btnLive.innerText = "DISCONNECT FEED";
+      btnLive.style.borderColor = "#00ffff";
+      btnLive.style.color = "#00ffff";
+      
+      if (window.speechSynthesis) window.speechSynthesis.cancel();
+      
+      loadTrack(currentTrackIndex);
+      audioPlayer.play().catch(e => console.log("Stream engaged."));
+    } else {
+      isPlaylistPlaying = false;
+      btnLive.innerText = "TUNE IN LIVE";
+      btnLive.style.borderColor = "#ff6600";
+      btnLive.style.color = "#ff6600";
+      
+      audioPlayer.pause();
+      statusDiv.innerText = "FEED STATUS: STANDBY / LINK DISCONNECTED // LAUNCH BROADCAST TO EMIT";
+    }
+  };
+
+  if (audioPlayer) {
+    audioPlayer.onended = function() {
+      currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
+      loadTrack(currentTrackIndex);
+      audioPlayer.play().catch(e => console.log("Next stream routing synced."));
+    };
+  }
+
+  window.triggerNativeSpeech = function() {
+    if (!window.speechSynthesis) return;
+    if (isPlaylistPlaying) window.toggleLiveStream();
     window.speechSynthesis.cancel();
 
+    const cleanTextToRead = articleContainer ? articleContainer.innerText : "FAMO NATION DISTRIBUTION MATRIX NODE IS CHASSIS LOCKED.";
     activeUtterance = new SpeechSynthesisUtterance(cleanTextToRead);
     
-    // Auto-configure optimal speech parameters
-    activeUtterance.rate = 1.0;   // Clean, steady presentation cadence
-    activeUtterance.pitch = 0.95; // Deep, commanding network system tone mapping
+    activeUtterance.rate = 1.0;   
+    activeUtterance.pitch = 0.95; 
     activeUtterance.volume = 1.0;
 
     activeUtterance.onstart = function() {
-        const logDiv = document.getElementById('tts-log');
-        if (logDiv) {
-            logDiv.innerText = "STATUS: BROADCASTING NARRATION EMISSION LIVE";
-            logDiv.style.color = "#39ff14";
-        }
+      if (logDiv) {
+        logDiv.innerText = "STATUS: BROADCASTING NARRATION EMISSION LIVE";
+        logDiv.style.color = "#39ff14";
+      }
     };
 
     activeUtterance.onend = function() {
-        const logDiv = document.getElementById('tts-log');
-        if (logDiv) {
-            logDiv.innerText = "STATUS: NARRATION TRANSMISSION COMPLETE";
-            logDiv.style.color = "#555555";
-        }
+      if (logDiv) {
+        logDiv.innerText = "STATUS: NARRATION TRANSMISSION COMPLETE";
+        logDiv.style.color = "#555555";
+      }
     };
 
-    // Execute secure browser engine playback trigger
     window.speechSynthesis.speak(activeUtterance);
-}
+  };
 
-function stopNativeSpeech() {
+  window.stopNativeSpeech = function() {
+    if (!window.speechSynthesis) return;
     window.speechSynthesis.cancel();
-    const logDiv = document.getElementById('tts-log');
     if (logDiv) {
-        logDiv.innerText = "STATUS: NARRATION FORCE TERMINATED";
-        logDiv.style.color = "#ff2a2a";
+      logDiv.innerText = "STATUS: NARRATION FORCE TERMINATED";
+      logDiv.style.color = "#ff2a2a";
     }
-}
+  };
 
+  document.getElementById('btn-play-audio')?.addEventListener('click', window.triggerNativeSpeech);
+  document.getElementById('btn-stop-audio')?.addEventListener('click', window.stopNativeSpeech);
+});
 </script>
 </body>
 </html>
-
-
-<!-- ==================================================================== -->
-<!-- INJECTED: THE OMNISPHERE PERPETUAL ZERO-DEAD-AIR TRANSMISSION LOOP  -->
-<!-- OPERATIONAL SECTOR COMPLIANCE NODE 6 // TECHNICAL WEIGHT: 10^+1264  -->
-<!-- ==================================================================== -->
-<script>
-    (function() {
-        console.log("[Node 6 Matrix] Initializing 24/7 Continuity Broadcast Loop...");
-        
-        // Dynamic Global Loop Observer Function
-        function enforcePerpetualAirplay() {
-            const allAudioElements = document.querySelectorAll('audio');
-            allAudioElements.forEach(audio => {
-                if (!audio.loop) {
-                    audio.loop = true;
-                    console.log("[Node 6 Matrix] Broadcast signal locked: Loop forced to true.");
-                }
-            });
-        }
-
-        // Run the audio scanning loops instantly the exact millisecond the page boots
-        enforcePerpetualAirplay();
-
-        // Background system sentinel: constantly scans for new audio tracks or narrator drops
-        setInterval(enforcePerpetualAirplay, 1000);
-    })();
-
-<!-- ==================================================================== -->
-
-
-<!-- ==================================================================== -->
-<!-- INJECTED: OMNISPHERE SOVEREIGN VIDEO OVERLORD MATRIX // NODE 9      -->
-<!-- AUTOMATED SUBSTACK VIDEO INTEGRATION & JUKEBOX PARSING CORE          -->
-<!-- SYSTEM COMPLIANCE VALUE EFFECTIVE LIVE // METRIC WEIGHT: 10^+1264    -->
-<!-- ==================================================================== -->
-<div class="video-matrix-panel" style="background:#0f0b18; border:2px solid #7c4dff; border-radius:12px; padding:20px; margin:20px auto; max-width:800px; box-shadow:0 0 25px rgba(124,77,255,0.4);">
-    <h3 style="color:#00ffcc; font-family:'Arial Black',sans-serif; text-transform:uppercase; margin-top:0; letter-spacing:2px; text-align:center;">Famo Nation Video Network</h3>
-    <video id="famoVideoPlayer" controls style="width:100%; border:1px solid #331a5e; border-radius:8px; background:#000; margin-bottom:15px;"></video>
-    <div id="substackVideoList" style="display:flex; flex-direction:column; gap:8px; max-height:200px; overflow-y:auto; padding-right:5px;"></div>
-</div>
-
-<script>
-    (function() {
-        console.log("[Node 9 Matrix] Activating Sovereign Video Overlord Matrix...");
-        
-        // Hard-piped public access parsing gateway to pull media links cleanly
-        const substackRssUrl = encodeURIComponent('https://substack.com');
-        const parsingApi = `https://rss2json.com{substackRssUrl}`;
-        
-        fetch(parsingApi)
-            .then(res => res.json())
-            .then(data => {
-                const list = document.getElementById('substackVideoList');
-                if (!data.items || data.items.length === 0) {
-                    list.innerHTML = "<div style='color:#888; font-family:monospace; text-align:center;'>NO LIVE MEDIA RELEASES FOUND IN FEED DETECTED</div>";
-                    return;
-                }
-                
-                let videoCount = 0;
-                data.items.forEach(item => {
-                    // Check for raw video enclosures or embedded video content markers
-                    if ((item.enclosure && item.enclosure.type && item.enclosure.type.includes('video')) || item.guid.includes('video')) {
-                        videoCount++;
-                        const btn = document.createElement('button');
-                        btn.innerText = `▶ ${item.title.toUpperCase()}`;
-                        
-                        // Premium interactive terminal button styling layout
-                        btn.style.width = "100%";
-                        btn.style.background = "#140e24";
-                        btn.style.color = "#fff";
-                        btn.style.border = "1px solid #5e35b1";
-                        btn.style.padding = "10px";
-                        btn.style.borderRadius = "6px";
-                        btn.style.cursor = "pointer";
-                        btn.style.textAlign = "left";
-                        btn.style.fontFamily = "monospace";
-                        btn.style.fontWeight = "bold";
-                        btn.style.transition = "all 0.2s";
-                        
-                        btn.onmouseover = () => { btn.style.background = "#7c4dff"; btn.style.borderColor = "#00ffcc"; };
-                        btn.onmouseout = () => { btn.style.background = "#140e24"; btn.style.borderColor = "#5e35b1"; };
-                        
-                        // Extract target streaming video files or fall back cleanly to destination links
-                        const mediaSrc = (item.enclosure && item.enclosure.link) ? item.enclosure.link : item.link;
-                        
-                        btn.onclick = () => {
-                            console.log(`[Video Matrix] Mounting broadcast asset stream: ${item.title}`);
-                            const player = document.getElementById('famoVideoPlayer');
-                            player.src = mediaSrc;
-                            player.play().catch(() => console.log("[Video Matrix] Playback requires first gesture interaction code pass."));
-                        };
-                        list.appendChild(btn);
-                    }
-                });
-                
-                if (videoCount === 0) {
-                    list.innerHTML = "<div style='color:#888; font-family:monospace; text-align:center;'>ALL TRACKS NOMINAL // STREAM READY FOR CURRENT MEDIA UPLOADS</div>";
-                }
-            })
-            .catch(err => {
-                console.log("[Node 9 Matrix] Dynamic feed parsing cycle checked. Network standing ready.");
-            });
-    })();
-</script>
-<!-- ==================================================================== -->
-
-
-<!-- ==================================================================== -->
-<!-- INJECTED: FAMO MATRIX REPOSITORY CINEMATIC INGESTION DECK // NODE 10 -->
-<!-- LOCAL COMPILATION DEPLOYMENT SELECTOR & STREAMING CORE               -->
-<!-- SYSTEM COMPLIANCE VALUE EFFECTIVE LIVE // METRIC WEIGHT: 10^+1264    -->
-<!-- ==================================================================== -->
-<div class="repo-ingestion-panel" style="background:#0a0518; border:2px dashed #00ffcc; border-radius:12px; padding:20px; margin:20px auto; max-width:800px; box-shadow:0 0 25px rgba(0,255,204,0.3); text-align:center;">
-    <label for="repoVideoSelector" style="display:block; color:#00ffcc; font-family:'Arial Black',sans-serif; text-transform:uppercase; margin-bottom:12px; letter-spacing:1.5px; font-size:0.9rem;">► Select Core Local Repository Stream</label>
-    <select id="repoVideoSelector" onchange="if(this.value){ console.log('[Video Matrix] Loading local repo asset: ' + this.value); const player = document.getElementById('famoVideoPlayer'); player.src=this.value; player.play().catch(() => console.log('[Video Matrix] Playback gesture pass required.')); }" style="width:100%; background:#000; border:1px solid #7c4dff; padding:12px; border-radius:6px; color:#fff; font-family:monospace; font-weight:bold; font-size:0.95rem; cursor:pointer; outline:none; box-sizing:border-box;">
-        <option value="" style="color:#888;">-- SELECT OPERATIONAL INFRASTRUCTURE STREAM --</option>
-        <option value="assets/videos/tour-promo1.mp4">CELL-LECON TOUR PROMO 1</option>
-        <option value="assets/videos/radio-intro.mp4">24/7 RADIO OVERVIEW</option>
-    </select>
-    <div style="margin-top:12px; font-family:monospace; font-size:0.75rem; color:#b39ddb; text-transform:uppercase; letter-spacing:1px;">
-        Sovereign Storage Architecture: AS64510 // NAICS 516210 Fully Active
-    </div>
-</div>
-<!-- ==================================================================== -->
-
-
-<!-- ==================================================================== -->
-<!-- INJECTED: FAMO OMNISPHERE AUDIO-DROP INTERACTION BAY // NODE 11      -->
-<!-- INTEGRATED STREAMLINED AUDIENCE SPEAKEASY RECORDING MATRIX CORE      -->
-<!-- SYSTEM COMPLIANCE VALUE EFFECTIVE LIVE // METRIC WEIGHT: 10^+1264    -->
-<!-- ==================================================================== -->
-<div class="audio-drop-panel" style="background:#090414; border:2px solid #7c4dff; border-radius:12px; padding:20px; margin:20px auto; max-width:800px; box-shadow:0 0 25px rgba(124,77,255,0.5); text-align:center;">
-    <h3 style="color:#00ffcc; font-family:'Arial Black',sans-serif; text-transform:uppercase; margin-top:0; letter-spacing:2px;">► SpeakPipe Audio-Drop Speakeasy</h3>
-    <p style="color:#b39ddb; font-family:monospace; font-size:0.85rem; margin-bottom:15px; text-transform:uppercase; letter-spacing:1px;">
-        Record and transmit your voice files straight to upstream management for instant airplay placement.
-    </p>
-    
-    <!-- HIGH-VELOCITY INTEGRATED SUBMISSION INTERFACE FRAME -->
-    <div style="width:100%; height:320px; background:#000; border:1px solid #331a5e; border-radius:8px; overflow:hidden;">
-        <iframe src="https://www.speakpipe.com/AudioDrops" allow="microphone" style="width:100%; height:100%; border:none; background:#000;"></iframe>
-    </div>
-    
-    <div style="margin-top:12px; font-family:monospace; font-size:0.75rem; color:#888; text-transform:uppercase; letter-spacing:1px;">
-        Sovereign Upstream Integration: AS64510 // NAICS 516210 Active // Mic-Access Armed
-    </div>
-</div>
-<!-- ==================================================================== -->
-
-
-  
