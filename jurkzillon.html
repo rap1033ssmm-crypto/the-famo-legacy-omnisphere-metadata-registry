@@ -56,78 +56,278 @@ body{background-color:var(--bg-void);color:var(--text-pure);font-family:sans-ser
 .hud-data-slot{display:flex;flex-direction:column;margin-right:25px;}
 </style>
 <script>
+<script src="https://cloudflare.com"></script>
+<style>
+#famo-omnisphere-movie-vault-container{display:none;width:100%;max-width:1400px;background:var(--surface-armor);border:3px solid var(--neon-purple);border-radius:16px;padding:30px;box-shadow:0 0 35px rgba(138,43,226,0.25);margin-top:25px;}
+.oib-video-card-tile{background:rgba(255,255,255,0.02);border:2px solid #ffd700;border-radius:8px;padding:15px;cursor:pointer;box-shadow:inset 0 0 10px rgba(255,215,0,0.15);min-height:140px;display:flex;flex-direction:column;justify-content:space-between;}
+.oib-video-card-tile:hover{transform:translateY(-3px);border-color:var(--neon-purple);box-shadow:0 5px 15px rgba(138,43,226,0.3);}
+.hud-label-text{font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;display:block;margin-bottom:4px;}
+.hud-value-stream{font-size:20px;font-weight:900;}
+.hud-data-slot{display:flex;flex-direction:column;margin-right:25px;}
+/* 🎬 HIGH-INTENSITY KEYFRAME ANIMATION ARRAYS (PHASE 01) */
+@keyframes famoShock {
+    0% { transform: translate(2px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(0px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(2px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(2px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(0deg); }
+}
+.famo-screen-shock { animation: famoShock 0.4s ease-in-out infinite; }
+.famo-tile-owned { border: 2px dashed var(--neon-gold) !important; box-shadow: 0 0 15px rgba(255,215,0,0.3) !important; }
+.famo-terminal-modal { display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); width:90%; max-width:500px; background:#05060b; border:3px solid var(--neon-cyan); border-radius:12px; padding:25px; z-index:99999; box-shadow:0 0 40px #00f3ff; }
+.famo-btn-core { background:rgba(0,243,255,0.1); border:1px solid var(--neon-cyan); color:#fff; padding:10px 15px; font-weight:800; cursor:pointer; text-transform:uppercase; border-radius:4px; font-size:11px; }
+</style>
+
+<!-- 🎰 HOLOGRAPHIC TERMINAL MINI-GAME LAYER (PHASE 03) -->
+<div class="famo-terminal-modal" id="famo-hack-terminal">
+    <h3 style="color:var(--neon-cyan);margin-bottom:10px;text-transform:uppercase;font-size:14px;letter-spacing:1px;">➤ TERMINAL SECURITY OVERRIDE ACTIVATED</h3>
+    <p style="font-size:11px;color:var(--text-muted);margin-bottom:15px;text-transform:uppercase;">Decrypt the infrastructure clearance network patch node to bypass penalties.</p>
+    <div style="background:#000;padding:15px;border-radius:6px;font-family:monospace;color:var(--neon-green);font-size:13px;margin-bottom:15px;text-align:center;letter-spacing:2px;" id="famo-hack-scramble">X9_A2_TRAP_??</div>
+    <input type="text" id="famo-hack-input" placeholder="ENTER PATCH COMBINATION" style="width:100%;padding:12px;background:#111;border:1px solid #333;color:#fff;font-family:monospace;margin-bottom:15px;outline:none;text-align:center;">
+    <button class="famo-btn-core" style="width:100%;" id="famo-hack-submit">Execute Override Crack</button>
+</div>
+
+<script>
 (function(){
-    const tilesData = [
-        "Famo Portal","Muskogee HQ","WLT Node","C-Block",
-        "Review Board","OmniHub","CERN Sync","GT Node",
-        "Gatekeeper","Overdrive","Sovereign 01","FND Ledger",
-        "Sector 7","Bounty Node","Trade Desk","Atmosphere",
-        "Hack Core","Jackpot","Legacy Web","Sovereign 02",
-        "OIB Security","Wichita","Tehran","Independence",
-        "Philly Node","KC Hub","Rapid City","Audio Box",
-        "EMP Base","Venture","Staking","District","Glitch Core"
+    // [PHASE 02 & 05: THE COMPLETE 33 STRATEGIC SQUARES MATRIX REGISTRY]
+    const tilesBlueprint = [
+        {name:"Famo Portal", cost:0, rent:0, type:"start"},{name:"Muskogee HQ", cost:600, rent:150, type:"prop"},{name:"WLT Node", cost:400, rent:100, type:"prop"},{name:"C-Block", cost:500, rent:120, type:"prop"},
+        {name:"Review Board", cost:0, rent:300, type:"tax"},{name:"OmniHub", cost:700, rent:200, type:"prop"},{name:"CERN Sync", cost:800, rent:250, type:"prop"},{name:"GT Node", cost:450, rent:110, type:"prop"},
+        {name:"Gatekeeper", cost:0, rent:0, type:"trap"},{name:"Matrix Overdrive", cost:900, rent:300, type:"prop"},{name:"Sovereign 01", cost:1000, rent:350, type:"prop"},{name:"FND Ledger", cost:1100, rent:400, type:"prop"},
+        {name:"Sector 7", cost:650, rent:180, type:"prop"},{name:"Bounty Node", cost:750, rent:220, type:"prop"},{name:"Trade Desk", cost:0, rent:0, type:"trade"},{name:"Atmosphere", cost:550, rent:140, type:"prop"},
+        {name:"Hack Core", cost:0, rent:0, type:"hack"},{name:"Jackpot", cost:0, rent:0, type:"jackpot"},{name:"Legacy Web", cost:1200, rent:450, type:"prop"},{name:"Sovereign 02", cost:1300, rent:500, type:"prop"},
+        {name:"OIB Security", cost:1400, rent:550, type:"prop"},{name:"Wichita", cost:850, rent:260, type:"prop"},{name:"Tehran", cost:950, rent:320, type:"prop"},{name:"Independence", cost:1050, rent:380, type:"prop"},
+        {name:"Philly Node", cost:1150, rent:420, type:"prop"},{name:"KC Hub", cost:1250, rent:480, type:"prop"},{name:"Rapid City", cost:1350, rent:520, type:"prop"},{name:"Audio Box", cost:0, rent:0, type:"start"},
+        {name:"EMP Base", cost:1500, rent:650, type:"prop"},{name:"Venture", cost:1600, rent:700, type:"prop"},{name:"Staking", cost:1700, rent:750, type:"prop"},{name:"District", cost:1800, rent:800, type:"prop"},
+        {name:"Glitch Core", cost:0, rent:0, type:"glitch"}
     ];
 
+    // Multi-Monitor Splitter Protocol Sync Channel (Phase 03)
+    const splitterChannel = window.BroadcastChannel ? new BroadcastChannel("famo_omnisphere_splitter_sync") : null;
+
+    // Load Permanent Career State Registers (Phase 02 & 05)
     let currentPosition = parseInt(localStorage.getItem("famo_player_pos")) || 0;
     let currentCapital = parseInt(localStorage.getItem("famo_player_cash")) || 10000;
+    let ownedTiles = JSON.parse(localStorage.getItem("famo_owned_tiles")) || [];
+    let hqShieldActive = localStorage.getItem("famo_hq_shield") === "true";
+    let activeStreak = 0;
+    let cumulativeJackpotPool = parseInt(localStorage.getItem("famo_jackpot_pool")) || 2500;
+
     const grid = document.getElementById("master-board-anchoring");
-    
+
+    // Compute Dynamic Ascension Rank Labels (Phase 02)
+    function calculateAscensionRank() {
+        if (ownedTiles.length >= 15 && currentCapital >= 50000) return "👑 APEX JURKKING";
+        if (ownedTiles.length >= 8) return "⚡ MATRIX OVERLORD";
+        if (ownedTiles.length >= 3) return "🚀 SOVEREIGN INFRASTRUCTURE OPERATOR";
+        return "🧬 TIER 01 INGRESSOR";
+    }
+
     function buildGameBoardMatrix() {
         grid.innerHTML = "";
-        tilesData.forEach((name, idx) => {
-            const tile = document.createElement("div");
-            tile.className = "matrix-tile-component";
-            tile.id = `node-matrix-id-${idx}`;
+        tilesBlueprint.forEach((tile, idx) => {
+            const el = document.createElement("div");
+            el.className = "matrix-tile-component";
+            if (ownedTiles.includes(idx)) el.classList.add("famo-tile-owned");
             
             if(idx === currentPosition) {
-                tile.style.border = "3px solid var(--neon-green)";
-                tile.style.boxShadow = "0 0 20px var(--neon-green)";
-                tile.innerHTML = `<div style="font-size:10px;color:var(--neon-green);font-weight:bold;">[⚡ OPERATOR ACTIVE]</div><div style="font-weight:900;color:#fff;margin-top:5px;text-transform:uppercase;">${name}</div><div style="font-size:12px;font-weight:900;color:var(--neon-green);margin-top:5px;">[P]</div>`;
+                el.style.border = "3px solid var(--neon-green)";
+                el.style.boxShadow = "0 0 20px var(--neon-green)";
+                el.innerHTML = `<div style="font-size:9px;color:var(--neon-green);font-weight:bold;">[⚡ OPERATOR ACTIVE]</div><div style="font-weight:900;color:#fff;margin-top:3px;text-transform:uppercase;">${tile.name}</div><div style="font-size:11px;font-weight:900;color:var(--neon-green);">[P]</div>`;
             } else {
-                tile.style.border = "1px solid rgba(0,243,255,0.3)";
-                tile.style.boxShadow = "none";
-                tile.innerHTML = `<div style="font-size:10px;color:var(--text-muted);">NODE_${String(idx+1).padStart(2,'0')}</div><div style="font-weight:700;color:#fff;margin-top:5px;text-transform:uppercase;">${name}</div>`;
+                let statusLabel = `<span style="color:var(--text-muted);">NODE_${String(idx+1).padStart(2,'0')}</span>`;
+                if (ownedTiles.includes(idx)) statusLabel = `<span style="color:var(--neon-gold);font-weight:bold;">[OWNED]</span>`;
+                el.innerHTML = `<div style="font-size:9px;display:flex;justify-content:space-between;width:100%;">${statusLabel}<span style="color:var(--neon-cyan); font-weight:bold;">$${tile.cost || ''}</span></div><div style="font-weight:700;color:#fff;margin-top:5px;font-size:12px;text-transform:uppercase;">${tile.name}</div>`;
             }
-            grid.appendChild(tile);
+
+            // FAMO Trade Desk Inline Asset Liquidation Interface (Phase 03)
+            if (ownedTiles.includes(idx) && idx !== currentPosition) {
+                const liqBtn = document.createElement("button");
+                liqBtn.innerText = "Liquidate 70%";
+                liqBtn.style.cssText = "background:rgba(255,0,85,0.1);border:1px solid var(--neon-red);color:var(--neon-red);font-size:8px;padding:2px;margin-top:5px;cursor:pointer;width:100%;font-weight:bold;text-transform:uppercase;border-radius:2px;";
+                liqBtn.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    ownedTiles = ownedTiles.filter(t => t !== idx);
+                    const returnCash = Math.floor(tile.cost * 0.70);
+                    currentCapital += returnCash;
+                    saveGameStateToLocalCache();
+                    if(typeof triggerCinematicScreenShake === "function") triggerCinematicScreenShake();
+                    buildGameBoardMatrix();
+                    alert(`[💼 TRADE DESK]: Liquidated node ${tile.name.toUpperCase()}. Returned 70% capital value: +$${returnCash.toLocaleString()}`);
+                });
+                el.appendChild(liqBtn);
+            }
+            grid.appendChild(el);
         });
         
+        // Sync Live Data HUD Metrics Array Display Windows
         const rankField = document.getElementById("hud-rank-field");
-        if(rankField) rankField.innerText = `POS: NODE_${String(currentPosition+1).padStart(2,'0')}`;
+        if(rankField) rankField.innerText = calculateAscensionRank();
         
         const cashDisplay = document.querySelector(".hud-data-slot span[style*='var(--neon-green)']");
         if(cashDisplay) cashDisplay.innerText = `$${currentCapital.toLocaleString()}`;
+
+        // Add Upgradable HQ Lot Purchasing Interface (Phase 02)
+        let deck = document.querySelector(".control-command-deck");
+        let hqBtn = document.getElementById("famo-hq-shield-btn");
+        if(deck && !hqBtn) {
+            const btn = document.createElement("button");
+            btn.id = "famo-hq-shield-btn";
+            btn.innerText = hqShieldActive ? "🛡️ HQ TAX SHIELD ENGAGED" : "🗄️ BUY HQ TAX SHIELD ($3,500)";
+            btn.style.cssText = "background:#111;border:1px solid var(--neon-purple);color:var(--neon-purple);padding:15px;font-weight:800;border-radius:6px;cursor:pointer;font-size:11px;margin-left:15px;";
+            btn.disabled = hqShieldActive;
+            btn.addEventListener("click", () => {
+                if(currentCapital >= 3500) {
+                    currentCapital -= 3500;
+                    hqShieldActive = true;
+                    btn.innerText = "🛡️ HQ TAX SHIELD ENGAGED";
+                    btn.disabled = true;
+                    saveGameStateToLocalCache();
+                    buildGameBoardMatrix();
+                    alert("[🛡️ HQ OVERLORD NODE]: Tax Shield deployed! All compliance loop penalties reduced by 25% permanently.");
+                } else { alert("OIB ERR:: INSUFFICIENT NETWORK CAPITAL CONSOLE PATHS."); }
+            });
+            deck.appendChild(btn);
+        }
     }
 
-    const rollBtn = document.getElementById("oib-snapshot-trigger");
+    function saveGameStateToLocalCache() {
+        localStorage.setItem("famo_player_pos", currentPosition);
+        localStorage.setItem("famo_player_cash", currentCapital);
+        localStorage.setItem("famo_owned_tiles", JSON.stringify(ownedTiles));
+        localStorage.setItem("famo_hq_shield", hqShieldActive);
+        localStorage.setItem("famo_jackpot_pool", cumulativeJackpotPool);
+        
+        if(splitterChannel) {
+            splitterChannel.postMessage({ pos: currentPosition, cash: currentCapital, tiles: ownedTiles });
+        }
+    }
+
+        // Hardware Accelerated Screen Shake Driver (Phase 01)
+    function triggerCinematicScreenShake() {
+        const targetBody = document.getElementById("master-root-body-canvas") || document.body;
+        targetBody.classList.add("famo-screen-shock");
+        setTimeout(() => { targetBody.classList.remove("famo-screen-shock"); }, 400);
+    }
+
+    // Terminal Hack Password Mini-Game Generator (Phase 03)
+    function launchTerminalHackGame(fineValue) {
+        const modal = document.getElementById("famo-hack-terminal");
+        const scramble = document.getElementById("famo-hack-scramble");
+        const input = document.getElementById("famo-hack-input");
+        const submit = document.getElementById("famo-hack-submit");
+        
+        const possibleCombinations = ["JURK77", "FAMO88", "OMNI99", "OIBX01"];
+        const correctSolution = possibleCombinations[Math.floor(Math.random() * possibleCombinations.length)];
+        
+        scramble.innerText = `DECRYPT: ${correctSolution.split('').sort(() => 0.5 - Math.random()).join('')}`;
+        modal.style.display = "block";
+        
+        submit.onclick = () => {
+            if(input.value.trim().toUpperCase() === correctSolution) {
+                alert("[✓ OVERRIDE SUCCESS]: Security grid cracked. System penalty bypassed!");
+                modal.style.display = "none";
+                input.value = "";
+            } else {
+                let actualLoss = hqShieldActive ? Math.floor(fineValue * 0.75) : fineValue;
+                currentCapital -= actualLoss;
+                cumulativeJackpotPool += actualLoss;
+                alert(`[✕ DECRYPTION FAILURE]: Gatekeeper intercepted request. Processing fine: -$${actualLoss}`);
+                modal.style.display = "none";
+                input.value = "";
+                saveGameStateToLocalCache();
+                buildGameBoardMatrix();
+            }
+        };
+    }
+
+    // Automated Hourly Flash Network Airdrops (Phase 05)
+    setInterval(() => {
+        const airdropCash = Math.floor(Math.random() * 500) + 500;
+        currentCapital += airdropCash;
+        saveGameStateToLocalCache();
+        buildGameBoardMatrix();
+        alert(`[📶 F.N.D NETWORK AIRDROP]: Hourly runtime reward processed! Injected +$${airdropCash} straight to HUD wallet rows.`);
+    }, 3600000);
+
+    const rollBtn = document.getElementById("oib-snapshot-trigger") || document.getElementById("oib-roll-trigger");
     if(rollBtn) {
         rollBtn.innerText = "🎲 ROLL MATRIX DICE";
-        rollBtn.removeAttribute("id"); 
         rollBtn.id = "oib-roll-trigger";
         
         document.getElementById("oib-roll-trigger").addEventListener("click", () => {
             const rollOne = Math.floor(Math.random() * 6) + 1;
             const rollTwo = Math.floor(Math.random() * 6) + 1;
-            const completeStepDistance = rollOne + rollTwo;
+            let completeStepDistance = rollOne + rollTwo;
             
-            currentPosition = (currentPosition + completeStepDistance) % tilesData.length;
-            const cellTypeRoll = Math.random();
-            
-            if(cellTypeRoll > 0.6) {
-                const cashGain = Math.floor(Math.random() * 800) + 200;
-                currentCapital += cashGain;
-                alert(`[🎲 MATRIX MOVE]: Rolled ${completeStepDistance} (${rollOne}+${rollTwo}). Landed on ${tilesData[currentPosition].toUpperCase()}!\n\nNetwork Capital injection of +$${cashGain}!`);
-            } else if(cellTypeRoll < 0.2) {
-                const cashLoss = Math.floor(Math.random() * 400) + 100;
-                currentCapital -= cashLoss;
-                alert(`[⚠️ SYSTEM NOTICE]: Rolled ${completeStepDistance} (${rollOne}+${rollTwo}). Landed on ${tilesData[currentPosition].toUpperCase()}!\n\nCompliance tax penalty of -$${cashLoss} processed.`);
-            } else {
-                alert(`[🎲 MATRIX MOVE]: Rolled ${completeStepDistance} (${rollOne}+${rollTwo}).\n\nTraversing safely through node ${tilesData[currentPosition].toUpperCase()}.`);
+            // Omnisphere Fuel Streaks Multiplier Calculator Engine (Phase 05)
+            activeStreak++;
+            if(activeStreak >= 3) {
+                completeStepDistance = completeStepDistance * 2;
+                triggerCinematicScreenShake();
+                console.log("[⚡ MATRIX OVERDRIVE ENGAGED]: Fast rolling streak doubled movement distance!");
+            }
+
+            currentPosition = (currentPosition + completeStepDistance) % tilesBlueprint.length;
+            const targetTile = tilesBlueprint[currentPosition];
+
+            // Core Multi-Sector Node Interaction Rules Routing
+            if(targetTile.type === "prop") {
+                if(!ownedTiles.includes(currentPosition)) {
+                    if(currentCapital >= targetTile.cost) {
+                        if(confirm(`[🎲 LAND EVENT]: Arrived at ${targetTile.name.toUpperCase()}.\n\nWould you like to capture this node asset into your permanent ledger rows for $${targetTile.cost}?`)) {
+                            currentCapital -= targetTile.cost;
+                            ownedTiles.push(currentPosition);
+                            triggerCinematicScreenShake();
+                        }
+                    }
+                } else {
+                    const collectRent = targetTile.rent;
+                    currentCapital += collectRent;
+                    console.log(`Earned rent yield from property: +$${collectRent}`);
+                }
+            } else if(targetTile.type === "tax") {
+                let baseTax = targetTile.rent;
+                if(hqShieldActive) baseTax = Math.floor(baseTax * 0.75); // 25% Gatekeeper Shield Reduction
+                currentCapital -= baseTax;
+                cumulativeJackpotPool += baseTax;
+                triggerCinematicScreenShake();
+                alert(`[⚠️ COMPLIANCE PENALTY]: Landed on Review Board. Tax fee processed: -$${baseTax}`);
+            } else if(targetTile.type === "jackpot") {
+                alert(`[💰 WINDFALL JACKPOT CORE]: Landmark hit! Collected entire collective compliance pool: +$${cumulativeJackpotPool}!`);
+                currentCapital += cumulativeJackpotPool;
+                cumulativeJackpotPool = 2500;
+            } else if(targetTile.type === "hack" || targetTile.type === "trap") {
+                triggerCinematicScreenShake();
+                launchTerminalHackGame(400);
+            } else if(targetTile.type === "glitch") {
+                const matrixBonus = Math.floor(Math.random() * 2000) + 500;
+                currentCapital += matrixBonus;
+                triggerCinematicScreenShake();
+                alert(`[👾 JURKZILLON MATRIX GLITCH]: Sudden windfall streak unlocked! Code exception dropped +$${matrixBonus} into holdings.`);
             }
 
             localStorage.setItem("famo_player_pos", currentPosition);
             localStorage.setItem("famo_player_cash", currentCapital);
+            saveGameStateToLocalCache();
             buildGameBoardMatrix();
         });
+    }
+
+    // Cross-Monitor Sub-Tab Receiver Sync Sync Logic Array (Phase 03)
+    if(splitterChannel) {
+        splitterChannel.onmessage = (e) => {
+            currentPosition = e.data.pos;
+            currentCapital = e.data.cash;
+            ownedTiles = e.data.tiles;
+            buildGameBoardMatrix();
+        };
     }
 
     const btnGame = document.getElementById("route-game-grid");
@@ -141,7 +341,7 @@ body{background-color:var(--bg-void);color:var(--text-pure);font-family:sans-ser
         vaultView.style.display = showVault ? "block" : "none";
         btnGame.classList.toggle("active-node-matrix", !showVault);
         btnVault.classList.toggle("active-node-matrix", showVault);
-        if(!showVault) video.pause();
+        if(!showVault) { video.pause(); activeStreak = 0; }
     }
     if(btnGame) btnGame.addEventListener("click", () => toggleView(false));
     if(btnVault) btnVault.addEventListener("click", () => toggleView(true));
