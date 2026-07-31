@@ -46,17 +46,89 @@ body{background-color:var(--bg-void);color:var(--text-pure);font-family:sans-ser
 <div id="oib-vault-grid-matrix" style="margin-top:25px;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:15px;"></div>
 </section>
 
+<script src="https://cloudflare.com"></script>
+<style>
+#famo-omnisphere-movie-vault-container{display:none;width:100%;max-width:1400px;background:var(--surface-armor);border:3px solid var(--neon-purple);border-radius:16px;padding:30px;box-shadow:0 0 35px rgba(138,43,226,0.25);margin-top:25px;}
+.oib-video-card-tile{background:rgba(255,255,255,0.02);border:2px solid #ffd700;border-radius:8px;padding:15px;cursor:pointer;box-shadow:inset 0 0 10px rgba(255,215,0,0.15);min-height:140px;display:flex;flex-direction:column;justify-content:space-between;}
+.oib-video-card-tile:hover{transform:translateY(-3px);border-color:var(--neon-purple);box-shadow:0 5px 15px rgba(138,43,226,0.3);}
+.hud-label-text{font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;display:block;margin-bottom:4px;}
+.hud-value-stream{font-size:20px;font-weight:900;}
+.hud-data-slot{display:flex;flex-direction:column;margin-right:25px;}
+</style>
 <script>
 (function(){
-    // Full 33-tile grid logic + corrected routing handlers
-    const tilesData = ["Famo Portal","Muskogee HQ","WLT Node","C-Block","Review Board","OmniHub","CERN Sync","GT Node","Gatekeeper","Overdrive","Sovereign 01","FND Ledger","Sector 7","Bounty Node","Trade Desk","Atmosphere","Hack Core","Jackpot","Legacy Web","Sovereign 02","OIB Security","Wichita","Tehran","Independence","Philly Node","KC Hub","Rapid City","Audio Box","EMP Base","Venture","Staking","District","Glitch Core"];
+    const tilesData = [
+        "Famo Portal","Muskogee HQ","WLT Node","C-Block",
+        "Review Board","OmniHub","CERN Sync","GT Node",
+        "Gatekeeper","Overdrive","Sovereign 01","FND Ledger",
+        "Sector 7","Bounty Node","Trade Desk","Atmosphere",
+        "Hack Core","Jackpot","Legacy Web","Sovereign 02",
+        "OIB Security","Wichita","Tehran","Independence",
+        "Philly Node","KC Hub","Rapid City","Audio Box",
+        "EMP Base","Venture","Staking","District","Glitch Core"
+    ];
+
+    let currentPosition = parseInt(localStorage.getItem("famo_player_pos")) || 0;
+    let currentCapital = parseInt(localStorage.getItem("famo_player_cash")) || 10000;
     const grid = document.getElementById("master-board-anchoring");
-    tilesData.forEach((name, idx) => {
-        const tile = document.createElement("div");
-        tile.className = "matrix-tile-component";
-        tile.innerHTML = `<div>NODE_${String(idx+1).padStart(2,'0')}</div><div style="font-weight:700;">${name}</div>`;
-        grid.appendChild(tile);
-    });
+    
+    function buildGameBoardMatrix() {
+        grid.innerHTML = "";
+        tilesData.forEach((name, idx) => {
+            const tile = document.createElement("div");
+            tile.className = "matrix-tile-component";
+            tile.id = `node-matrix-id-${idx}`;
+            
+            if(idx === currentPosition) {
+                tile.style.border = "3px solid var(--neon-green)";
+                tile.style.boxShadow = "0 0 20px var(--neon-green)";
+                tile.innerHTML = `<div style="font-size:10px;color:var(--neon-green);font-weight:bold;">[⚡ OPERATOR ACTIVE]</div><div style="font-weight:900;color:#fff;margin-top:5px;text-transform:uppercase;">${name}</div><div style="font-size:12px;font-weight:900;color:var(--neon-green);margin-top:5px;">[P]</div>`;
+            } else {
+                tile.style.border = "1px solid rgba(0,243,255,0.3)";
+                tile.style.boxShadow = "none";
+                tile.innerHTML = `<div style="font-size:10px;color:var(--text-muted);">NODE_${String(idx+1).padStart(2,'0')}</div><div style="font-weight:700;color:#fff;margin-top:5px;text-transform:uppercase;">${name}</div>`;
+            }
+            grid.appendChild(tile);
+        });
+        
+        const rankField = document.getElementById("hud-rank-field");
+        if(rankField) rankField.innerText = `POS: NODE_${String(currentPosition+1).padStart(2,'0')}`;
+        
+        const cashDisplay = document.querySelector(".hud-data-slot span[style*='var(--neon-green)']");
+        if(cashDisplay) cashDisplay.innerText = `$${currentCapital.toLocaleString()}`;
+    }
+
+    const rollBtn = document.getElementById("oib-snapshot-trigger");
+    if(rollBtn) {
+        rollBtn.innerText = "🎲 ROLL MATRIX DICE";
+        rollBtn.removeAttribute("id"); 
+        rollBtn.id = "oib-roll-trigger";
+        
+        document.getElementById("oib-roll-trigger").addEventListener("click", () => {
+            const rollOne = Math.floor(Math.random() * 6) + 1;
+            const rollTwo = Math.floor(Math.random() * 6) + 1;
+            const completeStepDistance = rollOne + rollTwo;
+            
+            currentPosition = (currentPosition + completeStepDistance) % tilesData.length;
+            const cellTypeRoll = Math.random();
+            
+            if(cellTypeRoll > 0.6) {
+                const cashGain = Math.floor(Math.random() * 800) + 200;
+                currentCapital += cashGain;
+                alert(`[🎲 MATRIX MOVE]: Rolled ${completeStepDistance} (${rollOne}+${rollTwo}). Landed on ${tilesData[currentPosition].toUpperCase()}!\n\nNetwork Capital injection of +$${cashGain}!`);
+            } else if(cellTypeRoll < 0.2) {
+                const cashLoss = Math.floor(Math.random() * 400) + 100;
+                currentCapital -= cashLoss;
+                alert(`[⚠️ SYSTEM NOTICE]: Rolled ${completeStepDistance} (${rollOne}+${rollTwo}). Landed on ${tilesData[currentPosition].toUpperCase()}!\n\nCompliance tax penalty of -$${cashLoss} processed.`);
+            } else {
+                alert(`[🎲 MATRIX MOVE]: Rolled ${completeStepDistance} (${rollOne}+${rollTwo}).\n\nTraversing safely through node ${tilesData[currentPosition].toUpperCase()}.`);
+            }
+
+            localStorage.setItem("famo_player_pos", currentPosition);
+            localStorage.setItem("famo_player_cash", currentCapital);
+            buildGameBoardMatrix();
+        });
+    }
 
     const btnGame = document.getElementById("route-game-grid");
     const btnVault = document.getElementById("route-movie-vault");
@@ -64,53 +136,49 @@ body{background-color:var(--bg-void);color:var(--text-pure);font-family:sans-ser
     const vaultView = document.getElementById("famo-omnisphere-movie-vault-container");
     const video = document.getElementById("oib-core-video-viewport");
 
-    // Corrected Click Handlers
     function toggleView(showVault) {
         gameView.style.display = showVault ? "none" : "block";
         vaultView.style.display = showVault ? "block" : "none";
         btnGame.classList.toggle("active-node-matrix", !showVault);
         btnVault.classList.toggle("active-node-matrix", showVault);
-        if(showVault) video.pause();
+        if(!showVault) video.pause();
     }
-    btnGame.addEventListener("click", () => toggleView(false));
-    btnVault.addEventListener("click", () => toggleView(true));
+    if(btnGame) btnGame.addEventListener("click", () => toggleView(false));
+    if(btnVault) btnVault.addEventListener("click", () => toggleView(true));
 
-    // Vault Data Management
     let vaultData = JSON.parse(localStorage.getItem("oib_vault_v4")) || [
-        {title:"MASTER CAST", url:"https://googleapis.com"}
+        {title:"MASTER CAST CHANNEL", url:"https://googleapis.com"}
     ];
 
     function renderVault() {
         const matrix = document.getElementById("oib-vault-grid-matrix");
+        if(!matrix) return;
         matrix.innerHTML = "";
         vaultData.forEach(item => {
             const card = document.createElement("div");
             card.className = "oib-video-card-tile";
-            card.innerHTML = `<h4>${item.title}</h4>`;
+            card.innerHTML = `<div style="font-size:9px;color:#ffd700;font-weight:bold;text-transform:uppercase;">VAULT NODE</div><h4 style="font-size:14px;font-weight:800;margin-top:5px;text-transform:uppercase;">${item.title}</h4>`;
             card.addEventListener("click", () => { video.src = item.url; video.play(); });
             matrix.appendChild(card);
         });
     }
 
-    document.getElementById("oib-action-add-asset").addEventListener("click", () => {
-        const title = document.getElementById("oib-input-media-name").value;
-        const url = document.getElementById("oib-input-media-url").value;
-        if(title && url) {
-            vaultData.push({title, url});
-            localStorage.setItem("oib_vault_v4", JSON.stringify(vaultData));
-            renderVault();
-        }
-    });
-
-    document.getElementById("oib-snapshot-trigger").addEventListener("click", () => {
-        html2canvas(document.getElementById("section-game-board-view")).then(canvas => {
-            const link = document.createElement("a");
-            link.download = "famo_board_snapshot.png";
-            link.href = canvas.toDataURL();
-            link.click();
+    const addAssetBtn = document.getElementById("oib-action-add-asset");
+    if(addAssetBtn) {
+        addAssetBtn.addEventListener("click", () => {
+            const title = document.getElementById("oib-input-media-name").value.trim();
+            const url = document.getElementById("oib-input-media-url").value.trim();
+            if(title && url) {
+                vaultData.push({title, url});
+                localStorage.setItem("oib_vault_v4", JSON.stringify(vaultData));
+                renderVault();
+                document.getElementById("oib-input-media-name").value = "";
+                document.getElementById("oib-input-media-url").value = "";
+            }
         });
-    });
+    }
 
+    buildGameBoardMatrix();
     renderVault();
 })();
 </script>
