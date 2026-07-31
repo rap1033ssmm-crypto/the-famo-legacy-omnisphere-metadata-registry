@@ -498,7 +498,136 @@ body{background-color:var(--bg-void);color:var(--text-pure);font-family:sans-ser
     setTimeout(refreshSimsPortfolioInterface, 500);
 })();
 </script>
+<!-- Load the Free Global PeerJS Browser-to-Browser Networking Engine -->
+<script src="https://unpkg.com"></script>
 
+<script>
+(function(){
+    let peerConnection = null;
+    let registeredConnectionsArray = [];
+    
+    // Inject the Multiplayer Ingress Interface Controller Buttons into your existing layout row
+    function injectMultiplayerControlTriggers() {
+        const boardSelectorNode = document.getElementById("famo-network-board-selector");
+        if(boardSelectorNode && !document.getElementById("famo-p2p-connect-btn")) {
+            const containerRow = boardSelectorNode.parentElement;
+            
+            // Create a Copy Link Action Button
+            const connectBtn = document.createElement("button");
+            connectBtn.id = "famo-p2p-connect-btn";
+            connectBtn.innerText = "🛰️ ACTIVATE LIVE NETWORK MESH";
+            connectBtn.style.cssText = "background:rgba(0,243,255,0.15); border:1px solid var(--neon-cyan); color:#fff; font-weight:800; padding:10px; border-radius:4px; cursor:pointer; font-size:10px; text-transform:uppercase; margin-left:10px;";
+            
+            connectBtn.addEventListener("click", initializePeerNetworkMeshBridge);
+            containerRow.appendChild(connectBtn);
+        }
+    }
+
+    // Initialize peer network connectivity mappings natively inside the client viewports
+    function initializePeerNetworkMeshBridge() {
+        const connectBtn = document.getElementById("famo-p2p-connect-btn");
+        if(connectBtn) connectBtn.innerText = "📡 ARMIN NETWORK NODES...";
+
+        // Establish an unthrottled serverless unique routing session id for the operator
+        const operatorSessionID = "FAMO_PARKER_" + Math.random().toString(36).substring(2, 7).toUpperCase();
+        
+        // Connect directly via standard open cloud signal gateways
+        peerConnection = new Peer(operatorSessionID);
+
+        peerConnection.on('open', (id) => {
+            if(connectBtn) connectBtn.innerText = "✓ MESH ONLINE (COPY INVITE)";
+            
+            // Generate a clean shareable game link string containing your current room proxy routing key
+            const dynamicInviteUrl = window.location.origin + window.location.pathname + "?network_node_target=" + id;
+            
+            // Change the click action behavior so tapping it instantly copies the multiplayer link
+            connectBtn.onclick = () => {
+                navigator.clipboard.writeText(dynamicInviteUrl).then(() => {
+                    alert(`[🌐 LIVE NETWORK ACTIVE]: Invite link copied to clipboard!\n\nSend this address link straight to your team on Facebook. When they open it, their browser will auto-sync onto your live Network Rankings Leaderboard.`);
+                });
+            };
+            
+            alert(`[🛰️ SYSTEM SECURED]: Serverless Peer Session generated.\n\nYOUR ID NODE: ${id}\n\nClick the button again to copy your direct multi-user invite link.`);
+        });
+
+        // Listen for internal inbound data requests arriving from outer connection tabs
+        peerConnection.on('connection', (conn) => {
+            conn.on('data', (payloadData) => {
+                if(payloadData && payloadData.type === "SYNC_METRICS") {
+                    updateGlobalLeaderboardRegistryWithLivePeerStats(payloadData);
+                }
+            });
+        });
+    }
+
+    function updateGlobalLeaderboardRegistryWithLivePeerStats(peerPayload) {
+        const leaderboard = document.getElementById("famo-leaderboard-grid-rows");
+        if(!leaderboard) return;
+
+        const owned = JSON.parse(localStorage.getItem("famo_owned_tiles")) || [];
+        const cash = parseInt(localStorage.getItem("famo_player_cash")) || 10000;
+        let userTotalWorth = cash + (owned.length * 1200);
+
+        // Fetch your local player metrics baseline state
+        let absoluteRankingsLineup = [
+            { name: "Operator Parker (You)", worth: userTotalWorth, color: "var(--neon-green)" }
+        ];
+
+        // Track and remove outdated metrics arriving from duplicate socket entries
+        registeredConnectionsArray = registeredConnectionsArray.filter(p => p.name !== peerPayload.name);
+        registeredConnectionsArray.push({ name: peerPayload.name, worth: peerPayload.netWorth, color: "#fff" });
+
+        // Merge incoming browser arrays straight into your living visual queue roster
+        absoluteRankingsLineup = absoluteRankingsLineup.concat(registeredConnectionsArray);
+        absoluteRankingsLineup.sort((a, b) => b.worth - a.worth);
+
+        leaderboard.innerHTML = "";
+        absoluteRankingsLineup.forEach((player, index) => {
+            leaderboard.innerHTML += `<div style="display:flex; justify-content:space-between; background:rgba(255,255,255,0.01); padding:8px; border-radius:4px; color:${player.color}; border-left:3px solid ${index === 0 ? 'var(--neon-gold)' : 'transparent'}"><span>#${index + 1} ${player.name}</span><span style="font-weight:900;">$${player.worth.toLocaleString()}</span></div>`;
+        });
+    }
+
+    // Auto Dispatch Outbound Broadcast packets to the host node every time a dice roll executes
+    function broadcastLocalStatsToNetworkHost() {
+        const queryParameters = new URLSearchParams(window.location.search);
+        const hostTargetID = queryParameters.get("network_node_target");
+        
+        if (hostTargetID) {
+            const clientSessionID = "PEER_USER_" + Math.random().toString(36).substring(2, 6).toUpperCase();
+            const clientPeerNode = new Peer(clientSessionID);
+
+            clientPeerNode.on('open', () => {
+                const outboundConnectionDataLink = clientPeerNode.connect(hostTargetID);
+                outboundConnectionDataLink.on('open', () => {
+                    const localOwned = JSON.parse(localStorage.getItem("famo_owned_tiles")) || [];
+                    const localCash = parseInt(localStorage.getItem("famo_player_cash")) || 10000;
+                    let localNetWorthCalculated = localCash + (localOwned.length * 1200);
+
+                    // Send metric bundle data packets straight across the peer-to-peer lane
+                    outboundConnectionDataLink.send({
+                        type: "SYNC_METRICS",
+                        name: "Guest Node_" + clientSessionID.split("_")[2],
+                        netWorth: localNetWorthCalculated
+                    });
+                });
+            });
+        }
+    }
+
+    // Bind structural background listener observers to track current gameplay rolling metrics
+    document.addEventListener("click", function(eventObject) {
+        if(eventObject.target && (eventObject.target.id === "oib-roll-trigger" || eventObject.target.id === "famo-hq-shield-btn")) {
+            setTimeout(broadcastLocalStatsToNetworkHost, 400);
+        }
+    });
+
+    // Boot system scripts safely into the runtime stack parameters
+    setTimeout(() => {
+        injectMultiplayerControlTriggers();
+        broadcastLocalStatsToNetworkHost();
+    }, 1200);
+})();
+</script>
 </body>
 </html>
 
