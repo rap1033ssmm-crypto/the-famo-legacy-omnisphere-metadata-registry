@@ -1,113 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>JURKZILLON MATRIX: THE BOARD GAME</title>
-  <style>
-    body { background: #050505; color: #fff; font-family: sans-serif; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
-    h1 { color: #0056b3; text-shadow: 0 0 10px rgba(0,86,179,0.5); font-size: 24px; margin-bottom: 5px; }
-    .subtitle { color: #666; font-family: monospace; font-size: 11px; margin-bottom: 20px; text-transform: uppercase; }
-    #board-wrapper { display: flex; flex-direction: column; align-items: center; gap: 20px; max-width: 600px; width: 100%; }
-    .board-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(4, 1fr); gap: 10px; width: 100%; aspect-ratio: 1; background: #111; padding: 15px; border-radius: 12px; border: 2px solid #222; }
-    .cell { background: #1a1a1a; border: 1px solid #333; border-radius: 6px; padding: 8px; display: flex; flex-direction: column; justify-content: space-between; font-size: 11px; position: relative; transition: all 0.3s; }
-    .cell-title { font-weight: bold; color: #aaa; text-transform: uppercase; font-size: 9px; word-break: break-word; }
-    .cell-owner { font-size: 9px; color: #555; font-family: monospace; margin-top: 5px; }
-    .corner { background: #222; border-color: #444; }
-    .player-token { position: absolute; bottom: 8px; right: 8px; width: 14px; height: 14px; background: #ffc107; border-radius: 50%; box-shadow: 0 0 8px #ffc107; display: none; }
-    .active-token { display: block; animation: pulse 1s infinite alternate; }
-    .control-panel { background: #111; width: 100%; padding: 15px; border-radius: 12px; border: 1px solid #222; display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; }
-    .btn { background: #0056b3; border: none; color: #fff; padding: 10px 20px; border-radius: 6px; font-weight: bold; cursor: pointer; text-transform: uppercase; font-size: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
-    .btn:hover { background: #004494; }
-    .status-box { font-family: monospace; font-size: 12px; color: #28a745; }
-    @keyframes pulse { from { transform: scale(1); } to { transform: scale(1.2); } }
-  </style>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>JURKZILLON MATRIX MASTER CORE</title>
+<script src="https://cloudflare.com"></script>
+<style>
+:root{--bg-void:#030305;--surface-armor:#08090f;--neon-cyan:#00f3ff;--neon-green:#39ff14;--neon-purple:#8a2be2;--text-pure:#ffffff;--text-muted:#8a92b2;}
+body{background-color:var(--bg-void);color:var(--text-pure);font-family:sans-serif;padding:20px;display:flex;flex-direction:column;align-items:center;}
+.master-routing-switchboard{width:100%;max-width:1400px;background:var(--surface-armor);border:2px solid rgba(138,43,226,0.4);border-radius:12px;padding:10px;display:flex;gap:15px;margin-bottom:25px;}
+.switchboard-toggle-btn{flex:1;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);color:var(--text-muted);padding:15px;font-weight:800;text-transform:uppercase;border-radius:8px;cursor:pointer;font-size:13px;letter-spacing:1px;}
+.switchboard-toggle-btn.active-node-matrix{color:#fff;background:linear-gradient(135deg,var(--neon-purple),#4b0082);border-color:var(--neon-purple);box-shadow:0 0 15px rgba(138,43,226,0.4);}
+.matrix-board-wrapper{width:100%;max-width:1400px;background:var(--surface-armor);border:3px solid var(--neon-cyan);border-radius:12px;padding:20px;}
+.board-grid-layout{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;}
+.matrix-tile-component{background:rgba(8,9,15,0.65);border:1px solid rgba(0,243,255,0.3);border-radius:8px;padding:12px;min-height:120px;display:flex;flex-direction:column;justify-content:space-between;}
+.control-command-deck{width:100%;max-width:1400px;background:var(--surface-armor);border:2px solid rgba(255,255,255,0.1);border-radius:8px;padding:20px;display:flex;justify-content:space-between;margin-top:25px;align-items:center;}
+#famo-omnisphere-movie-vault-container{display:none;width:100%;max-width:1400px;background:var(--surface-armor);border:3px solid var(--neon-purple);border-radius:16px;padding:30px;box-shadow:0 0 35px rgba(138,43,226,0.25);}
+.oib-video-card-tile{background:rgba(255,255,255,0.02);border:2px solid #ffd700;border-radius:8px;padding:15px;cursor:pointer;min-height:140px;display:flex;flex-direction:column;justify-content:space-between;}
+.hud-value-stream{font-size:22px;font-weight:900;color:var(--text-pure);}
+.hud-data-slot{display:flex;flex-direction:column;margin-right:25px;}
+</style>
 </head>
 <body>
 
-  <h1>JURKZILLON MATRIX</h1>
-  <div class="subtitle">Sovereign Asset Acquisition Loop // F.N.D Network Control</div>
+<div class="master-routing-switchboard">
+<button class="switchboard-toggle-btn active-node-matrix" id="route-game-grid">🎮 GAME MATRIX GRID</button>
+<button class="switchboard-toggle-btn" id="route-movie-vault">🎬 OMNISPHERE MOVIE VAULT</button>
+</div>
 
-  <div id="board-wrapper">
-    <div class="control-panel">
-      <div>
-        <div class="status-box" id="hud-capital">Capital: $1,500 WM</div>
-        <div style="font-size: 11px; color: #aaa; margin-top: 3px;" id="game-log">Roll dice to start securing your network.</div>
-      </div>
-      <button class="btn" onclick="rollDice()">Roll Dice</button>
-    </div>
+<div id="section-game-board-view" style="width:100%; max-width:1400px;">
+<div class="matrix-board-wrapper"><div class="board-grid-layout" id="master-board-anchoring"></div></div>
+<div class="control-command-deck">
+<div style="display:flex;"><div class="hud-data-slot"><span style="font-size:10px;color:var(--text-muted);">OPERATOR</span><span class="hud-value-stream">PARKER</span></div>
+<div class="hud-data-slot"><span style="font-size:10px;color:var(--text-muted);">CAPITAL</span><span class="hud-value-stream" style="color:var(--neon-green)">$10,000</span></div></div>
+<button id="oib-snapshot-trigger" style="background:linear-gradient(135deg,#00f3ff,#0056b3);border:none;color:#fff;padding:15px 30px;font-weight:800;border-radius:6px;cursor:pointer;">Snapshot</button>
+</div>
+</div>
 
-    <div class="board-grid">
-      <div class="cell corner" id="space-0"><span class="cell-title">JURK-PORTAL</span><div class="player-token active-token" id="token-0"></div></div>
-      <div class="cell" id="space-1"><span class="cell-title">WLTP+APP</span><div class="cell-owner" id="owner-1">Cost: $200</div><div class="player-token" id="token-1"></div></div>
-      <div class="cell" id="space-2"><span class="cell-title">WLT+MAG</span><div class="cell-owner" id="owner-2">Cost: $240</div><div class="player-token" id="token-2"></div></div>
-      <div class="cell corner" id="space-3"><span class="cell-title">GATEKEEPER DETENTION</span><div class="player-token" id="token-3"></div></div>
-      
-      <div class="cell" id="space-11"><span class="cell-title">JURKKING CORES</span><div class="cell-owner" id="owner-11">Cost: $400</div><div class="player-token" id="token-11"></div></div>
-      <div style="visibility: hidden;"></div><div style="visibility: hidden;"></div>
-      <div class="cell" id="space-4"><span class="cell-title">MONEY BOYS MUSIC</span><div class="cell-owner" id="owner-4">Cost: $300</div><div class="player-token" id="token-4"></div></div>
-      
-      <div class="cell" id="space-10"><span class="cell-title">JURK+NATION LOGS</span><div class="cell-owner" id="owner-10">Cost: $350</div><div class="player-token" id="token-10"></div></div>
-      <div style="visibility: hidden;"></div><div style="visibility: hidden;"></div>
-      <div class="cell" id="space-5"><span class="cell-title">F.N.D INFRASTRUCTURE</span><div class="cell-owner" id="owner-5">Cost: $320</div><div class="player-token" id="token-5"></div></div>
-      
-      <div class="cell corner" id="space-9"><span class="cell-title">MANUAL REVIEW BOARD</span><div class="player-token" id="token-9"></div></div>
-      <div class="cell" id="space-8"><span class="cell-title">1033 SOUTH C</span><div class="cell-owner" id="owner-8">Cost: $500</div><div class="player-token" id="token-8"></div></div>
-      <div class="cell" id="space-7"><span class="cell-title">DEEPER ENT. #HRIS</span><div class="cell-owner" id="owner-7">Cost: $450</div><div class="player-token" id="token-7"></div></div>
-      <div class="cell corner" id="space-6"><span class="cell-title">WLTP HEADQUARTERS</span><div class="player-token" id="token-6"></div></div>
-    </div>
-  </div>
+<section id="famo-omnisphere-movie-vault-container">
+<h2 style="color:var(--neon-purple);">THE MOVIE VAULT</h2>
+<video id="oib-core-video-viewport" style="width:100%;max-height:550px;background:#000;border-radius:8px;" controls></video>
+<div style="margin-top:20px;background:rgba(0,0,0,0.3);padding:20px;border-radius:8px;">
+<input type="text" id="oib-input-media-name" placeholder="Media Name" style="padding:10px;width:40%;">
+<input type="url" id="oib-input-media-url" placeholder="Video URL" style="padding:10px;width:40%;">
+<button id="oib-action-add-asset" style="padding:10px;margin-top:10px;">Commit</button>
+</div>
+<div id="oib-vault-grid-matrix" style="margin-top:25px;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:15px;"></div>
+</section>
 
-  <script>
-    let playerPos = 0;
-    let playerCapital = 1500;
-    
-    const spaceData = {
-      0: { name: "JURK-PORTAL", cost: 0, owned: true, type: "go" },
-      1: { name: "WLTP+APP", cost: 200, owned: false, type: "prop" },
-      2: { name: "WLT+MAG", cost: 240, owned: false, type: "prop" },
-      3: { name: "GATEKEEPER DETENTION", cost: 0, owned: true, type: "jail" },
-      4: { name: "MONEY BOYS MUSIC MANAGEMENT", cost: 300, owned: false, type: "prop" },
-      5: { name: "F.N.D INFRASTRUCTURE", cost: 320, owned: false, type: "prop" },
-      6: { name: "WLTP HEADQUARTERS", cost: 0, owned: true, type: "parking" },
-      7: { name: "DEEPER ENTERTAINMENT WLTP #HRIS", cost: 450, owned: false, type: "prop" },
-      8: { name: "1033 SOUTH C", cost: 500, owned: false, type: "prop" },
-      9: { name: "MANUAL REVIEW BOARD", cost: 0, owned: true, type: "tax" },
-     10: { name: "JURK+NATION LOGS", cost: 350, owned: false, type: "prop" },
-     11: { name: "JURKKING CORES", cost: 400, owned: false, type: "prop" }
-    };
+<script>
+(function(){
+    // Full 33-tile grid logic + corrected routing handlers
+    const tilesData = ["Famo Portal","Muskogee HQ","WLT Node","C-Block","Review Board","OmniHub","CERN Sync","GT Node","Gatekeeper","Overdrive","Sovereign 01","FND Ledger","Sector 7","Bounty Node","Trade Desk","Atmosphere","Hack Core","Jackpot","Legacy Web","Sovereign 02","OIB Security","Wichita","Tehran","Independence","Philly Node","KC Hub","Rapid City","Audio Box","EMP Base","Venture","Staking","District","Glitch Core"];
+    const grid = document.getElementById("master-board-anchoring");
+    tilesData.forEach((name, idx) => {
+        const tile = document.createElement("div");
+        tile.className = "matrix-tile-component";
+        tile.innerHTML = `<div>NODE_${String(idx+1).padStart(2,'0')}</div><div style="font-weight:700;">${name}</div>`;
+        grid.appendChild(tile);
+    });
 
-    function rollDice() {
-      document.getElementById(`token-${playerPos}`).classList.remove('active-token');
-      const roll = Math.floor(Math.random() * 3) + 1;
-      playerPos = (playerPos + roll) % 12;
-      document.getElementById(`token-${playerPos}`).classList.add('active-token');
-      
-      let currentSpace = spaceData[playerPos];
-      let logMsg = `You rolled a ${roll} and landed on ${currentSpace.name}. `;
-      
-      if (playerPos === 0) {
-        playerCapital += 200;
-        logMsg += "Passed the JURK-PORTAL! Collected $200 Network Capital.";
-      } else if (playerPos === 9) {
-        playerCapital -= 150;
-        logMsg += "Caught by Manual Review Board. Paid $150 compliance penalty.";
-      } else if (currentSpace.type === "prop" && !currentSpace.owned) {
-        if (playerCapital >= currentSpace.cost) {
-          playerCapital -= currentSpace.cost;
-          currentSpace.owned = true;
-          document.getElementById(`owner-${playerPos}`).innerText = "OWNED BY YOU";
-          document.getElementById(`owner-${playerPos}`).style.color = "#28a745";
-          logMsg += `Secured and owned for $${currentSpace.cost}!`;
-        } else {
-          logMsg += "Insufficient capital to buy this infrastructure asset.";
-        }
-      } else if (currentSpace.type === "prop" && currentSpace.owned) {
-        logMsg += "This node asset is fully encrypted and operational.";
-      }
-      
-      document.getElementById("hud-capital").innerText = `Capital: $${playerCapital} WM`;
-      document.getElementById("game-log").innerText = logMsg; 
+    const btnGame = document.getElementById("route-game-grid");
+    const btnVault = document.getElementById("route-movie-vault");
+    const gameView = document.getElementById("section-game-board-view");
+    const vaultView = document.getElementById("famo-omnisphere-movie-vault-container");
+    const video = document.getElementById("oib-core-video-viewport");
+
+    // Corrected Click Handlers
+    function toggleView(showVault) {
+        gameView.style.display = showVault ? "none" : "block";
+        vaultView.style.display = showVault ? "block" : "none";
+        btnGame.classList.toggle("active-node-matrix", !showVault);
+        btnVault.classList.toggle("active-node-matrix", showVault);
+        if(showVault) video.pause();
     }
-  </script>
+    btnGame.addEventListener("click", () => toggleView(false));
+    btnVault.addEventListener("click", () => toggleView(true));
+
+    // Vault Data Management
+    let vaultData = JSON.parse(localStorage.getItem("oib_vault_v4")) || [
+        {title:"MASTER CAST", url:"https://googleapis.com"}
+    ];
+
+    function renderVault() {
+        const matrix = document.getElementById("oib-vault-grid-matrix");
+        matrix.innerHTML = "";
+        vaultData.forEach(item => {
+            const card = document.createElement("div");
+            card.className = "oib-video-card-tile";
+            card.innerHTML = `<h4>${item.title}</h4>`;
+            card.addEventListener("click", () => { video.src = item.url; video.play(); });
+            matrix.appendChild(card);
+        });
+    }
+
+    document.getElementById("oib-action-add-asset").addEventListener("click", () => {
+        const title = document.getElementById("oib-input-media-name").value;
+        const url = document.getElementById("oib-input-media-url").value;
+        if(title && url) {
+            vaultData.push({title, url});
+            localStorage.setItem("oib_vault_v4", JSON.stringify(vaultData));
+            renderVault();
+        }
+    });
+
+    document.getElementById("oib-snapshot-trigger").addEventListener("click", () => {
+        html2canvas(document.getElementById("section-game-board-view")).then(canvas => {
+            const link = document.createElement("a");
+            link.download = "famo_board_snapshot.png";
+            link.href = canvas.toDataURL();
+            link.click();
+        });
+    });
+
+    renderVault();
+})();
+</script>
 </body>
 </html>
