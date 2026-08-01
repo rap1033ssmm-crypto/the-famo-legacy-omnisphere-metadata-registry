@@ -667,8 +667,52 @@ console.log("[System Keys] Automated UUID Engine loaded. Ready for instant membe
 </div>
 <script>
 (function() {
-    // Logic handles audio start, stop, station switching, and search functionality
-    // See code block for full implementation
+  <script>
+// ====================================================================
+// CORE WIRE: EMERGENCY MULTI-STATION SCANNER ENGINE LOGIC
+// ====================================================================
+(function() {
+    const startBtn = document.getElementById('btn-scanner-start');
+    const stopBtn = document.getElementById('btn-scanner-stop');
+    const dialControl = document.getElementById('scanner-station-dial');
+    const audioEngine = document.getElementById('scanner-audio-engine');
+    const consoleStatus = document.getElementById('scanner-console-status');
+
+    if (!startBtn || !audioEngine) return;
+
+    // Command 1: Engage Direct Audio Stream Pipe
+    startBtn.onclick = function() {
+        const targetStream = dialControl ? dialControl.value : "https://walmradio.com";
+        audioEngine.src = targetStream;
+        audioEngine.volume = 1.0;
+        
+        audioEngine.play()
+            .then(() => {
+                if (consoleStatus) consoleStatus.innerText = "Status: CONNECTED // CORES ACTIVE";
+            })
+            .catch(err => {
+                if (consoleStatus) consoleStatus.innerText = "Status: LINK DROPPED // RETRYING";
+            });
+    };
+
+    // Command 2: Mute Stream Wave Instantly
+    stopBtn.onclick = function() {
+        audioEngine.pause();
+        audioEngine.src = "";
+        if (consoleStatus) consoleStatus.innerText = "Status: STANDBY // SIGNAL MUTED";
+    };
+
+    // Command 3: Auto-Switch Streams when Dial Changes
+    if (dialControl) {
+        dialControl.onchange = function() {
+            if (!audioEngine.paused) {
+                startBtn.onclick();
+            }
+        };
+    }
+})();
+// ====================================================================
+</script>
 })();
 </script>
 </body>
