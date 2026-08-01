@@ -235,6 +235,46 @@
     const readerPlay = document.getElementById('btn-play-audio');
     const readerStop = document.getElementById('btn-stop-audio');
     const articleContent = document.getElementById('famo-article-content');
+// ====================================================================
+// INJECTED: UPSTREAM SCANNER HOOK // LEDGER SYNCHRONIZATION
+// ====================================================================
+async function syncScannerLedger() {
+    const tickerState = document.getElementById('ticker-network-state');
+    const tickerMetrics = document.getElementById('ticker-live-metrics');
+    
+    try {
+        // Fetch the raw Markdown ledger file updated by GitHub Actions
+        const response = await fetch('transcripts_ledger/system_chatter_log.md');
+        if (!response.ok) throw new Error("Ledger standby");
+        
+        const text = await response.text();
+        
+        // Extract the most recent decoded message from the ledger
+        const lines = text.split('\n');
+        let latestChatter = "Awaiting priority airwave transmissions...";
+        
+        for (let i = lines.length - 1; i >= 0; i--) {
+            if (lines[i].includes('* **Decoded Text**:')) {
+                latestChatter = lines[i].replace('* **Decoded Text**:', '').replace(/"/g, '').trim();
+                break;
+            }
+        }
+        
+        // Update the user interface displays live
+        if(tickerState) tickerState.innerText = "ONLINE // LIVE FEED SYNCHRONIZED";
+        if(tickerState) tickerState.style.color = "#00ff66";
+        if(tickerMetrics) tickerMetrics.innerText = `LATEST DISPATCH: ${latestChatter}`;
+        
+    } catch (error) {
+        if(tickerState) tickerState.innerText = "STANDBY // MONITORING PIPELINE";
+        if(tickerMetrics) tickerMetrics.innerText = "STREAM METRIC EMISSION: WAITING FOR INGESTION PACKETS";
+    }
+}
+
+// Execute connection instantly and sweep for updates every 10 seconds
+syncScannerLedger();
+setInterval(syncScannerLedger, 10000);
+// ====================================================================
 
     let eqInterval = null;
     let isLive = false;
