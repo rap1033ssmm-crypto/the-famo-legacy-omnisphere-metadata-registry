@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>THE LIFE CHRONICLES: MAGAZINE PORTAL</title>
+<style>
+:root{--bg-void:#030305;--surface-armor:#08090f;--neon-cyan:#00f3ff;--neon-purple:#8a2be2;--neon-green:#39ff14;--text-pure:#ffffff;--text-muted:#8a92b2;}
+body{background-color:var(--bg-void);color:var(--text-pure);font-family:'Segoe UI',Roboto,sans-serif;padding:20px;display:flex;flex-direction:column;align-items:center;margin:0;}
+.master-header{width:100%;max-width:1400px;background:var(--surface-armor);border:2px solid rgba(138,43,226,0.3);border-radius:12px;padding:20px;margin-bottom:25px;text-align:center;box-shadow:0 0 20px rgba(138,43,226,0.1);}
+.story-container-chassis{width:100%;max-width:1400px;background:var(--surface-armor);border:3px solid var(--neon-purple);border-radius:12px;padding:25px;box-shadow:0 0 25px rgba(138,43,226,0.15);}
+.input-panel{background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.05);padding:20px;border-radius:8px;display:grid;gap:15px;margin-bottom:25px;}
+.input-field{width:100%;padding:12px;background:#111;border:1px solid #333;color:#fff;border-radius:4px;font-size:13px;box-sizing:border-box;font-family:sans-serif;outline:none;}
+.input-field:focus{border-color:var(--neon-cyan);}
+.commit-btn{background:linear-gradient(135deg,#8a2be2,#4b0082);border:none;color:#fff;padding:12px;font-weight:800;border-radius:4px;cursor:pointer;text-transform:uppercase;font-size:11px;letter-spacing:1px;transition:all 0.3s;}
+.commit-btn:hover{box-shadow:0 0 15px var(--neon-purple);transform:translateY(-1px);}
+.story-card{background:rgba(255,255,255,0.02);border:1px solid rgba(138,43,226,0.3);border-radius:6px;padding:20px;display:flex;flex-direction:column;gap:12px;margin-bottom:15px;}
+.tts-btn{background:rgba(0,243,255,0.1);border:1px solid #00f3ff;color:#00f3ff;font-size:10px;padding:8px 14px;font-weight:bold;border-radius:4px;cursor:pointer;text-transform:uppercase;transition:all 0.2s;}
+</style>
+</head>
+<body>
+
+    <!-- 🪐 PORTAL HEADER PANEL -->
+    <header class="master-header">
+        <h1 style="font-size:26px;font-weight:900;letter-spacing:1px;background:linear-gradient(135deg,var(--neon-cyan),#0056b3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:0;">📖 THE LIFE CHRONICLES: NARRATIVE INGRESS</h1>
+        <p style="font-size:11px;color:var(--text-muted);text-transform:uppercase;margin:5px 0 0 0;letter-spacing:1px;">Writers Legacy Magazine Engine // Autonomous Audio Sync Node</p>
+    </header>
+
+    <!-- 🛠️ MAIN APPLICATION VIEWPORT CHASSIS -->
+    <main class="story-container-chassis">
+        
+        <!-- STORY INGRESS UPLOAD FORM COMPONENT -->
+        <div class="input-panel">
+            <div style="display:flex; gap:15px; flex-wrap:wrap;">
+                <input type="text" id="story-title" class="input-field" placeholder="Story Title (e.g., Danny 'Too Good' Parklam Vol 1)" style="flex:1; min-width:280px;">
+                <input type="url" id="story-audio-url" class="input-field" placeholder="Paste Audio Narration Link (.mp3/.mp4/.wav)" style="flex:1; min-width:280px;">
+            </div>
+            <textarea id="story-text" class="input-field" placeholder="Paste your 1-page story narrative text here..." style="height:140px; resize:vertical; line-height:1.5;"></textarea>
+            <button id="story-commit-trigger" class="commit-btn">Commit Narrative Asset to Registry</button>
+        </div>
+
+        <!-- LIVE CHAPTER STREAM DISPATCH CHANNELS -->
+        <div style="background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.05); padding:20px; border-radius:8px;">
+            <span style="font-size:11px; color:#ffd700; font-weight:bold; letter-spacing:1px; text-transform:uppercase; display:block; margin-bottom:15px;">➤ REGISTERED CHRONICLE CHANNELS</span>
+            <div id="story-feed-wrapper"></div>
+        </div>
+    </main>
+
+<script>
+(function(){
+    // Baseline Core Ledger Array containing the baseline Danny Parklam Chapter Node
+    let storyDataCache = JSON.parse(localStorage.getItem("famo_chronicles_v1")) || [
+        {
+            title: "DANNY 'TOO GOOD' PARKLAM: CLUB NEW TAVERN",
+            text: "Danny 'Too Good' Parklam stood inside the VIP room of Club New Tavern. Beside him stood Mr. Dream, his trusted right-hand operator, and Queen AB, managing the connection web. The Head Boss had converted this venture into an absolute crusade to secure a lasting heritage. La Calle wanted answers, but Danny was too good to leave loose tracks.",
+            audioUrl: "https://soundhelix.com"
+        }
+    ];
+
+    const wrapper = document.getElementById("story-feed-wrapper");
+
+    // Render loop system to output text stories cleanly to the screen chassis
+    function renderChroniclesFeed() {
+        if(!wrapper) return;
+        wrapper.innerHTML = "";
+
+        storyDataCache.forEach((story, idx) => {
+            const card = document.createElement("div");
+            card.className = "story-card";
+            
+            // Build the narration player box if an audio URL link was supplied
+            let audioBlock = "";
+            if(story.audioUrl && story.audioUrl.trim() !== "") {
+                audioBlock = `
+                    <div style="margin-top:5px; background:rgba(0,0,0,0.4); padding:12px; border-radius:4px; border:1px solid rgba(0,243,255,0.1);">
+                        <span style="font-size:9px; color:#00f3ff; font-weight:bold; text-transform:uppercase; display:block; margin-bottom:6px; letter-spacing:1px;">🎙️ OFFICIAL AUDIO NARRATION DETECTED</span>
+                        <audio src="${story.audioUrl}" controls style="width:100%; height:32px;"></audio>
+                    </div>
+                `;
+            }
+
+            card.innerHTML = `
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:10px;">
+                    <h4 style="margin:0; font-size:15px; font-weight:800; color:#fff; letter-spacing:0.5px; text-transform:uppercase;">${story.title}</h4>
+                    <button class="tts-run-btn" data-idx="${idx}">🗣️ Listen via Urban Voice</button>
+                </div>
+                <p style="font-size:13.5px; color:#8a92b2; margin:0; line-height:1.6; white-space:pre-wrap;">${story.text}</p>
+                ${audioBlock}
+            `;
+            wrapper.appendChild(card);
+        });
+
+        // Set layout design styles and triggers for speech synthesis buttons
+        document.querySelectorAll(".tts-run-btn").forEach(btn => {
+            btn.className = "tts-btn";
+            btn.addEventListener("click", function() {
+                const idx = this.getAttribute("data-idx");
+                executeUrbanVoiceSynthesizer(storyDataCache[idx].text, this);
+            });
+        });
+    }
+
+    // HTML5 Hardware Accelerated Voice Speech Synthesis Driver
+    let speechUtteranceInstance = null;
+    function executeUrbanVoiceSynthesizer(text, btn) {
+        if('speechSynthesis' in window) {
+            if(window.speechSynthesis.speaking) {
+                window.speechSynthesis.cancel();
+                btn.innerText = "🗣️ Listen via Urban Voice";
+                btn.style.background = "rgba(0,243,255,0.1)";
+                btn.style.borderColor = "#00f3ff";
+                btn.style.color = "#00f3ff";
+                return;
+            }
+
+            speechUtteranceInstance = new SpeechSynthesisUtterance(text);
+            const systemVoicesArray = window.speechSynthesis.getVoices();
+            
+            // Filters device hardware options to map a deep voice profile
+            let voiceMatch = systemVoicesArray.find(v => v.name.includes("Google US English") || v.name.includes("Male") || v.lang === "en-US");
+            
+            if(voiceMatch) speechUtteranceInstance.voice = voiceMatch;
+            speechUtteranceInstance.rate = 0.92; // Rhythmic baseline speed deceleration
+            speechUtteranceInstance.pitch = 0.82; // Modulates tone hertz output downward for deep voice delivery
+            
+            speechUtteranceInstance.onstart = () => {
+                btn.innerText = "🛑 Stop Narration Voice";
+                btn.style.background = "rgba(255,0,85,0.15)";
+                btn.style.borderColor = "#ff0055";
+                btn.style.color = "#ff0055";
+            };
+
+            speechUtteranceInstance.onend = () => {
+                btn.innerText = "🗣️ Listen via Urban Voice";
+                btn.style.background = "rgba(0,243,255,0.1)";
+                btn.style.borderColor = "#00f3ff";
+                btn.style.color = "#00f3ff";
+            };
+
+            window.speechSynthesis.speak(speechUtteranceInstance);
+        } else { alert("SPEECH TIMEOUT:: NATIVE VOICEOVER SYNTH NOT ARMED IN THIS TERMINAL VIEWPORT."); }
+    }
+
+    // Ingress input listener form logic bindings
+    const commit = document.getElementById("story-commit-trigger");
+    if(commit) {
+        commit.addEventListener("click", () => {
+            const title = document.getElementById("story-title").value.trim();
+            const url = document.getElementById("story-audio-url").value.trim();
+            const text = document.getElementById("story-text").value.trim();
+
+            if(title && text) {
+                storyDataCache.push({ title, text, audioUrl: url });
+                localStorage.setItem("famo_chronicles_v1", JSON.stringify(storyDataCache));
+                renderChroniclesFeed();
+                
+                // Clear input rows out upon submission capture success
+                document.getElementById("story-title").value = "";
+                document.getElementById("story-audio-url").value = "";
+                document.getElementById("story-text").value = "";
+alert("[✓ CHRONICLE LOCKED]: Narrative chapter successfully anchored into system storage registries!");} else { alert("OIB ERR:: TITLE AND TEXT BOX ENTRIES CANNOT BE LEFT VACANT."); }});}// Pre-load audio synthesizer options into active hardware queuesif(window.speechSynthesis) window.speechSynthesis.getVoices();setTimeout(renderChroniclesFeed, 500);})();
