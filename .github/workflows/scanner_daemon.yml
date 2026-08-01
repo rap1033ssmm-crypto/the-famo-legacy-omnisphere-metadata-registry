@@ -1,0 +1,37 @@
+name: Upstream Scanner Daemon
+
+on:
+  # Allows you to trigger the scanner manually with a single click from your actions tab
+  workflow_dispatch:
+  # Triggers the scanner automatically on a repeating hourly schedule
+  schedule:
+    - cron: '0 * * * *'
+
+jobs:
+  run-scanner:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository Assets
+      uses: actions/checkout@v4
+
+    - name: Initialize Python Core Environment
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    - name: Install System Dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y ffmpeg
+        pip install -r requirements.txt
+
+    - name: Execute Core Engine Pipeline
+      run: python core_engine/main.py
+
+    - name: Commit and Push Decoded Ledger Logs
+      run: |
+        git config --global user.name "Sovereign Ledger Daemon"
+        git config --global user.email "ledger-daemon@://github.com"
+        git add transcripts_ledger/
+        git diff-index --quiet HEAD || git commit -m "ledger: update system chatter logs [automated]"
+        git push
