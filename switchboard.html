@@ -644,7 +644,33 @@ console.log("[System Keys] Automated UUID Engine loaded. Ready for instant membe
     
     <div style="font-size:10px; color:#8a92b2; letter-spacing:1px; text-transform:uppercase; margin-top:15px;">FAMO NATION DISTRIBUTION MATRIX NODE CHASSIS LOCKED // NAICS CATEGORY 516210 MASTER RECORDING INFRASTRUCTURE</div>
 </div>
+<!-- [FAMO NATION EMERGENCY SCANNER UI - PLACEHOLDER] -->
+<div id="famo-dedicated-scanner-console" style="margin: 40px auto; max-width: 650px; padding: 20px; background: #070e17; border: 2px solid #00ff66; border-radius: 12px; font-family: monospace;">
+    <div style="font-size: 13px; font-weight: 900; color: #00ff66; text-align: center; margin-bottom: 20px;">// EMERGENCY SCANNER CENTER //</div>
+    
+    <!-- Audio Selection -->
+    <select id="scanner-station-dial" style="width: 100%; background: #0a1424; color: #00ff66; padding: 10px; margin-bottom: 15px;">
+        <option value="https://walmradio.com">PRIMARY FEED (TEST)</option>
+    </select>
 
+    <audio id="scanner-audio-engine" preload="none"></audio>
+
+    <!-- Controls -->
+    <div style="text-align: center; margin-bottom: 20px;">
+        <button id="btn-scanner-start">ENGAGE</button>
+        <button id="btn-scanner-stop">MUTE</button>
+    </div>
+
+    <!-- Status/Search Area -->
+    <div id="scanner-console-status" style="color: #8899a6; font-size: 11px;">Status: Awaiting Ingress</div>
+    <input type="text" id="scanner-search-input" placeholder="Search archive..." style="width: 100%; margin-top: 10px;">
+</div>
+<script>
+(function() {
+    // Logic handles audio start, stop, station switching, and search functionality
+    // See code block for full implementation
+})();
+</script>
 </body>
 </html>
 
