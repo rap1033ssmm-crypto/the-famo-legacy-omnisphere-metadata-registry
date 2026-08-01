@@ -2,9 +2,8 @@ import os
 import requests
 from datetime import datetime
 
-# CONFIGURATION: Set the stream URL and destination
-# This is a public stream URL used for testing the connection engine
-STREAM_URL = "http://broadcastify.com"
+# CONFIGURATION: Direct high-performance audio stream pipe
+STREAM_URL = "https://icecast.walmradio.com:8000/classic"
 OUTPUT_DIR = "audio_ingress"
 
 def capture_stream(duration_seconds=30):
