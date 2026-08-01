@@ -710,6 +710,52 @@ console.log("[System Keys] Automated UUID Engine loaded. Ready for instant membe
             }
         };
     }
+    // Close the original media player click handlers safely
+});
+
+// ====================================================================
+// CORE WIRE: EMERGENCY MULTI-STATION SCANNER ENGINE LOGIC
+// ====================================================================
+(function() {
+    const startBtn = document.getElementById('btn-scanner-start');
+    const stopBtn = document.getElementById('btn-scanner-stop');
+    const dialControl = document.getElementById('scanner-station-dial');
+    const audioEngine = document.getElementById('scanner-audio-engine');
+    const consoleStatus = document.getElementById('scanner-console-status');
+
+    if (!startBtn || !audioEngine) return;
+
+    startBtn.onclick = function() {
+        const targetStream = dialControl ? dialControl.value : "https://walmradio.com";
+        audioEngine.src = targetStream;
+        audioEngine.volume = 1.0;
+        
+        audioEngine.play()
+            .then(() => {
+                if (consoleStatus) consoleStatus.innerText = "Status: CONNECTED // CORES ACTIVE";
+            })
+            .catch(err => {
+                if (consoleStatus) consoleStatus.innerText = "Status: LINK DROPPED // RETRYING";
+            });
+    };
+
+    stopBtn.onclick = function() {
+        audioEngine.pause();
+        audioEngine.src = "";
+        if (consoleStatus) consoleStatus.innerText = "Status: STANDBY // SIGNAL MUTED";
+    };
+
+    if (dialControl) {
+        dialControl.onchange = function() {
+            if (!audioEngine.paused) {
+                startBtn.onclick();
+            }
+        };
+    }
+})();
+// ====================================================================
+</script>
+
 <!-- ==================================================================== -->
 <!-- FORCED ROOT TERMINATION: CHRONICLES INGRESS PORTAL -->
 <!-- ==================================================================== -->
@@ -723,6 +769,5 @@ console.log("[System Keys] Automated UUID Engine loaded. Ready for instant membe
     </iframe>
 </div>
 
-</script>
 </body>
 </html>
