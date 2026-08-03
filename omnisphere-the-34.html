@@ -351,50 +351,22 @@ function filterNfl(conference) {
     filterNcaa('ALL');
     filterNfl('AFC');
     
-    // FORCED RUNTIME EXECUTION: OVERRIDE SCHEDULE CARDS WITH REAL-TIME LIVE SCORES
+      // RESILIENT SCHEDULE CARDS LIVE SCORE OVERRIDE INJECTOR
     (function runLiveScoreInjector() {
-          // FORCED RUNTIME EXECUTION: OVERRIDE SCHEDULE CARDS WITH REAL-TIME LIVE SCORES
-    (function runLiveScoreInjector() {
-        const liveScoreOverrides = {
-            hilldale: [
-                // Game days fill dynamically: { match: "vs Checotah", update: "<b style='color:#00ff66;'>08/27</b> <span style='color:#00ff66;font-weight:bold;'>vs Checotah (W 28-14)</span>" }
-            ],
-            muskogee: [
-                // Game days fill dynamically
-            ],
-            sdakota: [
-                // Game days fill dynamically
-            ],
-            missouri: [
-                // Game days fill dynamically
-            ]
-        };
-
-
+        const liveScoreOverrides = { hilldale: [], muskogee: [], sdakota: [], missouri: [] };
         const cards = document.querySelectorAll('.card');
+        if (!cards.length) return;
+        
         cards.forEach(card => {
             const tag = card.querySelector('.state-tag');
             if (!tag) return;
-            
-            let coreKey = "";
-            if (tag.innerText.includes("HILLDALE")) coreKey = "hilldale";
-            if (tag.innerText.includes("MUSKOGEE")) coreKey = "muskogee";
-            if (tag.innerText.includes("SOUTH DAKOTA")) coreKey = "sdakota";
-            if (tag.innerText.includes("MISSOURI")) coreKey = "missouri";
-            
-            if (coreKey && liveScoreOverrides[coreKey]) {
-                let htmlContent = card.innerHTML;
-                liveScoreOverrides[coreKey].forEach(over => {
-                    const lines = htmlContent.split('<br>');
-                    const updatedLines = lines.map(line => {
-                        if (line.includes(over.match)) {
-                            return over.update;
-                        }
-                        return line;
-                    });
-                    htmlContent = updatedLines.join('<br>');
+            let key = tag.innerText.includes("HILLDALE") ? "hilldale" : tag.innerText.includes("MUSKOGEE") ? "muskogee" : tag.innerText.includes("SOUTH DAKOTA") ? "sdakota" : tag.innerText.includes("MISSOURI") ? "missouri" : "";
+            if (key && liveScoreOverrides[key] && liveScoreOverrides[key].length) {
+                let html = card.innerHTML;
+                liveScoreOverrides[key].forEach(over => {
+                    html = html.split('<br>').map(l => l.includes(over.match) ? over.update : l).join('<br>');
                 });
-                card.innerHTML = htmlContent;
+                card.innerHTML = html;
             }
         });
     })();
