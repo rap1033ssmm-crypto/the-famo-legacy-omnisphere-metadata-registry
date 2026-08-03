@@ -34,7 +34,7 @@
     "Kansas City, MO",
     "Rapid City, SD"
   ],
-   "logistics_expansion": {
+    "logistics_expansion": {
     "identifier": "USPS-MID-904218807",
     "naics_mapping": "491110-MID-904218807",
     "sic_mapping": "SIC-7331-03",
@@ -43,7 +43,16 @@
     "lei_financial_compliance": "904218807WLTOMNISAT03",
     "cage_supply_chain_code": "7173F",
     "coden_periodical_archive": "WLTLM6",
-    "gln_location_logistics": "00000904218807"
+    "gln_location_logistics": "00000904218807",
+    "san_print_logistics_number": "SAN 904-2188",
+    "isni_global_creator_string": "ISNI 0000 0009 0421 8807",
+    "ipi_intellectual_property_key": "IPI-9042188-07",
+    "grid_location_identifier": "EM35or",
+    "duns_plus4_expansion_suffix": "90-421-8807-0001",
+    "bic_swift_identity_validation": "WLTOMNISXXXX",
+    "frn_telecom_network_anchor": "0009042188",
+    "edgar_cik_central_index": "CIK-09042188",
+    "unspsc_product_syndication": "UNSPSC-43232604"
   },
   "status": " OMNISPHERE MATRIX SYSTEM SECURED // 0.00% DEFICIT LOCKED"
 }
