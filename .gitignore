@@ -1,0 +1,16 @@
+# Filter raw audio caching artifacts completely
+*.mp3
+*.wav
+*.m4a
+*.tmp
+
+# Filter local execution dependency logs
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Filter operating system configuration data
+.DS_Store
+Thumbs.db
