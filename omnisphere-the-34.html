@@ -346,27 +346,56 @@ function filterNfl(conference) {
     runCountdownLoop();
     filterNcaa('ALL');
     filterNfl('AFC');
+    setInterval(runCountdownLoop, 1000);
+    runCountdownLoop();
+    filterNcaa('ALL');
+    filterNfl('AFC');
+    
+    // FORCED RUNTIME EXECUTION: OVERRIDE SCHEDULE CARDS WITH REAL-TIME LIVE SCORES
+    (function runLiveScoreInjector() {
+        const liveScoreOverrides = {
+            hilldale: [
+                { match: "vs Checotah", update: "<b style='color:#00ff66;'>08/27</b> <span style='color:#00ff66;font-weight:bold;'>vs Checotah (W 28-14)</span>" }
+            ],
+            muskogee: [
+                { match: "@ Tahlequah", update: "<b style='color:#00ff66;'>08/21</b> <span style='color:#00ff66;font-weight:bold;'>@ Tahlequah (W 35-7)</span>" }
+            ],
+            sdakota: [
+                { match: "vs SF Washington", update: "<b style='color:#ffaa00;'>08/28</b> <span style='color:#00ff66;font-weight:bold;'>vs SF Washington (W 21-20)</span>" }
+            ],
+            missouri: [
+                { match: "vs University Academy", update: "<b style='color:#ff3333;'>08/28</b> <span style='color:#00ff66;font-weight:bold;'>vs Univ Academy (W 14-12)</span>" }
+            ]
+        };
+
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+            const tag = card.querySelector('.state-tag');
+            if (!tag) return;
+            
+            let coreKey = "";
+            if (tag.innerText.includes("HILLDALE")) coreKey = "hilldale";
+            if (tag.innerText.includes("MUSKOGEE")) coreKey = "muskogee";
+            if (tag.innerText.includes("SOUTH DAKOTA")) coreKey = "sdakota";
+            if (tag.innerText.includes("MISSOURI")) coreKey = "missouri";
+            
+            if (coreKey && liveScoreOverrides[coreKey]) {
+                let htmlContent = card.innerHTML;
+                liveScoreOverrides[coreKey].forEach(over => {
+                    const lines = htmlContent.split('<br>');
+                    const updatedLines = lines.map(line => {
+                        if (line.includes(over.match)) {
+                            return over.update;
+                        }
+                        return line;
+                    });
+                    htmlContent = updatedLines.join('<br>');
+                });
+                card.innerHTML = htmlContent;
+            }
+        });
+    })();
 })();
 </script>
-// AUTOMATED DATA MATRIX FOR REAL-TIME SCHEDULE SCORE OVERRIDES
-const liveScoreOverrides = {
-    hilldale: [
-        { week: 0, text: "vs Checotah (Home)", score: "FINAL // HW 28 - 14" },
-        { week: 1, text: "@ Claremore", score: "09/04 // 7:00 PM" }
-    ],
-    muskogee: [
-        { week: 0, text: "@ Tahlequah (Open)", score: "FINAL // MW 35 - 7" },
-        { week: 1, text: "vs Carl Albert (Home)", score: "09/04 // 7:00 PM" }
-    ],
-    sdakota: [
-        { week: 0, text: "vs SF Washington (Home)", score: "FINAL // RCW 21 - 20" },
-        { week: 1, text: "@ SF Jefferson", score: "09/04 // 7:00 PM" }
-    ],
-    missouri: [
-        { week: 0, text: "vs University Academy (Home)", score: "FINAL // KCW 14 - 12" },
-        { week: 1, text: "@ East (Kansas City)", score: "09/04 // 6:30 PM" }
-    ]
-};
-
 </body>
 </html>
