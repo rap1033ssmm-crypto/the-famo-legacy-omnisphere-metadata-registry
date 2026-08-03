@@ -50,21 +50,44 @@ h1 { color: #00ffcc; text-shadow: 0 0 10px rgba(0,255,204,0.4); margin: 0; font-
     <!-- ---------------------------------------------------------------- -->
     <!-- LANE A: HIGH SCHOOL INTEGRATED CORES (DEFAULT ACTIVE) -->
     <!-- ---------------------------------------------------------------- -->
+    <!-- ---------------------------------------------------------------- -->
+    <!-- LANE A: HIGH SCHOOL INTEGRATED CORES (FULL 4-NODE SECTOR MATRIX) -->
+    <!-- ---------------------------------------------------------------- -->
     <div id="hs-grid-lane" class="famo-matrix-lane" style="display: block;">
         <div style="font-size: 14px; color: #00ff66; padding-bottom: 10px; border-bottom: 1px dashed #1a3a5f; margin-bottom: 15px;">// ACTIVE INFRASTRUCTURE: MULTI-CORE REGIONAL TRACKER</div>
         
+        <!-- HORIZONTAL ROW SUB-GRID FOR ALL FOUR SATELLITE CORES -->
         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+            <!-- CORE 01: OKLAHOMA HILLDALE -->
             <div style="background: #040911; padding: 15px; border: 1px solid #1a3a5f; border-radius: 6px;">
                 <div style="color: #8899a6; font-size: 11px;">HILLDALE OK CORE</div>
                 <div style="font-size: 18px; font-weight: bold; color: #ffffff; margin: 5px 0;">Hilldale Hornets</div>
                 <div id="hilldale-opponent" style="color: #00ff66; font-size: 13px; font-weight: bold;">vs CHECOTAH</div>
                 <div id="hilldale-countdown" style="font-size: 12px; color: #8899a6; margin-top: 10px;">Awaiting Launch Clock...</div>
             </div>
+            
+            <!-- CORE 02: OKLAHOMA MUSKOGEE -->
             <div style="background: #040911; padding: 15px; border: 1px solid #1a3a5f; border-radius: 6px;">
                 <div style="color: #8899a6; font-size: 11px;">MUSKOGEE OK CORE</div>
                 <div style="font-size: 18px; font-weight: bold; color: #ffffff; margin: 5px 0;">Muskogee Roughers</div>
                 <div id="muskogee-opponent" style="color: #00ff66; font-size: 13px; font-weight: bold;">vs TAHLEQUAH</div>
                 <div id="muskogee-countdown" style="font-size: 12px; color: #8899a6; margin-top: 10px;">Awaiting Launch Clock...</div>
+            </div>
+
+            <!-- CORE 03: SOUTH DAKOTA NODE -->
+            <div style="background: #040911; padding: 15px; border: 1px solid #1a3a5f; border-radius: 6px;">
+                <div style="color: #ffaa00; font-size: 11px;">SOUTH DAKOTA NODE</div>
+                <div style="font-size: 18px; font-weight: bold; color: #ffffff; margin: 5px 0;">Rapid City Central</div>
+                <div id="sdakota-opponent" style="color: #00ff66; font-size: 13px; font-weight: bold;">vs WASHINGTON</div>
+                <div id="sdakota-countdown" style="font-size: 12px; color: #8899a6; margin-top: 10px;">Awaiting Launch Clock...</div>
+            </div>
+
+            <!-- CORE 04: MISSOURI NODE -->
+            <div style="background: #040911; padding: 15px; border: 1px solid #1a3a5f; border-radius: 6px;">
+                <div style="color: #ff3333; font-size: 11px;">MISSOURI NODE</div>
+                <div style="font-size: 18px; font-weight: bold; color: #ffffff; margin: 5px 0;">Kansas City Lincoln</div>
+                <div id="missouri-opponent" style="color: #00ff66; font-size: 13px; font-weight: bold;">vs UNIVERSITY ACADEMY</div>
+                <div id="missouri-countdown" style="font-size: 12px; color: #8899a6; margin-top: 10px;">Awaiting Launch Clock...</div>
             </div>
         </div>
     </div>
@@ -75,9 +98,9 @@ h1 { color: #00ffcc; text-shadow: 0 0 10px rgba(0,255,204,0.4); margin: 0; font-
     <div id="ncaa-grid-lane" class="famo-matrix-lane" style="display: none;">
         <div style="font-size: 14px; color: #00ff66; padding-bottom: 10px; border-bottom: 1px dashed #1a3a5f; margin-bottom: 15px;">// NCAA FOOTBALL INTEL: AP TOP 25 REGISTRY MATRIX</div>
         
-        <!-- CONFERENCE FILTERS IN HORIZONTAL GRID STRUCTURE -->
-        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; margin-bottom: 15px;">
-            <button onclick="filterNcaa('TOP10')" style="padding: 6px; background: #1a3a5f; color: #ffffff; border: none; border-radius: 4px; font-size: 11px; cursor: pointer; font-family: monospace;">TOP 10</button>
+        <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; margin-bottom: 15px;">
+            <button onclick="filterNcaa('ALL')" style="padding: 6px; background: #1a3a5f; color: #ffffff; border: none; border-radius: 4px; font-size: 11px; cursor: pointer; font-family: monospace;">ALL TOP 25</button>
+            <button onclick="filterNcaa('TOP10')" style="padding: 6px; background: #0c1b2b; color: #8899a6; border: none; border-radius: 4px; font-size: 11px; cursor: pointer; font-family: monospace;">TOP 10</button>
             <button onclick="filterNcaa('SEC')" style="padding: 6px; background: #0c1b2b; color: #8899a6; border: none; border-radius: 4px; font-size: 11px; cursor: pointer; font-family: monospace;">SEC</button>
             <button onclick="filterNcaa('BIG10')" style="padding: 6px; background: #0c1b2b; color: #8899a6; border: none; border-radius: 4px; font-size: 11px; cursor: pointer; font-family: monospace;">BIG TEN</button>
             <button onclick="filterNcaa('ACC')" style="padding: 6px; background: #0c1b2b; color: #8899a6; border: none; border-radius: 4px; font-size: 11px; cursor: pointer; font-family: monospace;">ACC</button>
@@ -93,9 +116,7 @@ h1 { color: #00ffcc; text-shadow: 0 0 10px rgba(0,255,204,0.4); margin: 0; font-
                         <th style="text-align: right;">STATUS</th>
                     </tr>
                 </thead>
-                <tbody id="ncaa-rankings-body" style="color: #ffffff;">
-                    <!-- Auto-Populates and Updates Live via JS -->
-                </tbody>
+                <tbody id="ncaa-rankings-body" style="color: #ffffff;"></tbody>
             </table>
         </div>
     </div>
@@ -106,45 +127,33 @@ h1 { color: #00ffcc; text-shadow: 0 0 10px rgba(0,255,204,0.4); margin: 0; font-
     <div id="nfl-grid-lane" class="famo-matrix-lane" style="display: none;">
         <div style="font-size: 14px; color: #00ff66; padding-bottom: 10px; border-bottom: 1px dashed #1a3a5f; margin-bottom: 15px;">// NFL PRO FOOTBALL PIPELINE: DIVISIONAL MATRIX LOG</div>
         
-        <!-- CONFERENCE SELECTION IN HORIZONTAL GRID -->
         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 15px;">
             <button onclick="filterNfl('AFC')" style="padding: 8px; background: #1a3a5f; color: #ffffff; border: none; border-radius: 4px; font-size: 11px; cursor: pointer; font-family: monospace;">AFC CONFERENCE</button>
             <button onclick="filterNfl('NFC')" style="padding: 8px; background: #0c1b2b; color: #8899a6; border: none; border-radius: 4px; font-size: 11px; cursor: pointer; font-family: monospace;">NFC CONFERENCE</button>
         </div>
 
-        <div id="nfl-standings-container" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
-            <!-- Divisions populate in parallel side-by-side configurations -->
-        </div>
+        <div id="nfl-standings-container" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;"></div>
     </div>
 </div>
 
 <script>
-// ====================================================================
-// CORE CONTROL ENGINE FOR INTERACTIVE MULTI-LANE TICKERS
-// ====================================================================
-
-// 1. Interactive Lane Switching Matrix
 function toggleFamoGrid(targetLaneId) {
     const lanes = document.getElementsByClassName('famo-matrix-lane');
     for (let lane of lanes) { lane.style.display = 'none'; }
     document.getElementById(targetLaneId).style.display = 'block';
 
-    const buttons = ['btn-hs-grid-lane', 'btn-ncaa-grid-lane', 'btn-nfl-grid-lane'];
-    buttons.forEach(btnId => {
-        const btn = document.getElementById(btnId);
-        if (btnId === 'btn-' + targetLaneId) {
-            btn.style.background = '#00ff66';
-            btn.style.color = '#040911';
-            btn.style.border = 'none';
+    const configMap = { 'hs-grid-lane': 'btn-hs-grid-lane', 'ncaa-grid-lane': 'btn-ncaa-grid-lane', 'nfl-grid-lane': 'btn-nfl-grid-lane' };
+    for (let laneId in configMap) {
+        const btn = document.getElementById(configMap[laneId]);
+        if (!btn) continue;
+        if (laneId === targetLaneId) {
+            btn.style.background = '#00ff66'; btn.style.color = '#040911'; btn.style.border = 'none';
         } else {
-            btn.style.background = '#122236';
-            btn.style.color = '#00ff66';
-            btn.style.border = '1px solid #1a3a5f';
+            btn.style.background = '#122236'; btn.style.color = '#00ff66'; btn.style.border = '1px solid #1a3a5f';
         }
-    });
+    }
 }
 
-// 2. Elite Data Manifest: Full Verified AP Top 25 College Football Registry
 const ncaaMasterData = [
     { rk: 1, name: "Georgia Bulldogs", conf: "SEC", status: "0-0 // FRONT RUNNER" },
     { rk: 2, name: "Ohio State Buckeyes", conf: "BIG10", status: "0-0 // LOCK" },
@@ -175,91 +184,6 @@ const ncaaMasterData = [
 
 function filterNcaa(filterType) {
     const tbody = document.getElementById('ncaa-rankings-body');
-    if (!tbody) return;
-    tbody.innerHTML = '';
-
+    if (!tbody) return; tbody.innerHTML = '';
     ncaaMasterData.forEach(team => {
-        if (filterType === 'TOP10' && team.rk > 10) return;
-        if (filterType !== 'TOP10' && filterType !== 'ALL' && team.conf !== filterType) return;
-        tbody.innerHTML += `
-            <tr style="border-bottom: 1px solid #0c1b2b;">
-                <td style="padding: 8px 0; color: #00ff66; font-weight: bold;">#${team.rk}</td>
-                <td style="font-weight: bold; color: #ffffff;">${team.name}</td>
-                <td style="color: #8899a6;">${team.conf}</td>
-                <td style="text-align: right; color: #00ff66;">${team.status}</td>
-            </tr>`;
-    });
-}
-
-// 3. Pro Ingest Hub: Full 32 NFL Franchise Matrix Record Ledger
-const nflMasterData = {
-    AFC: {
-        East: ["Buffalo Bills", "Miami Dolphins", "New York Jets", "New England Patriots"],
-        North: ["Baltimore Ravens", "Cleveland Browns", "Pittsburgh Steelers", "Cincinnati Bengals"],
-        South: ["Houston Texans", "Jacksonville Jaguars", "Indianapolis Colts", "Tennessee Titans"],
-        West: ["Kansas City Chiefs", "Las Vegas Raiders", "Denver Broncos", "Los Angeles Chargers"]
-    },
-    NFC: {
-        East: ["Dallas Cowboys", "Philadelphia Eagles", "New York Giants", "Washington Commanders"],
-        North: ["Detroit Lions", "Green Bay Packers", "Minnesota Vikings", "Chicago Bears"],
-        South: ["Tampa Bay Buccaneers", "New Orleans Saints", "Atlanta Falcons", "Carolina Panthers"],
-        West: ["San Francisco 49ers", "Los Angeles Rams", "Seattle Seahawks", "Arizona Cardinals"]
-    }
-};
-
-function filterNfl(conference) {
-    const container = document.getElementById('nfl-standings-container');
-    if (!container) return;
-    container.innerHTML = '';
-
-    const divisions = nflMasterData[conference];
-    for (let divName in divisions) {
-        let divHtml = `
-            <div style="background: #040911; padding: 12px; border: 1px solid #1a3a5f; border-radius: 6px;">
-                <div style="color: #00ff66; font-size: 11px; margin-bottom: 8px; font-weight: bold; letter-spacing: 1px;">// ${conference} ${divName.toUpperCase()}</div>
-                <ol style="margin: 0; padding-left: 15px; color: #ffffff; font-size: 12px; line-height: 1.8;">`;
-        
-        divisions[divName].forEach(team => {
-            divHtml += `<li><span style="font-weight: bold;">${team}</span> <span style="color: #8899a6; font-size: 10px;">(0-0-0)</span></li>`;
-        });
-
-        divHtml += `</ol></div>`;
-        container.innerHTML += divHtml;
-    }
-}
-
-// 4. High School Matchup Countdown Timer System Execution Loop
-(function initFamoTimers() {
-    const hsSchedules = {
-        hilldale: { targetDate: "2026-08-27T17:00:00", elementId: "hilldale-countdown" },
-        muskogee: { targetDate: "2026-08-21T19:00:00", elementId: "muskogee-countdown" }
-    };
-
-    function runCountdownLoop() {
-        const now = new Date().getTime();
-        for (let key in hsSchedules) {
-            const match = hsSchedules[key];
-            const diff = new Date(match.targetDate).getTime() - now;
-            const container = document.getElementById(match.elementId);
-            if (!container) continue;
-
-            if (diff > 0) {
-                const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                const s = Math.floor((diff % (1000 * 60)) / 1000);
-                container.innerHTML = `<span style="color: #00ff66;">GRID OPEN IN: ${d}D ${h}H ${m}M ${s}S</span>`;
-            } else {
-                container.innerHTML = `<span style="color: #ff3333; font-weight: bold;">GRID SEASON ACTIVE // STREAMING LIVE DATA</span>`;
-            }
-        }
-    }
-
-    setInterval(runCountdownLoop, 1000);
-    runCountdownLoop();
-    filterNcaa('TOP10');
-    filterNfl('AFC');
-})();
-</script>
-</body>
-</html>
+if (filterType === 'TOP10' && team.rk > 10) return;if (filterType !== 'TOP10' && filterType !== 'ALL' && team.conf !== filterType) return;tbody.innerHTML +=  <tr style="border-bottom: 1px solid #0c1b2b;"> <td style="padding: 8px 0; color: #00ff66; font-weight: bold;">#${team.rk}</td> <td style="font-weight: bold; color: #ffffff;">${team.name}</td> <td style="color: #8899a6;">${team.conf}</td> <td style="text-align: right; color: #00ff66;">${team.status}</td> </tr>;});}const nflMasterData = {AFC: {East: ["Buffalo Bills", "Miami Dolphins", "New York Jets", "New England Patriots"],North: ["Baltimore Ravens", "Cleveland Browns", "Pittsburgh Steelers", "Cincinnati Bengals"],South: ["Houston Texans", "Jacksonville Jaguars", "Indianapolis Colts", "Tennessee Titans"],West: ["Kansas City Chiefs", "Las Vegas Raiders", "Denver Broncos", "Los Angeles Chargers"]},NFC: {East: ["Dallas Cowboys", "Philadelphia Eagles", "New York Giants", "Washington Commanders"],North: ["Detroit Lions", "Green Bay Packers", "Minnesota Vikings", "Chicago Bears"],South: ["Tampa Bay Buccaneers", "New Orleans Saints", "Atlanta Falcons", "Carolina Panthers"],West: ["San Francisco 49ers", "Los Angeles Rams", "Seattle Seahawks", "Arizona Cardinals"]}};function filterNfl(conference) {const container = document.getElementById('nfl-standings-container');if (!container) return; container.innerHTML = '';const divisions = nflMasterData[conference];for (let divName in divisions) {let divHtml =  <div style="background: #040911; padding: 12px; border: 1px solid #1a3a5f; border-radius: 6px;"> <div style="color: #00ff66; font-size: 11px; margin-bottom: 8px; font-weight: bold; letter-spacing: 1px;">// ${conference} ${divName.toUpperCase()}</div> <ol style="margin: 0; padding-left: 15px; color: #ffffff; font-size: 12px; line-height: 1.8;">;divisions[divName].forEach(team => {divHtml += <li><span style="font-weight: bold;">${team}</span> <span style="color: #8899a6; font-size: 10px;">(0-0-0)</span></li>;});divHtml += </ol></div>; container.innerHTML += divHtml;}}(function initFamoTimers() {const hsSchedules = {hilldale: { targetDate: "2026-08-27T17:00:00", elementId: "hilldale-countdown" },muskogee: { targetDate: "2026-08-21T19:00:00", elementId: "muskogee-countdown" },sdakota: { targetDate: "2026-08-28T17:00:00", elementId: "sdakota-countdown" },missouri: { targetDate: "2026-08-28T19:00:00", elementId: "missouri-countdown" }};function runCountdownLoop() {const now = new Date().getTime();for (let key in hsSchedules) {const match = hsSchedules[key];const diff = new Date(match.targetDate).getTime() - now;const container = document.getElementById(match.elementId);if (!container) continue;if (diff > 0) {const d = Math.floor(diff / (1000 * 60 * 60 * 24));const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));const s = Math.floor((diff % (1000 * 60)) / 1000);container.innerHTML = <span style="color: #00ff66;">GRID OPEN IN: ${d}D ${h}H ${m}M ${s}S</span>;} else {container.innerHTML = <span style="color: #ff3333; font-weight: bold;">GRID SEASON ACTIVE // STREAMING LIVE DATA</span>;}}}setInterval(runCountdownLoop, 1000); runCountdownLoop();filterNcaa('ALL'); filterNfl('AFC');})();
