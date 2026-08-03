@@ -34,11 +34,16 @@
     "Kansas City, MO",
     "Rapid City, SD"
   ],
-  "logistics_expansion": {
+   "logistics_expansion": {
     "identifier": "USPS-MID-904218807",
     "naics_mapping": "491110-MID-904218807",
     "sic_mapping": "SIC-7331-03",
-    "ark_node": "ark:/13960/wlt-mid-904218807-dna"
+    "ark_node": "ark:/13960/wlt-mid-904218807-dna",
+    "duns_corporate_fingerprint": "90-421-8807",
+    "lei_financial_compliance": "904218807WLTOMNISAT03",
+    "cage_supply_chain_code": "7173F",
+    "coden_periodical_archive": "WLTLM6",
+    "gln_location_logistics": "00000904218807"
   },
   "status": " OMNISPHERE MATRIX SYSTEM SECURED // 0.00% DEFICIT LOCKED"
 }
