@@ -194,11 +194,48 @@ function filterNcaa(filterType) {
             </tr>`;
     });
 }
-  const nflMasterData = { AFC: {}, NFC: {} };
-["East", "North", "South", "West"].forEach(div => {
-    nflMasterData.AFC[div] = [`AFC ${div} Team 1`, `AFC ${div} Team 2`, `AFC ${div} Team 3`, `AFC ${div} Team 4`];
-    nflMasterData.NFC[div] = [`NFC ${div} Team 1`, `NFC ${div} Team 2`, `NFC ${div} Team 3`, `NFC ${div} Team 4`];
-});
+ // Complete Elite Data Matrix Module: 32 NFL Teams & AP Top 25
+const nflMasterData = {
+    AFC: {
+        East: ["Buffalo Bills", "Miami Dolphins", "New York Jets", "New England Patriots"],
+        North: ["Baltimore Ravens", "Cleveland Browns", "Pittsburgh Steelers", "Cincinnati Bengals"],
+        South: ["Houston Texans", "Jacksonville Jaguars", "Indianapolis Colts", "Tennessee Titans"],
+        West: ["Kansas City Chiefs", "Las Vegas Raiders", "Denver Broncos", "Los Angeles Chargers"]
+    },
+    NFC: {
+        East: ["Dallas Cowboys", "Philadelphia Eagles", "New York Giants", "Washington Commanders"],
+        North: ["Detroit Lions", "Green Bay Packers", "Minnesota Vikings", "Chicago Bears"],
+        South: ["Tampa Bay Buccaneers", "New Orleans Saints", "Atlanta Falcons", "Carolina Panthers"],
+        West: ["San Francisco 49ers", "Los Angeles Rams", "Seattle Seahawks", "Arizona Cardinals"]
+    }
+};
+
+const collegeTeamNames = [
+    "Georgia Bulldogs", "Ohio State Buckeyes", "Oregon Ducks", "Texas Longhorns", "Alabama Crimson Tide",
+    "Ole Miss Rebels", "Notre Dame Fighting Irish", "Penn State Nittany Lions", "Michigan Wolverines", "Florida State Seminoles",
+    "Missouri Tigers", "Utah Utes", "LSU Tigers", "Clemson Tigers", "Tennessee Volunteers",
+    "Oklahoma Sooners", "Oklahoma State Cowboys", "Kansas State Wildcats", "Miami Hurricanes", "Texas A&M Aggies",
+    "Arizona Wildcats", "Kansas Jayhawks", "USC Trojans", "NC State Wolfpack", "Iowa Hawkeyes"
+];
+
+const collegeConferences = [
+    "SEC", "BIG10", "BIG10", "SEC", "SEC",
+    "SEC", "IND", "BIG10", "BIG10", "ACC",
+    "SEC", "BIG12", "SEC", "ACC", "SEC",
+    "SEC", "BIG12", "BIG12", "ACC", "SEC",
+    "BIG12", "BIG12", "BIG10", "ACC", "BIG10"
+];
+
+ncaaMasterData.length = 0;
+for (let i = 0; i < 25; i++) {
+    ncaaMasterData.push({
+        rk: i + 1,
+        name: collegeTeamNames[i],
+        conf: collegeConferences[i],
+        status: "0-0 // TRACKING"
+    });
+}
+
 function filterNfl(conference) {
     const container = document.getElementById('nfl-standings-container');
     if (!container) return; 
