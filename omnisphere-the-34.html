@@ -353,20 +353,23 @@ function filterNfl(conference) {
     
     // FORCED RUNTIME EXECUTION: OVERRIDE SCHEDULE CARDS WITH REAL-TIME LIVE SCORES
     (function runLiveScoreInjector() {
+          // FORCED RUNTIME EXECUTION: OVERRIDE SCHEDULE CARDS WITH REAL-TIME LIVE SCORES
+    (function runLiveScoreInjector() {
         const liveScoreOverrides = {
             hilldale: [
-                { match: "vs Checotah", update: "<b style='color:#00ff66;'>08/27</b> <span style='color:#00ff66;font-weight:bold;'>vs Checotah (W 28-14)</span>" }
+                // Game days fill dynamically: { match: "vs Checotah", update: "<b style='color:#00ff66;'>08/27</b> <span style='color:#00ff66;font-weight:bold;'>vs Checotah (W 28-14)</span>" }
             ],
             muskogee: [
-                { match: "@ Tahlequah", update: "<b style='color:#00ff66;'>08/21</b> <span style='color:#00ff66;font-weight:bold;'>@ Tahlequah (W 35-7)</span>" }
+                // Game days fill dynamically
             ],
             sdakota: [
-                { match: "vs SF Washington", update: "<b style='color:#ffaa00;'>08/28</b> <span style='color:#00ff66;font-weight:bold;'>vs SF Washington (W 21-20)</span>" }
+                // Game days fill dynamically
             ],
             missouri: [
-                { match: "vs University Academy", update: "<b style='color:#ff3333;'>08/28</b> <span style='color:#00ff66;font-weight:bold;'>vs Univ Academy (W 14-12)</span>" }
+                // Game days fill dynamically
             ]
         };
+
 
         const cards = document.querySelectorAll('.card');
         cards.forEach(card => {
