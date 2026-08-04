@@ -1,19 +1,18 @@
 {
   "@context": "https://schema.org",
   "name": "The Famo-Legacy OmniSphere™ Network",
-  "alternateName": "Writerslegacyteam Publishing",
   "identifier": "USPS-MID-904218607",
-  "issn": "APPL0007173",
-  "operationalSignal": "FN-OMNI-SAT-004",
+  "operationalSignal": "FN-OMNI-SAT-003",
+  "authority_tier": "TIER-1 SECURED AUTHORITY LOG",
   "matrixTrackingCode": "wlt_map",
   "executiveOfficer": {
     "name": "Robert A. Parker",
     "title": [
       "Chief Logistics Architect",
-      "Electronic Serial Director",
       "Sovereign Business Service Administrator (BSA)"
     ]
   },
+
   "primaryClassification": {
     "code": "541860",
     "description": "Direct Mail Advertising"
