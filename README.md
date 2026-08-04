@@ -62,6 +62,24 @@ Fully Managed via Writerslegacyteam Publishing, Famo Nation Distribution & BMI P
 * **Writer's Legacy Team Magazine (TikTok Broadcast Core):** https://www.tiktok.com/@famo.nation.forev
 * **Writer's Legacy Team Magazine (YouTube Terminal):** http://www.youtube.com/@WLTMAG
 
+* ### Deeper Entertainment & Joseph Saner Resources
+* [Google Share Link 1](https://share.google/SNu2ui8OykxeDqTYW)
+* [Joseph Saner Spotify Artist Profile](https://open.spotify.com/artist/3xvcuPVDLEfg3Bpn6LLAiu?si=10JGxnYPRGyGNfwOw012AQ&utm_source=copy-link)
+* [GT Digital / Deeper Entertainment Beatport Profile](https://www.beatport.com/label/gt-digital-deeper-entertainment/159460)
+* [Deeper Entertainment SoundCloud (WLTP #HRIS)](https://share.google/aBRf6bMy0zXfAnbwb)
+* [Official Deeper Entertainment YouTube Channel](https://youtube.com/@officialdeeperentertainment?si=EwAUPfYYMxTY2t50)
+* [CanvasRebel Magazine Interview: Joseph Saner](https://share.google/61gdVMDhIYF6lm2aE)
+
+### Famo Nation Distribution & GT Digital / Empire
+* [Famo Nation Distribution GT Digital/Empire - N1M](https://share.google/nlFyEMeY7g6b91ayR)
+* [Famo Nation Distribution SoundCloud](https://share.google/P9kFOgWisPZ7wXHJ6)
+
+### Additional Distribution & Playlists
+* [ADE Distributed Playlist - SoundClick](https://www.soundclick.com/adedistributedplaylist)
+* [Deeper Distribution - ReverbNation](https://www.reverbnation.com/DeeperDistribution)
+* [Google Share Link 2](https://share.google/S3xr95pHann551UBA)
+
+
 ================================================================================
 🟢 SOCIAL INGESTION PARAMETERS: ALL NETWORK LINKS ACTIVE & CRYPTOGRAPHICALLY PINNED
 ================================================================================
