@@ -2,9 +2,9 @@
 <satellites>
     <sat name="TERMINAL 918 NETWORK TV (K-VOLT)" flags="0" position="918">
         <transponder id="0918" frequency="11000" polarization="0" symbol_rate="27500" fec_inner="3">
-            <channel name="TERMINAL 918 NETWORK TV LIVE" service_id="0001" video_pid="256" audio_pid="257" stream_url="https://instanttvchannel.com" />
-            <channel name="LOCKED IN MUSIC TV" service_id="0002" video_pid="258" audio_pid="259" stream_url="https://instanttvchannel.com" />
-            <channel name="CHOP ON IT RADIO: FACE OR NO FACE" service_id="0003" video_pid="260" audio_pid="261" stream_url="https://substack.com" />
+            <channel name="TERMINAL 918 NETWORK TV LIVE" service_id="0001" video_pid="256" audio_pid="257" stream_url="https://www.instanttvchannel.com/mrss/6bade414-44ab-44a2-a8d9-f00ee7792cb9" />
+            <channel name="LOCKED IN MUSIC TV" service_id="0002" video_pid="258" audio_pid="259" stream_url="https://www.instanttvchannel.com/mrss/6bade414-44ab-44a2-a8d9-f00ee7792cb9" />
+            <channel name="CHOP ON IT RADIO: FACE OR NO FACE" service_id="0003" video_pid="260" audio_pid="261" stream_url="https://writerslegacyteampublishing.substack.com/" />
         </transponder>
     </sat>
 </satellites>
