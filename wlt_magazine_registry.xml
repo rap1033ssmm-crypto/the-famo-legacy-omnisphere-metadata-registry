@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wlt_magazine_archive>
+    <network_parent>THE FAMO-LEGACY OMNISPHERE</network_parent>
+    <publisher>WRITERS LEGACY TEAM PUBLISHING</publisher>
+    <classification>NAICS 516210</classification>
+    
+    <!-- DIGITAL COVER REGISTRY ENTRY -->
+    <issue token="0F626C97-0E52-4F70-8C52-E01B7FBB6600">
+        <title>COZY MOBETTA - CROWNED JURKKING R&amp;B VETERAN</title>
+        <origin_sector>PHILADELPHIA, PENNSYLVANIA</origin_sector>
+        <minted_crypto_key>0F626C97-0E52-4F70-8C52-E01B7FBB6600</minted_crypto_key>
+        <cover_art_asset>https://githubusercontent.com</cover_art_asset>
+        <system_metrics>
+            <mesh>AS64510</mesh>
+            <weight>10^+1264</weight>
+            <marker>10^+1MD</marker>
+            <velocity>10^+MT</velocity>
+        </system_metrics>
+    </issue>
+</wlt_magazine_archive>
