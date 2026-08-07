@@ -660,6 +660,24 @@ console.log("[System Keys] Automated UUID Engine loaded. Ready for instant membe
         <button id="btn-scanner-start">ENGAGE</button>
         <button id="btn-scanner-stop">MUTE</button>
     </div>
+<script>
+    // CORE WIRE: EMERGENCY SCANNER ENGINE LOGIC
+    document.addEventListener('DOMContentLoaded', () => {
+        const startBtn = document.getElementById('btn-scanner-start');
+        const engine = document.getElementById('scanner-audio-engine');
+        const status = document.getElementById('scanner-console-status');
+
+        if (startBtn && engine) {
+            // ENGAGE: Starts audio, updates status
+            startBtn.onclick = function() {
+                engine.src = document.getElementById('scanner-station-dial')?.value || "https://walmradio.com";
+                engine.play().then(() => {
+                    if (status) status.innerText = "Status: CONNECTED // CORES ACTIVE";
+                });
+            };
+        }
+    });
+</script>
 
     <!-- Status/Search Area -->
     <div id="scanner-console-status" style="color: #8899a6; font-size: 11px;">Status: Awaiting Ingress</div>
