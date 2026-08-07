@@ -822,28 +822,24 @@ console.log("[System Keys] Automated UUID Engine loaded. Ready for instant membe
                 syncUpgradeDashboard();
             });
         }
-       function generateUrbanDropAsset() {
+          function generateUrbanDropAsset() {
         const scriptText = document.getElementById('aiScriptInput').value.trim();
         if (!scriptText) return;
 
-        // Locates your native active media channels
         const musicChan = document.getElementById('famo-music-channel');
         const statusDiv = document.getElementById('stream-status');
 
-        // Lowers track music volume to prevent overlapping channels
         if (musicChan && !musicChan.paused) musicChan.volume = 0.3;
 
         const announcement = new SpeechSynthesisUtterance(scriptText);
         const voices = window.speechSynthesis.getVoices();
         
-        // Selects deep radio host presets matching the article reader voice system
         let deepVoice = voices.find(v => v.name.toLowerCase().includes('google uk english male') || v.name.toLowerCase().includes('male'));
         if (deepVoice) announcement.voice = deepVoice;
 
         announcement.pitch = 0.60;
         announcement.rate = 1.15;
 
-        // Restores crisp high-volume music playback immediately upon completion
         announcement.onend = () => {
             if (musicChan && !musicChan.paused) musicChan.volume = 1.0;
             if (statusDiv) statusDiv.innerText = "FEED STATUS: LIVE // ARCHITECTURE STREAMING";
@@ -852,14 +848,10 @@ console.log("[System Keys] Automated UUID Engine loaded. Ready for instant membe
         if (statusDiv) statusDiv.innerText = "FEED STATUS: LIVE // INJECTING AI HOST VOICE DROP";
         window.speechSynthesis.speak(announcement);
 
-        // Increments your secret tracking analytics dashboard dashboard metrics
         upgradeMetrics.aiDropsCooked++;
         document.getElementById('aiScriptInput').value = '';
         syncUpgradeDashboard();
     }
-
-    });
 </script>
-
 </body>
 </html>
