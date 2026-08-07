@@ -463,22 +463,31 @@
             }
             executeTrackPlaybackEngine();
         }
-        function executeTrackPlaybackEngine() {
-            if (activeMixQueue.length === 0) return;
+               function executeTrackPlaybackEngine() {
+            if (activeMixQueue.length === 0) {
+                ticker.textContent = "★★★ MATRIX WAITING: USE THE SIDE PANEL TO INJECT CUSTOM TRACKS OR DROPS ★★★";
+                return;
+            }
 
             const item = activeMixQueue[currentQueueIndex];
-            // ... updates UI marquee and status with item.title/item.artist ...
             metrics.plays++;
             updateAnalyticsDashboard();
+
             ticker.textContent = `★★★ NOW PLAYING: [${item.title.toUpperCase()}] BY [${item.artist.toUpperCase()}] // THE QUANTUM PULSE SESSION 24-7 ★★★`;
             statusBadge.textContent = `STATUS: BROADCASTING // SLOT ${currentQueueIndex + 1} OF ${activeMixQueue.length}`;
+
             if (item.url === 'SPEECH_SYNTH_ACTIVE') {
                 executeHostVoiceUtterance(item.rawScript);
             } else {
                 audioPlayer.src = item.url;
-                audioPlayer.play().catch(() => forceSkipTrack());
+                audioPlayer.play().catch((err) => {
+                    console.log("Audio file missing, bypassing to next slot:", err);
+                    ticker.textContent = `[TRACK NOT FOUND BYPASS ACTIVE] // SKIPPING UNMAPPED DIGITAL ASSET`;
+                    setTimeout(() => { forceSkipTrack(); }, 2500);
+                });
             }
         }
+
         function executeHostVoiceUtterance(scriptText) {
             audioPlayer.pause();
             audioPlayer.src = "";
