@@ -307,120 +307,74 @@
             </div>
         </div>
     </div>
-    <script>
-        // Core data structures for song management and playback state
+       <script>
+        // Memory banks for live audio arrays
         let songVault = [];
         let activeMixQueue = [];
         let currentQueueIndex = 0;
         let isInitialBoot = true; 
 
-        // Metrics and analytics tracking
+        // Secure system performance data counters
         let metrics = { plays: 0, skips: 0, aiDropsCooked: 0 };
         let analyticsUnlocked = false;
 
-        // DOM element references
+        // Visual layout dashboard triggers
         const audioPlayer = document.getElementById('globalAudioPlayer');
         const ticker = document.getElementById('metadataTicker');
         const statusBadge = document.getElementById('playbackStatus');
         const manifestDisplay = document.getElementById('manifestDisplay');
-    </script>
-    <script>
-        let songVault = [];
-        let activeMixQueue = [];
-        let currentQueueIndex = 0;
-        let isInitialBoot = true; 
-        let metrics = { plays: 0, skips: 0, aiDropsCooked: 0 };
-        let analyticsUnlocked = false;
-        const audioPlayer = document.getElementById('globalAudioPlayer');
-        const ticker = document.getElementById('metadataTicker');
-        const statusBadge = document.getElementById('playbackStatus');
-        const manifestDisplay = document.getElementById('manifestDisplay');
-        const audioPlayer = document.getElementById('globalAudioPlayer');
-        const ticker = document.getElementById('metadataTicker');
-        const statusBadge = document.getElementById('playbackStatus');
-        const manifestDisplay = document.getElementById('manifestDisplay');
+
+        // Random host speech synthesis script bank
         const reshuffleVocalScripts = [
             "Attention all listeners! Team Auto Jurk DJs are re-shuffling the quantum vault matrix right now. Locked in, elite level, zero wait.",
-            "Hold up, drop that! We are resetting the matrix paths. Shuffling up a brand new exclusive session on the Famo Legacy Omnisphere."
-        ];
-        // Pushes extra host drops to the rolling script database array
-        reshuffleVocalScripts.push(
+            "Hold up, drop that! We are resetting the matrix paths. Shuffling up a brand new exclusive session on the Famo Legacy Omnisphere.",
             "Bypassing all standard gatekeepers right now. Team Auto Jurk DJs just threw a wrench in the system. New mix structure incoming live.",
             "You are locked into the alpha timeline. Reshuffling the quantum vaults. Real hip hop, real rap, automated flawlessly."
-        );
+        ];
+
+        // Automatic directory check on window boot
         window.addEventListener('DOMContentLoaded', () => {
             initializeGitHubAssetMatrix();
         });
-               function initializeGitHubAssetMatrix() {
-            const repoBaseUrl = "https://://githubusercontent.com/rap1033ssmm-crypto/the-famo-legacy-omnisphere-metadata-registry/main/"
-";
+
+        function initializeGitHubAssetMatrix() {
+            // Raw server storage connection link
+            const repoBaseUrl = "https://githubusercontent.com";
             
+            // Re-maps your 10 custom double-extension tracks into memory
             for (let i = 1; i <= 10; i++) {
                 songVault.push({
                     type: 'song',
                     title: `OMNISPHERE MATRIX CORE TRACK ${String(i).padStart(2, '0')}`,
                     artist: "FAMO LEGACY TEAM",
-                    url: `${repoBaseUrl}assets/track${i}.mp3.mp3`
+                    url: repoBaseUrl + "assets/track" + i + ".mp3.mp3"
                 });
             }
             updateManifestView();
         }
 
-        function generateUrbanDropAsset() {
-            const scriptText = document.getElementById('aiScriptInput').value.trim();
-            if (!scriptText) return;
-
-            songVault.push({
-                type: 'drop',
-                title: `AI DROP: "${scriptText.substring(0, 22)}..."`,
-                artist: "URBAN AUTO JURK HOST",
-                url: 'SPEECH_SYNTH_ACTIVE',
-                rawScript: scriptText
-            });
-            metrics.aiDropsCooked++;
-            updateAnalyticsDashboard();
-            document.getElementById('aiScriptInput').value = '';
-            updateManifestView();
-            
-            if (activeMixQueue.length > 0) {
-                activeMixQueue.splice(currentQueueIndex + 1, 0, songVault[songVault.length - 1]);
+        function engageTeamDJs() {
+            // Fires up the deep-voice greeting on the absolute first click
+            if (isInitialBoot) {
+                isInitialBoot = false;
+                compileAutoDJRotation();
+                ticker.textContent = "★★★ SYSTEM INITIALIZATION: OUTPASSING ALL LOCAL GATEKEEPERS INTERNATIONALLY ★★★";
+                executeHostVoiceUtterance("WELCOME TO THE QUANTUM PULSE SESSION 24-7 RADIO STATION BY THE FAMO LEGACY OMNISPHERE WE HOPE YOU ENJOY THE MIX AND BE SURE TO TELL A FRIEND TO TUNE IN.");
+                return;
             }
-        }
-        function injectManualAudioTrack() {
-            const title = document.getElementById('manualTitle').value.trim();
-            const artist = document.getElementById('manualArtist').value.trim();
-            const fileInput = document.getElementById('manualFile');
 
-            if (!title || !fileInput.files || fileInput.files.length === 0) return;
-
-            songVault.push({
-                type: 'song',
-                title: title,
-                artist: artist || "FAMO INDEPENDENT ARCHIVE",
-                url: URL.createObjectURL(fileInput.files[0])
-            });
-            document.getElementById('manualTitle').value = '';
-            document.getElementById('manualArtist').value = '';
-            fileInput.value = '';
-            updateManifestView();
+            if (activeMixQueue.length === 0 || currentQueueIndex >= activeMixQueue.length) {
+                compileAutoDJRotation();
+            }
+            executeTrackPlaybackEngine();
         }
 
-        function updateManifestView() {
-            manifestDisplay.innerHTML = '';
-            songVault.forEach((item, index) => {
-                const row = document.createElement('div');
-                row.className = 'manifest-item';
-                row.innerHTML = `<span>[${index + 1}] <strong class="tag-${item.type}">${item.type.toUpperCase()}</strong>: ${item.title}</span><span style="color: var(--text-dim); font-size:0.75rem;">${item.artist}</span>`;
-                manifestDisplay.appendChild(row);
-            });
-        }
-
-        // --- Core Mixing Logic ---
         function compileAutoDJRotation() {
-            // Function to generate randomized music setlist
             const songs = songVault.filter(i => i.type === 'song');
             const drops = songVault.filter(i => i.type === 'drop');
             if (songs.length === 0) return false;
+            
+            // True Fisher-Yates array scrambling system
             let shuffledSongs = [...songs];
             for (let i = shuffledSongs.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -429,9 +383,12 @@
 
             activeMixQueue = [];
             
+            // Forces an intro script into the playlist queue structure
             if (drops.length > 0) {
                 activeMixQueue.push(drops[Math.floor(Math.random() * drops.length)]);
             }
+
+            // Mixes your tracks and places a drop following every 3rd song block
             shuffledSongs.forEach((song, index) => {
                 activeMixQueue.push(song);
                 if (index > 0 && index % 3 === 0 && drops.length > 0) {
@@ -442,40 +399,15 @@
             currentQueueIndex = 0;
             return true;
         }
-            shuffledSongs.forEach((song, index) => {
-                activeMixQueue.push(song);
-                if (index > 0 && index % 3 === 0 && drops.length > 0) {
-                    activeMixQueue.push(drops[Math.floor(Math.random() * drops.length)]);
-                }
-            });
-            currentQueueIndex = 0;
-            return true;
-        }
-        function engageTeamDJs() {
-            if (isInitialBoot) {
-                isInitialBoot = false;
-                // Initialization and welcome message logic goes here
-                return;
-            }
-                compileAutoDJRotation();
-                ticker.textContent = "★★★ SYSTEM INITIALIZATION: OUTPASSING ALL LOCAL GATEKEEPERS INTERNATIONALLY ★★★";
-                executeHostVoiceUtterance("WELCOME TO THE QUANTUM PULSE SESSION 24-7 RADIO STATION BY THE FAMO LEGACY OMNISPHERE WE HOPE YOU ENJOY THE MIX AND BE SURE TO TELL A FRIEND TO TUNE IN.");
-                return;
-            if (activeMixQueue.length === 0 || currentQueueIndex >= activeMixQueue.length) {
-                compileAutoDJRotation();
-            }
-            executeTrackPlaybackEngine();
-        }
-               function executeTrackPlaybackEngine() {
-            if (activeMixQueue.length === 0) {
-                ticker.textContent = "★★★ MATRIX WAITING: USE THE SIDE PANEL TO INJECT CUSTOM TRACKS OR DROPS ★★★";
-                return;
-            }
+
+        function executeTrackPlaybackEngine() {
+            if (activeMixQueue.length === 0) return;
 
             const item = activeMixQueue[currentQueueIndex];
             metrics.plays++;
             updateAnalyticsDashboard();
 
+            // Pushes metadata information directly to the marquee dashboard layout
             ticker.textContent = `★★★ NOW PLAYING: [${item.title.toUpperCase()}] BY [${item.artist.toUpperCase()}] // THE QUANTUM PULSE SESSION 24-7 ★★★`;
             statusBadge.textContent = `STATUS: BROADCASTING // SLOT ${currentQueueIndex + 1} OF ${activeMixQueue.length}`;
 
@@ -484,9 +416,10 @@
             } else {
                 audioPlayer.src = item.url;
                 audioPlayer.play().catch((err) => {
-                    console.log("Audio file missing, bypassing to next slot:", err);
-                    ticker.textContent = `[TRACK NOT FOUND BYPASS ACTIVE] // SKIPPING UNMAPPED DIGITAL ASSET`;
-                    setTimeout(() => { forceSkipTrack(); }, 2500);
+                    console.log("Audio unmapped or loading, bypassing:", err);
+                    // Automatic fallback bypass so broken track pathways never freeze your page
+                    ticker.textContent = `[TRACK NOT FOUND AUTOMATIC BYPASS LAYER ENGAGED] // SCANNING NEXT ASSET IN THE VAULT`;
+                    setTimeout(() => { forceSkipTrack(); }, 2000);
                 });
             }
         }
@@ -494,19 +427,24 @@
         function executeHostVoiceUtterance(scriptText) {
             audioPlayer.pause();
             audioPlayer.src = "";
+            window.speechSynthesis.cancel();
 
             const hostAnnouncement = new SpeechSynthesisUtterance(scriptText);
             const systemVoicesAvailable = window.speechSynthesis.getVoices();
+            
+            // Adjusts configurations for an urban radio announcer tone profile
             let targetVocalBase = systemVoicesAvailable.find(v => v.name.toLowerCase().includes('google uk english male') || v.name.toLowerCase().includes('male'));
             if(targetVocalBase) hostAnnouncement.voice = targetVocalBase;
 
             hostAnnouncement.pitch = 0.60; 
             hostAnnouncement.rate = 1.15;  
+
             hostAnnouncement.onend = () => advanceMixSequencer();
             hostAnnouncement.onerror = () => advanceMixSequencer();
 
             window.speechSynthesis.speak(hostAnnouncement);
         }
+
         audioPlayer.onended = () => advanceMixSequencer();
 
         function advanceMixSequencer() {
@@ -516,6 +454,7 @@
             }
             executeTrackPlaybackEngine();
         }
+
         function forceSkipTrack() {
             metrics.skips++;
             updateAnalyticsDashboard();
@@ -539,35 +478,59 @@
             statusBadge.textContent = "STATUS: SHUTDOWN SYSTEM SECURED";
             activeMixQueue = [];
         }
-        function unlockAnalyticsConsole() {
-            const accessKey = prompt("ENTER DECRYPTION MATRIX AUTHORIZATION KEY:");
-            if (accessKey === "famo247") {
-                analyticsUnlocked = true;
-                document.getElementById('authGate').style.display = 'none';
-                document.getElementById('analyticsDisplayPanel').style.display = 'block';
-                updateAnalyticsDashboard();
+
+        function generateUrbanDropAsset() {
+            const scriptText = document.getElementById('aiScriptInput').value.trim();
+            if (!scriptText) return;
+
+            songVault.push({
+                type: 'drop',
+                title: `AI DROP: "${scriptText.substring(0, 22)}..."`,
+                artist: "URBAN AUTO JURK HOST",
+                url: 'SPEECH_SYNTH_ACTIVE',
+                rawScript: scriptText
+            });
+
+            metrics.aiDropsCooked++;
+            updateAnalyticsDashboard();
+            document.getElementById('aiScriptInput').value = '';
+            updateManifestView();
+            
+            if (activeMixQueue.length > 0) {
+                activeMixQueue.splice(currentQueueIndex + 1, 0, songVault[songVault.length - 1]);
             }
         }
-        function updateAnalyticsDashboard() {
-            if (!analyticsUnlocked) return;
-            document.getElementById('metricPlays').textContent = metrics.plays;
-            document.getElementById('metricSkips').textContent = metrics.skips;
-            document.getElementById('metricDrops').textContent = metrics.aiDropsCooked;
+
+        function injectManualAudioTrack() {
+            const title = document.getElementById('manualTitle').value.trim();
+            const artist = document.getElementById('manualArtist').value.trim();
+            const fileInput = document.getElementById('manualFile');
+
+            if (!title || !fileInput.files || fileInput.files.length === 0) return;
+
+            songVault.push({
+                type: 'song',
+                title: title,
+                artist: artist || "FAMO INDEPENDENT ARCHIVE",
+                url: URL.createObjectURL(fileInput.files[0])
+            });
+
+            document.getElementById('manualTitle').value = '';
+            document.getElementById('manualArtist').value = '';
+            fileInput.value = '';
+            updateManifestView();
         }
-        function dispatchSecureTeamLogs() {
-            const destinationMail = "yourteamemail@domain.com";
-            const subjectLine = encodeURIComponent("QUANTUM PULSE SESSION 24-7 // VEHICLE OPERATIONS ENGINE REPORT");
-            const bodyMessage = encodeURIComponent(
-                `THE QUANTUM PULSE STATION VEHICULAR INTERFACE MONITOR\n` +
-                `-----------------------------------------------------\n` +
-                `Metrics Sync Logs:\n` +
-                ` * Session Track Rotations: ${metrics.plays}\n` +
-                ` * Dashboard Track Skips: ${metrics.skips}\n` +
-                ` * Synthesized Hosts Audio Drops: ${metrics.aiDropsCooked}\n\n` +
-                `System core checks clear. Layout verified stable across extreme viewport landscape aspect ratios.`
-            );
-            window.location.href = `mailto:${destinationMail}?subject=${subjectLine}&body=${bodyMessage}`;
+
+        function updateManifestView() {
+            manifestDisplay.innerHTML = '';
+            songVault.forEach((item, index) => {
+                const row = document.createElement('div');
+                row.className = 'manifest-item';
+                row.innerHTML = `<span>[${index + 1}] <strong class="tag-${item.type}">${item.type.toUpperCase()}</strong>: ${item.title}</span><span style="color: var(--text-dim); font-size:0.75rem;">${item.artist}</span>`;
+                manifestDisplay.appendChild(row);
+            });
         }
-    </script>
-</body>
-</html>
+
+        function unlockAnalyticsConsole() {
+            const accessKey = prompt("ENTER DECRYPTION MATRIX AUTHORIZATION KEY:");
+if (accessKey === "famo247") {analyticsUnlocked = true;document.getElementById('authGate').style.display = 'none';document.getElementById('analyticsDisplayPanel').style.display = 'block';updateAnalyticsDashboard();}}function updateAnalyticsDashboard() {if (!analyticsUnlocked) return;document.getElementById('metricPlays').textContent = metrics.plays;document.getElementById('metricSkips').textContent = metrics.skips;document.getElementById('metricDrops').textContent = metrics.aiDropsCooked;}function dispatchSecureTeamLogs() {const destinationMail = "yourteamemail@domain.com";const subjectLine = encodeURIComponent("QUANTUM PULSE SESSION 24-7 // VEHICLE OPERATIONS ENGINE REPORT");const bodyMessage = encodeURIComponent(THE QUANTUM PULSE STATION VEHICULAR INTERFACE MONITOR\n +-----------------------------------------------------\n +Metrics Sync Logs:\n + * Session Track Rotations: ${metrics.plays}\n + * Dashboard Track Skips: ${metrics.skips}\n + * Synthesized Hosts Audio Drops: ${metrics.aiDropsCooked}\n\n +System core checks clear. Layout verified stable across extreme viewport landscape aspect ratios.);window.location.href = mailto:${destinationMail}?subject=${subjectLine}&body=${bodyMessage};}
