@@ -785,6 +785,54 @@ console.log("[System Keys] Automated UUID Engine loaded. Ready for instant membe
             loading="lazy">
     </iframe>
 </div>
+<script>
+// ====================================================================
+// CORE WIRE: EMERGENCY MULTI-STATION SCANNER ENGINE LOGIC
+// ====================================================================
+(function() {
+    const startBtn = document.getElementById('btn-scanner-start');
+    const muteBtn = document.getElementById('btn-scanner-mute');
+    const dialSelect = document.getElementById('scanner-station-dial');
+    const audioEngine = document.getElementById('scanner-audio-engine');
+    const statusText = document.getElementById('scanner-console-status');
+
+    if (!startBtn || !audioEngine) return;
+
+    // ENGAGE STREAM CONTROLS
+    startBtn.onclick = function() {
+        const streamUrl = dialSelect ? dialSelect.value : "https://walmradio.com";
+        audioEngine.src = streamUrl;
+        audioEngine.load();
+        
+        audioEngine.play()
+            .then(() => {
+                if (statusText) statusText.innerText = "Status: CONNECTED // CORES ACTIVE";
+            })
+            .catch((err) => {
+                console.log("Scanner stream block:", err);
+                if (statusText) statusText.innerText = "Status: STREAM UNSTABLE // RE-ENGAGE";
+            });
+    };
+
+    // MUTE / SHUTDOWN CONTROLS
+    if (muteBtn) {
+        muteBtn.onclick = function() {
+            audioEngine.pause();
+            audioEngine.src = "";
+            if (statusText) statusText.innerText = "Status: Awaiting Ingress";
+        };
+    }
+
+    // AUTO-SWITCH WHEN DIAL CHANGES IF ALREADY PLAYING
+    if (dialSelect) {
+        dialSelect.onchange = function() {
+            if (!audioEngine.paused) {
+                startBtn.click();
+            }
+        };
+    }
+})();
+</script>
 
 </body>
 </html>
