@@ -199,12 +199,58 @@
         </div>
     </div>
 
-    <script>
-        let songVault = [];
-        let activeMixQueue = [];
-        let currentQueueIndex = 0;
-        let isInitialBoot = true; 
-        let metrics = { plays: 0, skips: 0, aiDropsCooked: 0 };
-        let analyticsUnlocked = false;
+      <script>
+        let currentTrack = 1;
+        const player = document.getElementById('globalAudioPlayer');
+        const ticker = document.getElementById('metadataTicker');
+        const statusBadge = document.getElementById('playbackStatus');
 
-const audioPlayer = document.getElementById('globalAudioPlayer');const ticker = document.getElementById('metadataTicker');const statusBadge = document.getElementById('playbackStatus');const manifestDisplay = document.getElementById('manifestDisplay');const reshuffleVocalScripts = ["Attention all listeners! Team Auto Jurk DJs are re-shuffling the quantum vault matrix right now. Locked in, elite level, zero wait.","Hold up, drop that! We are resetting the matrix paths. Shuffling up a brand new exclusive session on the Famo Legacy Omnisphere.","Bypassing all standard gatekeepers right now. Team Auto Jurk DJs just threw a wrench in the system. New mix structure incoming live.","You are locked into the alpha timeline. Reshuffling the quantum vaults. Real hip hop, real rap, automated flawlessly."];window.addEventListener('DOMContentLoaded', () => {initializeGitHubAssetMatrix();});function initializeGitHubAssetMatrix() {const repoBaseUrl = "https://raw.githubusercontent.com/rap1033ssmm-crypto/the-famo-legacy-omnisphere-metadata-registry/main/";for (let i = 1; i <= 10; i++) {songVault.push({type: 'song',title: OMNISPHERE MATRIX CORE TRACK ${String(i).padStart(2, '0')},artist: "FAMO LEGACY TEAM",url: repoBaseUrl + "assets/track" + i + ".mp3.mp3"});}updateManifestView();}function engageTeamDJs() {window.speechSynthesis.cancel();if (isInitialBoot) {isInitialBoot = false;compileAutoDJRotation();ticker.textContent = "★★★ SYSTEM INITIALIZATION: OUTPASSING ALL LOCAL GATEKEEPERS INTERNATIONALLY ★XX";executeHostVoiceUtterance("WELCOME TO THE QUANTUM PULSE SESSION 24-7 RADIO STATION BY THE FAMO LEGACY OMNISPHERE WE HOPE YOU ENJOY THE MIX AND BE SURE TO TELL A FRIEND TO TUNE IN.");return;}if (activeMixQueue.length === 0 || currentQueueIndex >= activeMixQueue.length) {compileAutoDJRotation();}executeTrackPlaybackEngine();}function compileAutoDJRotation() {const songs = songVault.filter(i => i.type === 'song');const drops = songVault.filter(i => i.type === 'drop');if (songs.length === 0) return false;let shuffledSongs = [...songs];for (let i = shuffledSongs.length - 1; i > 0; i--) {const j = Math.floor(Math.random() * (i + 1));[shuffledSongs[i], shuffledSongs[j]] = [shuffledSongs[j], shuffledSongs[i]];}activeMixQueue = [];if (drops.length > 0) {activeMixQueue.push(drops[Math.floor(Math.random() * drops.length)]);}shuffledSongs.forEach((song, index) => {activeMixQueue.push(song);if (index > 0 && index % 3 === 0 && drops.length > 0) {activeMixQueue.push(drops[Math.floor(Math.random() * drops.length)]);}});currentQueueIndex = 0;return true;}function executeTrackPlaybackEngine() {if (activeMixQueue.length === 0) return;const item = activeMixQueue[currentQueueIndex];metrics.plays++;updateAnalyticsDashboard();ticker.textContent = ★★★ NOW PLAYING: [${item.title.toUpperCase()}] BY [${item.artist.toUpperCase()}] // THE QUANTUM PULSE SESSION 24-7 ★★★;statusBadge.textContent = STATUS: BROADCASTING // SLOT ${currentQueueIndex + 1} OF ${activeMixQueue.length};if (item.url === 'SPEECH_SYNTH_ACTIVE') {executeHostVoiceUtterance(item.rawScript);} else {audioPlayer.src = item.url;audioPlayer.load();audioPlayer.play().catch((err) => {console.log("File playback error, routing fallback bypass:", err);ticker.textContent = [TRACK NOT FOUND AUTOMATIC BYPASS LAYER ENGAGED] // SCANNING NEXT ASSET;setTimeout(() => { forceSkipTrack(); }, 1500);});}}function executeHostVoiceUtterance(scriptText) {audioPlayer.pause();window.speechSynthesis.cancel();const hostAnnouncement = new SpeechSynthesisUtterance(scriptText);const systemVoicesAvailable = window.speechSynthesis.getVoices();let targetVocalBase = systemVoicesAvailable.find(v => v.name.toLowerCase().includes('google uk english male') || v.name.toLowerCase().includes('male'));if(targetVocalBase) hostAnnouncement.voice = targetVocalBase;hostAnnouncement.pitch = 0.60;hostAnnouncement.rate = 1.15;hostAnnouncement.onend = () => advanceMixSequencer();hostAnnouncement.onerror = () => advanceMixSequencer();window.speechSynthesis.speak(hostAnnouncement);}audioPlayer.onended = () => advanceMixSequencer();function advanceMixSequencer() {currentQueueIndex++;if (currentQueueIndex >= activeMixQueue.length) {compileAutoDJRotation();}executeTrackPlaybackEngine();}function forceSkipTrack() {metrics.skips++;updateAnalyticsDashboard();window.speechSynthesis.cancel();advanceMixSequencer();}function triggerVoiceReshuffle() {window.speechSynthesis.cancel();const randomScript = reshuffleVocalScripts[Math.floor(Math.random() * reshuffleVocalScripts.length)];executeHostVoiceUtterance(randomScript);compileAutoDJRotation();}function killBroadcasting() {audioPlayer.pause();audioPlayer.src = "";window.speechSynthesis.cancel();isInitialBoot = true;ticker.textContent = "STATION PLUG OVERRODE // STANDBY PROTOCOLS LOADED";statusBadge.textContent = "STATUS: SHUTDOWN SYSTEM SECURED";activeMixQueue = [];}function generateUrbanDropAsset() {const scriptText = document.getElementById('aiScriptInput').value.trim();if (!scriptText) return;songVault.push({type: 'drop',title: AI DROP: "${scriptText.substring(0, 22)}...",artist: "URBAN AUTO JURK HOST",url: 'SPEECH_SYNTH_ACTIVE',rawScript: scriptText});metrics.aiDropsCooked++;updateAnalyticsDashboard();document.getElementById('aiScriptInput').value = '';updateManifestView();if (activeMixQueue.length > 0) {activeMixQueue.splice(currentQueueIndex + 1, 0, songVault[songVault.length - 1]);}}function injectManualAudioTrack() {const title = document.getElementById('manualTitle').value.trim();const artist = document.getElementById('manualArtist').value.trim();const fileInput = document.getElementById('manualFile');if (!title || !fileInput.files || fileInput.files.length === 0) return;songVault.push({type: 'song',title: title,artist: artist || "FAMO INDEPENDENT ARCHIVE",url: URL.createObjectURL(fileInput.files[0])});document.getElementById('manualTitle').value = '';document.getElementById('manualArtist').value = '';fileInput.value = '';updateManifestView();}function updateManifestView() {manifestDisplay.innerHTML = '';songVault.forEach((item, index) => {const row = document.createElement('div');row.className = 'manifest-item';row.innerHTML = <span>[${index + 1}] <strong class="tag-${item.type}">${item.type.toUpperCase()}</strong>: ${item.title}</span><span style="color: var(--text-dim); font-size:0.75rem;">${item.artist}</span>;manifestDisplay.appendChild(row);});}function unlockAnalyticsConsole() {const accessKey = prompt("ENTER DECRYPTION MATRIX AUTHORIZATION KEY:");if (accessKey === "famo247") {analyticsUnlocked = true;document.getElementById('authGate').style.display = 'none';document.getElementById('analyticsDisplayPanel').style.display = 'block';updateAnalyticsDashboard();}}function updateAnalyticsDashboard() {if (!analyticsUnlocked) return;document.getElementById('metricPlays').textContent = metrics.plays;document.getElementById('metricSkips').textContent = metrics.skips;document.getElementById('metricDrops').textContent = metrics.aiDropsCooked;}function dispatchSecureTeamLogs() {const destinationMail = "yourteamemail@domain.com";const subjectLine = encodeURIComponent("QUANTUM PULSE SESSION 24-7 // VEHICLE OPERATIONS ENGINE REPORT");const bodyMessage = encodeURIComponent(THE QUANTUM PULSE STATION VEHICULAR INTERFACE MONITOR\n +-----------------------------------------------------\n +Metrics Sync Logs:\n + * Session Track Rotations: ${metrics.plays}\n + * Dashboard Track Skips: ${metrics.skips}\n + * Synthesized Hosts Audio Drops: ${metrics.aiDropsCooked}\n\n +System core checks clear. Layout verified stable across extreme viewport landscape aspect ratios.);window.location.href = mailto:${destinationMail}?subject=${subjectLine}&body=${bodyMessage};}
+        function engageTeamDJs() {
+            // Cancel any system voice overrides to clear the audio lane
+            window.speechSynthesis.cancel();
+            
+            // Build the absolute raw link directly on button click
+            const targetUrl = "https://githubusercontent.com" + currentTrack + ".mp3.mp3";
+            
+            ticker.textContent = "★★★ NOW PLAYING: OMNISPHERE MATRIX CORE TRACK " + String(currentTrack).padStart(2, '0') + " ★★★";
+            statusBadge.textContent = "STATUS: BROADCASTING LIVE ASSET FEED";
+            
+            player.src = targetUrl;
+            player.load();
+            
+            // Fires immediately under the user gesture context to bypass browser restrictions
+            player.play().catch(err => {
+                console.log("Playback error, skipping:", err);
+                ticker.textContent = "★★★ TRACK NOT FOUND: SCANNING NEXT ASSET MATRIX ★★★";
+                setTimeout(forceSkipTrack, 1500);
+            });
+        }
+
+        player.onended = function() {
+            forceSkipTrack();
+        };
+
+        function forceSkipTrack() {
+            currentTrack++;
+            if (currentTrack > 10) currentTrack = 1;
+            engageTeamDJs();
+        }
+
+        function killBroadcasting() {
+            player.pause();
+            player.src = "";
+            ticker.textContent = "STATION PLUG OVERRODE // STANDBY PROTOCOLS LOADED";
+            statusBadge.textContent = "STATUS: SHUTDOWN SYSTEM SECURED";
+        }
+
+        function triggerVoiceReshuffle() {
+            ticker.textContent = "★★★ SYSTEM STATUS: EXECUTING TACTICAL VOICE RESHUFFLE ★★★";
+            forceSkipTrack();
+        }
+
+        function generateUrbanDropAsset() { alert("Voice engine standing by. Get some sleep first!"); }
+        function injectManualAudioTrack() { alert("Vault ingestion standing by. Get some sleep first!"); }
+        function unlockAnalyticsConsole() { alert("Console locked. Get some sleep first!"); }
+    </script>
+</body>
+</html>
