@@ -351,18 +351,20 @@
         window.addEventListener('DOMContentLoaded', () => {
             initializeGitHubAssetMatrix();
         });
-        function initializeGitHubAssetMatrix() {
+               function initializeGitHubAssetMatrix() {
             const repoBaseUrl = "https://githubusercontent.com";
+            
             for (let i = 1; i <= 10; i++) {
                 songVault.push({
                     type: 'song',
                     title: `OMNISPHERE MATRIX CORE TRACK ${String(i).padStart(2, '0')}`,
                     artist: "FAMO LEGACY TEAM",
-                    url: `${repoBaseUrl}tracks/track_${i}.mp3`
+                    url: `${repoBaseUrl}assets/track${i}.mp3.mp3`
                 });
             }
             updateManifestView();
         }
+
         function generateUrbanDropAsset() {
             const scriptText = document.getElementById('aiScriptInput').value.trim();
             if (!scriptText) return;
