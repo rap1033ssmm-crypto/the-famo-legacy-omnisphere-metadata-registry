@@ -14,280 +14,70 @@
             --accent-purple: #a855f7;
             --accent-red: #ef4444;
         }
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Courier New', Courier, monospace;
-        }
-        body {
-            background-color: var(--cyber-dark);
-            color: var(--text-main);
-            overflow-x: hidden;
-            padding: clamp(10px, 2vw, 30px);
-        }
-        .matrix-container {
-            max-width: 1600px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: clamp(10px, 2vw, 25px);
-        }
-        @media (max-width: 1024px) {
-            .matrix-container {
-                grid-template-columns: 1fr;
-            }
-        }
-        .deck-panel {
-            background: var(--panel-bg);
-            border: 2px solid #1e293b;
-            border-radius: 12px;
-            padding: clamp(15px, 3vw, 30px);
-            box-shadow: 0 0 25px rgba(0, 255, 102, 0.02);
-            position: relative;
-        }
-        .deck-panel::before {
-            content: "AUTOMOTIVE ECOSYSTEM PROFILE HYPER-ACTIVE";
-            position: absolute;
-            top: -10px; right: 20px;
-            background: var(--cyber-dark); color: var(--neon-green);
-            font-size: 0.7rem; padding: 2px 10px;
-            border: 1px solid var(--neon-green); border-radius: 4px;
-            letter-spacing: 1px; font-weight: bold;
-        }
-        h1, h2 {
-            color: #fff; letter-spacing: 2px; margin-bottom: 20px;
-            border-bottom: 1px dashed #1e293b; padding-bottom: 10px;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Courier New', Courier, monospace; }
+        body { background-color: var(--cyber-dark); color: var(--text-main); overflow-x: hidden; padding: clamp(10px, 2vw, 30px); }
+        .matrix-container { max-width: 1600px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr; gap: clamp(10px, 2vw, 25px); }
+        @media (max-width: 1024px) { .matrix-container { grid-template-columns: 1fr; } }
+        .deck-panel { background: var(--panel-bg); border: 2px solid #1e293b; border-radius: 12px; padding: clamp(15px, 3vw, 30px); position: relative; }
+        .deck-panel::before { content: "AUTOMOTIVE ECOSYSTEM PROFILE"; position: absolute; top: -10px; right: 20px; background: var(--cyber-dark); color: var(--neon-green); font-size: 0.7rem; padding: 2px 10px; border: 1px solid var(--neon-green); border-radius: 4px; }
+        h1, h2 { color: #fff; letter-spacing: 2px; margin-bottom: 20px; border-bottom: 1px dashed #1e293b; padding-bottom: 10px; }
         h1 { font-size: clamp(1.2rem, 2.5vw, 1.6rem); text-transform: uppercase; }
         h2 { font-size: 1rem; color: var(--neon-green); text-transform: uppercase; }
-        .ticker-wrapper {
-            background: #000;
-            border: 2px solid var(--neon-green);
-            padding: clamp(12px, 2vw, 18px);
-            border-radius: 6px;
-            overflow: hidden;
-            white-space: nowrap;
-            margin-bottom: 25px;
-            box-shadow: inset 0 0 15px rgba(0, 255, 102, 0.25);
-        }
-        .ticker-text {
-            display: inline-block;
-            padding-left: 100%;
-            animation: marquee 20s linear infinite;
-            color: var(--neon-green);
-            font-weight: bold;
-            font-size: clamp(1.1rem, 2vw, 1.4rem);
-            letter-spacing: 2px;
-        }
-        @keyframes marquee {
-            0% { transform: translate3d(0, 0, 0); }
-            100% { transform: translate3d(-100%, 0, 0); }
-        }
-        .player-controls {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-            background: #090d10;
-            padding: 20px;
-            border-radius: 8px;
-            border: 1px solid #1e293b;
-        }
-        .btn {
-            background: transparent;
-            border: 2px solid var(--neon-green);
-            color: var(--neon-green);
-            padding: clamp(14px, 2vw, 22px);
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: clamp(0.8rem, 1.5vw, 0.95rem);
-            letter-spacing: 1px;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            width: 100%;
-        }
-        .btn:hover, .btn:active {
-            background: var(--neon-green);
-            color: var(--cyber-dark);
-            box-shadow: 0 0 20px rgba(0, 255, 102, 0.4);
-        }
+        .ticker-wrapper { background: #000; border: 2px solid var(--neon-green); padding: 15px; border-radius: 6px; overflow: hidden; white-space: nowrap; margin-bottom: 25px; }
+        .ticker-text { display: inline-block; padding-left: 100%; animation: marquee 20s linear infinite; color: var(--neon-green); font-weight: bold; }
+        @keyframes marquee { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
+        .player-controls { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; margin: 20px 0; background: #090d10; padding: 20px; border-radius: 8px; }
+        .btn { background: transparent; border: 2px solid var(--neon-green); color: var(--neon-green); padding: 15px; border-radius: 6px; cursor: pointer; font-weight: bold; text-transform: uppercase; transition: all 0.2s ease; width: 100%; }
+        .btn:hover { background: var(--neon-green); color: var(--cyber-dark); }
         .btn-stop { border-color: var(--accent-red); color: var(--accent-red); }
-        .btn-stop:hover, .btn-stop:active { background: var(--accent-red); color: #fff; box-shadow: 0 0 20px rgba(239, 68, 68, 0.4); }
+        .btn-stop:hover { background: var(--accent-red); color: #fff; }
         .btn-purple { border-color: var(--accent-purple); color: var(--accent-purple); }
-        .btn-purple:hover, .btn-purple:active { background: var(--accent-purple); color: #000; box-shadow: 0 0 20px rgba(168, 85, 247, 0.4); }
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; font-size: 0.75rem; margin-bottom: 5px; color: var(--text-dim); text-transform: uppercase; }
-        .form-control { width: 100%; background: #090d10; border: 1px solid #334155; color: #fff; padding: 12px; border-radius: 6px; font-family: inherit; font-size: 0.9rem; }
-        .form-control:focus { outline: none; border-color: var(--neon-green); }
-        .manifest-list { margin-top: 15px; max-height: 220px; overflow-y: auto; border: 1px solid #1e293b; background: #090d10; border-radius: 6px; }
-        .manifest-item { padding: 10px 14px; border-bottom: 1px solid #1e293b; display: flex; justify-content: space-between; font-size: 0.85rem; align-items: center; }
-        .tag-song { color: #38bdf8; }
-        .tag-drop { color: var(--accent-purple); }
-        .admin-analytics-layer { margin-top: 30px; border-top: 2px dashed #233144; padding-top: 20px; }
-        .analytics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 15px; }
-        .analytics-card { background: #090d10; border: 1px solid #1e293b; padding: 15px; border-radius: 6px; text-align: center; }
-        .analytics-card div:first-child { font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; margin-bottom: 5px; }
-        .analytics-card div:last-child { font-size: 1.4rem; color: #fff; font-weight: bold; }
+        .btn-purple:hover { background: var(--accent-purple); color: #000; }
+        .form-control { width: 100%; background: #090d10; border: 1px solid #334155; color: #fff; padding: 12px; border-radius: 6px; margin-bottom: 15px; }
+        .manifest-list { max-height: 220px; overflow-y: auto; border: 1px solid #1e293b; background: #090d10; padding: 10px; border-radius: 6px; }
+        .analytics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .analytics-card { background: #090d10; border: 1px solid #1e293b; padding: 10px; border-radius: 6px; text-align: center; }
     </style>
 </head>
 <body>
     <div class="matrix-container">
         <div class="deck-panel">
-            <h1>THE QUANTUM PULSE SESSION 24-7 RADIO STATION</h1>
-            <div class="ticker-wrapper">
-                <div class="ticker-text" id="metadataTicker">SYSTEM READY // CLICK ENGAGE AUTO DJs TO SYNC LIVE BROADCAST AUDIO PATHS</div>
-            </div>
-            <audio id="globalAudioPlayer" style="width: 100%; margin-bottom: 25px; filter: invert(1);" controls></audio>
+            <h1>QUANTUM PULSE 24-7</h1>
+            <div class="ticker-wrapper"><div class="ticker-text" id="metadataTicker">SYSTEM READY</div></div>
+            <audio id="globalAudioPlayer" style="width: 100%;" controls></audio>
             <div class="player-controls">
-                <button class="btn" onclick="engageTeamDJs()">Engage Auto DJs</button>
-                <button class="btn btn-stop" onclick="killBroadcasting()">Kill Feed</button>
-                <button class="btn" onclick="forceSkipTrack()">Skip Track</button>
-                <button class="btn btn-purple" onclick="triggerVoiceReshuffle()">Voice Reshuffle</button>
+                <button class="btn" onclick="engageTeamDJs()">Engage</button>
+                <button class="btn btn-stop" onclick="killBroadcasting()">Kill</button>
             </div>
-            <div id="playbackStatus" style="text-align: center; font-size: 0.85rem; color: var(--text-dim); letter-spacing: 1px;">STATUS: DASHBOARD CORE UNLOCKED</div>
-            <div class="vault-section" style="margin-top: 35px;">
-                <h2>ACTIVE TEAM DJ ROTATION MANIFEST</h2>
-                <div class="manifest-list" id="manifestDisplay"></div>
-            </div>
-            <div class="admin-analytics-layer">
-                <h2>PRIVATE OPERATIONS MONITORING (DIAGNOSTICS PANEL)</h2>
-                <div id="authGate">
-                    <button class="btn" style="max-width: 320px;" onclick="unlockAnalyticsConsole()">Decrypt Analytics Framework</button>
-                </div>
-                <div id="analyticsDisplayPanel" style="display: none;">
-                    <div class="analytics-grid">
-                        <div class="analytics-card"><div>Session Plays</div><div id="metricPlays">0</div></div>
-                        <div class="analytics-card"><div>Total Skips</div><div id="metricSkips">0</div></div>
-                        <div class="analytics-card"><div>AI Drops Cooked</div><div id="metricDrops">0</div></div>
-                    </div>
-                    <button class="btn" onclick="dispatchSecureTeamLogs()">Route Analytics Manifest to Team Email</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="deck-panel">
             <div class="vault-section">
-                <h2>URBAN AI VOICE DROP CONTROLLER</h2>
-                <div class="form-group">
-                    <label>Radio Host Script Text</label>
-                    <input type="text" id="aiScriptInput" class="form-control" placeholder="e.g. Famo Legacy Matrix Radio, locked in 24-7!">
-                </div>
-                <button class="btn btn-purple" onclick="generateUrbanDropAsset()">Synthesize & Inject Drop</button>
-            </div>
-            <div class="vault-section" style="margin-top: 35px;">
-                <h2>MANUAL MP3 VAULT INGESTION</h2>
-                <div class="form-group">
-                    <label>Asset Track Name</label>
-                    <input type="text" id="manualTitle" class="form-control" placeholder="Track Name">
-                </div>
-                <div class="form-group">
-                    <label>Artist / Identity Link</label>
-                    <input type="text" id="manualArtist" class="form-control" placeholder="Artist Name">
-                </div>
-                <div class="form-group">
-                    <label>Audio Source File (.mp3)</label>
-                    <input type="file" id="manualFile" class="form-control" accept="audio/mp3">
-                </div>
-                <button class="btn" onclick="injectManualAudioTrack()">Load Track to Deck</button>
+                <h2>MANIFEST</h2>
+                <div class="manifest-list" id="manifestDisplay"></div>
             </div>
         </div>
     </div>
 
-            <script>
-        // Track sequencing counters
+    <script>
         let currentTrack = 1;
         let isFirstClick = true;
-
-        // Directly link to your specific HTML dashboard display elements
         const player = document.getElementById('globalAudioPlayer');
         const ticker = document.getElementById('metadataTicker');
-        const statusBadge = document.getElementById('playbackStatus');
-        const manifestDisplay = document.getElementById('manifestDisplay');
-
-        // Automatic list renderer runs the second the vehicle console boots up
-        window.addEventListener('DOMContentLoaded', () => {
-            renderCustomManifest();
-        });
+        const repoBaseUrl = "https://githubusercontent.com";
 
         function engageTeamDJs() {
-            // Instantly clear any system speech synthesis locks on the audio channel
-            window.speechSynthesis.cancel();
-            
-            const repoBaseUrl = "https://githubusercontent.com";
-            
-            // CONDITION A: Execute your custom vocal track strictly on the very first button tap
             if (isFirstClick) {
-                isFirstClick = false;
-                ticker.textContent = "★★★ NOW PLAYING: URBAN AI SYSTEM INTRO DROP ★★★";
-                statusBadge.textContent = "STATUS: BROADCASTING VOCAL DROP MATRIX";
                 player.src = repoBaseUrl + "famo_voice_drop1.mp3.aac.mp3";
-            } 
-            // CONDITION B: Seamlessly loop through your 10 background music files
-            else {
-                ticker.textContent = "★★★ NOW PLAYING: OMNISPHERE MATRIX CORE TRACK " + String(currentTrack).padStart(2, '0') + " ★★★";
-                statusBadge.textContent = "STATUS: BROADCASTING LIVE TRACK FEED // SLOT " + currentTrack + " OF 10";
-                player.src = repoBaseUrl + "track" + currentTrack + ".mp3.mp3";
-            }
-
-            player.load();
-            
-            // Immediate click event clears the browser security restriction sandbox instantly
-            player.play().catch(err => {
-                console.log("File loading or unmapped path, bypassing:", err);
-                ticker.textContent = "★★★ SEARCHING VAULT LAYER: SCANNING NEXT ACTIVE STREAM INDEX ★★★";
-                setTimeout(forceSkipTrack, 1500);
-            });
-        }
-
-        player.onended = function() {
-            // Automatically advances to the music list once the intro voice drop finishes
-            if (player.src.includes("famo_voice_drop1")) {
-                engageTeamDJs();
+                ticker.textContent = "NOW PLAYING: INTRO";
+                isFirstClick = false;
             } else {
-                forceSkipTrack();
+                player.src = repoBaseUrl + "track" + currentTrack + ".mp3.mp3";
+                ticker.textContent = "NOW PLAYING: TRACK " + currentTrack;
+                currentTrack = (currentTrack % 10) + 1;
             }
-        };
-
-        function forceSkipTrack() {
-            currentTrack++;
-            if (currentTrack > 10) currentTrack = 1;
-            
-            // Ensures isFirstClick is skipped if someone uses manual skips right away
-            isFirstClick = false; 
-            engageTeamDJs();
+            player.play();
         }
 
-        function killBroadcasting() {
-            player.pause();
-            player.src = "";
-            isFirstClick = true;
-            ticker.textContent = "STATION PLUG OVERRODE // STANDBY PROTOCOLS LOADED";
-            statusBadge.textContent = "STATUS: SHUTDOWN SYSTEM SECURED";
-        }
-
-        function triggerVoiceReshuffle() {
-            ticker.textContent = "★★★ SYSTEM STATUS: EXECUTING TACTICAL VOICE RESHUFFLE ★★★";
-            forceSkipTrack();
-        }
-
-        function renderCustomManifest() {
-            if (!manifestDisplay) return;
-            manifestDisplay.innerHTML = `
-                <div class="manifest-item"><span>[1] <strong class="tag-drop">DROP</strong>: famo_voice_drop1.mp3.aac.mp3</span><span style="color:var(--text-dim); font-size:0.75rem;">URBAN AI HOST</span></div>
-                <div class="manifest-item"><span>[2] <strong class="tag-song">SONG</strong>: track1.mp3.mp3 to track10.mp3.mp3</span><span style="color:var(--text-dim); font-size:0.75rem;">FAMO LEGACY MUSIC VAULT</span></div>
-            `;
-        }
-
-        // Framework structural hooks
-        function generateUrbanDropAsset() { alert("Voice processing online! Secure your commit and get some rest."); }
-        function injectManualAudioTrack() { alert("Vault ingestion online! Secure your commit and get some rest."); }
-        function unlockAnalyticsConsole() { alert("Analytics online! Secure your commit and get some rest."); }
+        player.onended = () => engageTeamDJs();
+        function killBroadcasting() { player.pause(); player.src = ""; }
     </script>
 </body>
 </html>
