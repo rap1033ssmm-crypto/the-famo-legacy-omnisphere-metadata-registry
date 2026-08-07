@@ -28,8 +28,6 @@
             overflow-x: hidden;
             padding: clamp(10px, 2vw, 30px);
         }
-
-        /* 🏎️ HIGH-AUTOMOTIVE SMART GRID INTERFACE */
         .matrix-container {
             max-width: 1600px;
             margin: 0 auto;
@@ -38,14 +36,12 @@
             gap: clamp(10px, 2vw, 25px);
         }
 
-        /* Responsive Breakpoint Optimized for Car Displays & Horizontal Dashboards */
         @media (max-width: 1024px) {
             .matrix-container {
                 grid-template-columns: 1fr;
             }
         }
 
-        /* Touch-Friendly Infotainment Panel Framing */
         .deck-panel {
             background: var(--panel-bg);
             border: 2px solid #1e293b;
@@ -54,34 +50,24 @@
             box-shadow: 0 0 25px rgba(0, 255, 102, 0.02);
             position: relative;
         }
-
+        /* Adds stylized header branding to the panel container */
         .deck-panel::before {
             content: "AUTOMOTIVE ECOSYSTEM PROFILE HYPER-ACTIVE";
             position: absolute;
-            top: -10px;
-            right: 20px;
-            background: var(--cyber-dark);
-            color: var(--neon-green);
-            font-size: 0.7rem;
-            padding: 2px 10px;
-            border: 1px solid var(--neon-green);
-            border-radius: 4px;
-            letter-spacing: 1px;
-            font-weight: bold;
+            top: -10px; right: 20px;
+            background: var(--cyber-dark); color: var(--neon-green);
+            font-size: 0.7rem; padding: 2px 10px;
+            border: 1px solid var(--neon-green); border-radius: 4px;
+            letter-spacing: 1px; font-weight: bold;
         }
 
+        /* Defines typography and spacing for main headers */
         h1, h2 {
-            color: #fff;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            border-bottom: 1px dashed #1e293b;
-            padding-bottom: 10px;
+            color: #fff; letter-spacing: 2px; margin-bottom: 20px;
+            border-bottom: 1px dashed #1e293b; padding-bottom: 10px;
         }
-
         h1 { font-size: clamp(1.2rem, 2.5vw, 1.6rem); text-transform: uppercase; }
         h2 { font-size: 1rem; color: var(--neon-green); text-transform: uppercase; }
-
-        /* Oversized Visual Kinetic Ticker */
         .ticker-wrapper {
             background: #000;
             border: 2px solid var(--neon-green);
@@ -92,7 +78,6 @@
             margin-bottom: 25px;
             box-shadow: inset 0 0 15px rgba(0, 255, 102, 0.25);
         }
-
         .ticker-text {
             display: inline-block;
             padding-left: 100%;
@@ -107,8 +92,6 @@
             0% { transform: translate3d(0, 0, 0); }
             100% { transform: translate3d(-100%, 0, 0); }
         }
-
-        /* Big-Button Touch Grid (Engineered to prevent accidental mis-taps while driving) */
         .player-controls {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -119,7 +102,6 @@
             border-radius: 8px;
             border: 1px solid #1e293b;
         }
-
         .btn {
             background: transparent;
             border: 2px solid var(--neon-green);
@@ -137,7 +119,6 @@
             justify-content: center;
             text-align: center;
         }
-
         .btn:hover, .btn:active {
             background: var(--neon-green);
             color: var(--cyber-dark);
@@ -149,40 +130,127 @@
 
         .btn-purple { border-color: var(--accent-purple); color: var(--accent-purple); }
         .btn-purple:hover, .btn-purple:active { background: var(--accent-purple); color: #000; box-shadow: 0 0 20px rgba(168, 85, 247, 0.4); }
-
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; font-size: 0.75rem; margin-bottom: 5px; color: var(--text-dim); text-transform: uppercase; }
-        .form-control { width: 100%; background: #090d10; border: 1px solid #334155; color: #fff; padding: 12px; border-radius: 6px; font-family: inherit; font-size: 0.9rem; }
-        .form-control:focus { outline: none; border-color: var(--neon-green); }
-
-        .manifest-list { margin-top: 15px; max-height: 220px; overflow-y: auto; border: 1px solid #1e293b; background: #090d10; border-radius: 6px; }
-        .manifest-item { padding: 10px 14px; border-bottom: 1px solid #1e293b; display: flex; justify-content: space-between; font-size: 0.85rem; align-items: center; }
+        .form-group { 
+            margin-bottom: 15px; 
+        }
+        
+        .form-group label { 
+            display: block; 
+            font-size: 0.75rem; 
+            margin-bottom: 5px; 
+            color: var(--text-dim); 
+            text-transform: uppercase; 
+        }
+        
+        .form-control { 
+            width: 100%; 
+            background: #090d10; 
+            border: 1px solid #334155; 
+            color: #fff; 
+            padding: 12px; 
+            border-radius: 6px; 
+            font-family: inherit; 
+            font-size: 0.9rem; 
+        }
+        
+        .form-control:focus { 
+            outline: none; 
+            border-color: var(--neon-green); 
+        }
+        .manifest-list { 
+            margin-top: 15px; 
+            max-height: 220px; 
+            overflow-y: auto; 
+            border: 1px solid #1e293b; 
+            background: #090d10; 
+            border-radius: 6px; 
+        }
+        
+        .manifest-item { 
+            padding: 10px 14px; 
+            border-bottom: 1px solid #1e293b; 
+            display: flex; 
+            justify-content: space-between; 
+            font-size: 0.85rem; 
+            align-items: center; 
+        }
+        
         .tag-song { color: #38bdf8; }
         .tag-drop { color: var(--accent-purple); }
+        .manifest-list { 
+            margin-top: 15px; 
+            max-height: 220px; 
+            overflow-y: auto; 
+            border: 1px solid #1e293b; 
+            background: #090d10; 
+            border-radius: 6px; 
+        }
+        .manifest-item { 
+            padding: 10px 14px; 
+            border-bottom: 1px solid #1e293b; 
+            display: flex; 
+            justify-content: space-between; 
+            font-size: 0.85rem; 
+            align-items: center; 
+        }
+        
+        .tag-song { color: #38bdf8; }
+        .tag-drop { color: var(--accent-purple); }
+        .manifest-item { 
+            padding: 10px 14px; 
+            border-bottom: 1px solid #1e293b; 
+            display: flex; 
+            justify-content: space-between; 
+            font-size: 0.85rem; 
+            align-items: center; 
+        }
+        .tag-song { color: #38bdf8; }
+        .tag-drop { color: var(--accent-purple); }
+        .admin-analytics-layer { 
+            margin-top: 30px; 
+            border-top: 2px dashed #233144; 
+            padding-top: 20px; 
+        }
 
-        .admin-analytics-layer { margin-top: 30px; border-top: 2px dashed #233144; padding-top: 20px; }
-        .analytics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 15px; }
-        .analytics-card { background: #090d10; border: 1px solid #1e293b; padding: 15px; border-radius: 6px; text-align: center; }
-        .analytics-card div:first-child { font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; margin-bottom: 5px; }
-        .analytics-card div:last-child { font-size: 1.4rem; color: #fff; font-weight: bold; }
+        .analytics-grid { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 15px; 
+            margin-bottom: 15px; 
+        }
+        .analytics-card { 
+            background: #090d10; 
+            border: 1px solid #1e293b; 
+            padding: 15px; 
+            border-radius: 6px; 
+            text-align: center; 
+        }
+        .analytics-card div:first-child { 
+            font-size: 0.7rem; 
+            color: var(--text-dim); 
+            text-transform: uppercase; 
+            margin-bottom: 5px; 
+        }
+        .analytics-card div:last-child { 
+            font-size: 1.4rem; 
+            color: #fff; 
+            font-weight: bold; 
+        }
     </style>
 </head>
 <body>
-
     <div class="matrix-container">
         
-        <!-- MODULE 01: VEHICLE ENGINE & RECEPTOR DECK -->
+        <!-- MAIN COMMAND BOARD VIEWPORTS -->
         <div class="deck-panel">
             <h1>THE QUANTUM PULSE SESSION 24-7 RADIO STATION</h1>
-            
             <div class="ticker-wrapper">
                 <div class="ticker-text" id="metadataTicker">SYSTEM READY // CLICK ENGAGE AUTO DJs TO SYNC LIVE BROADCAST AUDIO PATHS</div>
             </div>
-
-            <!-- Dashboard Native Audio Object Panel -->
+            <div class="ticker-wrapper">
+                <div class="ticker-text" id="metadataTicker">SYSTEM READY // CLICK ENGAGE AUTO DJs TO SYNC LIVE BROADCAST AUDIO PATHS</div>
+            </div>
             <audio id="globalAudioPlayer" style="width: 100%; margin-bottom: 25px; filter: invert(1);" controls></audio>
-
-            <!-- Big Control Matrix -->
             <div class="player-controls">
                 <button class="btn" onclick="engageTeamDJs()">Engage Auto DJs</button>
                 <button class="btn btn-stop" onclick="killBroadcasting()">Kill Feed</button>
@@ -195,8 +263,6 @@
                 <h2>ACTIVE TEAM DJ ROTATION MANIFEST</h2>
                 <div class="manifest-list" id="manifestDisplay"></div>
             </div>
-
-            <!-- INTERNAL DIAGNOSTICS DECK -->
             <div class="admin-analytics-layer">
                 <h2>PRIVATE OPERATIONS MONITORING (DIAGNOSTICS PANEL)</h2>
                 <div id="authGate">
@@ -212,8 +278,7 @@
                 </div>
             </div>
         </div>
-
-        <!-- MODULE 02: INGESTION MATRIX & MULTI-VOICE SCRIPTS -->
+        <!-- RIGHT-SIDE MANAGEMENT PANEL -->
         <div class="deck-panel">
             <div class="vault-section">
                 <h2>URBAN AI VOICE DROP CONTROLLER</h2>
@@ -230,4 +295,267 @@
                     <label>Asset Track Name</label>
                     <input type="text" id="manualTitle" class="form-control" placeholder="Track Name">
                 </div>
-Artist / Identity LinkAudio Source File (.mp3)Load Track to Decklet songVault = [];let activeMixQueue = [];let currentQueueIndex = 0;let isInitialBoot = true; // State tracker to check if opening message has been deliveredlet metrics = { plays: 0, skips: 0, aiDropsCooked: 0 };let analyticsUnlocked = false;const audioPlayer = document.getElementById('globalAudioPlayer');const ticker = document.getElementById('metadataTicker');const statusBadge = document.getElementById('playbackStatus');const manifestDisplay = document.getElementById('manifestDisplay');// Library of rotating scripts for the Voice Reshuffle functionconst reshuffleVocalScripts = ["Attention all listeners! Team Auto Jurk DJs are re-shuffling the quantum vault matrix right now. Locked in, elite level, zero wait.","Hold up, drop that! We are resetting the matrix paths. Shuffling up a brand new exclusive session on the Famo Legacy Omnisphere.","Bypassing all standard gatekeepers right now. Team Auto Jurk DJs just threw a wrench in the system. New mix structure incoming live.","You are locked into the alpha timeline. Reshuffling the quantum vaults. Real hip hop, real rap, automated flawlessly."];window.addEventListener('DOMContentLoaded', () => {initializeGitHubAssetMatrix();});function initializeGitHubAssetMatrix() {const repoBaseUrl = "githubusercontent.com";for (let i = 1; i <= 10; i++) {songVault.push({type: 'song',title: OMNISPHERE MATRIX CORE TRACK ${String(i).padStart(2, '0')},artist: "FAMO LEGACY TEAM",url: ${repoBaseUrl}tracks/track_${i}.mp3});}updateManifestView();}function generateUrbanDropAsset() {const scriptText = document.getElementById('aiScriptInput').value.trim();if (!scriptText) return;songVault.push({type: 'drop',title: AI DROP: "${scriptText.substring(0, 22)}...",artist: "URBAN AUTO JURK HOST",url: 'SPEECH_SYNTH_ACTIVE',rawScript: scriptText});metrics.aiDropsCooked++;updateAnalyticsDashboard();document.getElementById('aiScriptInput').value = '';updateManifestView();if (activeMixQueue.length > 0) {activeMixQueue.splice(currentQueueIndex + 1, 0, songVault[songVault.length - 1]);}}function injectManualAudioTrack() {const title = document.getElementById('manualTitle').value.trim();const artist = document.getElementById('manualArtist').value.trim();const fileInput = document.getElementById('manualFile');if (!title || !fileInput.files) return;songVault.push({type: 'song',title: title,artist: artist || "FAMO INDEPENDENT ARCHIVE",url: URL.createObjectURL(fileInput.files)});document.getElementById('manualTitle').value = '';document.getElementById('manualArtist').value = '';fileInput.value = '';updateManifestView();}function updateManifestView() {manifestDisplay.innerHTML = '';songVault.forEach((item, index) => {const row = document.createElement('div');row.className = 'manifest-item';row.innerHTML = <span>[${index + 1}] <strong class="tag-${item.type}">${item.type.toUpperCase()}</strong>: ${item.title}</span> <span style="color: var(--text-dim); font-size:0.75rem;">${item.artist}</span>;manifestDisplay.appendChild(row);});}function compileAutoDJRotation() {const songs = songVault.filter(i => i.type === 'song');const drops = songVault.filter(i => i.type === 'drop');if (songs.length === 0) return false;let shuffledSongs = [...songs];for (let i = shuffledSongs.length - 1; i > 0; i--) {const j = Math.floor(Math.random() * (i + 1));[shuffledSongs[i], shuffledSongs[j]] = [shuffledSongs[j], shuffledSongs[i]];}activeMixQueue = [];if (drops.length > 0) {activeMixQueue.push(drops[Math.floor(Math.random() * drops.length)]);}shuffledSongs.forEach((song, index) => {activeMixQueue.push(song);if (index > 0 && index % 3 === 0 && drops.length > 0) {activeMixQueue.push(drops[Math.floor(Math.random() * drops.length)]);}});currentQueueIndex = 0;return true;}function engageTeamDJs() {// 🎙️ MANDATORY FIRST-BOOT SYSTEM DROP TRIGGERif (isInitialBoot) {isInitialBoot = false;compileAutoDJRotation();ticker.textContent = "★★★ SYSTEM INITIALIZATION: OUTPASSING ALL LOCAL GATEKEEPERS INTERNATIONALLY ★★★";executeHostVoiceUtterance("WELCOME TO THE QUANTUM PULSE SESSION 24-7 RADIO STATION BY THE FAMO LEGACY OMNISPHERE WE HOPE YOU ENJOY THE MIX AND BE SURE TO TELL A FRIEND TO TUNE IN.");return;}if (activeMixQueue.length === 0 || currentQueueIndex >= activeMixQueue.length) {compileAutoDJRotation();}executeTrackPlaybackEngine();}function executeTrackPlaybackEngine() {if (activeMixQueue.length === 0) return;const item = activeMixQueue[currentQueueIndex];ticker.textContent = ★★★ NOW PLAYING: [${item.title.toUpperCase()}] BY [${item.artist.toUpperCase()}] // THE QUANTUM PULSE SESSION 24-7 ★★★;statusBadge.textContent = STATUS: BROADCASTING // SLOT ${currentQueueIndex + 1} OF ${activeMixQueue.length};metrics.plays++;updateAnalyticsDashboard();if (item.url === 'SPEECH_SYNTH_ACTIVE') {executeHostVoiceUtterance(item.rawScript);} else {audioPlayer.src = item.url;audioPlayer.play().catch(() => forceSkipTrack());}}function executeHostVoiceUtterance(scriptText) {audioPlayer.pause();audioPlayer.src = "";const hostAnnouncement = new SpeechSynthesisUtterance(scriptText);const systemVoicesAvailable = window.speechSynthesis.getVoices();// Set up urban midnight style deep bass cadence profileslet targetVocalBase = systemVoicesAvailable.find(v => v.name.toLowerCase().includes('google uk english male') || v.name.toLowerCase().includes('male'));if(targetVocalBase) hostAnnouncement.voice = targetVocalBase;hostAnnouncement.pitch = 0.60;hostAnnouncement.rate = 1.15;hostAnnouncement.onend = () => advanceMixSequencer();hostAnnouncement.onerror = () => advanceMixSequencer();window.speechSynthesis.speak(hostAnnouncement);}audioPlayer.onended = () => advanceMixSequencer();function advanceMixSequencer() {currentQueueIndex++;if (currentQueueIndex >= activeMixQueue.length) {compileAutoDJRotation();}executeTrackPlaybackEngine();}function forceSkipTrack() {metrics.skips++;updateAnalyticsDashboard();window.speechSynthesis.cancel();advanceMixSequencer();}// Dynamically draws from the voice script database array for unexpected variation dropsfunction triggerVoiceReshuffle() {window.speechSynthesis.cancel();const randomScript = reshuffleVocalScripts[Math.floor(Math.random() * reshuffleVocalScripts.length)];executeHostVoiceUtterance(randomScript);compileAutoDJRotation();}function killBroadcasting() {audioPlayer.pause();audioPlayer.src = "";window.speechSynthesis.cancel();isInitialBoot = true;ticker.textContent = "STATION PLUG OVERODE // STANDBY PROTOCOLS LOADED";statusBadge.textContent = "STATUS: SHUTDOWN SYSTEM SECURED";activeMixQueue = [];}function unlockAnalyticsConsole() {const accessKey = prompt("ENTER DECRYPTION MATRIX AUTHORIZATION KEY:");if (accessKey === "famo247") {analyticsUnlocked = true;document.getElementById('authGate').style.display = 'none';document.getElementById('analyticsDisplayPanel').style.display = 'block';updateAnalyticsDashboard();}}function updateAnalyticsDashboard() {if (!analyticsUnlocked) return;document.getElementById('metricPlays').textContent = metrics.plays;document.getElementById('metricSkips').textContent = metrics.skips;document.getElementById('metricDrops').textContent = metrics.aiDropsCooked;}function dispatchSecureTeamLogs() {const destinationMail = "yourteamemail@domain.com";const subjectLine = encodeURIComponent("QUANTUM PULSE SESSION 24-7 // VEHICLE OPERATIONS ENGINE REPORT");const bodyMessage = encodeURIComponent(THE QUANTUM PULSE STATION VEHICULAR INTERFACE MONITOR\n +-----------------------------------------------------\n +Metrics Sync Logs:\n + * Session Track Rotations: ${metrics.plays}\n + * Dashboard Track Skips: ${metrics.skips}\n + * Synthesized Hosts Audio Drops: ${metrics.aiDropsCooked}\n\n +System core checks clear. Layout verified stable across extreme viewport landscape aspect ratios.);window.location.href = mailto:${destinationMail}?subject=${subjectLine}&body=${bodyMessage};}
+                <div class="form-group">
+                    <label>Artist / Identity Link</label>
+                    <input type="text" id="manualArtist" class="form-control" placeholder="Artist Name">
+                </div>
+                <div class="form-group">
+                    <label>Audio Source File (.mp3)</label>
+                    <input type="file" id="manualFile" class="form-control" accept="audio/mp3">
+                </div>
+                <button class="btn" style="width: 100%;" onclick="injectManualAudioTrack()">Load Track to Deck</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Core data structures for song management and playback state
+        let songVault = [];
+        let activeMixQueue = [];
+        let currentQueueIndex = 0;
+        let isInitialBoot = true; 
+
+        // Metrics and analytics tracking
+        let metrics = { plays: 0, skips: 0, aiDropsCooked: 0 };
+        let analyticsUnlocked = false;
+
+        // DOM element references
+        const audioPlayer = document.getElementById('globalAudioPlayer');
+        const ticker = document.getElementById('metadataTicker');
+        const statusBadge = document.getElementById('playbackStatus');
+        const manifestDisplay = document.getElementById('manifestDisplay');
+    </script>
+    <script>
+        let songVault = [];
+        let activeMixQueue = [];
+        let currentQueueIndex = 0;
+        let isInitialBoot = true; 
+        let metrics = { plays: 0, skips: 0, aiDropsCooked: 0 };
+        let analyticsUnlocked = false;
+        const audioPlayer = document.getElementById('globalAudioPlayer');
+        const ticker = document.getElementById('metadataTicker');
+        const statusBadge = document.getElementById('playbackStatus');
+        const manifestDisplay = document.getElementById('manifestDisplay');
+        const audioPlayer = document.getElementById('globalAudioPlayer');
+        const ticker = document.getElementById('metadataTicker');
+        const statusBadge = document.getElementById('playbackStatus');
+        const manifestDisplay = document.getElementById('manifestDisplay');
+        const reshuffleVocalScripts = [
+            "Attention all listeners! Team Auto Jurk DJs are re-shuffling the quantum vault matrix right now. Locked in, elite level, zero wait.",
+            "Hold up, drop that! We are resetting the matrix paths. Shuffling up a brand new exclusive session on the Famo Legacy Omnisphere."
+        ];
+        // Pushes extra host drops to the rolling script database array
+        reshuffleVocalScripts.push(
+            "Bypassing all standard gatekeepers right now. Team Auto Jurk DJs just threw a wrench in the system. New mix structure incoming live.",
+            "You are locked into the alpha timeline. Reshuffling the quantum vaults. Real hip hop, real rap, automated flawlessly."
+        );
+        window.addEventListener('DOMContentLoaded', () => {
+            initializeGitHubAssetMatrix();
+        });
+        function initializeGitHubAssetMatrix() {
+            const repoBaseUrl = "https://githubusercontent.com";
+            for (let i = 1; i <= 10; i++) {
+                songVault.push({
+                    type: 'song',
+                    title: `OMNISPHERE MATRIX CORE TRACK ${String(i).padStart(2, '0')}`,
+                    artist: "FAMO LEGACY TEAM",
+                    url: `${repoBaseUrl}tracks/track_${i}.mp3`
+                });
+            }
+            updateManifestView();
+        }
+        function generateUrbanDropAsset() {
+            const scriptText = document.getElementById('aiScriptInput').value.trim();
+            if (!scriptText) return;
+
+            songVault.push({
+                type: 'drop',
+                title: `AI DROP: "${scriptText.substring(0, 22)}..."`,
+                artist: "URBAN AUTO JURK HOST",
+                url: 'SPEECH_SYNTH_ACTIVE',
+                rawScript: scriptText
+            });
+            metrics.aiDropsCooked++;
+            updateAnalyticsDashboard();
+            document.getElementById('aiScriptInput').value = '';
+            updateManifestView();
+            
+            if (activeMixQueue.length > 0) {
+                activeMixQueue.splice(currentQueueIndex + 1, 0, songVault[songVault.length - 1]);
+            }
+        }
+        function injectManualAudioTrack() {
+            const title = document.getElementById('manualTitle').value.trim();
+            const artist = document.getElementById('manualArtist').value.trim();
+            const fileInput = document.getElementById('manualFile');
+
+            if (!title || !fileInput.files || fileInput.files.length === 0) return;
+
+            songVault.push({
+                type: 'song',
+                title: title,
+                artist: artist || "FAMO INDEPENDENT ARCHIVE",
+                url: URL.createObjectURL(fileInput.files[0])
+            });
+            document.getElementById('manualTitle').value = '';
+            document.getElementById('manualArtist').value = '';
+            fileInput.value = '';
+            updateManifestView();
+        }
+
+        function updateManifestView() {
+            manifestDisplay.innerHTML = '';
+            songVault.forEach((item, index) => {
+                const row = document.createElement('div');
+                row.className = 'manifest-item';
+                row.innerHTML = `<span>[${index + 1}] <strong class="tag-${item.type}">${item.type.toUpperCase()}</strong>: ${item.title}</span><span style="color: var(--text-dim); font-size:0.75rem;">${item.artist}</span>`;
+                manifestDisplay.appendChild(row);
+            });
+        }
+
+        // --- Core Mixing Logic ---
+        function compileAutoDJRotation() {
+            // Function to generate randomized music setlist
+            const songs = songVault.filter(i => i.type === 'song');
+            const drops = songVault.filter(i => i.type === 'drop');
+            if (songs.length === 0) return false;
+            let shuffledSongs = [...songs];
+            for (let i = shuffledSongs.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffledSongs[i], shuffledSongs[j]] = [shuffledSongs[j], shuffledSongs[i]];
+            }
+
+            activeMixQueue = [];
+            
+            if (drops.length > 0) {
+                activeMixQueue.push(drops[Math.floor(Math.random() * drops.length)]);
+            }
+            shuffledSongs.forEach((song, index) => {
+                activeMixQueue.push(song);
+                if (index > 0 && index % 3 === 0 && drops.length > 0) {
+                    activeMixQueue.push(drops[Math.floor(Math.random() * drops.length)]);
+                }
+            });
+
+            currentQueueIndex = 0;
+            return true;
+        }
+            shuffledSongs.forEach((song, index) => {
+                activeMixQueue.push(song);
+                if (index > 0 && index % 3 === 0 && drops.length > 0) {
+                    activeMixQueue.push(drops[Math.floor(Math.random() * drops.length)]);
+                }
+            });
+            currentQueueIndex = 0;
+            return true;
+        }
+        function engageTeamDJs() {
+            if (isInitialBoot) {
+                isInitialBoot = false;
+                // Initialization and welcome message logic goes here
+                return;
+            }
+                compileAutoDJRotation();
+                ticker.textContent = "★★★ SYSTEM INITIALIZATION: OUTPASSING ALL LOCAL GATEKEEPERS INTERNATIONALLY ★★★";
+                executeHostVoiceUtterance("WELCOME TO THE QUANTUM PULSE SESSION 24-7 RADIO STATION BY THE FAMO LEGACY OMNISPHERE WE HOPE YOU ENJOY THE MIX AND BE SURE TO TELL A FRIEND TO TUNE IN.");
+                return;
+            if (activeMixQueue.length === 0 || currentQueueIndex >= activeMixQueue.length) {
+                compileAutoDJRotation();
+            }
+            executeTrackPlaybackEngine();
+        }
+        function executeTrackPlaybackEngine() {
+            if (activeMixQueue.length === 0) return;
+
+            const item = activeMixQueue[currentQueueIndex];
+            // ... updates UI marquee and status with item.title/item.artist ...
+            metrics.plays++;
+            updateAnalyticsDashboard();
+            ticker.textContent = `★★★ NOW PLAYING: [${item.title.toUpperCase()}] BY [${item.artist.toUpperCase()}] // THE QUANTUM PULSE SESSION 24-7 ★★★`;
+            statusBadge.textContent = `STATUS: BROADCASTING // SLOT ${currentQueueIndex + 1} OF ${activeMixQueue.length}`;
+            if (item.url === 'SPEECH_SYNTH_ACTIVE') {
+                executeHostVoiceUtterance(item.rawScript);
+            } else {
+                audioPlayer.src = item.url;
+                audioPlayer.play().catch(() => forceSkipTrack());
+            }
+        }
+        function executeHostVoiceUtterance(scriptText) {
+            audioPlayer.pause();
+            audioPlayer.src = "";
+
+            const hostAnnouncement = new SpeechSynthesisUtterance(scriptText);
+            const systemVoicesAvailable = window.speechSynthesis.getVoices();
+            let targetVocalBase = systemVoicesAvailable.find(v => v.name.toLowerCase().includes('google uk english male') || v.name.toLowerCase().includes('male'));
+            if(targetVocalBase) hostAnnouncement.voice = targetVocalBase;
+
+            hostAnnouncement.pitch = 0.60; 
+            hostAnnouncement.rate = 1.15;  
+            hostAnnouncement.onend = () => advanceMixSequencer();
+            hostAnnouncement.onerror = () => advanceMixSequencer();
+
+            window.speechSynthesis.speak(hostAnnouncement);
+        }
+        audioPlayer.onended = () => advanceMixSequencer();
+
+        function advanceMixSequencer() {
+            currentQueueIndex++;
+            if (currentQueueIndex >= activeMixQueue.length) {
+                compileAutoDJRotation();
+            }
+            executeTrackPlaybackEngine();
+        }
+        function forceSkipTrack() {
+            metrics.skips++;
+            updateAnalyticsDashboard();
+            window.speechSynthesis.cancel();
+            advanceMixSequencer();
+        }
+
+        function triggerVoiceReshuffle() {
+            window.speechSynthesis.cancel();
+            const randomScript = reshuffleVocalScripts[Math.floor(Math.random() * reshuffleVocalScripts.length)];
+            executeHostVoiceUtterance(randomScript);
+            compileAutoDJRotation();
+        }
+
+        function killBroadcasting() {
+            audioPlayer.pause();
+            audioPlayer.src = "";
+            window.speechSynthesis.cancel();
+            isInitialBoot = true; 
+            ticker.textContent = "STATION PLUG OVERRODE // STANDBY PROTOCOLS LOADED";
+            statusBadge.textContent = "STATUS: SHUTDOWN SYSTEM SECURED";
+            activeMixQueue = [];
+        }
+        function unlockAnalyticsConsole() {
+            const accessKey = prompt("ENTER DECRYPTION MATRIX AUTHORIZATION KEY:");
+            if (accessKey === "famo247") {
+                analyticsUnlocked = true;
+                document.getElementById('authGate').style.display = 'none';
+                document.getElementById('analyticsDisplayPanel').style.display = 'block';
+                updateAnalyticsDashboard();
+            }
+        }
+        function updateAnalyticsDashboard() {
+            if (!analyticsUnlocked) return;
+            document.getElementById('metricPlays').textContent = metrics.plays;
+            document.getElementById('metricSkips').textContent = metrics.skips;
+            document.getElementById('metricDrops').textContent = metrics.aiDropsCooked;
+        }
+        function dispatchSecureTeamLogs() {
+            const destinationMail = "yourteamemail@domain.com";
+            const subjectLine = encodeURIComponent("QUANTUM PULSE SESSION 24-7 // VEHICLE OPERATIONS ENGINE REPORT");
+            const bodyMessage = encodeURIComponent(
+                `THE QUANTUM PULSE STATION VEHICULAR INTERFACE MONITOR\n` +
+                `-----------------------------------------------------\n` +
+                `Metrics Sync Logs:\n` +
+                ` * Session Track Rotations: ${metrics.plays}\n` +
+                ` * Dashboard Track Skips: ${metrics.skips}\n` +
+                ` * Synthesized Hosts Audio Drops: ${metrics.aiDropsCooked}\n\n` +
+                `System core checks clear. Layout verified stable across extreme viewport landscape aspect ratios.`
+            );
+            window.location.href = `mailto:${destinationMail}?subject=${subjectLine}&body=${bodyMessage}`;
+        }
+    </script>
+</body>
+</html>
