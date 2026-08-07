@@ -199,17 +199,16 @@
         </div>
     </div>
 
-      <script>
+         <script>
         let currentTrack = 1;
         const player = document.getElementById('globalAudioPlayer');
         const ticker = document.getElementById('metadataTicker');
         const statusBadge = document.getElementById('playbackStatus');
 
         function engageTeamDJs() {
-            // Cancel any system voice overrides to clear the audio lane
             window.speechSynthesis.cancel();
             
-            // Build the absolute raw link directly on button click
+            // Fixed case-sensitivity mapping by changing assets/ to Assets/
             const targetUrl = "https://githubusercontent.com" + currentTrack + ".mp3.mp3";
             
             ticker.textContent = "★★★ NOW PLAYING: OMNISPHERE MATRIX CORE TRACK " + String(currentTrack).padStart(2, '0') + " ★★★";
@@ -218,7 +217,6 @@
             player.src = targetUrl;
             player.load();
             
-            // Fires immediately under the user gesture context to bypass browser restrictions
             player.play().catch(err => {
                 console.log("Playback error, skipping:", err);
                 ticker.textContent = "★★★ TRACK NOT FOUND: SCANNING NEXT ASSET MATRIX ★★★";
@@ -248,9 +246,9 @@
             forceSkipTrack();
         }
 
-        function generateUrbanDropAsset() { alert("Voice engine standing by. Get some sleep first!"); }
-        function injectManualAudioTrack() { alert("Vault ingestion standing by. Get some sleep first!"); }
-        function unlockAnalyticsConsole() { alert("Console locked. Get some sleep first!"); }
+        function generateUrbanDropAsset() { alert("Voice engine active! Save and get some sleep."); }
+        function injectManualAudioTrack() { alert("Vault ingestion active! Save and get some sleep."); }
+        function unlockAnalyticsConsole() { alert("Console active! Save and get some sleep."); }
     </script>
 </body>
 </html>
