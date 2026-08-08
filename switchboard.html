@@ -861,10 +861,32 @@ console.log("[System Keys] Automated UUID Engine loaded. Ready for instant membe
         <button type="button" onclick="injectCustomPromoSlotText()" style="background: transparent; border: 1px solid #00ff66; color: #00ff66; padding: 10px 15px; border-radius: 4px; font-weight: bold; cursor: pointer; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">Inject to Loop</button>
     </div>
 </div>
+
 <script>
-// ====================================================================
-// 📡 CUSTOM SLOT INGESTION ENGINE
-// ====================================================================
+// Force-initialize the matrix loops directly on the global window scope to avoid code block containment
+window.promoSlots = window.promoSlots || [
+    "★★★ STREAM CORRELATION: MAXIMUM LINK STATUS // OUTPASSING ALL LOCAL GATEKEEPERS INTERNATIONALLY ★★★",
+    "🎰 NETWORK UPDATE: NEW SUBSTACK EDITORIALS ARE NOW ACTIVE // CLICK LISTEN TO ARTICLE TO STREAM CORE AUDIO LOGS 🎰",
+    "🔊 FAMO MATRIX EXCLUSIVE: SESSION 24-7 DRIVING PROTOCOLS ENGAGED // TELLING A FRIEND KEEPS THE VAULT ALIVE 🔊",
+    "🌐 SYNDICATION LINK ACTIVE: MULTI-SYSTEM BROADCAST CORES LOADED FOR ALL AUTOMOTIVE ECOSYSTEMS 🌐"
+];
+
+let currentSlotIndex = 0;
+
+// Listen directly for the marquee element loop resets
+document.addEventListener("DOMContentLoaded", function() {
+    const marqueeElement = document.getElementById('quantumMarqueeSlot');
+    if (marqueeElement) {
+        // Set the starting text right away
+        marqueeElement.textContent = window.promoSlots[0];
+        
+        marqueeElement.addEventListener('animationiteration', () => {
+            currentSlotIndex = (currentSlotIndex + 1) % window.promoSlots.length;
+            marqueeElement.textContent = window.promoSlots[currentSlotIndex];
+        });
+    }
+});
+
 function injectCustomPromoSlotText() {
     const inputField = document.getElementById('customMarqueeInput');
     if (!inputField) return;
@@ -872,26 +894,14 @@ function injectCustomPromoSlotText() {
     const rawText = inputField.value.trim();
     if (!rawText) return;
 
-    // Formats your custom text to match the professional ticker style
     const cleanPromoString = "★★★ " + rawText.toUpperCase() + " ★★★";
+    
+    // Smoothly insert your message right into the global loop pool
+    window.promoSlots.push(cleanPromoString);
 
-    // Pushes your entry straight into the active running playlist array
-    if (typeof promoSlots !== 'undefined') {
-        promoSlots.push(cleanPromoString);
-    } else {
-        // Fallback global assignment window if array initialization is deferred
-        window.promoSlots = window.promoSlots || [
-            "★★★ STREAM CORRELATION: MAXIMUM LINK STATUS // OUTPASSING ALL LOCAL GATEKEEPERS INTERNATIONALLY ★★★",
-            "🎰 NETWORK UPDATE: NEW SUBSTACK EDITORIALS ARE NOW ACTIVE // CLICK LISTEN TO ARTICLE TO STREAM CORE AUDIO LOGS 🎰"
-        ];
-        window.promoSlots.push(cleanPromoString);
-    }
-
-    // Instantly provides clear text feedback and resets the dashboard box lane
     inputField.value = '';
     alert("PROMO SLOT INJECTED FLAWLESSLY INTO THE LIVE SCROLLING MATRIX LOOP!");
 }
 </script>
-
 </body>
 </html>
