@@ -853,6 +853,45 @@ console.log("[System Keys] Automated UUID Engine loaded. Ready for instant membe
     }
 })();
 </script>
+<!-- DYNAMIC MARQUEE PROMO INJECTOR PANEL -->
+<div style="max-width: 650px; margin: 20px auto; padding: 15px; background: #0f141c; border: 2px solid #1e293b; border-radius: 8px; font-family: monospace; text-align: left;">
+    <label style="display: block; font-size: 0.75rem; color: #64748b; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 1px;">Live Custom Marquee Promo Slot Injector</label>
+    <div style="display: flex; gap: 10px;">
+        <input type="text" id="customMarqueeInput" placeholder="Type custom promo slot text here..." style="flex: 1; background: #000; border: 1px solid #334155; color: #fff; padding: 12px; border-radius: 4px; font-family: inherit; font-size: 0.85rem; outline: none;">
+        <button type="button" onclick="injectCustomPromoSlotText()" style="background: transparent; border: 1px solid #00ff66; color: #00ff66; padding: 10px 15px; border-radius: 4px; font-weight: bold; cursor: pointer; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">Inject to Loop</button>
+    </div>
+</div>
+<script>
+// ====================================================================
+// 📡 CUSTOM SLOT INGESTION ENGINE
+// ====================================================================
+function injectCustomPromoSlotText() {
+    const inputField = document.getElementById('customMarqueeInput');
+    if (!inputField) return;
+
+    const rawText = inputField.value.trim();
+    if (!rawText) return;
+
+    // Formats your custom text to match the professional ticker style
+    const cleanPromoString = "★★★ " + rawText.toUpperCase() + " ★★★";
+
+    // Pushes your entry straight into the active running playlist array
+    if (typeof promoSlots !== 'undefined') {
+        promoSlots.push(cleanPromoString);
+    } else {
+        // Fallback global assignment window if array initialization is deferred
+        window.promoSlots = window.promoSlots || [
+            "★★★ STREAM CORRELATION: MAXIMUM LINK STATUS // OUTPASSING ALL LOCAL GATEKEEPERS INTERNATIONALLY ★★★",
+            "🎰 NETWORK UPDATE: NEW SUBSTACK EDITORIALS ARE NOW ACTIVE // CLICK LISTEN TO ARTICLE TO STREAM CORE AUDIO LOGS 🎰"
+        ];
+        window.promoSlots.push(cleanPromoString);
+    }
+
+    // Instantly provides clear text feedback and resets the dashboard box lane
+    inputField.value = '';
+    alert("PROMO SLOT INJECTED FLAWLESSLY INTO THE LIVE SCROLLING MATRIX LOOP!");
+}
+</script>
 
 </body>
 </html>
