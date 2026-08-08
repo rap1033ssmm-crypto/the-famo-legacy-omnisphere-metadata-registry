@@ -862,6 +862,15 @@ console.log("[System Keys] Automated UUID Engine loaded. Ready for instant membe
     </div>
 </div>
 
+<!-- DYNAMIC SUBSTACK ARTICLE INGESTION PANEL -->
+<div style="max-width: 650px; margin: 20px auto; padding: 15px; background: #0f141c; border: 2px solid #1e293b; border-radius: 8px; font-family: monospace; text-align: left;">
+    <label style="display: block; font-size: 0.75rem; color: #4da6ff; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 1px;">Live Substack Text Ingestion Deck</label>
+    <div style="display: grid; gap: 10px;">
+        <textarea id="customArticleInput" rows="4" placeholder="Paste your new Substack article content paragraphs here..." style="width: 100%; background: #000; border: 1px solid #334155; color: #fff; padding: 12px; border-radius: 4px; font-family: inherit; font-size: 0.85rem; outline: none; resize: vertical;"></textarea>
+        <button type="button" onclick="ingestNewSubstackText()" style="background: transparent; border: 1px solid #4da6ff; color: #4da6ff; padding: 10px 15px; border-radius: 4px; font-weight: bold; cursor: pointer; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">Load Article into Voice Banks</button>
+    </div>
+</div>
+
 <script>
 // Force-initialize the matrix loops directly on the global window scope to avoid code block containment
 window.promoSlots = window.promoSlots || [
@@ -877,9 +886,7 @@ let currentSlotIndex = 0;
 document.addEventListener("DOMContentLoaded", function() {
     const marqueeElement = document.getElementById('quantumMarqueeSlot');
     if (marqueeElement) {
-        // Set the starting text right away
         marqueeElement.textContent = window.promoSlots[0];
-        
         marqueeElement.addEventListener('animationiteration', () => {
             currentSlotIndex = (currentSlotIndex + 1) % window.promoSlots.length;
             marqueeElement.textContent = window.promoSlots[currentSlotIndex];
@@ -890,17 +897,44 @@ document.addEventListener("DOMContentLoaded", function() {
 function injectCustomPromoSlotText() {
     const inputField = document.getElementById('customMarqueeInput');
     if (!inputField) return;
-
     const rawText = inputField.value.trim();
     if (!rawText) return;
-
     const cleanPromoString = "★★★ " + rawText.toUpperCase() + " ★★★";
-    
-    // Smoothly insert your message right into the global loop pool
     window.promoSlots.push(cleanPromoString);
-
     inputField.value = '';
     alert("PROMO SLOT INJECTED FLAWLESSLY INTO THE LIVE SCROLLING MATRIX LOOP!");
+}
+
+// 📰 DYNAMIC SUBSTACK TEXT REWRITER & VOICE INGESTION ENGINE
+function ingestNewSubstackText() {
+    const textEntryBox = document.getElementById('customArticleInput');
+    if (!textEntryBox) return;
+    const freshArticleText = textEntryBox.value.trim();
+    if (!freshArticleText) {
+        alert("INGESTION FAILURE: ARTICLE ENTRY LANE IS EMPTY.");
+        return;
+    }
+
+    // 1. DYNAMIC ON-SCREEN REWRITER MODULE
+    const articleBodyNode = document.getElementById('text-article-body') || document.querySelector('.article-content');
+    const articleHeaderNode = document.getElementById('text-article-header') || document.querySelector('.article-title');
+
+    if (articleBodyNode) {
+        articleBodyNode.innerText = freshArticleText;
+    }
+    if (articleHeaderNode) {
+        articleHeaderNode.innerText = "LATEST PUBLISHED EDITORIAL REPORT // LIVE LOGGED PROFILE";
+    }
+
+    // 2. SPEECH SYNTHESIS DATA DECK OVERRIDE
+    if (typeof currentArticleTextToRead !== 'undefined') {
+        currentArticleTextToRead = freshArticleText;
+    } else {
+        window.currentArticleTextToRead = freshArticleText;
+    }
+
+    textEntryBox.value = '';
+    alert("SUCCESS // SCREEN TEXT REWRITTEN AND VOICE CHANNELS UPDATED LIVE!");
 }
 </script>
 </body>
