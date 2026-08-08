@@ -909,7 +909,6 @@ function injectCustomPromoSlotText() {
 function ingestNewSubstackText() {
     const textEntryBox = document.getElementById('customArticleInput');
     if (!textEntryBox) return;
-
     const freshArticleText = textEntryBox.value.trim();
     if (!freshArticleText) {
         alert("INGESTION FAILURE: ARTICLE ENTRY LANE IS EMPTY.");
@@ -917,42 +916,15 @@ function ingestNewSubstackText() {
     }
 
     // DYNAMIC ON-SCREEN REWRITER MODULE
-    // Targets your exact HTML content node from the code snippet
     const articleBodyNode = document.getElementById('famo-article-content');
 
     if (articleBodyNode) {
-        // Instantly rewrites the uppercase text live on your screen container
         articleBodyNode.innerText = freshArticleText.toUpperCase();
-        
-        // Success feedback and reset
         textEntryBox.value = '';
         alert("SUCCESS // SCREEN TEXT REWRITTEN AND AUDIO BANKS UPDATED LIVE!");
     } else {
         alert("ROUTING ERROR: UNABLE TO LOCATE THE ARTICLE CONTAINER CELL.");
     }
-}
-
-
-    // 1. DYNAMIC ON-SCREEN REWRITER MODULE
-    const articleBodyNode = document.getElementById('text-article-body') || document.querySelector('.article-content');
-    const articleHeaderNode = document.getElementById('text-article-header') || document.querySelector('.article-title');
-
-    if (articleBodyNode) {
-        articleBodyNode.innerText = freshArticleText;
-    }
-    if (articleHeaderNode) {
-        articleHeaderNode.innerText = "LATEST PUBLISHED EDITORIAL REPORT // LIVE LOGGED PROFILE";
-    }
-
-    // 2. SPEECH SYNTHESIS DATA DECK OVERRIDE
-    if (typeof currentArticleTextToRead !== 'undefined') {
-        currentArticleTextToRead = freshArticleText;
-    } else {
-        window.currentArticleTextToRead = freshArticleText;
-    }
-
-    textEntryBox.value = '';
-    alert("SUCCESS // SCREEN TEXT REWRITTEN AND VOICE CHANNELS UPDATED LIVE!");
 }
 </script>
 </body>
