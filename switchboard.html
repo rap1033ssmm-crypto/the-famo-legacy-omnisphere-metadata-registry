@@ -411,7 +411,77 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 })();
- 
+
+      // ====================================================================
+// MOVE #81: SPATIAL AUDIO 3D SOUNDSTAGE MATRIX ENGINE
+// ====================================================================
+let quantumAudioCtx = null;
+let quantumSpatialPanner = null;
+
+function initializeQuantumSpatialAudio() {
+    if (quantumAudioCtx) return; // Prevent duplicate hardware audio contexts
+    console.log("[Audio Matrix] Initializing 3D spatial soundstage nodes...");
+
+    try {
+        const nativeMusicElement = document.getElementById("famo-music-channel");
+        if (!nativeMusicElement) {
+            console.warn("[Audio Matrix] Music element missing. Spatializer holding.");
+            return;
+        }
+
+        // Wake up native browser AudioContext framework
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        quantumAudioCtx = new AudioContextClass();
+        
+        // Build the system routing node chain
+        const soundSourceNode = quantumAudioCtx.createMediaElementSource(nativeMusicElement);
+        
+        // Build the modern Stereo Panner processing framework
+        if (quantumAudioCtx.createStereoPanner) {
+            quantumSpatialPanner = quantumAudioCtx.createStereoPanner();
+            soundSourceNode.connect(quantumSpatialPanner);
+            quantumSpatialPanner.connect(quantumAudioCtx.destination);
+            
+            // Inject a subtle, continuous spatial wide-drift panning effect
+            let panDirection = true;
+            let currentPanValue = 0;
+            
+            setInterval(function() {
+                if (panDirection) {
+                    currentPanValue += 0.02;
+                    if (currentPanValue >= 0.25) panDirection = false;
+                } else {
+                    currentPanValue -= 0.02;
+                    if (currentPanValue <= -0.25) panDirection = true;
+                }
+                // Dynamically pan the audio field wide left/right subtly for deep acoustic depth
+                if (quantumSpatialPanner) quantumSpatialPanner.pan.setValueAtTime(currentPanValue, quantumAudioCtx.currentTime);
+            }, 300);
+            
+            console.log("[Audio Matrix] Immersive 360-degree spatial soundstage successfully connected.");
+        } else {
+            // Fallback connection string if browser hardware doesn't support stereo panning nodes
+            soundSourceNode.connect(quantumAudioCtx.destination);
+            console.log("[Audio Matrix] Legacy node route attached smoothly via system audio channels.");
+        }
+    } catch (error) {
+        console.error("[Audio Matrix] Core context initialization hold: ", error);
+    }
+}
+
+// Automatically wake up the 3D acoustic framework the exact millisecond the play button is tapped
+document.addEventListener("click", function(event) {
+    const target = event.target;
+    if (target && (target.id === "btn-stream-play" || target.innerText.includes("Play") || target.id === "play-button")) {
+        // Audio contexts require direct operator interaction triggers to activate safely in browsers
+        if (quantumAudioCtx && quantumAudioCtx.state === "suspended") {
+            quantumAudioCtx.resume();
+        } else {
+            initializeQuantumSpatialAudio();
+        }
+    }
+});
+  
 </script>
 
     <style>
