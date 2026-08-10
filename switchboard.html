@@ -151,6 +151,52 @@ if (navigator.getBattery) {
     });
 }
 
+      // ====================================================================
+// MOVE #45: LIVE STREAM TRACK SESSION DURATION COUNTER ENGINE
+// ====================================================================
+let quantumSessionStartTime = null;
+let quantumSessionInterval = null;
+
+function initializeQuantumSessionTracker() {
+    if (quantumSessionStartTime) return; // Prevent duplicate counter instances
+    quantumSessionStartTime = Date.now();
+    
+    // Inject visual counter box into HUD layer dynamically if container exists
+    const hudContainer = document.getElementById("quantum-hud-telemetry") || document.body;
+    const counterDisplay = document.createElement("div");
+    counterDisplay.id = "quantumSessionRuntimeDisplay";
+    counterDisplay.style.cssText = "font-family:monospace; font-size:0.8rem; color:#22c55e; margin-top:8px; letter-spacing:1px; font-weight:bold;";
+    counterDisplay.innerText = "SESSION RUNTIME: 00:00:00";
+    hudContainer.appendChild(counterDisplay);
+
+    quantumSessionInterval = setInterval(function() {
+        const elapsedMilliseconds = Date.now() - quantumSessionStartTime;
+        
+        let seconds = Math.floor((elapsedMilliseconds / 1000) % 60);
+        let minutes = Math.floor((elapsedMilliseconds / (1000 * 60)) % 60);
+        let hours = Math.floor((elapsedMilliseconds / (1000 * 60 * 60)) % 24);
+
+        // Pad display values with clean leading zeros
+        hours = (hours < 10) ? "0" + hours : hours;
+        minutes = (minutes < 10) ? "0" + minutes : minutes;
+        seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+        const displayElement = document.getElementById("quantumSessionRuntimeDisplay");
+        if (displayElement) {
+            displayElement.innerText = "SESSION RUNTIME: " + hours + ":" + minutes + ":" + seconds;
+        }
+    }, 1000);
+    console.log("[Temporal Engine] Listening session tracker initialized successfully.");
+}
+
+// Automatically bind the duration engine to your existing audio play tracking streams
+document.addEventListener("click", function(event) {
+    const target = event.target;
+    if (target && (target.id === "play-button" || target.innerText.includes("Play") || target.tagName === "AUDIO")) {
+        initializeQuantumSessionTracker();
+    }
+});
+  
 </script>
 
     <style>
