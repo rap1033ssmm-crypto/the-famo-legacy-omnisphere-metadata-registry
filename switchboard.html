@@ -196,7 +196,44 @@ document.addEventListener("click", function(event) {
         initializeQuantumSessionTracker();
     }
 });
-  
+
+       // ====================================================================
+// MOVE #46: LIVE VOLUME DB GAIN STUDIO NEEDLE TELEMETRY ENGINE
+// ====================================================================
+function calculateQuantumDecibelGain(volumeValue) {
+    const numericVolume = parseFloat(volumeValue);
+    if (isNaN(numericVolume) || numericVolume <= 0) return "-∞ dB (MUTED)";
+    if (numericVolume >= 1) return "0.0 dB (MAX LEVEL // CLIPPING GUARD ACTIVE)";
+    
+    // Standard logarithmic audio decibel conversion formula
+    const dbCalculation = 20 * Math.log10(numericVolume);
+    const roundedDb = dbCalculation.toFixed(1);
+    
+    if (dbCalculation >= -6) return roundedDb + " dB (OPTIMAL PERFORMANCE HIGH YIELD)";
+    if (dbCalculation >= -20) return roundedDb + " dB (NOMINAL STUDIO AUDIO HEADROOM)";
+    return roundedDb + " dB (LOW RECON GAIN SIGNAL)";
+}
+
+// Intercept slider updates instantly across all native volume inputs
+document.addEventListener("input", function(event) {
+    const target = event.target;
+    // Adapt automatically to your active audio levels or generic range tracks
+    if (target && (target.id === "volume-slider" || target.type === "range" || target.className.includes("volume"))) {
+        let needleContainer = document.getElementById("quantumVolumeDbGainNeedle");
+        
+        if (!needleContainer) {
+            // Create and append the digital decibel display slot right above the slider row
+            needleContainer = document.createElement("div");
+            needleContainer.id = "quantumVolumeDbGainNeedle";
+            needleContainer.style.cssText = "font-family:monospace; font-size:0.75rem; color:#22c55e; text-transform:uppercase; margin-bottom:6px; letter-spacing:1px; font-weight:bold; text-shadow:0 0 10px rgba(34,197,94,0.2);";
+            target.parentNode.insertBefore(needleContainer, target);
+        }
+        
+        // Push the translated logarithmic calculations straight into the layout view
+        needleContainer.innerText = "AUDIO GAIN: " + calculateQuantumDecibelGain(target.value);
+    }
+});
+ 
 </script>
 
     <style>
