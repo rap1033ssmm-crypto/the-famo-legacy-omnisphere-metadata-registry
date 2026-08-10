@@ -117,6 +117,34 @@ setInterval(function() {
     }
 })();
 
+    // ====================================================================
+// MOVE #96: LOW-POWER BATTERY PERFORMANCE THROTTLE ENGINE
+// ====================================================================
+if (navigator.getBattery) {
+    navigator.getBattery().then(function(battery) {
+        function checkQuantumBatteryStatus() {
+            console.log("[Hardware Sensor] Checking device energy parameters...");
+            // Trigger automatic throttling if battery drops under 10% or device is discharging
+            if (battery.level <= 0.10 && !battery.charging) {
+                console.warn("[Hardware Sensor] Low power state detected. Throttling visual canvas arrays...");
+                document.body.style.setProperty("--marquee-speed", "35s");
+                // If an active canvas digital rain animation exists, scale down the frame execution rate
+                window.quantumThrottledState = true;
+            } else {
+                document.body.style.setProperty("--marquee-speed", "20s");
+                window.quantumThrottledState = false;
+            }
+        }
+
+        // Bind active listeners to catch instant power changes
+        battery.addEventListener("levelchange", checkQuantumBatteryStatus);
+        battery.addEventListener("chargingchange", checkQuantumBatteryStatus);
+        
+        // Initialize sensor check on launch
+        checkQuantumBatteryStatus();
+    });
+}
+
 </script>
 
     <style>
