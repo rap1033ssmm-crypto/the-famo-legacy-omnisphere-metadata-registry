@@ -601,6 +601,42 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
+        // ====================================================================
+// MOVE #51: ADMINISTRATIVE MASTER PASSWORD OVERLAY ENGINE
+// ====================================================================
+document.addEventListener("DOMContentLoaded", function() {
+    // Locate the dynamic marquee input zone at the bottom of the operator console
+    const adminTextInputArea = document.getElementById("famo-text-input") || document.getElementById("famo-marquee-input");
+    const adminSubmitButton = document.getElementById("btn-update-marquee") || document.querySelector("button[onclick*='Loop']");
+
+    function verifyQuantumAdminClearance(event) {
+        // Prompt the user for the master sovereign passcode key
+        const userPasscodeInput = prompt("// ACCESS RESTRICTED // ENTER SYSTEM COCKPIT AUTHORIZATION KEY:");
+        
+        if (userPasscodeInput === "famo247") {
+            console.log("[Access Gate] Verification hash passed. Administration deck unlocked.");
+            // Store the verified passcode in our Move #94 secure string variable slot
+            if (typeof quantumActivePasscodeString !== 'undefined') {
+                quantumActivePasscodeString = userPasscodeInput;
+            }
+        } else {
+            // Block data execution and alert user of unauthorized ingress attempt
+            event.preventDefault();
+            event.stopPropagation();
+            alert("// SECURITY REFUSAL // INVALID ACCESS KEY PROVOKED // INCIDENT DEPLOYED.");
+            console.warn("[Access Gate] Unauthorized administrative interface interaction intercepted.");
+        }
+    }
+
+    // Wrap the security overlay directly onto your text fields and save buttons
+    if (adminTextInputArea) {
+        adminTextInputArea.addEventListener("focus", verifyQuantumAdminClearance);
+    }
+    if (adminSubmitButton) {
+        adminSubmitButton.addEventListener("click", verifyQuantumAdminClearance, true);
+    }
+});
+
 </script>
 
     <style>
