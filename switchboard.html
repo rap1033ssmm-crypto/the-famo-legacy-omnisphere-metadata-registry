@@ -1061,12 +1061,35 @@ document.addEventListener("click", function(event) {
             lockTextToLocalStorageCache('marquee', window.promoSlots);
         }
         const textDataInput = document.getElementById('famo-text-input');
-        if (textDataInput) {
+               if (textDataInput) {
+            // Run the security firewall sweep first, then lock the sanitized text to storage cache
+            textDataInput.value = sanitizeQuantumTextInput(textDataInput.value);
             lockTextToLocalStorageCache('article', textDataInput.value);
+        }
+
         }
     }
 });
- 
+
+    // ====================================================================
+// MOVE #77: CROSS-SITE SCRIPTING (XSS) INJECTION FIREWALL ENGINE
+// ====================================================================
+function sanitizeQuantumTextInput(rawPayload) {
+    if (typeof rawPayload !== 'string') return rawPayload;
+    console.log("[Firewall] Initializing text sanitization sweep...");
+    
+    // Explicitly strip away execution characters, script blocks, and tag injections
+    return rawPayload
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#x27;")
+        .replace(/\//g, "&#x2F;")
+        .replace(/javascript:/gi, "")
+        .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, "");
+}
+
 
 // INITIALIZE SYSTEM EVENTS ON WINDOW MOUNT FRAME
 document.addEventListener("DOMContentLoaded", function() {
