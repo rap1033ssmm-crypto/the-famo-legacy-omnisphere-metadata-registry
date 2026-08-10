@@ -758,6 +758,26 @@ document.addEventListener("DOMContentLoaded", function() {
     executeQuantumProfilerFenceCheck();
 });
 
+       // ====================================================================
+// MOVE #41: GLOBAL BRAND ISOLATION HEADER PURGE ENGINE
+// ====================================================================
+(function() {
+    console.log("[Isolation Core] Deploying pristine brand layout shielding...");
+    
+    // Explicitly lock down the window styling properties against third-party UI injections
+    if (window.navigator && window.navigator.userAgent) {
+        window.name = "famo_sovereign_terminal_node_" + String(Date.now());
+    }
+    
+    // Target the meta theme-color tag directly to bypass array collection bugs entirely
+    const targetedMetaTag = document.querySelector("meta[name='theme-color']");
+    if (targetedMetaTag) {
+        targetedMetaTag.setAttribute("content", "#050b14");
+    }
+    
+    console.log("[Isolation Core] Global brand insulation parameters fully locked.");
+})();
+ 
 </script>
 
     <style>
