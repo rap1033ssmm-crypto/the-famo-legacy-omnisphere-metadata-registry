@@ -558,6 +558,15 @@ document.addEventListener("DOMContentLoaded", function() {
       <div class="eq-bar" style="width: 5px; height: 5px; background: #ff6600; transition: height 0.1s ease-in-out;"></div>
       <div class="eq-bar" style="width: 5px; height: 5px; background: #ff6600; transition: height 0.1s ease-in-out;"></div>
     </div>
+        <!-- ==================================================================== -->
+<!-- MOVE #91: NIGHT-VISION STEALTH RADAR COCKPIT LAYOUT CONTROLLER -->
+<!-- ==================================================================== -->
+<div style="text-align: center; margin: 15px auto; max-width: 250px;">
+    <button id="btnQuantumNightStealthToggle" type="button" onclick="executeQuantumStealthRadarToggle()" style="width: 100%; background: #000; border: 1px solid #ef4444; color: #ef4444; padding: 8px 12px; font-family: monospace; font-size: 0.7rem; font-weight: bold; border-radius: 4px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 0 10px rgba(239,68,68,0.1); transition: all 0.2s ease;">
+        🛑 Toggle Stealth Night Vision
+    </button>
+</div>
+
     <audio id="famo-music-channel" preload="none"></audio>
     <audio id="famo-voice-channel" preload="none"></audio>
     <div style="margin-top: 15px;">
@@ -989,7 +998,47 @@ console.log("[System Keys] Automated UUID Engine loaded. Ready for instant membe
 
       initializeMobileHapticBeats();
 })();
+
+      // ====================================================================
+// MOVE #91: NIGHT-VISION STEALTH RADAR LAYOUT SCRIPT LOGIC
+// ====================================================================
+let quantumStealthRadarActive = false;
+
+function executeQuantumStealthRadarToggle() {
+    quantumStealthRadarActive = !quantumStealthRadarActive;
+    console.log("[Stealth Core] Night vision radar status flipped: " + quantumStealthRadarActive);
     
+    const rootBody = document.body;
+    const mediaMatrixBlock = document.getElementById("famo-media-matrix");
+    const stealthBtn = document.getElementById("btnQuantumNightStealthToggle");
+    
+    if (quantumStealthRadarActive) {
+        // Enforce maximum low-glare tactical red theme overrides across all primary visual panels
+        rootBody.style.backgroundColor = "#020000";
+        if (mediaMatrixBlock) {
+            mediaMatrixBlock.style.borderColor = "#ef4444";
+            mediaMatrixBlock.style.boxShadow = "0 0 25px rgba(239, 68, 68, 0.2)";
+        }
+        if (stealthBtn) {
+            stealthBtn.style.borderColor = "#22c55e";
+            stealthBtn.style.color = "#22c55e";
+            stealthBtn.innerText = "🟢 Restore Standard Cockpit";
+        }
+    } else {
+        // Smoothly restore original system dark theme color parameters on toggle off
+        rootBody.style.backgroundColor = "#050b14";
+        if (mediaMatrixBlock) {
+            mediaMatrixBlock.style.borderColor = "#ff6600";
+            mediaMatrixBlock.style.boxShadow = "0 0 25px rgba(255, 102, 0, 0.15)";
+        }
+        if (stealthBtn) {
+            stealthBtn.style.borderColor = "#ef4444";
+            stealthBtn.style.color = "#ef4444";
+            stealthBtn.innerText = "🛑 Toggle Stealth Night Vision";
+        }
+    }
+}
+  
 </script>
 
 </body>
