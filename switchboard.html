@@ -354,6 +354,30 @@ document.addEventListener("DOMContentLoaded", function() {
     console.log("[Visual Matrix] Falling digital rain code cascade canvas initialized.");
 });
 
+     // ====================================================================
+// MOVE #97: ZERO-RESOURCE STATIC AUDIO INTERFACE PORTAL (?mode=audio)
+// ====================================================================
+(function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('mode') === 'audio') {
+        console.log("[Portal] Initializing...");
+        
+        window.addEventListener("load", function() {
+            document.body.innerHTML = `
+                <div style="background:#000; color:#0f0; text-align:center; padding:50px; font-family:monospace;">
+                    <h2>STATIC AUDIO PORTAL ACTIVE</h2>
+                    <audio controls autoplay style="margin-top:20px;"></audio>
+                </div>
+            `;
+            const audio = document.querySelector("audio");
+            if (audio) {
+                audio.src = "https://zeno.fm"; 
+                audio.play();
+            }
+        });
+    }
+})();
+   
        // ====================================================================
 // MOVE #97: ZERO-RESOURCE STATIC AUDIO INTERFACE PORTAL (?mode=audio)
 // ====================================================================
