@@ -481,7 +481,86 @@ document.addEventListener("click", function(event) {
         }
     }
 });
-  
+
+        // ====================================================================
+// MOVE #82: SUB-BASS HAPTIC SYNTHESIZER ENGINE
+// ====================================================================
+let quantumHapticAnalyser = null;
+let quantumHapticDataArray = null;
+let quantumHapticLoopActive = false;
+
+function initializeQuantumHapticSynthesizer() {
+    if (quantumHapticLoopActive || !window.famoAudioCtx) return;
+    console.log("[Haptic Synthesizer] Coupling low-frequency hardware tracking loops...");
+
+    try {
+        // Tie into your active sovereign audio context pipeline
+        quantumHapticAnalyser = window.famoAudioCtx.createAnalyser();
+        quantumHapticAnalyser.fftSize = 64; // Small fast Fourier transform size for zero-latency frequency checks
+        
+        // Link the context bridge destination cleanly to the analyser node
+        if (window.quantumSpatialPanner) {
+            window.quantumSpatialPanner.connect(quantumHapticAnalyser);
+        } else {
+            // Safe fallback route if spatializer node isn't actively engaged
+            const nativeMusicElement = document.getElementById("famo-music-channel");
+            if (nativeMusicElement && window.famoAudioCtx) {
+                try {
+                    const trackingSource = window.famoAudioCtx.createMediaElementSource(nativeMusicElement);
+                    trackingSource.connect(quantumHapticAnalyser);
+                } catch(e) { /* Track already connected downstream */ }
+            }
+        }
+
+        const bufferLength = quantumHapticAnalyser.frequencyBinCount;
+        quantumHapticDataArray = new Uint8Array(bufferLength);
+        quantumHapticLoopActive = true;
+        
+        executeQuantumSubBassHapticPulse();
+    } catch (err) {
+        console.error("[Haptic Synthesizer] Sensor integration hold: ", err);
+    }
+}
+
+function executeQuantumSubBassHapticPulse() {
+    if (!quantumHapticLoopActive || !quantumHapticAnalyser) return;
+
+    // Pull the real-time audio frequency data block
+    quantumHapticAnalyser.getByteFrequencyData(quantumHapticDataArray);
+
+    // Track the primary sub-bass audio registers (the first 3 data slots represent 0-80Hz)
+    let totalSubBassEnergy = 0;
+    for (let i = 0; i < 3; i++) {
+        totalSubBassEnergy += quantumHapticDataArray[i];
+    }
+    let averageSubBassYield = totalSubBassEnergy / 3;
+
+    // Respect Move #96 battery throttle state: Kill vibrations completely if power drops under 10%
+    if (window.quantumThrottledState === true) {
+        quantumHapticLoopActive = false;
+        console.warn("[Haptic Synthesizer] Performance throttle active. Vibrations disabled.");
+        return;
+    }
+
+    // Heavy bass validation threshold: trigger vibration pulse only if 808 thumps cross peak velocity limits
+    if (averageSubBassYield > 195 && 'vibrate' in navigator) {
+        // Fire a highly-calibrated, high-velocity haptic pulse matching the rhythm thump speed
+        navigator.vibrate(45);
+    }
+
+    // Execute the paint loop frame continuously to track audio waveforms dynamically
+    requestAnimationFrame(executeQuantumSubBassHapticPulse);
+}
+
+// Intercept your live button triggers to turn on the physical device tactile loops instantly
+document.addEventListener("click", function(event) {
+    const target = event.target;
+    if (target && (target.id === "btn-stream-play" || target.innerText.includes("Play") || target.id === "play-button")) {
+        // Wait a slight half-second beat for the primary audio contexts to finish compiling on screen boot
+        setTimeout(initializeQuantumHapticSynthesizer, 600);
+    }
+});
+
 </script>
 
     <style>
