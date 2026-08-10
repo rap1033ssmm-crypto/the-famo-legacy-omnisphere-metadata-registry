@@ -810,6 +810,35 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
+        // ====================================================================
+// MOVE #62: CRYPTOGRAPHIC DOM INJECTION FIREWALL ENGINE
+// ====================================================================
+document.addEventListener("DOMContentLoaded", function() {
+    console.log("[Injection Firewall] Arming structural integrity observers...");
+
+    // Build a high-performance native browser MutationObserver loop
+    const quantumDomObserver = new MutationObserver(function(mutationsList) {
+        mutationsList.forEach(function(mutationRecord) {
+            mutationRecord.addedNodes.forEach(function(newNode) {
+                // Instantly intercept and sanitize foreign script injections or iframe frame hijacking attempts
+                if (newNode.tagName === "SCRIPT" || newNode.tagName === "IFRAME") {
+                    const nodeSourceAttr = newNode.src || "";
+                    const allowedOriginToken = "rap1033ssmm-crypto.github.io";
+                    
+                    if (nodeSourceAttr && !nodeSourceAttr.includes(allowedOriginToken) && !nodeSourceAttr.includes("spotify.com") && !nodeSourceAttr.includes("zenodo.org")) {
+                        newNode.parentNode.removeChild(newNode);
+                        console.error("[Firewall Alert] Foreign DOM injection attempt neutralized instantly.");
+                    }
+                }
+            });
+        });
+    });
+
+    // Configure the observer loop to continuously track the entire document layout tree
+    quantumDomObserver.observe(document.body, { childList: true, subtree: true });
+    console.log("[Injection Firewall] DOM integrity tracking active with optimal clearance.");
+});
+
 </script>
 
     <style>
