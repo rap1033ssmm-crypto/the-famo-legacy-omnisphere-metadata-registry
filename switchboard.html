@@ -614,7 +614,21 @@ UNIVERSAL SYSTEM ACCESSIBILITY. The master cover art, data tracking parameters, 
 async function syncScannerLedger() {
     const tickerState = document.getElementById('ticker-network-state');
     const tickerMetrics = document.getElementById('ticker-live-metrics');
-    
+
+            // FORCE COCKPIT VISUAL SYNC UPON TUNE IN
+    if (tickerState) {
+        tickerState.innerText = "ONLINE // BROADCAST LIVE STREAM TRANSACTING";
+        tickerState.style.color = "#00ff66";
+    }
+    if (tickerMetrics) {
+        tickerMetrics.innerText = "STREAM METRIC EMISSION: TRANSMITTING HIGHEST AUDIO YIELD";
+    }
+    const streamStatusText = document.getElementById("stream-status");
+    if (streamStatusText) {
+        streamStatusText.innerText = "FEED STATUS: LIVE // ARCHITECTURE STREAMING";
+        streamStatusText.style.color = "#00ff00";
+    }
+
     try {
         // Fetch the raw Markdown ledger file updated by GitHub Actions
         const response = await fetch('transcripts_ledger/system_chatter_log.md');
