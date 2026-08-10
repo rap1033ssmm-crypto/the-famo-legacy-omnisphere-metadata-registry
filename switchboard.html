@@ -1019,6 +1019,54 @@ function ingestNewSubstackText() {
 <script>
 let upgradeMetrics = { plays: 0, skips: 0, aiDropsCooked: 0 };
 let upgradeAnalyticsUnlocked = false;
+    // ====================================================================
+// MOVE #76: ZERO-LATENCY LOCAL VARIABLE STORAGE CACHE ENGINE
+// ====================================================================
+document.addEventListener("DOMContentLoaded", function() {
+    const cachedMarquee = localStorage.getItem("quantum_cached_marquee");
+    const cachedArticle = localStorage.getItem("quantum_cached_article");
+
+    if (cachedMarquee && window.promoSlots) {
+        try {
+            window.promoSlots = JSON.parse(cachedMarquee);
+            console.log("[Storage Cache] Marquee memory slots restored successfully.");
+        } catch(e) { console.error("[Storage Cache] Marquee parsing cleared."); }
+    }
+
+    if (cachedArticle) {
+        const articleContainer = document.getElementById("famo-article-content");
+        if (articleContainer) {
+            articleContainer.innerHTML = cachedArticle;
+            console.log("[Storage Cache] Substack narrative container restored successfully.");
+        }
+    }
+});
+
+function lockTextToLocalStorageCache(type, payload) {
+    if (type === 'marquee') {
+        localStorage.setItem("quantum_cached_marquee", JSON.stringify(payload));
+    } else if (type === 'article') {
+        localStorage.setItem("quantum_cached_article", payload);
+    }
+    console.log("[Storage Cache] Cryptographic variable locked into local hardware memory.");
+}
+
+   // ====================================================================
+// MOVE #76 AUTO-HOOK CONNECTION CONTROLLER
+// ====================================================================
+document.addEventListener("click", function(event) {
+    // Intercept clicks on your update buttons or inputs to lock text to storage
+    if (event.target && (event.target.id === "btn-update-marquee" || event.target.innerText.includes("Update") || event.target.id === "famo-text-input")) {
+        if (window.promoSlots) {
+            lockTextToLocalStorageCache('marquee', window.promoSlots);
+        }
+        const textDataInput = document.getElementById('famo-text-input');
+        if (textDataInput) {
+            lockTextToLocalStorageCache('article', textDataInput.value);
+        }
+    }
+});
+ 
 
 // INITIALIZE SYSTEM EVENTS ON WINDOW MOUNT FRAME
 document.addEventListener("DOMContentLoaded", function() {
