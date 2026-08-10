@@ -714,7 +714,50 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
- 
+
+        // ====================================================================
+// MOVE #61: CRYPTOGRAPHIC USER AGENT PROFILER FENCE ENGINE
+// ====================================================================
+document.addEventListener("DOMContentLoaded", function() {
+    function executeQuantumProfilerFenceCheck() {
+        const rawUserAgent = navigator.userAgent.toLowerCase();
+        const browserPlatform = navigator.platform.toLowerCase();
+        
+        // Structural validation: Detect automated scraper profiles pretending to be human operators
+        const automatedScraperFlags = ["headlesschrome", "selenium", "puppeteer", "python-requests", "curl", "wget"];
+        let isAutomatedThreatDetected = false;
+
+        automatedScraperFlags.forEach(function(threatToken) {
+            if (rawUserAgent.includes(threatToken)) {
+                isAutomatedThreatDetected = true;
+            }
+        });
+
+        // Behavioral consistency check: Cross-reference declared engine with native browser window features
+        const isChromiumBased = !!window.chrome;
+        const declaresChromeText = rawUserAgent.includes("chrome") || rawUserAgent.includes("chromium");
+
+        if (declaresChromeText && !isChromiumBased && !rawUserAgent.includes("edge") || (rawUserAgent.includes("macintosh") && browserPlatform.includes("win"))) {
+            console.warn("[Profiler Fence] Conflicting environment profile detected. Header spoofing suspected.");
+            isAutomatedThreatDetected = true;
+        }
+
+        if (isAutomatedThreatDetected) {
+            console.error("[Profiler Fence] Security lockdown provoked. Restricting ingestion lanes.");
+            const inputFieldDeck = document.getElementById("famo-text-input");
+            if (inputFieldDeck) {
+                inputFieldDeck.disabled = true;
+                inputFieldDeck.value = "// RECON INTERCEPTION // ADMINISTRATIVE DECK RECORDING DISENGAGED //";
+            }
+        } else {
+            console.log("[Profiler Fence] Environmental verification clear. Operating with optimal clearance.");
+        }
+    }
+
+    // Run the environmental integrity check instantly on page boot
+    executeQuantumProfilerFenceCheck();
+});
+
 </script>
 
     <style>
