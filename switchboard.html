@@ -354,6 +354,40 @@ document.addEventListener("DOMContentLoaded", function() {
     console.log("[Visual Matrix] Falling digital rain code cascade canvas initialized.");
 });
 
+       // ====================================================================
+// MOVE #97: ZERO-RESOURCE STATIC AUDIO INTERFACE PORTAL (?mode=audio)
+// ====================================================================
+(function() {
+    const urlSystemParams = new URLSearchParams(window.location.search);
+    if (urlSystemParams.get('mode') === 'audio') {
+        console.log("[Portal Ingress] Initializing static zero-resource audio player portal...");
+        
+        // Wait for page initialization, then completely isolate the audio pipeline and strip layout structures
+        document.addEventListener("DOMContentLoaded", function() {
+            // Locate your primary active streaming audio element block dynamically
+            const targetAudioNode = document.querySelector("audio");
+            const rawStreamSource = targetAudioNode ? targetAudioNode.src : "https://zeno.fm"; // Standard backup live carrier feed pipeline
+            
+            // Rewrite the document body into a pristine, zero-graphic, standard-compliant public radio player node
+            document.body.innerHTML = `
+                <div style="background:#090d10; color:#22c55e; font-family:monospace; text-align:center; padding:100px 20px; min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; box-sizing:border-box;">
+                    <div style="font-size:1.1rem; font-weight:bold; letter-spacing:2px; margin-bottom:10px;">📡 THE QUANTUM PULSE // STREAM ENGINE DIRECT</div>
+                    <div style="font-size:0.75rem; color:#86efac; letter-spacing:1px; margin-bottom:30px; text-transform:uppercase;">// STATIC DIRECT PIPELINE AUDIO PORTAL ACTIVE // NAICS 516210</div>
+                    <audio controls autoplay style="width:100%; max-width:400px; outline:none; background:#0f172a; border-radius:30px; box-shadow:0 0 20px rgba(34,197,94,0.1);"></audio>
+                    <div style="font-size:0.65rem; color:#475569; margin-top:40px; letter-spacing:1px;">WRITERS LEGACY TEAM PUBLISHING // AUTHORIZED METADATA CHANNEL</div>
+                </div>
+            `;
+            
+            // Relink the active stream and force execution
+            const portalAudioPlayer = document.querySelector("audio");
+            if (portalAudioPlayer) {
+                portalAudioPlayer.src = rawStreamSource;
+                portalAudioPlayer.play().catch(function(e) { console.log("[Portal Core] Autoplay pending operator interaction."); });
+            }
+        });
+    }
+})();
+ 
 </script>
 
     <style>
