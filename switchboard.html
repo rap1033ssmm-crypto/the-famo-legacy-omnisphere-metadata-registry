@@ -637,6 +637,84 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
+       // ====================================================================
+// MOVE #56: LIVE VOLUMETRIC AUDIO CONTEXT VU DECIBEL METER GRID ENGINE
+// ====================================================================
+document.addEventListener("DOMContentLoaded", function() {
+    function constructQuantumLedVuGrid(targetSliderRow) {
+        if (document.getElementById("quantumVuLedContainer")) return;
+
+        // Build the main visual housing bar
+        const vuContainer = document.createElement("div");
+        // ... (Styles omitted for brevity)
+        
+        // Spawn 10 independent micro LED node block tracks
+        for (let i = 0; i < 10; i++) {
+            const ledSegment = document.createElement("div");
+            // ... (Styles omitted for brevity)
+            vuContainer.appendChild(ledSegment);
+        }
+
+        targetSliderRow.parentNode.insertBefore(vuContainer, targetSliderRow);
+        animateQuantumLedVuMeter();
+    }
+
+    function animateQuantumLedVuMeter() {
+        if (!window.famoAudioCtx) {
+            requestAnimationFrame(animateQuantumLedVuMeter);
+            return;
+        }
+
+        // Anchor directly to the frequency scanning nodes
+        let analyserNodeBlock = window.quantumHapticAnalyser;
+        if (!analyserNodeBlock) {
+            requestAnimationFrame(animateQuantumLedVuMeter);
+            return;
+        }
+
+        const dataArrayBuffer = new Uint8Array(analyserNodeBlock.frequencyBinCount);
+        
+        function renderVuFrameUpdate() {
+            if (!analyserNodeBlock) return;
+            analyserNodeBlock.getByteFrequencyData(dataArrayBuffer);
+
+            // Extract the raw average soundwave amplitude weight
+            let totalVolumeAmplitude = 0;
+            for (let i = 0; i < dataArrayBuffer.length; i++) {
+                totalVolumeAmplitude += dataArrayBuffer[i];
+            }
+            let averageVolumeWeight = totalVolumeAmplitude / dataArrayBuffer.length;
+            
+            // Map the mathematical audio amplitude cleanly across 10 LED segments
+            const activeLedNodesCount = Math.min(10, Math.floor(averageVolumeWeight / 12));
+            const totalLedElements = document.querySelectorAll(".quantum-vu-led-node");
+
+            totalLedElements.forEach(function(ledBlock, index) {
+                if (index < activeLedNodesCount) {
+                    // Calibrate colors: Green (0-5) -> Amber (6-8) -> Clipping Red (9)
+                    if (index < 6) ledBlock.style.backgroundColor = "#22c55e";
+                    else if (index < 9) ledBlock.style.backgroundColor = "#eab308";
+                    else ledBlock.style.backgroundColor = "#ef4444";
+                } else {
+                    // Dim un-triggered node tracks
+                    ledBlock.style.backgroundColor = "#1f2937";
+                }
+            });
+
+            requestAnimationFrame(renderVuFrameUpdate);
+        }
+
+        renderVuFrameUpdate();
+    }
+
+    // Monitor for slider updates or interaction clicks to anchor the grid layouts
+    document.addEventListener("input", function(e) {
+        if (e.target && (e.target.id === "volume-slider" || e.target.type === "range" || e.target.className.includes("volume"))) {
+            constructQuantumLedVuGrid(e.target);
+        }
+    });
+});
+ 
 </script>
 
     <style>
