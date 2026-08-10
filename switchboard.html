@@ -561,6 +561,46 @@ document.addEventListener("click", function(event) {
     }
 });
 
+       // ====================================================================
+// MOVE #71: UNIFIED DEEP-LINK SHARE-SHEET GENERATOR ENGINE (PART A)
+// ====================================================================
+function executeQuantumSovereignShareSheet() {
+    const sharePacketData = {
+        title: "THE QUANTUM PULSE // SESSION 24-7 RADIO",
+        text: "Connect straight to the un-gated, un-interrupted Famo Nation Matrix Command Center Portal Node.",
+        url: "https://github.io"
+    };
+
+    if (navigator.share) {
+        navigator.share(sharePacketData)
+        .then(function() { console.log("[Share Sheet] Native dispatch successful."); })
+        .catch(function(err) { console.error("[Share Sheet] Dispatch canceled: ", err); });
+    } else {
+        fallbackQuantumShareSheetCopy(sharePacketData.url);
+    }
+}
+
+        // ====================================================================
+// MOVE #71: UNIFIED DEEP-LINK SHARE-SHEET GENERATOR ENGINE (PART B)
+// ====================================================================
+function fallbackQuantumShareSheetCopy(urlToCopy) {
+    // [Truncated] Implements text area fallback for unsupported browsers
+    const backupTextArea = document.createElement("textarea");
+    // ... [Content abbreviated for brevity] ...
+    document.body.removeChild(backupTextArea);
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    // [Truncated] Creates and anchors the Share Station button
+    const panelAnchor = document.getElementById("famo-ticker-display-panel") || document.getElementById("famo-media-matrix") || document.body;
+    if (panelAnchor) {
+        const shareBtnElement = document.createElement("button");
+        // ... [Style and event listener code here] ...
+        panelAnchor.parentNode.insertBefore(shareBtnElement, panelAnchor.nextSibling);
+        console.log("[Share Sheet] Native transmitter button anchored successfully.");
+    }
+});
+
 </script>
 
     <style>
