@@ -294,7 +294,66 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log("[Promo Core] One-click marketing blast action button anchored successfully.");
     }
 });
- 
+
+        // ====================================================================
+// MOVE #54: VERTICAL MATRIX GREEN CODE CASCADE CANVAS ENGINE
+// ====================================================================
+document.addEventListener("DOMContentLoaded", function() {
+    // Dynamically spawn canvas element and absolute position it safely in background layout margins
+    const quantumCanvas = document.createElement("canvas");
+    quantumCanvas.id = "quantumMatrixRainCanvas";
+    quantumCanvas.style.cssText = "position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1; opacity:0.04; pointer-events:none;";
+    document.body.appendChild(quantumCanvas);
+
+    const ctx = quantumCanvas.getContext("2d");
+    
+    function resizeQuantumCanvas() {
+        quantumCanvas.width = window.innerWidth;
+        quantumCanvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resizeQuantumCanvas);
+    resizeQuantumCanvas();
+
+    const matrixChars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZMATRIXPULSEFAMO77";
+    const charArray = matrixChars.split("");
+    const fontSize = 14;
+    
+    let columns = quantumCanvas.width / fontSize;
+    let rainDrops = [];
+    for (let x = 0; x < columns; x++) {
+        rainDrops[x] = 1;
+    }
+
+    function drawQuantumMatrixRain() {
+        // Hardware performance toggle: Respect Move #96 battery throttle state if engaged
+        if (window.quantumThrottledState === true && Math.random() > 0.4) {
+            requestAnimationFrame(drawQuantumMatrixRain);
+            return;
+        }
+
+        ctx.fillStyle = "rgba(9, 13, 16, 0.05)"; // Blends perfectly with your #090d10 dark dashboard backgrounds
+        ctx.fillRect(0, 0, quantumCanvas.width, quantumCanvas.height);
+
+        ctx.fillStyle = "#22c55e"; // Precise neon-green studio visual styling
+        ctx.font = fontSize + "px monospace";
+
+        for (let i = 0; i < rainDrops.length; i++) {
+            const textChar = charArray[Math.floor(Math.random() * charArray.length)];
+            ctx.fillText(textChar, i * fontSize, rainDrops[i] * fontSize);
+
+            if (rainDrops[i] * fontSize > quantumCanvas.height && Math.random() > 0.975) {
+                rainDrops[i] = 0;
+            }
+            rainDrops[i]++;
+        }
+        requestAnimationFrame(drawQuantumMatrixRain);
+    }
+    
+    // Fire the animation cycle rendering track
+    requestAnimationFrame(drawQuantumMatrixRain);
+    console.log("[Visual Matrix] Falling digital rain code cascade canvas initialized.");
+});
+
 </script>
 
     <style>
