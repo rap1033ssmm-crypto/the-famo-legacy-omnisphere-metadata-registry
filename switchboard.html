@@ -97,6 +97,26 @@ setInterval(function() {
     console.log("[Memory Vault] Administrative passcode footprint completely flushed from active memory.");
 }, 10 * 60 * 1000); // Automatically triggers every 10 minutes
 
+    // ====================================================================
+// MOVE #95: DOMAIN WHITELIST ACCESS GUARD FENCE
+// ====================================================================
+(function() {
+    const authorizedDomainHost = "rap1033ssmm-crypto.github.io";
+    const currentDomainHost = window.location.hostname;
+
+    // Allow local testing environment paths but flag and lock down alien web domains
+    if (currentDomainHost && currentDomainHost !== authorizedDomainHost && currentDomainHost !== "127.0.0.1" && currentDomainHost !== "localhost") {
+        console.warn("[Security Fence] Unauthorized domain hosting detected. Initializing traffic reroute...");
+        
+        // Wipe local display and force location redirect back to sovereign repository node
+        document.body.innerHTML = '<div style="background:#090d10; color:#ef4444; font-family:monospace; text-align:center; padding:50px; font-size:1rem; font-weight:bold;">// SECURITY BREACH // UNAUTHORIZED SYSTEM HOST DETECTED // REDIRECTING TO MASTER NODE ROUTE...</div>';
+        
+        setTimeout(function() {
+            window.location.href = "https://github.io";
+        }, 2000);
+    }
+})();
+
 </script>
 
     <style>
