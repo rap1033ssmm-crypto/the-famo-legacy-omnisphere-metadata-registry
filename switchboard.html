@@ -233,6 +233,67 @@ document.addEventListener("input", function(event) {
         needleContainer.innerText = "AUDIO GAIN: " + calculateQuantumDecibelGain(target.value);
     }
 });
+
+       // ====================================================================
+// MOVE #48: ONE-CLICK PROMOTIONAL BLAST TEXT COPIER ENGINE
+// ====================================================================
+function executeQuantumPromoBlastCopy() {
+    // Beautifully formatted plain-text blast layout mapping for chats/social media
+    const promoBlastText = 
+`📡 THE QUANTUM PULSE // SESSION 24-7 RADIO 📡
+Sovereign Multi-System Audio Network Active
+
+📻 Tune In Live Everywhere:
+https://rap1033ssmm-crypto.github.io/the-famo-legacy-omnisphere-metadata-registry/switchboard.html
+
+⚡ 100% Device Ubiquity // Zero Interception Pools // Un-gated, Un-silenced Media Flow. Loaded for car dashboards, mobile phones, and widescreen smart TVs.
+
+#TheQuantumPulse #FamoOmnipresent #WritersLegacyTeam`;
+
+    // Execute native clipboard copy operation
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(promoBlastText).then(function() {
+            alert("PROMO BLAST COPIED // PASTE DIRECTLY INTO CHATS OR SOCIAL TIMELINES!");
+        }).catch(function(err) {
+            console.error("[Promo Core] Clipboard write failed: ", err);
+            fallbackQuantumPromoCopy(promoBlastText);
+        });
+    } else {
+        fallbackQuantumPromoCopy(promoBlastText);
+    }
+}
+
+function fallbackQuantumPromoCopy(text) {
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    textArea.style.position = "fixed"; // Avoid scrolling page disruptions
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    try {
+        document.execCommand("copy");
+        alert("PROMO BLAST COPIED SUCCESSFULLY via System Fallback Matrix.");
+    } catch (err) {
+        alert("CLIPBOARD EXCLUSION: Please manually copy link from your browser URL.");
+    }
+    document.body.removeChild(textArea);
+}
+
+// Automatically create and anchor the promotion trigger module inside the layout interface
+document.addEventListener("DOMContentLoaded", function() {
+    const triggerContainer = document.getElementById("quantum-syndication-card") || document.getElementById("quantumEmbedSnippetData") || document.body;
+    if (triggerContainer) {
+        const blastButton = document.createElement("button");
+        blastButton.id = "quantumPromoBlastActionBtn";
+        blastButton.type = "button";
+        blastButton.style.cssText = "background:#0f172a; border:1px solid #22c55e; color:#22c55e; padding:10px 16px; border-radius:6px; font-family:monospace; font-size:0.75rem; font-weight:bold; cursor:pointer; text-transform:uppercase; letter-spacing:1px; margin-top:12px; display:block; width:100%; transition:all 0.2s ease; box-shadow: 0 0 15px rgba(34,197,94,0.05);";
+        blastButton.innerText = "🚀 Copy One-Click Promo Blast";
+        
+        blastButton.addEventListener("click", executeQuantumPromoBlastCopy);
+        triggerContainer.parentNode.insertBefore(blastButton, triggerContainer.nextSibling);
+        console.log("[Promo Core] One-click marketing blast action button anchored successfully.");
+    }
+});
  
 </script>
 
