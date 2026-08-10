@@ -1090,6 +1090,31 @@ function sanitizeQuantumTextInput(rawPayload) {
         .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, "");
 }
 
+    // ====================================================================
+// MOVE #75: AUTO-LOCKING ADMINISTRATIVE SESSION EXPIRY LOOP
+// ====================================================================
+let quantumIdleTimer;
+const QUANTUM_TIMEOUT_LIMIT = 15 * 60 * 1000; // 15 Minutes in Milliseconds
+
+function resetQuantumIdleTimer() {
+    clearTimeout(quantumIdleTimer);
+    quantumIdleTimer = setTimeout(engageQuantumSessionLockdown, QUANTUM_TIMEOUT_LIMIT);
+}
+
+function engageQuantumSessionLockdown() {
+    console.log("[Security Gate] Admin session idle limit reached. Initiating automatic lockdown...");
+    // Force immediate browser reload to clear local execution scopes and re-engage default state
+    window.location.reload();
+}
+
+// Track user interactions to keep active operator sessions alive
+document.addEventListener("mousemove", resetQuantumIdleTimer);
+document.addEventListener("keypress", resetQuantumIdleTimer);
+document.addEventListener("click", resetQuantumIdleTimer);
+
+// Initialize countdown loop on boot
+resetQuantumIdleTimer();
+
 
 // INITIALIZE SYSTEM EVENTS ON WINDOW MOUNT FRAME
 document.addEventListener("DOMContentLoaded", function() {
