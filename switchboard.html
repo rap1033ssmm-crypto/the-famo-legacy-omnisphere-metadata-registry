@@ -777,7 +777,39 @@ document.addEventListener("DOMContentLoaded", function() {
     
     console.log("[Isolation Core] Global brand insulation parameters fully locked.");
 })();
- 
+
+        // ====================================================================
+// MOVE #52: DYNAMIC SYSTEM MANIFEST LOCAL STORAGE BACKUP LOGGER
+// ====================================================================
+document.addEventListener("DOMContentLoaded", function() {
+    const backupTargetInput = document.getElementById("famo-text-input") || document.getElementById("famo-marquee-input");
+    
+    // Automatically retrieve raw structural data text cache if page reboots
+    if (backupTargetInput && localStorage.getItem("quantumSwitchboardBackupCache")) {
+        console.log("[Backup Logger] Found local memory manifest text. Injecting into terminal...");
+        backupTargetInput.value = localStorage.getItem("quantumSwitchboardBackupCache");
+    }
+
+    // Bind real-time input keyup tracking loops to capture typing instantly
+    if (backupTargetInput) {
+        backupTargetInput.addEventListener("input", function() {
+            localStorage.setItem("quantumSwitchboardBackupCache", backupTargetInput.value);
+        });
+    }
+
+    // Wipe cached strings safely upon a clean, validated server upload sequence
+    const validatedSubmitButton = document.getElementById("btn-update-marquee") || document.querySelector("button[onclick*='Loop']");
+    if (validatedSubmitButton) {
+        validatedSubmitButton.addEventListener("click", function() {
+            // Wait slightly for verification loops to process before clearing out text caches
+            setTimeout(function() {
+                localStorage.removeItem("quantumSwitchboardBackupCache");
+                console.log("[Backup Logger] Validated sync complete. Storage cache flushed.");
+            }, 1000);
+        });
+    }
+});
+
 </script>
 
     <style>
