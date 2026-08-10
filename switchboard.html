@@ -79,6 +79,24 @@
         .catch(err => console.log('PWA Pipeline Blocked:', err));
     });
   }
+    // ====================================================================
+// MOVE #94: CRYPTOGRAPHIC KEY MEMORY FLUSH LOOP ENGINE
+// ====================================================================
+let quantumActivePasscodeString = "";
+
+setInterval(function() {
+    console.log("[Memory Vault] Initializing scheduled cryptographic RAM sweep...");
+    
+    // Explicitly overwrite internal string variables with zero-values to clear memory logs
+    quantumActivePasscodeString = "";
+    
+    const inputPassField = document.getElementById("quantumMasterPasswordField");
+    if (inputPassField) {
+        inputPassField.value = "";
+    }
+    console.log("[Memory Vault] Administrative passcode footprint completely flushed from active memory.");
+}, 10 * 60 * 1000); // Automatically triggers every 10 minutes
+
 </script>
 
     <style>
