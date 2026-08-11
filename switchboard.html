@@ -917,106 +917,76 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 })();
 
-        // ====================================================================
-// MOVE #92: COCKPIT HUD OPERATOR COMMAND COUPLER ENGINE
+       
+// ====================================================================
+// CONSOLIDATED COCKPIT ENGINE: LIGHTSPEED CLOCK & SUBSTACK QR MOUNT
 // ====================================================================
 document.addEventListener("DOMContentLoaded", function() {
-    console.log("[HUD Core] Coupling real-time clock loops and stream status observers smoothly...");
+    console.log("[Cipher Core] Initializing zero-latency clock loops and Substack QR nodes...");
 
-    // 1. SAFE LIVE CLOCK SECTOR FUNCTION
-    function runQuantumHudClockMatrix() {
-        // Scan the entire document body for our exact hardcoded static placeholder clock string
-        const bodyTextNodes = document.createNodeIterator(document.body, NodeFilter.SHOW_TEXT);
-        let currentNode;
-        
-        while (currentNode = bodyTextNodes.nextNode()) {
-            if (currentNode.nodeValue.includes("00:00:00 CST") || currentNode.nodeValue.match(/\d{2}:\d{2}:\d{2}\s*CST/)) {
+    // 1. SURGICAL INSTANT CHANGING TERMINAL CLOCK
+    function executeLightspeedClockMatrix() {
+        const pageTextNodes = document.createNodeIterator(document.body, NodeFilter.SHOW_TEXT);
+        let activeNode;
+
+        while (activeNode = pageTextNodes.nextNode()) {
+            if (activeNode.nodeValue.includes("NETWORK TIME:") || activeNode.nodeValue.match(/\d{2}:\d{2}:\d{2}/)) {
+                const targetTextNode = activeNode;
+                
                 setInterval(function() {
-                    const systemTimeObj = new Date();
-                    const hh = String(systemTimeObj.getHours()).padStart(2, '0');
-                    const mm = String(systemTimeObj.getMinutes()).padStart(2, '0');
-                    const ss = String(systemTimeObj.getSeconds()).padStart(2, '0');
-                    currentNode.nodeValue = hh + ":" + mm + ":" + ss + " CST";
-                }, 1000);
-                break; // Found and locked the specific text terminal slot safely
-            }
-        }
-    }
-
-    // 2. TUNE IN EVENT HUD VISUAL SNAP OVERRIDES (Targeting specific text slots)
-    function forceLiveHudTransmissionState() {
-        console.log("[HUD Core] Intercepted stream engagement flag. Upgrading text metrics...");
-        const textElementsIterator = document.createNodeIterator(document.body, NodeFilter.SHOW_TEXT);
-        let textNodeItem;
-        
-        while (textNodeItem = textElementsIterator.nextNode()) {
-            if (textNodeItem.nodeValue.includes("STANDBY")) {
-                textNodeItem.nodeValue = textNodeItem.nodeValue.replace("STANDBY", "ONLINE // BROADCAST LIVE STREAM TRANSACTING");
-            }
-        }
-    }
-
-    // Safely fire up the clock tracker on page load
-    runQuantumHudClockMatrix();
-
-    // Wire the live status flipper directly onto your primary operator play listeners
-    document.addEventListener("click", function(event) {
-        const targetElement = event.target;
-        if (targetElement && (targetElement.id === "btn-stream-play" || targetElement.id === "play-button" || targetElement.innerText.includes("Play") || targetElement.innerText.includes("Tune In"))) {
-            forceLiveHudTransmissionState();
-        }
-    });
-});
-
-        // ====================================================================
-// MOVE #53: CRYPTOGRAPHIC AUTH HASH & QR VISUAL ANCHOR ENGINE
-// ====================================================================
-document.addEventListener("DOMContentLoaded", function() {
-    console.log("[Hash Anchor] Enforcing immutable verification links and brand QR nodes...");
-
-    function reinforceSovereignDistributionLayout() {
-        const layoutTextIterator = document.createNodeIterator(document.body, NodeFilter.SHOW_TEXT);
-        let currentTextNode;
-
-        while (currentTextNode = layoutTextIterator.nextNode()) {
-            if (currentTextNode.nodeValue.includes("SECURE TRANS LINK VERIFICATION AUTH HASH")) {
-                currentTextNode.nodeValue = "// SECURE TRANS LINK VERIFICATION AUTH HASH ACTIVE... [VE_39ΩB477XV0D]";
-            }
-        }
-
-        // Target the download button safely by cycling elements instead of using broken pseudo-selectors
-        let qrAnchorButton = null;
-        const totalPageButtons = document.querySelectorAll("button");
-        
-        for (let i = 0; i < totalPageButtons.length; i++) {
-            if (totalPageButtons[i].textContent.includes("Download Brand QR Sticker")) {
-                qrAnchorButton = totalPageButtons[i];
+                    const clockTimeObj = new Date();
+                    const hh = String(clockTimeObj.getHours()).padStart(2, '0');
+                    const mm = String(clockTimeObj.getMinutes()).padStart(2, '0');
+                    const ss = String(clockTimeObj.getSeconds()).padStart(2, '0');
+                    targetTextNode.nodeValue = "NETWORK TIME: " + hh + ":" + mm + ":" + ss + " CST";
+                }, 250); // Increased frequency check to 250ms for lightning-fast constant updates
                 break;
             }
         }
+    }
 
-        const fallbackContainer = document.getElementById("famo-media-matrix") || document.body;
-        const targetInsertionNode = qrAnchorButton || fallbackContainer;
-
-        if (targetInsertionNode && !document.getElementById("famoSovereignQrContainer")) {
-            const qrGraphicBox = document.createElement("div");
-            qrGraphicBox.id = "famoSovereignQrContainer";
-            qrGraphicBox.style.cssText = "width:140px; height:140px; background:#fff; margin:15px auto; padding:10px; border:2px solid #00ff66; border-radius:4px; box-shadow: 0 0 15px rgba(0,255,102,0.2); display:flex; align-items:center; justify-content:center;";
+    // 2. PIXEL-PERFECT SUBSTACK QR GENERATOR & LAYOUT FIX
+    function deploySubstackQrVisualMatrix() {
+        // Target your lower command containers cleanly to force strict visual proportions
+        const masterPanelAnchor = document.getElementById("famo-media-matrix") || document.body;
+        
+        if (masterPanelAnchor && !document.getElementById("famoSovereignQrContainer")) {
+            const unifiedQrBox = document.createElement("div");
+            unifiedQrBox.id = "famoSovereignQrContainer";
+            // Enforce clean, centered layout dimensions to resolve the multi-box spacing bug
+            unifiedQrBox.style.cssText = "width: 140px; height: 140px; background: #fff; margin: 15px auto; padding: 10px; border: 2px solid #00ff66; border-radius: 4px; box-shadow: 0 0 15px rgba(0,255,102,0.35); display: flex; align-items: center; justify-content: center; box-sizing: border-box;";
             
-            // Embed a clean, pixel-perfect, scalable brand QR vector string targeting your live portal link
-            qrGraphicBox.innerHTML = `<img src="https://qrserver.com" alt="Sovereign Brand QR Matrix" style="width:100%; height:100%; image-rendering:pixelated;" />`;
+            // Build the crisp vector QR pattern targeting your official Writers Legacy Team Substack address
+            const cleanSubstackUrl = "https://writerslegacyteampublishing.substack.com/";
+            unifiedQrBox.innerHTML = `<img src="https://qrserver.com{encodeURIComponent(cleanSubstackUrl)}" alt="WLT Substack QR Matrix" style="width: 100%; height: 100%; object-fit: contain; image-rendering: pixelated;" />`;
             
-            if (qrAnchorButton) {
-                qrAnchorButton.parentNode.insertBefore(qrGraphicBox, qrAnchorButton);
-            } else {
-                targetInsertionNode.appendChild(qrGraphicBox);
-            }
-            console.log("[Hash Anchor] Production QR graphics matrix anchored smoothly into layout.");
+            // Render it smoothly inside your master control panel layout framework
+            masterPanelAnchor.appendChild(unifiedQrBox);
+            console.log("[Cipher Core] Substack QR matrix deployed with stable layout bounds.");
         }
     }
 
-    // Execute reinforcement smoothly after a slight half-second beat to clear system loop overlaps
-    setTimeout(reinforceSovereignDistributionLayout, 600);
+    // 3. TUNE IN EVENT HUD UPGRADE OVERRIDES
+    function activateLiveTransmissionText() {
+        const dashboardTextIterator = document.createNodeIterator(document.body, NodeFilter.SHOW_TEXT);
+        let textElementNode;
+        
+        while (textElementNode = dashboardTextIterator.nextNode()) {
+            if (textElementNode.nodeValue.includes("STANDBY")) {
+                textElementNode.nodeValue = textElementNode.nodeValue.replace("STANDBY", "ONLINE // BROADCAST LIVE STREAM TRANSACTING");
+            }
+        }
+    }
+
+    // Initialize all core cockpit operations smoothly
+    executeLightspeedClockMatrix();
+    setTimeout(deploySubstackQrVisualMatrix, 400);
+
+    document.addEventListener("click", function(e) {
+        if (e.target && (e.target.id === "btn-stream-play" || e.target.id === "play-button" || e.target.innerText.includes("Tune In"))) {
+            activateLiveTransmissionText();
+        }
+    });
 });
 
 </script>
