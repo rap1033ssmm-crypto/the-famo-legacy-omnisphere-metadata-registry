@@ -2230,74 +2230,64 @@ function copyQuantumEmbedSnippet() {
     alert("GLOBAL IFRAME EMBED WIDGET CODE COPIED STRAIGHT TO CLIPBOARD!");
 }
 
-       // ====================================================================
-// CONSOLIDATED COCKPIT ENGINE: LIGHTSPEED CLOCK & ORANGE QR IMAGE MOUNT
+      // ====================================================================
+// THE DEFINITIVE COCKPIT ENGINE: CLOCK CORRECTION & ORANGE QR FIX
 // ====================================================================
 document.addEventListener("DOMContentLoaded", function() {
-    console.log("[Cipher Core] Initializing zero-latency clock loops and official brand QR nodes...");
+    console.log("[Cipher Final] Executing hardcoded interface synchronization engine...");
 
-    // 1. SURGICAL INSTANT CHANGING TERMINAL CLOCK
-    function executeLightspeedClockMatrix() {
-        const pageTextNodes = document.createNodeIterator(document.body, NodeFilter.SHOW_TEXT);
-        let activeNode;
-
-        while (activeNode = pageTextNodes.nextNode()) {
-            if (activeNode.nodeValue.includes("NETWORK TIME:") || activeNode.nodeValue.match(/\d{2}:\d{2}:\d{2}/)) {
-                const targetTextNode = activeNode;
-                
-                setInterval(function() {
-                    const clockTimeObj = new Date();
-                    const hh = String(clockTimeObj.getHours()).padStart(2, '0');
-                    const mm = String(clockTimeObj.getMinutes()).padStart(2, '0');
-                    const ss = String(clockTimeObj.getSeconds()).padStart(2, '0');
-                    targetTextNode.nodeValue = "NETWORK TIME: " + hh + ":" + mm + ":" + ss + " CST";
-                }, 250); 
-                break;
-            }
-        }
-    }
-
-    // 2. OFFICIAL ORANGE BRAND QR IMAGE MOUNT & AUTOMATIC LAYOUT FIX
-    function deployOrangeQrVisualMatrix() {
-        const masterPanelAnchor = document.getElementById("famo-media-matrix") || document.body;
+    // 1. DIRECT HARDCODED REAL-TIME CLOCK MATRIX
+    const clockDisplayElement = document.getElementById("ticker-network-state") || document.body;
+    
+    setInterval(function() {
+        const systemClockObj = new Date();
+        const hh = String(systemClockObj.getHours()).padStart(2, '0');
+        const mm = String(systemClockObj.getMinutes()).padStart(2, '0');
+        const ss = String(systemClockObj.getSeconds()).padStart(2, '0');
         
-        if (masterPanelAnchor) {
-            const oldPlaceholderBox = document.getElementById("famoSovereignQrContainer");
-            if (oldPlaceholderBox) { oldPlaceholderBox.parentNode.removeChild(oldPlaceholderBox); }
-
-            const unifiedQrBox = document.createElement("div");
-            unifiedQrBox.id = "famoSovereignQrContainer";
-            unifiedQrBox.style.cssText = "width: 140px; height: 140px; background: #fff; margin: 15px auto; padding: 10px; border: 2px solid #00ff66; border-radius: 4px; box-shadow: 0 0 15px rgba(0,255,102,0.35); display: flex; align-items: center; justify-content: center; box-sizing: border-box;";
-            
-            // Hardcode your actual uploaded brand QR code image to pull directly from your repository asset ledger
-            unifiedQrBox.innerHTML = `<img src="https://githubusercontent.com" alt="WLT Substack QR Matrix" style="width: 100%; height: 100%; object-fit: contain;" />`;
-            
-            masterPanelAnchor.appendChild(unifiedQrBox);
-            console.log("[Cipher Core] Official orange brand QR emblem anchored with stable layout parameters.");
-        }
-    }
-
-    // 3. TUNE IN EVENT HUD UPGRADE OVERRIDES
-    function activateLiveTransmissionText() {
-        const dashboardTextIterator = document.createNodeIterator(document.body, NodeFilter.SHOW_TEXT);
-        let textElementNode;
+        // Target your exact layout string without searching loose nodes
+        const activeClockString = "NETWORK TIME: " + hh + ":" + mm + ":" + ss + " CST";
         
-        while (textElementNode = dashboardTextIterator.nextNode()) {
-            if (textElementNode.nodeValue.includes("STANDBY")) {
-                textElementNode.nodeValue = textElementNode.nodeValue.replace("STANDBY", "ONLINE // BROADCAST LIVE STREAM TRANSACTING");
-            }
+        // Find your network time text block or target elements to push updates safely
+        const hudClockContainer = document.getElementById("quantumHudClock") || document.getElementById("ticker-live-metrics");
+        if (hudClockContainer) {
+            hudClockContainer.innerText = activeClockString;
         }
+    }, 250); // Updates constantly every 250 milliseconds with absolute zero lag
+
+    // 2. STABLE ORANGE BRAND QR IMAGE MOUNT
+    const controlPanelContainer = document.getElementById("famo-media-matrix") || document.getElementById("famo-ticker-display-panel") || document.body;
+    
+    if (controlPanelContainer) {
+        // Clean out any stale, broken duplicate placeholders instantly
+        const staleQrBox = document.getElementById("famoSovereignQrContainer");
+        if (staleQrBox) { staleQrBox.parentNode.removeChild(staleQrBox); }
+
+        const pristineQrBox = document.createElement("div");
+        pristineQrBox.id = "famoSovereignQrContainer";
+        // Enforce strict layout sizing rules so it never expands or stretches out of its frame
+        pristineQrBox.style.cssText = "width: 140px; height: 140px; background: #fff; margin: 15px auto; padding: 10px; border: 2px solid #00ff66; border-radius: 4px; box-shadow: 0 0 15px rgba(0,255,102,0.35); display: flex; align-items: center; justify-content: center; box-sizing: border-box;";
+        
+        // Pull your real, authentic orange logo graphic directly from your repository assets link
+        pristineQrBox.innerHTML = `<img src="https://githubusercontent.com" alt="Official WLT QR Matrix" style="width: 100%; height: 100%; object-fit: contain;" />`;
+        
+        controlPanelContainer.appendChild(pristineQrBox);
+        console.log("[Cipher Final] Official orange brand QR emblem successfully locked into place.");
     }
 
-    executeLightspeedClockMatrix();
-    setTimeout(deployOrangeQrVisualMatrix, 400);
-
-    document.addEventListener("click", function(e) {
-        if (e.target && (e.target.id === "btn-stream-play" || e.target.id === "play-button" || e.target.innerText.includes("Tune In"))) {
-            activateLiveTransmissionText();
-        }
-    });
+    // 3. HARDWIRED ACTION TRIGGERS TO FLIP STANDBY TO ONLINE
+    const primaryPlayBtn = document.getElementById("btn-stream-play") || document.getElementById("play-button");
+    if (primaryPlayBtn) {
+        primaryPlayBtn.addEventListener("click", function() {
+            const currentStatusLabel = document.getElementById("stream-status");
+            if (currentStatusLabel) {
+                currentStatusLabel.innerText = "ONLINE // BROADCAST LIVE STREAM TRANSACTING";
+                currentStatusLabel.style.color = "#00ff66";
+            }
+        });
+    }
 });
+
  
 </script>
 
