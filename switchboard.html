@@ -2271,37 +2271,45 @@ document.addEventListener("DOMContentLoaded", function() {
     setTimeout(executeQuantumClockLock, 500);
 });
 
-        // ====================================================================
+    // ====================================================================
 // MOVE #53-P: INSTANT CRYPTOGRAPHIC VERIFICATION HASH GENERATOR ENGINE
 // ====================================================================
 document.addEventListener("DOMContentLoaded", function() {
-    function initializeQuantumHashStream() {
-        // Creates a stylized, rapidly changing hash display element
-        const securityMatrixAnchor = document.getElementById("famo-media-matrix") || document.body;
-        
-        if (!document.getElementById("quantumSovereignAuthHashSlot")) {
-            const hashDisplayContainer = document.createElement("div");
-            hashDisplayContainer.id = "quantumSovereignAuthHashSlot";
-            hashDisplayContainer.style.cssText = "font-family: monospace; color: #00ff66; font-size: 0.8rem; text-align: center; margin: 15px auto; padding: 8px; white-space: nowrap; text-shadow: 0 0 8px rgba(0,255,102,0.3);";
-            securityMatrixAnchor.parentNode.insertBefore(hashDisplayContainer, securityMatrixAnchor.nextSibling);
+    console.log("[Hash System] Targeting existing text nodes for constant cipher changes...");
+
+    function executeLiveHashScramblerLoop() {
+        const structuralNodesIterator = document.createNodeIterator(document.body, NodeFilter.SHOW_TEXT);
+        let currentTextItemNode;
+        let targetedTextLineSlot = null;
+
+        // Hunt down the exact text string currently resting frozen on your dashboard
+        while (currentTextItemNode = structuralNodesIterator.nextNode()) {
+            if (currentTextItemNode.nodeValue.includes("SECURE TRANS LINK VERIFICATION AUTH HASH")) {
+                targetedTextLineSlot = currentTextItemNode;
+                break;
+            }
         }
 
-        const primaryHashOutputNode = document.getElementById("quantumSovereignAuthHashSlot");
-        const cipherCharacterPool = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ΩΞΦΨΞΩΔΓΘL7X4V0D";
+        const tokenCipherPool = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ΩΞΦΨΞΩΔΓΘL7X4V0D";
 
-        if (primaryHashOutputNode) {
-            // High-speed 150ms interval loop for constant visual change
+        if (targetedTextLineSlot) {
+            // High-speed 150ms interval loop to keep the text row changing non-stop
             setInterval(function() {
-                let randomizedHashSnippet = "";
-                for (let i = 0; i < 12; i++) {
-                    randomizedHashSnippet += cipherCharacterPool.charAt(Math.floor(Math.random() * cipherCharacterPool.length));
+                let randomizedCryptoSnippet = "";
+                for (let i = 0; i < 14; i++) {
+                    randomizedCryptoSnippet += tokenCipherPool.charAt(Math.floor(Math.random() * tokenCipherPool.length));
                 }
-                primaryHashOutputNode.innerText = "// SECURE TRANS LINK VERIFICATION AUTH HASH ACTIVE... [" + randomizedHashSnippet + "]";
-            }, 150); 
+                // Force overwrite your existing static row text with a constantly moving key signature
+                targetedTextLineSlot.nodeValue = "// SECURE TRANS LINK VERIFICATION AUTH HASH ACTIVE... [" + randomizedCryptoSnippet + "]";
+            }, 150);
+            console.log("[Hash System] Static security text successfully linked to constant changing loop.");
         }
     }
-    setTimeout(initializeQuantumHashStream, 600);
+
+    // Initialize the text scrambler loop smoothly half a second after boot completes
+    setTimeout(executeLiveHashScramblerLoop, 500);
 });
+
 
 </script>
 
