@@ -2255,24 +2255,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }, 250); // Updates constantly every 250 milliseconds with absolute zero lag
 
-    // 2. STABLE ORANGE BRAND QR IMAGE MOUNT
-    const controlPanelContainer = document.getElementById("famo-media-matrix") || document.getElementById("famo-ticker-display-panel") || document.body;
-    
-    if (controlPanelContainer) {
-        // Clean out any stale, broken duplicate placeholders instantly
-        const staleQrBox = document.getElementById("famoSovereignQrContainer");
-        if (staleQrBox) { staleQrBox.parentNode.removeChild(staleQrBox); }
-
-        const pristineQrBox = document.createElement("div");
-        pristineQrBox.id = "famoSovereignQrContainer";
-        // Enforce strict layout sizing rules so it never expands or stretches out of its frame
-        pristineQrBox.style.cssText = "width: 140px; height: 140px; background: #fff; margin: 15px auto; padding: 10px; border: 2px solid #00ff66; border-radius: 4px; box-shadow: 0 0 15px rgba(0,255,102,0.35); display: flex; align-items: center; justify-content: center; box-sizing: border-box;";
-        
-        // Pull your real, authentic orange logo graphic directly from your repository assets link
-        pristineQrBox.innerHTML = `<img src="https://githubusercontent.com" alt="Official WLT QR Matrix" style="width: 100%; height: 100%; object-fit: contain;" />`;
-        
-        controlPanelContainer.appendChild(pristineQrBox);
-        console.log("[Cipher Final] Official orange brand QR emblem successfully locked into place.");
     }
 
     // 3. HARDWIRED ACTION TRIGGERS TO FLIP STANDBY TO ONLINE
