@@ -2157,32 +2157,6 @@ function startQuantumCryptoHashScroller() {
     }, 1400);
 }
 
-// MOVE #24: ZERO-COST CRYPTOGRAPHIC CUSTOM QR BRAND ENGINE
-function compileQuantumQrVectorGraphic() {
-    const canvas = document.getElementById('quantumQrCanvas');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    ctx.fillStyle = "#ffffff";
-    ctx.fillRect(0,0,100,100);
-    ctx.fillStyle = "#070a0e";
-    ctx.fillRect(5,5,30,30); ctx.fillStyle="#fff"; ctx.fillRect(10,10,20,20); ctx.fillStyle="#070a0e"; ctx.fillRect(15,15,10,10);
-    ctx.fillRect(65,5,30,30); ctx.fillStyle="#fff"; ctx.fillRect(70,10,20,20); ctx.fillStyle="#070a0e"; ctx.fillRect(75,15,10,10);
-    ctx.fillRect(5,65,30,30); ctx.fillStyle="#fff"; ctx.fillRect(10,70,20,20); ctx.fillStyle="#070a0e"; ctx.fillRect(15,75,10,10);
-    for (let x=35; x<65; x+=5) { for(let y=5; y<95; y+=5) { if(Math.random()>0.4) ctx.fillRect(x,y,4,4); } }
-    for (let x=5; x<35; x+=5) { for(let y=35; y<65; y+=5) { if(Math.random()>0.4) ctx.fillRect(x,y,4,4); } }
-    for (let x=65; x<95; x+=5) { for(let y=35; y<95; y+=5) { if(Math.random()>0.4) ctx.fillRect(x,y,4,4); } }
-}
-
-function exportQuantumQrGraphic() {
-    const canvas = document.getElementById('quantumQrCanvas');
-    if (!canvas) return;
-    const graphicUri = canvas.toDataURL("image/png");
-    const downloadAnchorNode = document.createElement('a');
-    downloadAnchorNode.href = graphicUri;
-    downloadAnchorNode.download = "FAMO_QUANTUM_PULSE_NETWORK_QR.png";
-    document.body.appendChild(downloadAnchorNode);
-    downloadAnchorNode.click();
-    document.body.removeChild(downloadAnchorNode);
 }
 
 // MOVE #27: INSTANT AUDIO STREAM QUALITY SELECTOR LANING TOGGLE
