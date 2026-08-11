@@ -839,6 +839,29 @@ document.addEventListener("DOMContentLoaded", function() {
     console.log("[Injection Firewall] DOM integrity tracking active with optimal clearance.");
 });
 
+        // ====================================================================
+// MOVE #42: AUTOMATED DATA SANITY TRIM FILTER ENGINE
+// ====================================================================
+document.addEventListener("DOMContentLoaded", function() {
+    const validatedSubmitButton = document.getElementById("btn-update-marquee") || document.querySelector("button[onclick*='Loop']");
+    const primaryInputArea = document.getElementById("famo-text-input") || document.getElementById("famo-marquee-input");
+
+    if (validatedSubmitButton && primaryInputArea) {
+        // Intercept submission moments right before your marquee array loops process the data
+        validatedSubmitButton.addEventListener("click", function() {
+            let originalRawText = primaryInputArea.value;
+            
+            // Execute deep regex trim to vaporize accidental multiple line breaks and trailing blanks
+            let sanitizedText = originalRawText.trim().replace(/\s+/g, ' ');
+            
+            if (sanitizedText !== originalRawText) {
+                console.log("[Data Filter] Cleaned whitespace fragments from input stream safely.");
+                primaryInputArea.value = sanitizedText;
+            }
+        }, true); // Captures click phase early to sanitize data prior to ledger compilation
+    }
+});
+
 </script>
 
     <style>
