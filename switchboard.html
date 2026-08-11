@@ -2288,7 +2288,40 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
- 
+
+        // ====================================================================
+// SYSTEM RESET: LIGHTWEIGHT OPERATOR HUD CLOCK CONSOLE
+// ====================================================================
+document.addEventListener("DOMContentLoaded", function() {
+    console.log("[System Reset] Activating standard isolated HUD tracking engines...");
+
+    // 1. CREATE A CLEAN CLOCK ELEMENT CONTAINER DYNAMICALLY
+    const panelAnchorNode = document.getElementById("famo-media-matrix") || document.getElementById("famo-ticker-display-panel") || document.body;
+    
+    if (panelAnchorNode && !document.getElementById("ticker-network-state")) {
+        const freshClockContainer = document.createElement("div");
+        freshClockContainer.id = "ticker-network-state";
+        freshClockContainer.style.cssText = "font-family: monospace; color: #00ff66; font-weight: bold; font-size: 0.95rem; margin: 15px auto; text-align: center; background: #050b14; padding: 10px; border: 1px solid #1f2937; border-radius: 4px; max-width: 280px; letter-spacing: 1px;";
+        freshClockContainer.innerText = "NETWORK TIME: 00:00:00 CST";
+        
+        panelAnchorNode.appendChild(freshClockContainer);
+    }
+
+    // 2. RUN THE ZERO-LATENCY LIGHTSPEED CHANGING CLOCK LOOP
+    const secureClockMetricNode = document.getElementById("ticker-network-state");
+    if (secureClockMetricNode) {
+        setInterval(function() {
+            const staticTimeObject = new Date();
+            const hh = String(staticTimeObject.getHours()).padStart(2, '0');
+            const mm = String(staticTimeObject.getMinutes()).padStart(2, '0');
+            const ss = String(staticTimeObject.getSeconds()).padStart(2, '0');
+            
+            // This force-updates your text line every 250 milliseconds so it is constantly changing
+            secureClockMetricNode.innerText = "NETWORK TIME: " + hh + ":" + mm + ":" + ss + " CST";
+        }, 250);
+    }
+});
+
 </script>
 
 <style>
