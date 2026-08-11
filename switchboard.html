@@ -862,6 +862,31 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
+        // ====================================================================
+// MOVE #87: PANORAMIC CANVAS OPACITY TRANSITIONS CONTROLLER
+// ====================================================================
+document.addEventListener("DOMContentLoaded", function() {
+    const mainStealthToggleBtn = document.getElementById("btnQuantumNightStealthToggle");
+
+    if (mainStealthToggleBtn) {
+        mainStealthToggleBtn.addEventListener("click", function() {
+            const matrixRainCanvasObj = document.getElementById("quantumMatrixRainCanvas");
+            if (!matrixRainCanvasObj) return;
+
+            // Check the current active visibility parameter of your background code rain
+            if (window.quantumStealthRadarActive === true) {
+                // Dim canvas output cleanly to protect night vision inside low-glare cockpits
+                matrixRainCanvasObj.style.opacity = "0.01";
+                console.log("[Canvas Fader] Stealth tint engaged. Background canvas opacity dropped to 0.01.");
+            } else {
+                // Restore standard production neon background visibility levels smoothly
+                matrixRainCanvasObj.style.opacity = "0.04";
+                console.log("[Canvas Fader] Standard tint restored. Background canvas opacity reset to 0.04.");
+            }
+        });
+    }
+});
+
 </script>
 
     <style>
