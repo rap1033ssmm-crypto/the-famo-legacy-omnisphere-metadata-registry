@@ -916,7 +916,58 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log("[Core Optimizer] Hardware scaling adjustments successfully piped into live canvas layers.");
     }
 })();
+
+        // ====================================================================
+// MOVE #92: COCKPIT HUD OPERATOR COMMAND COUPLER ENGINE
+// ====================================================================
+document.addEventListener("DOMContentLoaded", function() {
+    console.log("[HUD Core] Coupling real-time clock loops and stream status observers smoothly...");
+
+    // 1. SAFE LIVE CLOCK SECTOR FUNCTION
+    function runQuantumHudClockMatrix() {
+        // Scan the entire document body for our exact hardcoded static placeholder clock string
+        const bodyTextNodes = document.createNodeIterator(document.body, NodeFilter.SHOW_TEXT);
+        let currentNode;
         
+        while (currentNode = bodyTextNodes.nextNode()) {
+            if (currentNode.nodeValue.includes("00:00:00 CST") || currentNode.nodeValue.match(/\d{2}:\d{2}:\d{2}\s*CST/)) {
+                setInterval(function() {
+                    const systemTimeObj = new Date();
+                    const hh = String(systemTimeObj.getHours()).padStart(2, '0');
+                    const mm = String(systemTimeObj.getMinutes()).padStart(2, '0');
+                    const ss = String(systemTimeObj.getSeconds()).padStart(2, '0');
+                    currentNode.nodeValue = hh + ":" + mm + ":" + ss + " CST";
+                }, 1000);
+                break; // Found and locked the specific text terminal slot safely
+            }
+        }
+    }
+
+    // 2. TUNE IN EVENT HUD VISUAL SNAP OVERRIDES (Targeting specific text slots)
+    function forceLiveHudTransmissionState() {
+        console.log("[HUD Core] Intercepted stream engagement flag. Upgrading text metrics...");
+        const textElementsIterator = document.createNodeIterator(document.body, NodeFilter.SHOW_TEXT);
+        let textNodeItem;
+        
+        while (textNodeItem = textElementsIterator.nextNode()) {
+            if (textNodeItem.nodeValue.includes("STANDBY")) {
+                textNodeItem.nodeValue = textNodeItem.nodeValue.replace("STANDBY", "ONLINE // BROADCAST LIVE STREAM TRANSACTING");
+            }
+        }
+    }
+
+    // Safely fire up the clock tracker on page load
+    runQuantumHudClockMatrix();
+
+    // Wire the live status flipper directly onto your primary operator play listeners
+    document.addEventListener("click", function(event) {
+        const targetElement = event.target;
+        if (targetElement && (targetElement.id === "btn-stream-play" || targetElement.id === "play-button" || targetElement.innerText.includes("Play") || targetElement.innerText.includes("Tune In"))) {
+            forceLiveHudTransmissionState();
+        }
+    });
+});
+
 </script>
 
     <style>
