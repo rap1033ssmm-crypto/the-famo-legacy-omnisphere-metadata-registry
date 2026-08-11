@@ -2235,37 +2235,40 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-        // ====================================================================
-// SYSTEM RESET: LIGHTWEIGHT OPERATOR HUD CLOCK CONSOLE
+       // ====================================================================
+// THE DEFINITIVE HUD CLOCK OVERRIDE ENGINE
 // ====================================================================
 document.addEventListener("DOMContentLoaded", function() {
-    console.log("[System Reset] Activating standard isolated HUD tracking engines...");
+    console.log("[Cipher Final] Overriding loose text clusters and locking stable clocks...");
 
-    // 1. CREATE A CLEAN CLOCK ELEMENT CONTAINER DYNAMICALLY
-    const panelAnchorNode = document.getElementById("famo-media-matrix") || document.getElementById("famo-ticker-display-panel") || document.body;
-    
-    if (panelAnchorNode && !document.getElementById("ticker-network-state")) {
-        const freshClockContainer = document.createElement("div");
-        freshClockContainer.id = "ticker-network-state";
-        freshClockContainer.style.cssText = "font-family: monospace; color: #00ff66; font-weight: bold; font-size: 0.95rem; margin: 15px auto; text-align: center; background: #050b14; padding: 10px; border: 1px solid #1f2937; border-radius: 4px; max-width: 280px; letter-spacing: 1px;";
-        freshClockContainer.innerText = "NETWORK TIME: 00:00:00 CST";
-        
-        panelAnchorNode.appendChild(freshClockContainer);
+    function executeQuantumClockLock() {
+        const structuralNodes = document.createNodeIterator(document.body, NodeFilter.SHOW_TEXT);
+        let activeTextItem;
+        let clockTargetSlot = null;
+
+        // Isolate the true single text node placeholder location layout
+        while (activeTextItem = structuralNodes.nextNode()) {
+            if (activeTextItem.nodeValue.includes("NETWORK TIME:")) {
+                clockTargetSlot = activeTextItem;
+                break;
+            }
+        }
+
+        if (clockTargetSlot) {
+            setInterval(function() {
+                const systemDateObject = new Date();
+                const hh = String(systemDateObject.getHours()).padStart(2, '0');
+                const mm = String(systemDateObject.getMinutes()).padStart(2, '0');
+                const ss = String(systemDateObject.getSeconds()).padStart(2, '0');
+                
+                // Overwrite the entire line directly to permanently crush duplicate loops or text artifacts
+                clockTargetSlot.nodeValue = "NETWORK TIME: " + hh + ":" + mm + ":" + ss + " CST";
+            }, 250); // Lightning-fast check rate to ensure constant, fluid character changes
+        }
     }
 
-    // 2. RUN THE ZERO-LATENCY LIGHTSPEED CHANGING CLOCK LOOP
-    const secureClockMetricNode = document.getElementById("ticker-network-state");
-    if (secureClockMetricNode) {
-        setInterval(function() {
-            const staticTimeObject = new Date();
-            const hh = String(staticTimeObject.getHours()).padStart(2, '0');
-            const mm = String(staticTimeObject.getMinutes()).padStart(2, '0');
-            const ss = String(staticTimeObject.getSeconds()).padStart(2, '0');
-            
-            // This force-updates your text line every 250 milliseconds so it is constantly changing
-            secureClockMetricNode.innerText = "NETWORK TIME: " + hh + ":" + mm + ":" + ss + " CST";
-        }, 250);
-    }
+    // Force the execution framework to initialize cleanly half a second after boot completes
+    setTimeout(executeQuantumClockLock, 500);
 });
 
 </script>
