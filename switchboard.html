@@ -2271,76 +2271,7 @@ document.addEventListener("DOMContentLoaded", function() {
     setTimeout(executeQuantumClockLock, 500);
 });
 
-   // ====================================================================
-// SECTION 1: UNIFIED HUD PANEL CONTROLLER LAYOUT MOUNT
-// ====================================================================
-document.addEventListener("DOMContentLoaded", function() {
-    console.log("[HUD Section 1] Anchoring structural layout dashboard nodes...");
-
-    // Target the main matrix viewport container safely
-    const structuralControlPanel = document.getElementById("famo-media-matrix") || document.body;
-    
-    if (structuralControlPanel && !document.getElementById("quantumSovereignHudConsole")) {
-        const unifiedVisualCard = document.createElement("div");
-        unifiedVisualCard.id = "quantumSovereignHudConsole";
-        
-        // Calibrate pristine system dark terminal styling bounds
-        unifiedVisualCard.style.cssText = "font-family: monospace; color: #00ff66; background: #050b14; margin: 15px auto; padding: 12px; border: 1px solid #1f2937; border-radius: 6px; max-width: 320px; text-align: center; box-shadow: 0 0 15px rgba(0,255,102,0.05); font-weight: bold;";
-        
-        // Embed the target element ids for your real-time data loops
-        unifiedVisualCard.innerHTML = `
-            <div id="ticker-network-state" style="margin-bottom: 8px; letter-spacing: 1px;">NETWORK TIME: 00:00:00 CST</div>
-            <div id="quantumLiveScramblerLine" style="font-size: 0.75rem; white-space: nowrap; opacity: 0.85;">// SECURE TRANS LINK VERIFICATION AUTH HASH INITIALIZING...</div>
-        `;
-        
-        structuralControlPanel.appendChild(unifiedVisualCard);
-        console.log("[HUD Section 1] Pristine console elements successfully mounted.");
-    }
-});
-// ====================================================================
-// SECTION 2: LIGHTSPEED REAL-TIME CLOCK MATRIX LOOP
-// ====================================================================
-document.addEventListener("DOMContentLoaded", function() {
-    console.log("[HUD Section 2] Booting real-time network clock loop...");
-
-    const clockDisplayElement = document.getElementById("ticker-network-state");
-    
-    if (clockDisplayElement) {
-        setInterval(function() {
-            const systemTimeObj = new Date();
-            // Force precise, double-digit military monospace text alignments
-            const hh = String(systemTimeObj.getHours()).padStart(2, '0');
-            const mm = String(systemTimeObj.getMinutes()).padStart(2, '0');
-            const ss = String(systemTimeObj.getSeconds()).padStart(2, '0');
-            
-            // Overwrite the inner text directly to keep the numbers changing non-stop
-            clockDisplayElement.innerText = "NETWORK TIME: " + hh + ":" + mm + ":" + ss + " CST";
-        }, 250); // Increased frequency check to 250ms for hyper-fluid visual changes
-        console.log("[HUD Section 2] Lightspeed time interval armed with zero latency.");
-    }
-});
-// ====================================================================
-// SECTION 3: HIGH-SPEED CIPHER CHARACTER SCRAMBLER MATRIX
-// ====================================================================
-document.addEventListener("DOMContentLoaded", function() {
-    console.log("[HUD Section 3] Initializing cryptographic cipher matrix...");
-
-    const scramblerTextSlot = document.getElementById("quantumLiveScramblerLine");
-    const matrixCharacterTokenPool = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ΩΞΦΨΞΩΔΓΘL7X4V0D";
-
-    if (scramblerTextSlot) {
-        // High-speed 150ms interval loop to force constant non-stop changing action
-        setInterval(function() {
-            let randomizedHashString = "";
-            for (let i = 0; i < 14; i++) {
-                randomizedHashString += matrixCharacterTokenPool.charAt(Math.floor(Math.random() * matrixCharacterTokenPool.length));
-            }
-            // Force write the shifting signature code row into the display node
-            scramblerTextSlot.innerText = "// SECURE TRANS LINK VERIFICATION AUTH HASH ACTIVE... [" + randomizedHashString + "]";
-        }, 150);
-        console.log("[HUD Section 3] High-velocity hash scrambling loops fully active.");
-    }
-});
+  
 
 
 
