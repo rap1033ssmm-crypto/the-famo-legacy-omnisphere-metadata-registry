@@ -958,7 +958,8 @@ document.addEventListener("DOMContentLoaded", function() {
             
             // Build the crisp vector QR pattern targeting your official Writers Legacy Team Substack address
             const cleanSubstackUrl = "https://writerslegacyteampublishing.substack.com/";
-            unifiedQrBox.innerHTML = `<img src="https://qrserver.com{encodeURIComponent(cleanSubstackUrl)}" alt="WLT Substack QR Matrix" style="width: 100%; height: 100%; object-fit: contain; image-rendering: pixelated;" />`;
+unifiedQrBox.innerHTML = `<img src="https://qrserver.com{encodeURIComponent(cleanSubstackUrl)}" alt="WLT Substack QR Matrix" style="width: 100%; height: 100%; object-fit: contain; image-rendering: pixelated;" />`;
+
             
             // Render it smoothly inside your master control panel layout framework
             masterPanelAnchor.appendChild(unifiedQrBox);
