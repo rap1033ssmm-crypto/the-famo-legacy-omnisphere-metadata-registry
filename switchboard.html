@@ -945,25 +945,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // 2. PIXEL-PERFECT SUBSTACK QR GENERATOR & LAYOUT FIX
-    function deploySubstackQrVisualMatrix() {
-        // Target your lower command containers cleanly to force strict visual proportions
-        const masterPanelAnchor = document.getElementById("famo-media-matrix") || document.body;
-        
-        if (masterPanelAnchor && !document.getElementById("famoSovereignQrContainer")) {
-            const unifiedQrBox = document.createElement("div");
-            unifiedQrBox.id = "famoSovereignQrContainer";
-            // Enforce clean, centered layout dimensions to resolve the multi-box spacing bug
-            unifiedQrBox.style.cssText = "width: 140px; height: 140px; background: #fff; margin: 15px auto; padding: 10px; border: 2px solid #00ff66; border-radius: 4px; box-shadow: 0 0 15px rgba(0,255,102,0.35); display: flex; align-items: center; justify-content: center; box-sizing: border-box;";
-            
-            // Build the crisp vector QR pattern targeting your official Writers Legacy Team Substack address
-            const cleanSubstackUrl = "https://writerslegacyteampublishing.substack.com/";
-unifiedQrBox.innerHTML = `<img src="https://qrserver.com{encodeURIComponent(cleanSubstackUrl)}" alt="WLT Substack QR Matrix" style="width: 100%; height: 100%; object-fit: contain; image-rendering: pixelated;" />`;
-
-            
-            // Render it smoothly inside your master control panel layout framework
-            masterPanelAnchor.appendChild(unifiedQrBox);
-            console.log("[Cipher Core] Substack QR matrix deployed with stable layout bounds.");
+   
         }
     }
 
