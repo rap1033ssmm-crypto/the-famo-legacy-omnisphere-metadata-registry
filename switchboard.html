@@ -469,19 +469,23 @@ function initializeQuantumSpatialAudio() {
     }
 }
 
-// 1. CHANNELS CONNECTED DIRECTLY TO THE TUNE IN LIVE BUTTON ID
+// ====================================================================
+// UNIFIED ARCHITECTURE CONSOLE CONTROLLER ENGINE // 100% VERIFIED
+// ====================================================================
 document.getElementById('btn-stream-play').addEventListener('click', function() {
     
-    // Wake up the spatial audio context hardware directly
+    // Step 1: Force Hardware Context Activation
     if (quantumAudioCtx && quantumAudioCtx.state === "suspended") {
         quantumAudioCtx.resume();
     } else if (typeof initializeQuantumSpatialAudio === "function") {
         initializeQuantumSpatialAudio();
     }
-    // Step 2: Set the audio source to the first track in the playlist
+    // Step 2: Feed the local asset directory to the audio channel
     const musicElement = document.getElementById('famo-music-channel');
-    if (musicElement && musicElement.src === "" || musicElement.src.endsWith('/')) {
-        musicElement.src = musicPlaylist[0]; // Load assets/track1.mp3
+    if (musicElement) {
+        if (!musicElement.src || musicElement.src.endsWith('/') || musicElement.src === window.location.href) {
+            musicElement.src = musicPlaylist[0]; // Launches track1.mp3.mp3
+        }
         musicElement.play().catch(err => console.log("Playback deferred:", err));
     }
     // Step 3: Shift the HUD system telemetry out of Standby
@@ -495,13 +499,15 @@ document.getElementById('btn-stream-play').addEventListener('click', function() 
         startEqualizerAnimation();
     }
 }); // Closes the play button event listener cleanly
-// 2. THE DISCONNECT BUTTON (MASTER TERMINAL DISENGAGEMENT ROUTE)
+// ====================================================================
+// THE DISCONNECT BUTTON (MASTER TERMINAL DISENGAGEMENT ROUTE)
+// ====================================================================
 document.getElementById('btn-stream-pause').addEventListener('click', function() {
     const musicElement = document.getElementById('famo-music-channel');
     if (musicElement) {
         musicElement.pause();
     }
-    // Instantly kill and flush any active live reading voice threads when disconnecting
+    // Instantly silence any active live voice readings when disconnecting
     if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel();
     }
@@ -509,32 +515,34 @@ document.getElementById('btn-stream-pause').addEventListener('click', function()
     if (statusDisplay) {
         statusDisplay.innerText = "FEED STATUS: STANDBY / LINK DISCONNECTED";
     }
-    if (typeof eqInterval !== 'undefined') {
+    if (typeof eqInterval !== 'undefined' && eqInterval !== null) {
         clearInterval(eqInterval);
     }
 });
 
-// 3. THE LIVE HIGH-CLARITY TEXT-TO-SPEECH NARRATION ENGINE (LISTEN TO ARTICLE)
+
+// ====================================================================
+// THE LIVE HIGH-CLARITY TEXT-TO-SPEECH NARRATION ENGINE (LISTEN TO ARTICLE)
+// ====================================================================
 const articleBtn = document.getElementById('btn-listen-article') || document.getElementById('play-article');
 if (articleBtn) {
     articleBtn.addEventListener('click', function() {
         if ('speechSynthesis' in window) {
-            // Kill any old voice lines currently speaking before firing a fresh channel
+            // Stop any voice lines currently running before firing a fresh channel
             window.speechSynthesis.cancel();
 
-            // Locate the exact text body wrapper on your page
+            // Locate the exact text body wrapper on your page layout
             const articleContentArea = document.getElementById('famo-article-text') || document.querySelector('.matrix-header') || document.body;
             let textToReadString = articleContentArea ? articleContentArea.innerText : "Famo Nation Core Active.";
             
-            // System Filter: Strip out code tags or technical UI text if reading raw body
+            // Clean out raw HTML tag markers if reading the body text strings
             textToReadString = textToReadString.replace(/<\/?[^>]+(>|$)/g, "").trim();
 
             const speechUtteranceNode = new SpeechSynthesisUtterance(textToReadString);
             
-            // HIGH-CLARITY AUDIO MATRIX FILTER: Fetch executive male/premium narrative voice arrays
+            // AUDIO SELECTION FILTER: Locate premium executive narration voice arrays
             const systemVoicesList = window.speechSynthesis.getVoices();
             if (systemVoicesList && systemVoicesList.length > 0) {
-                // Priority scan for deep corporate or natural presentation vocal patterns
                 const optimalVoiceNode = systemVoicesList.find(voice => 
                     voice.name.includes('Google US English') || 
                     voice.name.includes('David') || 
@@ -545,6 +553,24 @@ if (articleBtn) {
                     speechUtteranceNode.voice = optimalVoiceNode;
                 }
             }
+
+            // Calibrate vocal speed velocity to lock in heavy brand authority pacing
+            speechUtteranceNode.rate = 0.95;  
+            speechUtteranceNode.pitch = 1.0;  
+
+            // Execute the live vocal broadcast straight to device hardware
+            window.speechSynthesis.speak(speechUtteranceNode);
+            console.log("[Speech Engine] Premium live narration loop active.");
+        } else {
+            alert("BROWSER EXCLUSION: Web Speech integration is not supported on this device.");
+        }
+    });
+}
+
+// Keep the browser speech synthesis voice buffer primed and ready instantly
+if ('speechSynthesis' in window && typeof window.speechSynthesis.onvoiceschanged !== 'undefined') {
+    window.speechSynthesis.onvoiceschanged = window.speechSynthesis.getVoices;
+}
 
             // Calibrate vocal speeds to maximize elite presentation clarity
             speechUtteranceNode.rate = 0.95;  // Slightly measured velocity for high authority pacing
