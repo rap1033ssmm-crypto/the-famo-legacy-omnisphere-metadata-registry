@@ -469,131 +469,18 @@ function initializeQuantumSpatialAudio() {
     }
 }
 
-// ====================================================================
-// MASTER AUDIO UTILITY INFRASTRUCTURE ARRAYS // 100% VERIFIED PROTOCOL
-// ====================================================================
-const FamoMusicPlaylist = [
-    'assets/track1.mp3.mp3',
-    'assets/track2.mp3.mp3',
-    'assets/track3.mp3.mp3',
-    'assets/track4.mp3.mp3',
-    'assets/track5.mp3.mp3',
-    'assets/track6.mp3.mp3',
-    'assets/track7.mp3.mp3',
-    'assets/track8.mp3.mp3',
-    'assets/track9.mp3.mp3',
-    'assets/track10.mp3.mp3'
-];
-let currentFamoTrackIndex = 0;
-
-document.getElementById('btn-stream-play').addEventListener('click', function() {
-    // Step 1: Force Spatial Hardware Activation
-    if (typeof quantumAudioCtx !== 'undefined' && quantumAudioCtx && quantumAudioCtx.state === "suspended") {
-        quantumAudioCtx.resume();
-    } else if (typeof initializeQuantumSpatialAudio === "function") {
-        initializeQuantumSpatialAudio();
-    }
-    // Step 2: Feed the verified local track asset straight to the media node
-    const musicElement = document.getElementById('famo-music-channel');
-    if (musicElement) {
-        if (!musicElement.src || musicElement.src.endsWith('/') || musicElement.src === window.location.href) {
-            musicElement.src = FamoMusicPlaylist[currentFamoTrackIndex]; 
-        }
-        musicElement.play().catch(err => console.log("Playback deferred:", err));
-    }
-    // Step 3: Shift the HUD system telemetry out of Standby
-    const statusDisplay = document.getElementById('stream-status');
-    if (statusDisplay) {
-        statusDisplay.innerText = "FEED STATUS: ONLINE // BROADCAST LIVE STREAM TRANSACTING";
-    }
-    // Step 4: Fire up your equalizer visualizer bars
-       if (typeof eqInterval !== 'undefined' && eqInterval !== null) {
-        clearInterval(eqInterval);
-    }
-}); // Closes the disconnect button event listener cleanly
-
-// ====================================================================
-// THE DISCONNECT BUTTON (MASTER TERMINAL DISENGAGEMENT ROUTE)
-// ====================================================================
-document.getElementById('btn-stream-pause').addEventListener('click', function() {
-    const musicElement = document.getElementById('famo-music-channel');
-    if (musicElement) {
-        musicElement.pause();
-    }
-    if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-    }
-    const statusDisplay = document.getElementById('stream-status');
-    if (statusDisplay) {
-        statusDisplay.innerText = "FEED STATUS: STANDBY / LINK DISCONNECTED";
-    }
-
-
-
-// ====================================================================
-// THE LIVE HIGH-CLARITY TEXT-TO-SPEECH NARRATION ENGINE (LISTEN TO ARTICLE)
-// ====================================================================
-const articleBtn = document.getElementById('btn-listen-article') || document.getElementById('play-article');
-if (articleBtn) {
-    articleBtn.addEventListener('click', function() {
-        if ('speechSynthesis' in window) {
-            // Kill any old voice lines currently running before firing a fresh channel
-            window.speechSynthesis.cancel();
-
-            // Locate the exact text body wrapper on your page layout
-            const articleContentArea = document.getElementById('famo-article-text') || document.querySelector('.matrix-header') || document.body;
-            let textToReadString = articleContentArea ? articleContentArea.innerText : "Famo Nation Core Active.";
-            
-            // Clean out raw HTML tag markers if reading the body text strings
-            textToReadString = textToReadString.replace(/<\/?[^>]+(>|$)/g, "").trim();
-
-            const speechUtteranceNode = new SpeechSynthesisUtterance(textToReadString);
-            
-            // AUDIO SELECTION FILTER: Locate premium executive narration voice arrays
-            const systemVoicesList = window.speechSynthesis.getVoices();
-            if (systemVoicesList && systemVoicesList.length > 0) {
-                const optimalVoiceNode = systemVoicesList.find(voice => 
-                    voice.name.includes('Google US English') || 
-                    voice.name.includes('David') || 
-                    voice.name.includes('Natural') ||
-                    voice.lang === 'en-US'
-                );
-                if (optimalVoiceNode) {
-                    speechUtteranceNode.voice = optimalVoiceNode;
-                }
-            }
-
-            // Calibrate vocal speed velocity to lock in heavy brand authority pacing
-            speechUtteranceNode.rate = 0.95;  
-            speechUtteranceNode.pitch = 1.0;  
-
-            // Execute the live vocal broadcast straight to device hardware
-            window.speechSynthesis.speak(speechUtteranceNode);
-            console.log("[Speech Engine] Premium live narration loop active.");
+// Automatically wake up the 3D acoustic framework the exact millisecond the play button is tapped
+document.addEventListener("click", function(event) {
+    const target = event.target;
+    if (target && (target.id === "btn-stream-play" || target.innerText.includes("Play") || target.id === "play-button")) {
+        // Audio contexts require direct operator interaction triggers to activate safely in browsers
+        if (quantumAudioCtx && quantumAudioCtx.state === "suspended") {
+            quantumAudioCtx.resume();
         } else {
-            alert("BROWSER EXCLUSION: Web Speech integration is not supported on this device.");
+            initializeQuantumSpatialAudio();
         }
-    });
-}
-
-// Keep the browser speech synthesis voice buffer primed and ready instantly
-if ('speechSynthesis' in window && typeof window.speechSynthesis.onvoiceschanged !== 'undefined') {
-    window.speechSynthesis.onvoiceschanged = window.speechSynthesis.getVoices;
-}
-
-        // ====================================================================
-// TERMINAL LOGIC INTERFACE CLOSURE // CORE GRID ONLINE
-// ====================================================================
-const FamoVoiceChannelNode = document.getElementById('famo-voice-channel');
-
-if ('speechSynthesis' in window && typeof window.speechSynthesis.onvoiceschanged !== 'undefined') {
-    window.speechSynthesis.onvoiceschanged = function() {
-        console.log("[Famo Core] Native System Audio Voice Buffer Updated Safely.");
-    };
-}
-
-console.log("[System Status] Master System Console Circuit 100% Balanced and Operational.");
-
+    }
+});
 
         // ====================================================================
 // MOVE #82: SUB-BASS HAPTIC SYNTHESIZER ENGINE
@@ -1236,8 +1123,8 @@ document.addEventListener("DOMContentLoaded", function() {
     </button>
 </div>
 
-         <audio id="famo-music-channel" src="assets/track1.mp3.mp3" preload="auto" crossorigin="anonymous"></audio>
-    <audio id="famo-voice-channel" src="assets/famo_voice_drop1.mp3.aac" preload="auto" crossorigin="anonymous"></audio>
+    <audio id="famo-music-channel" preload="none"></audio>
+    <audio id="famo-voice-channel" preload="none"></audio>
     <div style="margin-top: 15px;">
       <button id="btn-stream-play" style="background: #ff6600; color: #000000; border: none; padding: 10px 20px; font-weight: bold; border-radius: 4px; cursor: pointer; text-transform: uppercase; font-size: 11px; letter-spacing: 0.05em; margin-right: 10px;">Tune In Live</button>
       <button id="btn-stream-pause" style="background: #222222; color: #ffffff; border: none; padding: 10px 20px; font-weight: bold; border-radius: 4px; cursor: pointer; text-transform: uppercase; font-size: 11px; letter-spacing: 0.05em;">Disconnect</button>
@@ -1245,7 +1132,6 @@ document.addEventListener("DOMContentLoaded", function() {
     <div id="stream-status" style="margin-top: 12px; font-size: 10px; color: #555555; font-family: monospace; text-transform: uppercase;">FEED STATUS: STANDBY / LINK DISCONNECTED</div>
   </div>
 </div>
-
 
 <!-- SYSTEM INFRASTRUCTURE: AUDIO READER TRIGGER MODULE -->
 <div id="audio-panel" style="margin: 20px auto; max-width: 600px; padding: 15px; background: #1a1a1a; border: 2px solid #ff6600; border-radius: 8px; text-align: center;">
@@ -1730,18 +1616,13 @@ function executeQuantumStealthRadarToggle() {
     
     <div style="font-size:10px; color:#8a92b2; letter-spacing:1px; text-transform:uppercase; margin-top:15px;">FAMO NATION DISTRIBUTION MATRIX NODE CHASSIS LOCKED // NAICS CATEGORY 516210 MASTER RECORDING INFRASTRUCTURE</div>
 
-<script>
-(function() {
-    // SYSTEM TERMINAL ENGINE CORE ACTIVE
+    }
 })();
 // ====================================================================
 </script>
-
 <!-- ==================================================================== -->
 <!-- FORCED ROOT TERMINATION: CHRONICLES INGRESS PORTAL -->
 <!-- ==================================================================== -->
-
-
 <div id="famo-chronicles-portal-section" style="display: block; clear: both; margin: 50px auto 20px auto; max-width: 650px; padding: 15px; background: #070e17; border: 2px solid #00ff66; border-radius: 12px; font-family: monospace; box-shadow: 0 0 25px rgba(0, 255, 102, 0.15);">
     <div style="font-size: 13px; font-weight: 900; color: #00ff66; text-align: center; margin-bottom: 15px; letter-spacing: 2px;">
         // WRITERS LEGACY MAGAZINE // NARRATIVE PORTAL INGRESS
@@ -2240,7 +2121,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </script>
 
 <style>
-@keyframes beaconBlink { 0% { opacity: 0.2; } 100% { opacity: 1.0; } } 
+@keyframes beaconBlink { 0% { opacity: 0.2; } 100% { opacity: 1.0; } }
 </style>
 
 </body>
