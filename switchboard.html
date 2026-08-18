@@ -945,6 +945,27 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+    // 2. PIXEL-PERFECT SUBSTACK QR GENERATOR & LAYOUT FIX
+    function deploySubstackQrVisualMatrix() {
+        // Target your lower command containers cleanly to force strict visual proportions
+        const masterPanelAnchor = document.getElementById("famo-media-matrix") || document.body;
+        
+        if (masterPanelAnchor && !document.getElementById("famoSovereignQrContainer")) {
+            const unifiedQrBox = document.createElement("div");
+            unifiedQrBox.id = "famoSovereignQrContainer";
+            // Enforce clean, centered layout dimensions to resolve the multi-box spacing bug
+            unifiedQrBox.style.cssText = "width: 140px; height: 140px; background: #fff; margin: 15px auto; padding: 10px; border: 2px solid #00ff66; border-radius: 4px; box-shadow: 0 0 15px rgba(0,255,102,0.35); display: flex; align-items: center; justify-content: center; box-sizing: border-box;";
+            
+            // Build the crisp vector QR pattern targeting your official Writers Legacy Team Substack address
+            const cleanSubstackUrl = "https://writerslegacyteampublishing.substack.com/";
+            unifiedQrBox.innerHTML = `<img src="https://qrserver.com{encodeURIComponent(cleanSubstackUrl)}" alt="WLT Substack QR Matrix" style="width: 100%; height: 100%; object-fit: contain; image-rendering: pixelated;" />`;
+            
+            // Render it smoothly inside your master control panel layout framework
+            masterPanelAnchor.appendChild(unifiedQrBox);
+            console.log("[Cipher Core] Substack QR matrix deployed with stable layout bounds.");
+        }
+    }
+
     // 3. TUNE IN EVENT HUD UPGRADE OVERRIDES
     function activateLiveTransmissionText() {
         const dashboardTextIterator = document.createNodeIterator(document.body, NodeFilter.SHOW_TEXT);
@@ -1164,6 +1185,12 @@ UNIVERSAL SYSTEM ACCESSIBILITY. The master cover art, data tracking parameters, 
     const readerPlay = document.getElementById('btn-play-audio');
     const readerStop = document.getElementById('btn-stop-audio');
     const articleContent = document.getElementById('famo-article-content');
+// ====================================================================
+// INJECTED: UPSTREAM SCANNER HOOK // LEDGER SYNCHRONIZATION
+// ====================================================================
+async function syncScannerLedger() {
+    const tickerState = document.getElementById('ticker-network-state');
+    const tickerMetrics = document.getElementById('ticker-live-metrics');
 
             // FORCE COCKPIT VISUAL SYNC UPON TUNE IN
     if (tickerState) {
@@ -1207,6 +1234,11 @@ UNIVERSAL SYSTEM ACCESSIBILITY. The master cover art, data tracking parameters, 
         if(tickerMetrics) tickerMetrics.innerText = "STREAM METRIC EMISSION: WAITING FOR INGESTION PACKETS";
     }
 }
+
+// Execute connection instantly and sweep for updates every 10 seconds
+syncScannerLedger();
+setInterval(syncScannerLedger, 10000);
+// ====================================================================
 
     let eqInterval = null;
     let isLive = false;
@@ -1615,7 +1647,132 @@ function executeQuantumStealthRadarToggle() {
     <iframe src="https://www.speakpipe.com/AudioDrops" allow="microphone" style="width:100%; max-width:950px; height:480px; border:none; background:#ffffff; border-radius:8px; box-shadow:0 8px 24px rgba(0,0,0,0.5);"></iframe>
     
     <div style="font-size:10px; color:#8a92b2; letter-spacing:1px; text-transform:uppercase; margin-top:15px;">FAMO NATION DISTRIBUTION MATRIX NODE CHASSIS LOCKED // NAICS CATEGORY 516210 MASTER RECORDING INFRASTRUCTURE</div>
+</div>
+<!-- [FAMO NATION EMERGENCY SCANNER UI - PLACEHOLDER] -->
+<div id="famo-dedicated-scanner-console" style="margin: 40px auto; max-width: 650px; padding: 20px; background: #070e17; border: 2px solid #00ff66; border-radius: 12px; font-family: monospace;">
+    <div style="font-size: 13px; font-weight: 900; color: #00ff66; text-align: center; margin-bottom: 20px;">// EMERGENCY SCANNER CENTER //</div>
+    
+    <!-- Audio Selection -->
+    <select id="scanner-station-dial" style="width: 100%; background: #0a1424; color: #00ff66; padding: 10px; margin-bottom: 15px;">
+        <option value="https://walmradio.com">PRIMARY FEED (TEST)</option>
+    </select>
 
+    <audio id="scanner-audio-engine" preload="none"></audio>
+
+    <!-- Controls -->
+    <div style="text-align: center; margin-bottom: 20px;">
+        <button id="btn-scanner-start">ENGAGE</button>
+        <button id="btn-scanner-stop">MUTE</button>
+    </div>
+<script>
+    // CORE WIRE: EMERGENCY SCANNER ENGINE LOGIC
+    document.addEventListener('DOMContentLoaded', () => {
+        const startBtn = document.getElementById('btn-scanner-start');
+        const engine = document.getElementById('scanner-audio-engine');
+        const status = document.getElementById('scanner-console-status');
+
+        if (startBtn && engine) {
+            // ENGAGE: Starts audio, updates status
+            startBtn.onclick = function() {
+                engine.src = document.getElementById('scanner-station-dial')?.value || "https://walmradio.com";
+                engine.play().then(() => {
+                    if (status) status.innerText = "Status: CONNECTED // CORES ACTIVE";
+                });
+            };
+        }
+    });
+</script>
+
+    <!-- Status/Search Area -->
+    <div id="scanner-console-status" style="color: #8899a6; font-size: 11px;">Status: Awaiting Ingress</div>
+    <input type="text" id="scanner-search-input" placeholder="Search archive..." style="width: 100%; margin-top: 10px;">
+</div>
+<script>
+(function() {
+  <script>
+// ====================================================================
+// CORE WIRE: EMERGENCY MULTI-STATION SCANNER ENGINE LOGIC
+// ====================================================================
+(function() {
+    const startBtn = document.getElementById('btn-scanner-start');
+    const stopBtn = document.getElementById('btn-scanner-stop');
+    const dialControl = document.getElementById('scanner-station-dial');
+    const audioEngine = document.getElementById('scanner-audio-engine');
+    const consoleStatus = document.getElementById('scanner-console-status');
+
+    if (!startBtn || !audioEngine) return;
+
+    // Command 1: Engage Direct Audio Stream Pipe
+    startBtn.onclick = function() {
+        const targetStream = dialControl ? dialControl.value : "https://walmradio.com";
+        audioEngine.src = targetStream;
+        audioEngine.volume = 1.0;
+        
+        audioEngine.play()
+            .then(() => {
+                if (consoleStatus) consoleStatus.innerText = "Status: CONNECTED // CORES ACTIVE";
+            })
+            .catch(err => {
+                if (consoleStatus) consoleStatus.innerText = "Status: LINK DROPPED // RETRYING";
+            });
+    };
+
+    // Command 2: Mute Stream Wave Instantly
+    stopBtn.onclick = function() {
+        audioEngine.pause();
+        audioEngine.src = "";
+        if (consoleStatus) consoleStatus.innerText = "Status: STANDBY // SIGNAL MUTED";
+    };
+
+    // Command 3: Auto-Switch Streams when Dial Changes
+    if (dialControl) {
+        dialControl.onchange = function() {
+            if (!audioEngine.paused) {
+                startBtn.onclick();
+            }
+        };
+    }
+    // Close the original media player click handlers safely
+});
+
+// ====================================================================
+// CORE WIRE: EMERGENCY MULTI-STATION SCANNER ENGINE LOGIC
+// ====================================================================
+(function() {
+    const startBtn = document.getElementById('btn-scanner-start');
+    const stopBtn = document.getElementById('btn-scanner-stop');
+    const dialControl = document.getElementById('scanner-station-dial');
+    const audioEngine = document.getElementById('scanner-audio-engine');
+    const consoleStatus = document.getElementById('scanner-console-status');
+
+    if (!startBtn || !audioEngine) return;
+
+    startBtn.onclick = function() {
+        const targetStream = dialControl ? dialControl.value : "https://walmradio.com";
+        audioEngine.src = targetStream;
+        audioEngine.volume = 1.0;
+        
+        audioEngine.play()
+            .then(() => {
+                if (consoleStatus) consoleStatus.innerText = "Status: CONNECTED // CORES ACTIVE";
+            })
+            .catch(err => {
+                if (consoleStatus) consoleStatus.innerText = "Status: LINK DROPPED // RETRYING";
+            });
+    };
+
+    stopBtn.onclick = function() {
+        audioEngine.pause();
+        audioEngine.src = "";
+        if (consoleStatus) consoleStatus.innerText = "Status: STANDBY // SIGNAL MUTED";
+    };
+
+    if (dialControl) {
+        dialControl.onchange = function() {
+            if (!audioEngine.paused) {
+                startBtn.onclick();
+            }
+        };
     }
 })();
 // ====================================================================
@@ -2114,7 +2271,76 @@ document.addEventListener("DOMContentLoaded", function() {
     setTimeout(executeQuantumClockLock, 500);
 });
 
-  
+   // ====================================================================
+// SECTION 1: UNIFIED HUD PANEL CONTROLLER LAYOUT MOUNT
+// ====================================================================
+document.addEventListener("DOMContentLoaded", function() {
+    console.log("[HUD Section 1] Anchoring structural layout dashboard nodes...");
+
+    // Target the main matrix viewport container safely
+    const structuralControlPanel = document.getElementById("famo-media-matrix") || document.body;
+    
+    if (structuralControlPanel && !document.getElementById("quantumSovereignHudConsole")) {
+        const unifiedVisualCard = document.createElement("div");
+        unifiedVisualCard.id = "quantumSovereignHudConsole";
+        
+        // Calibrate pristine system dark terminal styling bounds
+        unifiedVisualCard.style.cssText = "font-family: monospace; color: #00ff66; background: #050b14; margin: 15px auto; padding: 12px; border: 1px solid #1f2937; border-radius: 6px; max-width: 320px; text-align: center; box-shadow: 0 0 15px rgba(0,255,102,0.05); font-weight: bold;";
+        
+        // Embed the target element ids for your real-time data loops
+        unifiedVisualCard.innerHTML = `
+            <div id="ticker-network-state" style="margin-bottom: 8px; letter-spacing: 1px;">NETWORK TIME: 00:00:00 CST</div>
+            <div id="quantumLiveScramblerLine" style="font-size: 0.75rem; white-space: nowrap; opacity: 0.85;">// SECURE TRANS LINK VERIFICATION AUTH HASH INITIALIZING...</div>
+        `;
+        
+        structuralControlPanel.appendChild(unifiedVisualCard);
+        console.log("[HUD Section 1] Pristine console elements successfully mounted.");
+    }
+});
+// ====================================================================
+// SECTION 2: LIGHTSPEED REAL-TIME CLOCK MATRIX LOOP
+// ====================================================================
+document.addEventListener("DOMContentLoaded", function() {
+    console.log("[HUD Section 2] Booting real-time network clock loop...");
+
+    const clockDisplayElement = document.getElementById("ticker-network-state");
+    
+    if (clockDisplayElement) {
+        setInterval(function() {
+            const systemTimeObj = new Date();
+            // Force precise, double-digit military monospace text alignments
+            const hh = String(systemTimeObj.getHours()).padStart(2, '0');
+            const mm = String(systemTimeObj.getMinutes()).padStart(2, '0');
+            const ss = String(systemTimeObj.getSeconds()).padStart(2, '0');
+            
+            // Overwrite the inner text directly to keep the numbers changing non-stop
+            clockDisplayElement.innerText = "NETWORK TIME: " + hh + ":" + mm + ":" + ss + " CST";
+        }, 250); // Increased frequency check to 250ms for hyper-fluid visual changes
+        console.log("[HUD Section 2] Lightspeed time interval armed with zero latency.");
+    }
+});
+// ====================================================================
+// SECTION 3: HIGH-SPEED CIPHER CHARACTER SCRAMBLER MATRIX
+// ====================================================================
+document.addEventListener("DOMContentLoaded", function() {
+    console.log("[HUD Section 3] Initializing cryptographic cipher matrix...");
+
+    const scramblerTextSlot = document.getElementById("quantumLiveScramblerLine");
+    const matrixCharacterTokenPool = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ΩΞΦΨΞΩΔΓΘL7X4V0D";
+
+    if (scramblerTextSlot) {
+        // High-speed 150ms interval loop to force constant non-stop changing action
+        setInterval(function() {
+            let randomizedHashString = "";
+            for (let i = 0; i < 14; i++) {
+                randomizedHashString += matrixCharacterTokenPool.charAt(Math.floor(Math.random() * matrixCharacterTokenPool.length));
+            }
+            // Force write the shifting signature code row into the display node
+            scramblerTextSlot.innerText = "// SECURE TRANS LINK VERIFICATION AUTH HASH ACTIVE... [" + randomizedHashString + "]";
+        }, 150);
+        console.log("[HUD Section 3] High-velocity hash scrambling loops fully active.");
+    }
+});
 
 
 
@@ -2125,4 +2351,4 @@ document.addEventListener("DOMContentLoaded", function() {
 </style>
 
 </body>
-</html> 
+</html>
