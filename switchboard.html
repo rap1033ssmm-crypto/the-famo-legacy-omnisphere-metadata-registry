@@ -484,7 +484,7 @@ document.getElementById('btn-stream-play').addEventListener('click', function() 
     const musicElement = document.getElementById('famo-music-channel');
     if (musicElement) {
         if (!musicElement.src || musicElement.src.endsWith('/') || musicElement.src === window.location.href) {
-            musicElement.src = musicPlaylist[0]; // Launches track1.mp3.mp3
+            musicElement.src = MusicPlaylist[0]; // Launches track1.mp3.mp3
         }
         musicElement.play().catch(err => console.log("Playback deferred:", err));
     }
