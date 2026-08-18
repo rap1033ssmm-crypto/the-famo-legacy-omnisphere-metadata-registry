@@ -470,37 +470,47 @@ function initializeQuantumSpatialAudio() {
 }
 
 // ====================================================================
-// UNIFIED ARCHITECTURE CONSOLE CONTROLLER ENGINE // 100% VERIFIED
+// MASTER AUDIO UTILITY INFRASTRUCTURE ARRAYS // 100% VERIFIED PROTOCOL
 // ====================================================================
+const FamoMusicPlaylist = [
+    'assets/track1.mp3.mp3',
+    'assets/track2.mp3.mp3',
+    'assets/track3.mp3.mp3',
+    'assets/track4.mp3.mp3',
+    'assets/track5.mp3.mp3',
+    'assets/track6.mp3.mp3',
+    'assets/track7.mp3.mp3',
+    'assets/track8.mp3.mp3',
+    'assets/track9.mp3.mp3',
+    'assets/track10.mp3.mp3'
+];
+let currentFamoTrackIndex = 0;
+
 document.getElementById('btn-stream-play').addEventListener('click', function() {
-    
-    // Step 1: Force Hardware Context Activation
+    // Step 1: Force Spatial Hardware Activation
     if (typeof quantumAudioCtx !== 'undefined' && quantumAudioCtx && quantumAudioCtx.state === "suspended") {
         quantumAudioCtx.resume();
     } else if (typeof initializeQuantumSpatialAudio === "function") {
         initializeQuantumSpatialAudio();
     }
-
-       // Step 2: Feed the local asset directory to the audio channel
+    // Step 2: Feed the verified local track asset straight to the media node
     const musicElement = document.getElementById('famo-music-channel');
     if (musicElement) {
         if (!musicElement.src || musicElement.src.endsWith('/') || musicElement.src === window.location.href) {
-            musicElement.src = MusicPlaylist; 
+            musicElement.src = FamoMusicPlaylist[currentFamoTrackIndex]; 
         }
         musicElement.play().catch(err => console.log("Playback deferred:", err));
     }
-
-      // Step 3: Shift the HUD system telemetry out of Standby
+    // Step 3: Shift the HUD system telemetry out of Standby
     const statusDisplay = document.getElementById('stream-status');
     if (statusDisplay) {
         statusDisplay.innerText = "FEED STATUS: ONLINE // BROADCAST LIVE STREAM TRANSACTING";
     }
-    
     // Step 4: Fire up your equalizer visualizer bars
-    if (typeof startEqualizerAnimation === "function") {
-        startEqualizerAnimation();
+       if (typeof eqInterval !== 'undefined' && eqInterval !== null) {
+        clearInterval(eqInterval);
     }
-}); // Closes the play button event listener cleanly
+}); // Closes the disconnect button event listener cleanly
 
 // ====================================================================
 // THE DISCONNECT BUTTON (MASTER TERMINAL DISENGAGEMENT ROUTE)
@@ -510,7 +520,6 @@ document.getElementById('btn-stream-pause').addEventListener('click', function()
     if (musicElement) {
         musicElement.pause();
     }
-    // Instantly silence any active live voice readings when disconnecting
     if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel();
     }
@@ -518,10 +527,7 @@ document.getElementById('btn-stream-pause').addEventListener('click', function()
     if (statusDisplay) {
         statusDisplay.innerText = "FEED STATUS: STANDBY / LINK DISCONNECTED";
     }
-    if (typeof eqInterval !== 'undefined' && eqInterval !== null) {
-        clearInterval(eqInterval);
-    }
-});
+
 
 
 // ====================================================================
