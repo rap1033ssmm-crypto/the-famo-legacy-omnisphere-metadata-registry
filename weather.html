@@ -129,18 +129,9 @@
         document.getElementById('clock-display').innerText = now.toLocaleTimeString() + " // " + now.toLocaleDateString();
     }
 
-   // ====================================================================
-// NATIVE ISOLATED INITIALIZATION CORE // ZERO OVERLAP BALANCED CIRCUIT
-// ====================================================================
-// 1. Immediately launch the space stations and solar telemetry radars
-fetchSpaceStationVectors();
-fetchCosmicSolarWeather();
-fetchJplAsteroidRadar();
-
-// 2. Launch secondary atmospheric city systems and clocks
-updateServerClock();
-fetchAllSectorWeather();
-
+    // Initialize systems
+    fetchAllSectorWeather();
+    updateServerClock();
 
     // Routine automatic pipeline refreshes
     setInterval(fetchAllSectorWeather, 300000); // Fetch new global city streams every 5 minutes
