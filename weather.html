@@ -203,7 +203,8 @@
 async function fetchSpaceStationVectors() {
     try {
         // Fetch Live International Space Station coordinates
-        const issResponse = await fetch('https://wheretheiss.at');
+        const issResponse = await fetch('https://api.wheretheiss.at/v1/satellites/25544
+');
         const issData = await issResponse.json();
         if (issData) {
             document.getElementById('iss-lat').innerText = parseFloat(issData.latitude).toFixed(4) + '°';
