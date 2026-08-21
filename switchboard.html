@@ -129,27 +129,46 @@ const famoMixtapeTracks = [
     "https://rap1033ssmm-crypto.github.io/the-famo-legacy-omnisphere-metadata-registry/assets/track9.mp3.mp3"
 ];
 
-let mainAudioChannel = new Audio();
+let mainAudioChannel = document.getElementById("famo-music-channel") || new Audio();
 
+// ====================================================================
+// OFFICIAL 10-TRACK RANDOMIZED MIXTAPE SHUFFLE ENGINE // NO OVERLAP
+// ====================================================================
 function startSovereignRadioShow() {
-    if(famoMixtapeTracks.length === 0) return;
+    if (famoMixtapeTracks.length === 0) return;
     
-    // Pick a completely random track index from the 10 available songs
+    // Target your existing page channel element so a duplicate invisible player isn't created
+    let mainAudioChannel = document.getElementById("famo-music-channel");
+    
+    // Fallback protection circuit: If the page layout doesn't have the element, make a safe one
+    if (!mainAudioChannel) {
+        mainAudioChannel = window.famoGlobalPlayer || new Audio();
+        window.famoGlobalPlayer = mainAudioChannel;
+    }
+    
+    // Force any stuck or bleeding track loops to pause before launching a new mix track
+    if (!mainAudioChannel.paused) {
+        mainAudioChannel.pause();
+    }
+    
     const randomTrackIndex = Math.floor(Math.random() * famoMixtapeTracks.length);
     
-    // 1. Load and play the randomized song track
+    // Load the fresh random track link into the unified channel line
     mainAudioChannel.src = famoMixtapeTracks[randomTrackIndex];
     mainAudioChannel.volume = 0.85;
-    mainAudioChannel.play().catch(err => console.log("Stream pending user click interaction."));
     
-    // 2. Intercept the track end event to trigger the voice drop rotation matrix
+    mainAudioChannel.play()
+        .then(function() { console.log("[AutoJurkDjs] Playing Track Vector Ref:", randomTrackIndex); })
+        .catch(function(err) { console.log("Stream pending operator interaction click."); });
+    
+    // Intercept track end natively to execute the 1-of-7 voice drop transition
     mainAudioChannel.onended = function() {
-        console.log("[Radio Mix] Track complete. Intercepting stream for voice bumper insertion...");
+        console.log("[Radio Mix] Track complete. Injecting voice bumper into airwaves...");
         
-        // Fire a random 1-of-7 Famo voice drop instantly
+        // Fire a random Famo voice promo bumper instantly
         playRandomFamoDrop();
         
-        // Delay the next random song by 5 seconds to let the voice drop finish cleanly
+        // Let the voice bumper hold the airwaves for 5 seconds before pulling the next track
         setTimeout(function() {
             startSovereignRadioShow();
         }, 5000);
