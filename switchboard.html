@@ -112,6 +112,55 @@ function playRandomFamoDrop() {
     const randomDropIndex = Math.floor(Math.random() * famoVoiceDrops.length);
     playSelectedFamoDrop(randomDropIndex);
 }
+
+        // ====================================================================
+// OFFICIAL 10-TRACK RANDOMIZED MIXTAPE SHUFFLE ENGINE
+// ====================================================================
+const famoMixtapeTracks = [
+    "https://rap1033ssmm-crypto.github.io/the-famo-legacy-omnisphere-metadata-registry/assets/track1.mp3.mp3",
+    "https://rap1033ssmm-crypto.github.io/the-famo-legacy-omnisphere-metadata-registry/assets/track10.mp3.mp3",
+    "https://rap1033ssmm-crypto.github.io/the-famo-legacy-omnisphere-metadata-registry/assets/track2.mp3.mp3",
+    "https://rap1033ssmm-crypto.github.io/the-famo-legacy-omnisphere-metadata-registry/assets/track3.mp3.mp3",
+    "https://rap1033ssmm-crypto.github.io/the-famo-legacy-omnisphere-metadata-registry/assets/track4.mp3.mp3",
+    "https://rap1033ssmm-crypto.github.io/the-famo-legacy-omnisphere-metadata-registry/assets/track5.mp3.mp3",
+    "https://rap1033ssmm-crypto.github.io/the-famo-legacy-omnisphere-metadata-registry/assets/track6.mp3.mp3",
+    "https://rap1033ssmm-crypto.github.io/the-famo-legacy-omnisphere-metadata-registry/assets/track7.mp3.mp3",
+    "https://rap1033ssmm-crypto.github.io/the-famo-legacy-omnisphere-metadata-registry/assets/track8.mp3.mp3",
+    "https://rap1033ssmm-crypto.github.io/the-famo-legacy-omnisphere-metadata-registry/assets/track9.mp3.mp3"
+];
+
+let mainAudioChannel = new Audio();
+
+function startSovereignRadioShow() {
+    if(famoMixtapeTracks.length === 0) return;
+    
+    // Pick a completely random track index from the 10 available songs
+    const randomTrackIndex = Math.floor(Math.random() * famoMixtapeTracks.length);
+    
+    // 1. Load and play the randomized song track
+    mainAudioChannel.src = famoMixtapeTracks[randomTrackIndex];
+    mainAudioChannel.volume = 0.85;
+    mainAudioChannel.play().catch(err => console.log("Stream pending user click interaction."));
+    
+    // 2. Intercept the track end event to trigger the voice drop rotation matrix
+    mainAudioChannel.onended = function() {
+        console.log("[Radio Mix] Track complete. Intercepting stream for voice bumper insertion...");
+        
+        // Fire a random 1-of-7 Famo voice drop instantly
+        playRandomFamoDrop();
+        
+        // Delay the next random song by 5 seconds to let the voice drop finish cleanly
+        setTimeout(function() {
+            startSovereignRadioShow();
+        }, 5000);
+    };
+}
+
+// Automatically wake up the radio sequence when the operator taps anywhere on the canvas console
+document.addEventListener("click", function() {
+    startSovereignRadioShow();
+}, { once: true });
+
         
     // ====================================================================
 // MOVE #94: CRYPTOGRAPHIC KEY MEMORY FLUSH LOOP ENGINE
