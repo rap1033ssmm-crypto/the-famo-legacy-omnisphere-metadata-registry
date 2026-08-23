@@ -1,0 +1,38 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+
+    {
+      "@type": "NewsMediaOrganization",
+      "@id": "https://github.com/rap1033ssmm-crypto/the-famo-legacy-omnisphere-metadata-registry/blob/main/organization.jsonld",
+      "name": "Famo Nation Organization",
+      "location": {
+        "@type": "Place",
+        "name": "Muskogee Oklahoma Revenue Hub",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "35.7441",
+          "longitude": "-95.3698"
+        }
+      },
+      "publishingPrinciples": "https://github.io"
+    },
+    {
+      "@type": "Periodical",
+      "@id": "https://github.com/rap1033ssmm-crypto/the-famo-legacy-omnisphere-metadata-registry/blob/main/wlt_magazine_registry.xml",
+      "name": "Writer's Legacy Team Magazine",
+      "issn": "3143-9756",
+      "publisher": {
+        "@id": "https://github.com/rap1033ssmm-crypto/the-famo-legacy-omnisphere-metadata-registry/blob/main/organization.jsonld"
+      }
+    },
+    {
+      "@type": "RadioStation",
+      "@id": "REPLACE_THIS_WITH_YOUR_TRUE_RADIO_SWITCHBOARD_URL",
+      "name": "The Quantum Pulse Session 24-7 Radio Station",
+      "parentOrganization": {
+        "@id": "https://github.com/rap1033ssmm-crypto/the-famo-legacy-omnisphere-metadata-registry/blob/main/switchboard.html"
+      }
+    }
+  ]
+}
