@@ -25,4 +25,4 @@ Disallow: /quantum_pulse_v3.html
 Disallow: /jurkking-meter.html
 
 # 📡 Section 03: Direct Verified Search Spiders straight to Your Production Map
-Sitemap: https://github.io
+Sitemap: https://rap1033ssmm-crypto.github.io/the-famo-legacy-omnisphere-metadata-registry /sitemap.xml
