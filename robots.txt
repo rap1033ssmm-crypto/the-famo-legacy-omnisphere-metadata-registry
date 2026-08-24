@@ -1,0 +1,28 @@
+# ############################################################################
+# THE FAMO-LEGACY OMNISPHERE APPLICATION MASTER ROOT DIRECTORY
+# APPL0007173 // CRID: 58720358 // MID: 904218607 // COMMAND: MUSKOGEE, OK
+# ############################################################################
+# MODULE 15: AUTOMATED SCRAPER PROFILE FILTER FENCE
+
+# 🟢 Section 01: Grant Full Access to High-Authority Search Spiders
+User-agent: Googlebot
+User-agent: Mediapartners-Google
+User-agent: Bingbot
+Allow: /
+
+# 🔴 Section 02: Hard-Lock and Block Rogue Competitor Harvester Bots
+User-agent: RogueBot
+User-agent: Scrapy
+User-agent: Crawlera
+User-agent: SpiderBot
+User-agent: HTTrack
+User-agent: BlackWidow
+User-agent: heritrix
+Disallow: /switchboard.html
+Disallow: /radio.html
+Disallow: /radio-mount.xml
+Disallow: /quantum_pulse_v3.html
+Disallow: /jurkking-meter.html
+
+# 📡 Section 03: Direct Verified Search Spiders straight to Your Production Map
+Sitemap: https://github.io
