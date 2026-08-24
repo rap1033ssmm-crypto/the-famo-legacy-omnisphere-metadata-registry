@@ -1,6 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE QUANTUM PULSE // SESSION 24-7 BROADCAST TERMINAL</title>
+    <style>
+        /* ELITE MIDNIGHT OBSIDIAN STUDIO ENVIRONMENT BASE */
+        body {
+            background: #05070a;
+            color: #39ff14;
+            font-family: 'Courier New', monospace;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* HARDENED INDUSTRIAL RADIO RACK CONTAINER */
+        #radio-station-deck {
+            background: #0c0f14;
+            border: 3px solid #1e293b;
+            border-top: 4px solid #39ff14;
+            width: 100%;
+            max-width: 750px;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.7), 0 0 15px rgba(57, 255, 20, 0.1);
+        }
+
+        /* STATION HEADER TELEMETRY BOARD */
+        .station-header {
+            border-bottom: 2px dashed #1e293b;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        .station-title {
+            color: #fff;
+            margin: 0;
+            font-size: 18px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 8px rgba(255,255,255,0.2);
+        }
+        .station-sub {
+            color: #64748b;
+            font-size: 11px;
+            margin-top: 5px;
+            text-transform: uppercase;
+        }
+
+        /* REAL-TIME VU METER SOUND DECK */
+        .vu-meter-rack {
+            background: #020406;
+            border: 1px solid #1e293b;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+        .vu-grid {
+            display: flex;
+            gap: 3px;
+            height: 25px;
+            align-items: flex-end;
+            background: #000;
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #0f172a;
+        }
+        .vu-bar {
+            flex: 1;
+            height: 100%;
+            background: #1e293b;
+            border-radius: 1px;
+            transition: height 0.1s ease;
+        }
+        /* Color scaling for true audio console display feel */
+        .vu-bar.active-green { background: #39ff14; box-shadow: 0 0 4px #39ff14; }
+        .vu-bar.active-amber { background: #ffb703; box-shadow: 0 0 4px #ffb703; }
+        .vu-bar.active-red { background: #ff0055; box-shadow: 0 0 4px #ff0055; }
+
+        /* LIVE TERMINAL FEED MONITOR SCREEN */
+        .console-monitor {
+            background: #020406;
+            border-left: 4px solid #39ff14;
+            padding: 15px;
+            border-radius: 0 6px 6px 0;
+            font-size: 12px;
+            line-height: 1.6;
+            color: #39ff14;
+            min-height: 80px;
+            margin-bottom: 20px;
+            white-space: pre-wrap;
+        }
+
+        /* HIGH-METRIC STUDIO DECK CONTROLS */
+        .control-panel-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .deck-button {
+            background: #111827;
+            border: 1px solid #39ff14;
+            color: #39ff14;
+            padding: 12px;
+            font-family: monospace;
+            font-weight: bold;
+            font-size: 12px;
+            cursor: pointer;
+            border-radius: 6px;
+            text-transform: uppercase;
+            transition: all 0.2s ease;
+        }
+        .deck-button:hover {
+            background: #39ff14;
+            color: #000;
+            box-shadow: 0 0 10px rgba(57, 255, 20, 0.4);
+        }
+        .deck-button.disconnect {
+            border-color: #ff0055;
+            color: #ff0055;
+        }
+        .deck-button.disconnect:hover {
+            background: #ff0055;
+            color: #fff;
+            box-shadow: 0 0 10px rgba(255, 0, 85, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+<div id="radio-station-deck">
+    <!-- HEADER INTEL MATRIX -->
+    <div class="station-header">
+        <h2 class="station-title">📡 THE QUANTUM PULSE // 24-7 URBAN BROADCAST</h2>
+        <div class="station-sub">SYSTEM STATE: LEVEL 3 AUTOMATED MESH // NAICS CATEGORY: 516210 COMPLIANT</div>
+    </div>
+
+    <!-- LIVE CONSOLE ANALYZER DISPLAY SCREEN -->
+    <div class="console-monitor" id="station-text-monitor">⚡ INITIALIZING DETECTED QUANTUM DATA PATTERNS...&#10;🟢 STREAM CHANNEL RE-ROUTED VIA THE FAMO-LEGACY OMNISPHERE CHASSIS.</div>
+
+    <!-- VISUAL STUDIO LED METERS -->
+    <div class="vu-meter-rack">
+        <div style="font-size: 10px; color: #64748b; margin-bottom: 5px; text-transform: uppercase;">Acoustic Decibel Channel Headroom Analyzer</div>
+        <div class="vu-grid" id="audio-vu-grid">
+            <!-- Simulated 20-segment graphic channel needles -->
+            <div class="vu-bar active-green" style="height: 40%;"></div>
+            <div class="vu-bar active-green" style="height: 55%;"></div>
+            <div class="vu-bar active-green" style="height: 70%;"></div>
+            <div class="vu-bar active-green" style="height: 65%;"></div>
+            <div class="vu-bar active-green" style="height: 80%;"></div>
+            <div class="vu-bar active-amber" style="height: 85%;"></div>
+            <div class="vu-bar active-amber" style="height: 90%;"></div>
+            <div class="vu-bar active-red" style="height: 95%;"></div>
+            <div class="vu-bar active-green" style="height: 60%;"></div>
+            <div class="vu-bar active-green" style="height: 45%;"></div>
+        </div>
+    </div>
+
+    <!-- CONTROL SLIDERS INTERFACE BLOCK -->
+    <div class="control-panel-grid">
+        <button class="deck-button" onclick="tuneInLiveStream()">[ TUNE IN LIVE STATION ]</button>
+        <button class="deck-button disconnect" onclick="disconnectLiveStream()">[ DISCONNECT FEED ]</button>
+    </div>
+</div>
+
+</body>
+</html>
+
         <!-- ==================================================================== -->
     <!-- MOVE #63: CROSS-ORIGIN RESOURCE ISOLATION FENCE -->
     <!-- ==================================================================== -->
