@@ -4,12 +4,14 @@
   
   <!-- 01: CORE SWITCHBOARD GATEWAY CONSOLE -->
   <url>
-    <loc>https://github.io</loc>
+    <loc>https://rap1033ssmm-crypto.github.io/the-famo-legacy-omnisphere-metadata-registry/switchboard.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://github.io</image:loc>
+      <image:loc> <!-- 01: CORE SWITCHBOARD GATEWAY CONSOLE -->
+  <url>
+    <loc>https://rap1033ssmm-crypto.github.io/the-famo-legacy-omnisphere-metadata-registry/switchboard.html</loc></image:loc>
       <image:title>The Famo-Legacy OmniSphere Quantum Pulse Session Flyer</image:title>
     </image:image>
   </url>
