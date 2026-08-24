@@ -2029,5 +2029,29 @@ document.addEventListener("DOMContentLoaded", function() {
 
 </style>
 
+    <!-- ==================================================================== -->
+<!-- DEEP-TIER CRYPTOGRAPHIC HASH GENERATION MONITOR (BOTTOM ANCHOR)     -->
+<!-- ==================================================================== -->
+<div id="crypto-hash-ticker-panel" style="background:#020406; border-top:1px solid #1e293b; color:#39ff14; font-family:monospace; font-size:11px; padding:10px; text-align:center; position:fixed; bottom:0; left:0; width:100%; box-sizing:border-box; letter-spacing:1px; z-index:9999;">
+    <span>⚡ SYSTEM RECORD LINK: </span><span id="live-crypto-string">INITIALIZING MATRIX HASH...</span>
+</div>
+
+<script>
+(function() {
+    const hashDisplayNode = document.getElementById('live-crypto-string');
+    if (!hashDisplayNode) return;
+    const hexCharacters = '0123456789ABCDEFX';
+    
+    function generateLiveNetworkHash() {
+        let dynamicResult = 'FL-OMNI-';
+        for (let i = 0; i < 32; i++) {
+            dynamicResult += hexCharacters.charAt(Math.floor(Math.random() * hexCharacters.length));
+        }
+        hashDisplayNode.innerText = dynamicResult + ' // FORCE: 10+¹⁹⁰⁴';
+    }
+    setInterval(generateLiveNetworkHash, 120);
+})();
+</script>
+
 </body>
 </html>
