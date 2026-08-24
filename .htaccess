@@ -1,5 +1,16 @@
-# ############################################################################
-# THE FAMO-LEGACY OMNISPHERE APPLICATION MASTER ROOT DIRECTORY
-# APPL0007173 // CRID: 58720358 // MID: 904218607 // COMMAND: MUSKOGEE, OK
-# HASH: 7679777DD08BF15B196081B4FEC953359F20ADDB63708D437D36BBDF42B0C6C4A
-# ############################################################################
+# ====================================================================
+# THE FAMO-LEGACY OMNISPHERE // CROSS-ORIGIN SECURITY FENCE (NODE 20)
+# ====================================================================
+<IfModule mod_headers.c>
+    # Hardlock the streaming chassis to ONLY render under authorized domain vectors
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set Content-Security-Policy "frame-ancestors 'self' https://sites.google.com https://*.google.com;"
+    
+    # Block alien asset hotlinking to insulate active repository bandwidth
+    RewriteEngine On
+    RewriteCond %{HTTP_REFERER} !^$
+    RewriteCond %{HTTP_REFERER} !^https://(www\.)?github\.com/rap1033ssmm-crypto/the-famo-legacy-omnisphere-metadata-registry [NC]
+    RewriteCond %{HTTP_REFERER} !^https://(www\.)?sites\.google\.com/view/the-famo-legacy-omnisphere [NC]
+    RewriteCond %{HTTP_REFERER} !^https://(www\.)?sites\.google\.com/d/1wWfhShjEr3NfX_0zstnqEzpuqcDPNBTd [NC]
+    Header set Access-Control-Allow-Origin "https://sites.google.com"
+</IfModule>
