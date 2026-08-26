@@ -383,6 +383,14 @@ function executeStudioStop() {
 </div>
 
 <script>
+    // ====================================================================
+// HARDWIRED AUDIO INFRASTRUCTURE CHANNELS (LIVE BROADCAST DECK)
+// ====================================================================
+if (!window.musicChan) {
+    window.musicChan = new Audio("https://zeno.fm");
+    window.musicChan.crossOrigin = "anonymous";
+}
+
 // ====================================================================
 // EXECUTIVE MASTER METADATA REGISTRY ARRAYS (FAMO NATION DISTRIBUTION PIPELINE)
 // ====================================================================
