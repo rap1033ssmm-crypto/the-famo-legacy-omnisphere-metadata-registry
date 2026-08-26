@@ -223,25 +223,128 @@
 </div>
 
 <script>
-
-// MASTER 10-SLOT INTERCHANGEABLE STORAGE SCHEME
+// ====================================================================
+// EXECUTIVE MASTER METADATA REGISTRY ARRAYS (FAMO NATION DISTRIBUTION PIPELINE)
+// ====================================================================
 const famoNetworkMixtape = [
-    { 
-        file: "track1.mp3", 
-        title: "Chop On It Radio: Face or No Face (Episode 1)", 
-        artist: "Robert A. Parker x Team Auto Jurk DJs", 
-        producer: "StreamYard Capture Core" 
+    {
+        file: "track1.mp3",
+        title: "Chop On It Radio: Face or No Face (Episode 1)",
+        artist: "Robert A. Parker x Team Auto Jurk DJs",
+        producer: "StreamYard Capture Core"
     },
-    { 
-        file: "track2.mp3", 
-        title: "Track 2", 
-        artist: "Unknown Artist", 
-        producer: "Unknown Producer" 
+    {
+        file: "track2.mp3",
+        title: "Track 2",
+        artist: "Unknown Artist",
+        producer: "Unknown Producer"
+    },
+    {
+        file: "track3.mp3",
+        title: "Track 3",
+        artist: "Unknown Artist",
+        producer: "Unknown Producer"
+    },
+    {
+        file: "track4.mp3",
+        title: "Track 4",
+        artist: "Unknown Artist",
+        producer: "Unknown Producer"
+    },
+    {
+        file: "track5.mp3",
+        title: "Track 5",
+        artist: "Unknown Artist",
+        producer: "Unknown Producer"
+    },
+    {
+        file: "track6.mp3",
+        title: "Track 6",
+        artist: "Unknown Artist",
+        producer: "Unknown Producer"
+    },
+    {
+        file: "track7.mp3",
+        title: "Track 7",
+        artist: "Unknown Artist",
+        producer: "Unknown Producer"
+    },
+    {
+        file: "track8.mp3",
+        title: "Track 8",
+        artist: "Unknown Artist",
+        producer: "Unknown Producer"
+    },
+    {
+        file: "track9.mp3",
+        title: "Track 9",
+        artist: "Unknown Artist",
+        producer: "Unknown Producer"
+    },
+    {
+        file: "track10.mp3",
+        title: "Track 10",
+        artist: "Unknown Artist",
+        producer: "Unknown Producer"
     }
-    // Remaining slots scale down seamlessly in clean text lines
 ];
 
-console.log("[System] Pre-production array blueprint armed with absolute zero data loss.");
+// ====================================================================
+// COMPLIANT TELEMETRY COMPILER & ONSCREEN INJECTION LOOPS
+// ====================================================================
+function compileOnAirQueueMatrix() {
+    const queueBodyNode = document.getElementById('live-queue-rows');
+    const currentOnAirTitleNode = document.getElementById('on-air-meta-title');
+    if (!queueBodyNode) return;
+
+    // Instantly force on-air metadata readout header update
+    if (currentOnAirTitleNode && famoNetworkMixtape.length > 0) {
+        const activeTrack = famoNetworkMixtape[0];
+        currentOnAirTitleNode.innerText = `${activeTrack.title} - ${activeTrack.artist} (Prod. By ${activeTrack.producer})`;
+    }
+
+    let compiledRowsHTML = '';
+    famoNetworkMixtape.forEach((track, index) => {
+        compiledRowsHTML += `
+            <tr>
+                <td style="color: #64748b; font-weight: bold;">[${(index + 1).toString().padStart(2, '0')}]</td>
+                <td style="color: #475569; font-family: monospace;">${track.file}</td>
+                <td style="color: #ffffff; font-weight: bold;">${track.title}</td>
+                <td>${track.artist}</td>
+                <td style="color: #64748b; font-style: italic;">${track.producer}</td>
+            </tr>
+        `;
+    });
+    queueBodyNode.innerHTML = compiledRowsHTML;
+}
+
+// ====================================================================
+// AUTOMATED TEXT-TO-VOICE INGESTION ENGINE CONTROLLER
+// ====================================================================
+function loadArticleIntoVoiceEngine() {
+    const targetTextString = document.getElementById('substack-text-ingest-slot').value;
+    if (!targetTextString.trim()) {
+        alert("[System Monitor] Entry slot prompt empty. Ingestion halted.");
+        return;
+    }
+
+    console.log("[Voice Bank] Initializing text sequence analysis...");
+    
+    // Utilize built-in client speech synthesis without changing repository files
+    const speechUtterance = new SpeechSynthesisUtterance(targetTextString);
+    speechUtterance.rate = 1.0;
+    speechUtterance.pitch = 1.0;
+    
+    window.speechSynthesis.cancel(); // Clear previous voice loops
+    window.speechSynthesis.speak(speechUtterance);
+    
+    console.log("[Voice Bank] Transmitting 'Listen to Article' narration stream live.");
+}
+
+// Fire system initialization on layout mount
+document.addEventListener("DOMContentLoaded", function() {
+    compileOnAirQueueMatrix();
+});
 </script>
 
 </body>
