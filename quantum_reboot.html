@@ -147,16 +147,56 @@
         <span style="color:#fff;">🔴 ON AIR: </span><span id="on-air-meta-title">INITIALIZING CHOP ON IT RADIO PIPELINES...</span>
     </div>
 
-    <!-- VISUAL QUEUE DISPLAY PANEL -->
-    <div class="playlist-rack">
-        <div style="font-size: 11px; color: #64748b; margin-bottom: 10px; text-transform: uppercase; font-weight: bold;">Active 10-Slot Rotation Grid Matrix</div>
-        <div id="live-queue-rows">
-            <!-- Shuffler slots inject here dynamically -->
-        </div>
+   <!-- LIVE METADATA CONSOLE READOUT -->
+<div class="now-playing-box">
+    <span style="color:#fff;">🔴 ON AIR: </span><span id="on-air-meta-title">INITIALIZING CHOP ON IT RADIO PIPELINES...</span>
+</div>
+
+<!-- ==================================================================== -->
+<!-- EXECUTIVE METADATA MIX DESK BROADCAST DISPLAY                        -->
+<!-- ==================================================================== -->
+<div class="analyser-rack-chassis">
+    <div class="stereo-header-telemetry">
+        <span>Left Channel Peak Monitor</span>
+        <span>Stereo Width: 100% Secure</span>
+        <span>Right Channel Peak Monitor</span>
+    </div>
+    <div class="vu-grid">
+        <!-- 20-Band Graphic Equalizer Bridges -->
+        <div class="vu-bar"></div><div class="vu-bar"></div><div class="vu-bar"></div><div class="vu-bar"></div><div class="vu-bar"></div>
+        <div class="vu-bar"></div><div class="vu-bar"></div><div class="vu-bar"></div><div class="vu-bar"></div><div class="vu-bar"></div>
+        <div class="vu-bar"></div><div class="vu-bar"></div><div class="vu-bar"></div><div class="vu-bar"></div><div class="vu-bar"></div>
+        <div class="vu-bar"></div><div class="vu-bar"></div><div class="vu-bar"></div><div class="vu-bar"></div><div class="vu-bar"></div>
     </div>
 </div>
 
+<!-- ==================================================================== -->
+<!-- The Famo-Legacy OmniSphere COMPLIANT MIXTAPE ONSCREEN ROTATION GRID MATRIX           -->
+<!-- ==================================================================== -->
+<div class="deck-card-slot">
+    <div style="font-size: 11px; color: #475569; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">
+        Active On-Air Queue Matrix // 10-Slot Rotation Grid
+    </div>
+    <table class="playlist-table">
+        <thead>
+            <tr>
+                <th>Slot</th>
+                <th>Audio Target Reference</th>
+                <th>Song / Broadcast Title</th>
+                <th>Artist / Identity String</th>
+                <th>Producer Credits</th>
+            </tr>
+        </thead>
+        <tbody id="live-queue-rows">
+            <!-- Independent metadata tracks inject here dynamically -->
+        </tbody>
+    </table>
+</div>
+
+</div>
+
 <script>
+
 // MASTER 10-SLOT INTERCHANGEABLE STORAGE SCHEME
 const famoNetworkMixtape = [
     { 
