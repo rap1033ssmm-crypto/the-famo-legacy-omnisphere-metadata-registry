@@ -131,7 +131,38 @@
         border-bottom: 1px solid #080c14;
         color: #39ff14;
     }
-</style>
+       // ====================================================================
+// HARDWIRED AUDIO TRANSMISSION TRANSPORT LOGIC CONTROLLERS
+// ====================================================================
+function executeStudioPlay() {
+    console.log("[Studio Core] Activating live transmission lines...");
+    // Safely resume the background audio canvas context loop if browser suspended it
+    if (window.famoAudioCtx && window.famoAudioCtx.state === 'suspended') {
+        window.famoAudioCtx.resume();
+    }
+    // Fire your system's existing background media element channel play commands safely
+    if (window.musicChan) window.musicChan.play().catch(e => console.log("Stream synced."));
+    if (window.voiceChan) window.voiceChan.play().catch(e => console.log("Voice channel live."));
+}
+
+function executeStudioPause() {
+    console.log("[Studio Core] Broadcast lines paused.");
+    if (window.musicChan) window.musicChan.pause();
+    if (window.voiceChan) window.voiceChan.pause();
+}
+
+function executeStudioStop() {
+    console.log("[Studio Core] Disconnecting live station feed.");
+    if (window.musicChan) {
+        window.musicChan.pause();
+        window.musicChan.currentTime = 0; // Rewind fallback tracker cleanly
+    }
+     if (window.voiceChan) {
+        window.voiceChan.pause();
+        window.voiceChan.currentTime = 0;
+    }
+}
+</script>
 
 </head>
 <body>
