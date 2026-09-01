@@ -1,0 +1,59 @@
+{
+  "catalogTitle": "Famo Nation TV Bone Yard Vault",
+  "lastUpdated": "2026-08-30",
+  "author": "Global Music Data History Archivist",
+  "publisher": "Writerslegacyteam Publishing",
+  "mediaTracks": [
+    {
+      "trackId": "FN-BYG-001",
+      "artist": "COZY MOBETTA",
+      "title": "Don't Wake The Kids",
+      "fileUrl": "https://githubusercontent.com",
+      "upc": "199316628173",
+      "isrc": "USUYG1814310",
+      "genre": "R&B/Soul",
+      "duration": "00:02:59"
+    },
+    {
+      "trackId": "FN-BYG-002",
+      "artist": "TheMr ft. YL DALLAS",
+      "title": "FOR ME",
+      "fileUrl": "https://githubusercontent.com",
+      "productId": "439404",
+      "genre": "R&B/Hip-Hop",
+      "duration": "00:03:27"
+    },
+    {
+      "trackId": "FN-BYG-003",
+      "artist": "FAMO NATION ARTIST 3",
+      "title": "TRACK SLOT THREE",
+      "fileUrl": "https://githubusercontent.com",
+      "genre": "R&B/Soul",
+      "duration": "00:03:00"
+    },
+    {
+      "trackId": "FN-BYG-004",
+      "artist": "FAMO NATION ARTIST 4",
+      "title": "TRACK SLOT FOUR",
+      "fileUrl": "https://githubusercontent.com",
+      "genre": "R&B/Hip-Hop",
+      "duration": "00:03:00"
+    },
+    {
+      "trackId": "FN-BYG-005",
+      "artist": "FAMO NATION ARTIST 5",
+      "title": "TRACK SLOT FIVE",
+      "fileUrl": "https://githubusercontent.com",
+      "genre": "R&B/Soul",
+      "duration": "00:03:00"
+    },
+    {
+      "trackId": "FN-BYG-006",
+      "artist": "FAMO NATION ARTIST 6",
+      "title": "TRACK SLOT SIX",
+      "fileUrl": "https://githubusercontent.com",
+      "genre": "R&B/Hip-Hop",
+      "duration": "00:03:00"
+    }
+  ]
+}
